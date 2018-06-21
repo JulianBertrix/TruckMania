@@ -26,78 +26,11 @@ include 'header.php';
       </div>
     </header>
 
-    <!-- Icons Grid -->
-    <section class="features-icons bg-light text-center">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-3">
-            <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
-              <div class="features-icons-icon d-flex">
-                <i class="fas fa-search m-auto text-primary"></i>
-              </div>
-              <h3>Cherche ton Food Truck !</h3>
-              <p class="lead mb-0">Une recherche simplifiée: partout où tu vas, trouve ton bonheur !!</p>
-            </div>
-          </div>
-          <div class="col-lg-3">
-            <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
-              <div class="features-icons-icon d-flex">
-              <i class="fas fa-map-marker m-auto text-primary"></i>
-              </div>
-              <h3>Une précision au mètre près</h3>
-              <p class="lead mb-0">Suis ton Food Truck préféré en temps réel</p>
-            </div>
-          </div>
-          <div class="col-lg-3">
-            <div class="features-icons-item mx-auto mb-0 mb-lg-3">
-              <div class="features-icons-icon d-flex">
-                <i class="fas fa-certificate m-auto text-primary"></i>
-              </div>
-              <h3>Avis certifiés</h3>
-              <p class="lead mb-0">Seuls les clients ayant consommé peuvent laisser un avis, pas d'arnaque !!</p>
-            </div>
-          </div>
-          <div class="col-lg-3">
-            <div class="features-icons-item mx-auto mb-0 mb-lg-3">
-              <div class="features-icons-icon d-flex">
-              <i class="fas fa-heartbeat m-auto text-primary"></i>
-              </div>
-              <h3>Vie plus longtemps !</h3>
-              <p class="lead mb-0">Va chercher ton ton repas au Food Truck à pied, c'est bon pour la santé et le moral !</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Les derniers FT et le evenements -->
-    <section class="showcase">
-      <div class="container-fluid p-0">
-        <div class="row no-gutters">
-
-          <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('img/bg-showcase-1.jpg');"></div>
-          <div class="col-lg-6 order-lg-1 my-auto showcase-text">
-            <h2>Les dernières arrivées</h2>
-            <p class="lead mb-0">Ils viennent de s'inscrire, va faire un tour sur leur page pour découvrir leur carte</p>
-          </div>
-        </div>
-        <div class="row no-gutters">
-          <div class="col-lg-6 text-white showcase-img" style="background-image: url('img/bg-showcase-2.jpg');"></div>
-          <div class="col-lg-6 my-auto showcase-text">
-            <h2>Updated For Bootstrap 4</h2>
-            <p class="lead mb-0">Newly improved, and full of great utility classes, Bootstrap 4 is leading the way in mobile responsive web development! All of the themes on Start Bootstrap are now using Bootstrap 4!</p>
-          </div>
-        </div>
-        <div class="row no-gutters">
-          <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('img/bg-showcase-3.jpg');"></div>
-          <div class="col-lg-6 order-lg-1 my-auto showcase-text">
-            <h2>Easy to Use &amp; Customize</h2>
-            <p class="lead mb-0">Landing Page is just HTML and CSS with a splash of SCSS for users who demand some deeper customization options. Out of the box, just add your content and images, and your new landing page will be ready to go!</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
+<?php
+include 'home_Presentation.php';
+include 'carroussel_LastFive.php';
+?>
+ 
     <!-- Testimonials -->
     <section class="testimonials text-center bg-light">
       <div class="container">
