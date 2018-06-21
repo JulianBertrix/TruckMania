@@ -24,7 +24,7 @@ class DefaultController extends Controller {
     }
 
     public function getDefault() {
-        $this->render("default");
+        $this->render("home");
     }
 
     public function login() {
