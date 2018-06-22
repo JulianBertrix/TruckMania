@@ -4,19 +4,19 @@ namespace BWB\Framework\mvc\models;
 class UtilisateurModel {
 
     private $id;
-    private $siret;
     private $nom;
+    private $prenom;
+    private $email;
+    private $motDePasse;
     private $dateCreation;
-    private $logo;
-    private $categorieId;
-    private $moyenne;
+    private $roleId;
+    private $adresseId;
 
     public function __construct() {
         
     }
 
-    //Accesseurs
-    
+
     /**
      * Get the value of id
      */ 
@@ -33,26 +33,6 @@ class UtilisateurModel {
     public function setId($id)
     {
         $this->id = $id;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of siret
-     */ 
-    public function getSiret()
-    {
-        return $this->siret;
-    }
-
-    /**
-     * Set the value of siret
-     *
-     * @return  self
-     */ 
-    public function setSiret($siret)
-    {
-        $this->siret = $siret;
 
         return $this;
     }
@@ -78,6 +58,66 @@ class UtilisateurModel {
     }
 
     /**
+     * Get the value of prenom
+     */ 
+    public function getPrenom()
+    {
+        return $this->prenom;
+    }
+
+    /**
+     * Set the value of prenom
+     *
+     * @return  self
+     */ 
+    public function setPrenom($prenom)
+    {
+        $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of email
+     */ 
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Set the value of email
+     *
+     * @return  self
+     */ 
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of motDePasse
+     */ 
+    public function getMotDePasse()
+    {
+        return $this->motDePasse;
+    }
+
+    /**
+     * Set the value of motDePasse
+     *
+     * @return  self
+     */ 
+    public function setMotDePasse($motDePasse)
+    {
+        $this->motDePasse = $motDePasse;
+
+        return $this;
+    }
+
+    /**
      * Get the value of dateCreation
      */ 
     public function getDateCreation()
@@ -98,61 +138,41 @@ class UtilisateurModel {
     }
 
     /**
-     * Get the value of logo
+     * Get the value of roleId
      */ 
-    public function getLogo()
+    public function getRoleId()
     {
-        return $this->logo;
+        return $this->roleId;
     }
 
     /**
-     * Set the value of logo
+     * Set the value of roleId
      *
      * @return  self
      */ 
-    public function setLogo($logo)
+    public function setRoleId($roleId)
     {
-        $this->logo = $logo;
+        $this->roleId = $roleId;
 
         return $this;
     }
 
     /**
-     * Get the value of categorieId
+     * Get the value of adresseId
      */ 
-    public function getCategorieId()
+    public function getAdresseId()
     {
-        return $this->categorieId;
+        return $this->adresseId;
     }
 
     /**
-     * Set the value of categorieId
+     * Set the value of adresseId
      *
      * @return  self
      */ 
-    public function setCategorieId($categorieId)
+    public function setAdresseId($adresseId)
     {
-        $this->categorieId = $categorieId;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of moyenne
-     */ 
-    public function getMoyenne()
-    {
-        return $this->moyenne;
-    }
-
-    /**
-     * Set the value of moyenne
-     *
-     * @return  self
-     */ 
-    public function setMoyenne($moyenne)
-    {
-        $this->moyenne = $moyenne;
+        $this->adresseId = $adresseId;
 
         return $this;
     }
