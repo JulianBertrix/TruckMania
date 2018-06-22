@@ -6,17 +6,6 @@ use BWB\Framework\mvc\Controller;
 use BWB\Framework\mvc\models\TrucksModel;
 use BWB\Framework\mvc\dao\DAOTrucks;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of ViewController
- *
- * @author loic
- */
 class TrucksController extends Controller {
 
     private $truck;
@@ -29,8 +18,11 @@ class TrucksController extends Controller {
 
 
     public function getTrucksFive() {
-
        return $this->truck->getLastFive();
+    }
+
+    public function testMe(){
+        $this->render("test");
     }
 
 }
