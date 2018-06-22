@@ -1,2 +1,4 @@
 views/test.php
 /nbproject/private/
+.gitignore
+config/database.json
