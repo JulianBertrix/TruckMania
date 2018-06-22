@@ -1,6 +1,7 @@
 <?php
 namespace BWB\Framework\mvc;
-
+use BWB\Framework\mvc\RepositoryInterface;
+use BWB\Framework\mvc\CRUDInterface;
 use PDO;
 
 /**
