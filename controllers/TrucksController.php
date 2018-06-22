@@ -15,12 +15,26 @@ class TrucksController extends Controller {
         //Creation d'un DAOTrucks
         $this->truck = new DAOTrucks();
     }
-
-
+    
+    public function deleteTruck($id){
+        return $this->truck->delete($id);
+    }
+    
+    public function addTruck($array){
+        return $this->truck->create($array);
+    }
     public function getTrucksFive() {
        return $this->truck->getLastFive();
     }
-
+    
+    public function getTruck($id){
+        return $this->truck->retrieve($id);
+    }
+    
+    public function getAllTrucks(){
+        return $this->truck->getAll();
+    }
+    
     public function testMe(){
         $this->render("test");
     }
