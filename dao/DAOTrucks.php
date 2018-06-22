@@ -21,15 +21,20 @@ class DAOTrucks extends DAO{
 
     //put your code here
     public function create($array) {
-        
+        $sql = "INSERT INTO foodtruck (siret, nom, date_creation, logo, categorie_id, moyenne)"
+                . " VALUES ('".$array->getSiret()."','".$array->getNom()."','".$array->getDateCreation()."','"
+                . "".$array->getLogo()."','".$array->getCategorieId()."','".$array->getMoyenne()."')";
+        return $this->getPdo()->query($sql)->fetch();
     }
 
     public function delete($id) {
-        
+        $sql = "DELETE FROM foodtruck WHERE id=".$id;
+        return $this->getPdo()->query($sql)->fetch();
     }
 
     public function getAll() {
-        
+        $sql = "SELECT * FROM foodtruck";
+        return $this->getPdo()->query($sql)->fetchAll();
     }
 
     public function getAllBy($filter) {
@@ -37,11 +42,13 @@ class DAOTrucks extends DAO{
     }
 
     public function retrieve($id) {
-        
+        $sql = "SELECT * FROM foodtruck WHERE id=".$id;
+        return $this->getPdo()->query($sql)->fetch();
     }
 
     public function update($array) {
-        
+        //$truck = new TrucksModel();
+        //$sql = "UPDATE FROM foodtruck SET nom=".$array->getNom()."";
     }
 
     public function getLastFive() {
