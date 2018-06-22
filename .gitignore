@@ -1,5 +1,11 @@
 views/test.php
+<<<<<<< HEAD
 config/database.json
 nbproject/
 preparatifs/
 .gitignore
+=======
+/nbproject/private/
+.gitignore
+config/database.json
+>>>>>>> evenement
