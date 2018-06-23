@@ -11,7 +11,7 @@ echo "<h3>TEST CREATE</h3><br>";
 
 $newItem = new AvisModel('Ceci est un message Test',3.6);
 
-$newControl->create($newItem);
+$newControl->add($newItem);
 
 var_dump($newControl->theLastOne());
 

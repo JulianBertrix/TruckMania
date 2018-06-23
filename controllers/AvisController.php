@@ -26,7 +26,7 @@ class AvisController extends Controller {
         return $this->avis->retrieve($id);
     }
 
-    public function create($newAvis){
+    public function add($newAvis){
         return $this->avis->create($newAvis);
     }
 
