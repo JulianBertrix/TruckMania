@@ -12,7 +12,7 @@ class AvisController extends Controller {
 
     public function __construct(){
         parent::__construct();
-        $this->avis = new DAOUtilisateur();
+        $this->avis = new DAOAvis();
     }
 
     public function getAll(){
@@ -40,6 +40,10 @@ class AvisController extends Controller {
 
     public function update($newValeurs) {
         return $this->avis->update($newValeurs);
+    }
+
+    public function theLastOne() {
+        return $this->avis->theLastOne();
     }
 
 }

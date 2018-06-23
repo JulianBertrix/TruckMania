@@ -22,32 +22,28 @@ class DAOAvis extends DAO{
     }
 
     public function delete($id) {
-        $sql = "DELETE FROM utilisateur WHERE id=".$id;
+        $sql = "DELETE FROM avis WHERE id=".$id;
         $this->getPdo()->query($sql)->execute();
     }
 
     public function getAll() {
 
-        $sql = "SELECT * FROM utilisateur";
+        $sql = "SELECT * FROM avis";
 
         $resultats = $this->getPdo()->query($sql)->fetchAll();
 
-        $listeUsers = array();
+        $listeAvis = array();
 
         foreach ($resultats as $item) {
             
-            $newUser = new UtilisateurModel();
+            $newAvis = new AvisModel();
 
-            $newUser->setId($item['id']); 
-            $newUser->setNom($item['nom']);
-            $newUser->setPrenom($item['prenom']);
-            $newUser->setEmail($item['email']);
-            $newUser->setMotDePasse($item['mot_de_passe']);
-            $newUser->setDateCreation($item['date_creation']);
-            $newUser->setRoleId($item['role_id']);
-            $newUser->setAdresseId($item['adresse_id']);
+            $newAvis->setId($item['id']); 
+            $newAvis->setDateAjout($item['date_ajout']);
+            $newAvis->setMessage($item['message']);
+            $newAvis->setNote($item['note']);
 
-            array_push($listeUsers,$newUser);
+            array_push($listeAvis,$newAvis);
         }
 
         return $listeUsers;
@@ -56,7 +52,7 @@ class DAOAvis extends DAO{
     //Recup liste selon filtre du type ["attribut" => "valeur"]
     public function getAllBy($filter) {
         
-        $request = "SELECT * FROM utilisateur ";
+        $request = "SELECT * FROM avis ";
 
         $i = 0;
 
@@ -72,49 +68,41 @@ class DAOAvis extends DAO{
 
         $resultats = $this->getPdo()->query($request)->fetchAll();
 
-        $listeUsers = array();
+        $listeAvis = array();
 
         foreach ($resultats as $item) {
             
-            $newUser = new UtilisateurModel();
+            $newAvis = new AvisModel();
 
-            $newUser->setId($item['id']); 
-            $newUser->setNom($item['nom']);
-            $newUser->setPrenom($item['prenom']);
-            $newUser->setEmail($item['email']);
-            $newUser->setMotDePasse($item['mot_de_passe']);
-            $newUser->setDateCreation($item['date_creation']);
-            $newUser->setRoleId($item['role_id']);
-            $newUser->setAdresseId($item['adresse_id']);
+            $newAvis->setId($item['id']); 
+            $newAvis->setDateAjout($item['date_ajout']);
+            $newAvis->setMessage($item['message']);
+            $newAvis->setNote($item['note']);
 
-            array_push($listeUsers,$newUser);
+            array_push($listeAvis,$newAvis);
         }
 
-        return $listeUsers;
+        return $listeAvis;
     }
 
     public function retrieve($id) {
 
-        $sql = "SELECT * FROM utilisateur WHERE id=".$id;
+        $sql = "SELECT * FROM avis WHERE id=".$id;
         $result = $this->getPdo()->query($sql)->fetch(); //PDO::FETCH_ASSOC
-        $avis = new UtilisateurModel();
+        $avis = new AvisModel();
         $avis->setId($result['id']); 
-        $avis->setNom($result['nom']);
-        $avis->setPrenom($result['prenom']);
-        $avis->setEmail($result['email']);
-        $avis->setMotDePasse($result['mot_de_passe']);
-        $avis->setDateCreation($result['date_creation']);
-        $avis->setRoleId($result['role_id']);
-        $avis->setAdresseId($result['adresse_id']);
+        $avis->setDateAjout($result['date_ajout']);
+        $avis->setMessage($result['message']);
+        $avis->setNote($result['note']);
 
         return $avis;
     }
 
     //Update d'un utilisateur selon son id, 2eme argument: tableau assoc "column => nouvelle valeur"
     
-    public function updateMe($idUser,$newValeurs){
+    public function updateMe($idAvis,$newValeurs){
 
-        $sql = "UPDATE utilisateur SET ";
+        $sql = "UPDATE avis SET ";
 
         $compteur = 0;
 
@@ -129,9 +117,7 @@ class DAOAvis extends DAO{
             $compteur++;
         }
 
-        $sql .= "WHERE id = " . $idUser;
-
-        var_dump($sql);
+        $sql .= "WHERE id = " . $idAvis;
 
         $this->getPdo()->query($sql)->execute();
 
@@ -142,5 +128,19 @@ class DAOAvis extends DAO{
     }
 
 
+    //Recupere le dernier tupple ajouté
+
+    public function theLastOne() {
+
+        $sql = "SELECT * FROM avis ORDER BY id DESC";
+        $result = $this->getPdo()->query($sql)->fetch(); //PDO::FETCH_ASSOC
+        $avis = new AvisModel(null,null);
+        $avis->setId($result['id']); 
+        $avis->setDateAjout($result['date_ajout']);
+        $avis->setMessage($result['message']);
+        $avis->setNote($result['note']);
+
+        return $avis;
+    }
 
 }
