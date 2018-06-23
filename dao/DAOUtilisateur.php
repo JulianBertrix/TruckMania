@@ -9,8 +9,6 @@ class DAOUtilisateur extends DAO{
         parent::__construct();
     }
 
-    //SELECT * FROM `utilisateur` ORDER BY id DESC
-
     public function create($user) {
         
         $sql = "INSERT INTO utilisateur (nom, prenom, email, mot_de_passe, date_creation, role_id, adresse_id) VALUES ('"
@@ -26,7 +24,8 @@ class DAOUtilisateur extends DAO{
     }
 
     public function delete($id) {
-        
+        $sql = "DELETE FROM utilisateur WHERE id=".$id;
+        $this->getPdo()->query($sql)->execute();
     }
 
     public function getAll() {
@@ -56,8 +55,44 @@ class DAOUtilisateur extends DAO{
         return $listeUsers;
     }
 
+    //Recup liste selon filtre du type ["attribut" => "valeur"]
     public function getAllBy($filter) {
         
+        $request = "SELECT * FROM utilisateur ";
+
+        $i = 0;
+
+        foreach ($filter as $key => $value) {
+            if($i===0){
+                $request .= "WHERE ";
+                $i++;
+            }else{
+                $request .= "AND ";
+            }
+            $request .= $key."='".$value."' ";
+        }
+
+        $resultats = $this->getPdo()->query($request)->fetchAll();
+
+        $listeUsers = array();
+
+        foreach ($resultats as $item) {
+            
+            $newUser = new UtilisateurModel();
+
+            $newUser->setId($item['id']); 
+            $newUser->setNom($item['nom']);
+            $newUser->setPrenom($item['prenom']);
+            $newUser->setEmail($item['email']);
+            $newUser->setMotDePasse($item['mot_de_passe']);
+            $newUser->setDateCreation($item['date_creation']);
+            $newUser->setRoleId($item['role_id']);
+            $newUser->setAdresseId($item['adresse_id']);
+
+            array_push($listeUsers,$newUser);
+        }
+
+        return $listeUsers;
     }
 
     public function retrieve($id) {

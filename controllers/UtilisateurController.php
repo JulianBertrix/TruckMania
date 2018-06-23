@@ -19,12 +19,19 @@ class UtilisateurController extends Controller {
         return $this->user->getAll();
     }
 
+    public function getAllBy($filter){
+        return $this->user->getAllBy($filter);
+    }
     public function retrieve($id){
         return $this->user->retrieve($id);
     }
 
     public function create($newUser){
         return $this->user->create($newUser);
+    }
+
+    public function delete($id){
+        return $this->user->delete($id);
     }
 
 
