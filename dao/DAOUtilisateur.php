@@ -20,12 +20,13 @@ class DAOUtilisateur extends DAO{
         .$user->getRoleId()."','"
         .$user->getAdresseId()."')";
 
-        $this->getPdo()->query($sql)->execute();
+        $this->getPdo()->query($sql);
     }
 
+    //PAS TESTEE
     public function delete($id) {
         $sql = "DELETE FROM utilisateur WHERE id=".$id;
-        $this->getPdo()->query($sql)->execute();
+        $this->getPdo()->query($sql);
     }
 
     public function getAll() {
@@ -133,7 +134,7 @@ class DAOUtilisateur extends DAO{
 
         $sql .= "WHERE id = " . $idUser;
 
-        $this->getPdo()->query($sql)->execute();
+        $this->getPdo()->query($sql);
 
     }
 

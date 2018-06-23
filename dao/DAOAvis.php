@@ -18,14 +18,14 @@ class DAOAvis extends DAO{
         .$avis->getMessage()."','"
         .$avis->getNote()."')";
 
-        $this->getPdo()->query($sql)->execute();
+        $this->getPdo()->query($sql);
 
         echo $sql;
     }
 
     public function delete($id) {
         $sql = "DELETE FROM avis WHERE id=".$id;
-        $this->getPdo()->query($sql)->execute();
+        $this->getPdo()->query($sql);
     }
 
     public function getAll() {
@@ -38,17 +38,15 @@ class DAOAvis extends DAO{
 
         foreach ($resultats as $item) {
             
-            $newAvis = new AvisModel();
+            $newAvis = new AvisModel($item['message'],$item['note']);
 
             $newAvis->setId($item['id']); 
             $newAvis->setDateAjout($item['date_ajout']);
-            $newAvis->setMessage($item['message']);
-            $newAvis->setNote($item['note']);
 
             array_push($listeAvis,$newAvis);
         }
 
-        return $listeUsers;
+        return $listeAvis;
     }
 
     //Recup liste selon filtre du type ["attribut" => "valeur"]
@@ -91,11 +89,9 @@ class DAOAvis extends DAO{
 
         $sql = "SELECT * FROM avis WHERE id=".$id;
         $result = $this->getPdo()->query($sql)->fetch(); //PDO::FETCH_ASSOC
-        $avis = new AvisModel();
+        $avis = new AvisModel($result['message'],$result['note']);
         $avis->setId($result['id']); 
         $avis->setDateAjout($result['date_ajout']);
-        $avis->setMessage($result['message']);
-        $avis->setNote($result['note']);
 
         return $avis;
     }
@@ -121,7 +117,7 @@ class DAOAvis extends DAO{
 
         $sql .= "WHERE id = " . $idAvis;
 
-        $this->getPdo()->query($sql)->execute();
+        $this->getPdo()->query($sql);
 
     }
 
