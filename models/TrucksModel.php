@@ -11,8 +11,19 @@ class TrucksModel {
     private $categorieId;
     private $moyenne;
 
+<<<<<<< HEAD
     public function __construct() {
 
+=======
+    public function __construct($id = null, $siret = null, $nom = null, $logo = null, $categorieId = null, $moyenne = null) {
+        $this->id = $id;
+        $this->siret = $siret;
+        $this->nom = $nom;
+        $this->dateCreation = date("Y-m-d H:i:s");
+        $this->logo = $logo;
+        $this->categorieId = $categorieId;
+        $this->moyenne = $moyenne;
+>>>>>>> trucks
     }
 
     // public function __construct($siret, $nom, $logo, $categorieId, $moyenne) {

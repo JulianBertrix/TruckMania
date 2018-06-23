@@ -24,6 +24,7 @@ class DAOTrucks extends DAO{
         $sql = "INSERT INTO foodtruck (siret, nom, date_creation, logo, categorie_id, moyenne)"
                 . " VALUES ('".$array->getSiret()."','".$array->getNom()."','".$array->getDateCreation()."','"
                 . "".$array->getLogo()."','".$array->getCategorieId()."','".$array->getMoyenne()."')";
+        echo $sql;
         return $this->getPdo()->query($sql)->fetch();
     }
 
@@ -38,7 +39,39 @@ class DAOTrucks extends DAO{
     }
 
     public function getAllBy($filter) {
-        
+        $sql = "SELECT * FROM foodtruck";
+        $i = 0;
+
+        foreach ($filter as $key => $value){
+            if($i === 0){
+                $sql .= " WHERE ";
+            }else{
+                $sql .= " AND ";
+            }
+            $sql .= $key."='".$value."' ";
+            $i++;
+        }
+        echo $sql;
+        $results = $this->getPdo()->query($sql)->fetchAll();
+        var_dump($results);
+        $trucks = array();
+
+        foreach ($results as $result){
+            $truck = new TrucksModel();
+            $truck->setId($result->getId());
+            $truck->setSiret($result->getSiret());
+            $truck->setNom($result->getNom());       
+            $truck->setDateCreation($result->getDateCreation());
+            $truck->setCategorieId($result->getCategorieId());  
+            $truck->setMoyenne($result->setMoyenne());  
+            array_push($trucks, $truck);
+        }
+        var_dump($trucks);
+        return $trucks;
+//        $sql = "SELECT * FROM foodtruck WHERE id=".$filter->getId()." OR siret=".$filter->getSiret()." OR nom='".$filter->getNom()."' "
+//                . "OR categorie_id=".$filter->getCategorieId()." OR moyenne=".$filter->getMoyenne();
+//        echo $sql;
+//        return $this->getPdo()->query($sql)->fetchAll();
     }
 
     public function retrieve($id) {
@@ -47,8 +80,9 @@ class DAOTrucks extends DAO{
     }
 
     public function update($array) {
-        //$truck = new TrucksModel();
-        //$sql = "UPDATE FROM foodtruck SET nom=".$array->getNom()."";
+        $sql = "UPDATE foodtruck SET nom='".$array->getNom()."', logo='".$array->getLogo()."', "
+                . "categorie_id='".$array->getCategorieId()."' WHERE id=".$array->getId();
+        return $this->getPdo()->query($sql)->fetch();
     }
 
     public function getLastFive() {

@@ -20,6 +20,10 @@ class TrucksController extends Controller {
         return $this->truck->delete($id);
     }
     
+    public function updateTruck($array){
+        return $this->truck->update($array);
+    }
+    
     public function addTruck($array){
         return $this->truck->create($array);
     }
@@ -29,6 +33,10 @@ class TrucksController extends Controller {
     
     public function getTruck($id){
         return $this->truck->retrieve($id);
+    }
+    
+    public function getAllTrucksBy($filter){
+        return $this->truck->getAllBy($filter);
     }
     
     public function getAllTrucks(){
