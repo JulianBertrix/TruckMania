@@ -1,11 +1,13 @@
 <?php
 include 'header.php';
-use BWB\Framework\mvc\controllers\UtilisateurController;
-$newUser = new UtilisateurController();
+use BWB\Framework\mvc\controllers\TrucksController;
+use BWB\Framework\mvc\models\TrucksModel;
+// $newUser = new UtilisateurController();
 
-$listeArg = ['nom' => 'Robin'];
-$toto = $newUser->getAllBy($listeArg);
-var_dump($toto);
+// $listeArg = ['nom' => 'Toto'];
+// $newUser->updateMe(5,$listeArg);
+
+
 
 // $tutu = $newUser->create($toto);
 ?>

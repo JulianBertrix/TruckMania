@@ -1,24 +1,22 @@
 <?php
 namespace BWB\Framework\mvc\dao;
 use BWB\Framework\mvc\DAO;
-use BWB\Framework\mvc\models\UtilisateurModel;
+use BWB\Framework\mvc\models\AvisModel;
 
-class DAOUtilisateur extends DAO{
+class DAOAvis extends DAO{
 
     public function __construct(){
         parent::__construct();
     }
 
-    public function create($user) {
+    public function create($avis) {
+
+        $dateDuJour = date("Y-m-d H:i:s");
         
-        $sql = "INSERT INTO utilisateur (nom, prenom, email, mot_de_passe, date_creation, role_id, adresse_id) VALUES ('"
-        .$user->getNom()."','"
-        .$user->getPrenom()."','"
-        .$user->getEmail()."','"
-        .$user->getMotDePasse()."','"
-        .$user->getDateCreation()."','"
-        .$user->getRoleId()."','"
-        .$user->getAdresseId()."')";
+        $sql = "INSERT INTO avis (date_ajout, message, note) VALUES ('"
+        .$dateDuJour."','"
+        .$avis->getMessage()."','"
+        .$avis->getNote()."')";
 
         $this->getPdo()->query($sql)->execute();
     }
@@ -99,17 +97,17 @@ class DAOUtilisateur extends DAO{
 
         $sql = "SELECT * FROM utilisateur WHERE id=".$id;
         $result = $this->getPdo()->query($sql)->fetch(); //PDO::FETCH_ASSOC
-        $user = new UtilisateurModel();
-        $user->setId($result['id']); 
-        $user->setNom($result['nom']);
-        $user->setPrenom($result['prenom']);
-        $user->setEmail($result['email']);
-        $user->setMotDePasse($result['mot_de_passe']);
-        $user->setDateCreation($result['date_creation']);
-        $user->setRoleId($result['role_id']);
-        $user->setAdresseId($result['adresse_id']);
+        $avis = new UtilisateurModel();
+        $avis->setId($result['id']); 
+        $avis->setNom($result['nom']);
+        $avis->setPrenom($result['prenom']);
+        $avis->setEmail($result['email']);
+        $avis->setMotDePasse($result['mot_de_passe']);
+        $avis->setDateCreation($result['date_creation']);
+        $avis->setRoleId($result['role_id']);
+        $avis->setAdresseId($result['adresse_id']);
 
-        return $user;
+        return $avis;
     }
 
     //Update d'un utilisateur selon son id, 2eme argument: tableau assoc "column => nouvelle valeur"
