@@ -19,8 +19,6 @@ class DAOAvis extends DAO{
         .$avis->getNote()."')";
 
         $this->getPdo()->query($sql);
-
-        echo $sql;
     }
 
     public function delete($id) {
