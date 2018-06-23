@@ -20,12 +20,13 @@ class DAOUtilisateur extends DAO{
         .$user->getRoleId()."','"
         .$user->getAdresseId()."')";
 
-        $this->getPdo()->query($sql)->execute();
+        $this->getPdo()->query($sql);
     }
 
+    //PAS TESTEE
     public function delete($id) {
         $sql = "DELETE FROM utilisateur WHERE id=".$id;
-        $this->getPdo()->query($sql)->execute();
+        $this->getPdo()->query($sql);
     }
 
     public function getAll() {
@@ -112,9 +113,35 @@ class DAOUtilisateur extends DAO{
         return $user;
     }
 
-    public function update($array) {
-        
+    //Update d'un utilisateur selon son id, 2eme argument: tableau assoc "column => nouvelle valeur"
+    
+    public function updateMe($idUser,$newValeurs){
+
+        $sql = "UPDATE utilisateur SET ";
+
+        $compteur = 0;
+
+        foreach ($newValeurs as $key => $value) {
+
+            if($compteur === (count($newValeurs)-1)){
+                $sql .= $key . " = '" . $value . "' ";
+            }else{
+                $sql .= $key . " = '" . $value . "', ";
+            }
+
+            $compteur++;
+        }
+
+        $sql .= "WHERE id = " . $idUser;
+
+        $this->getPdo()->query($sql);
+
     }
+
+    public function update($newValeurs){
+
+    }
+
 
 
 }

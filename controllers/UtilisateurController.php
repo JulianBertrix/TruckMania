@@ -34,6 +34,14 @@ class UtilisateurController extends Controller {
         return $this->user->delete($id);
     }
 
+    public function updateMe($idUser,$newValeurs) {
+        return $this->user->updateMe($idUser,$newValeurs);
+    }
+
+    public function update($newValeurs) {
+        return $this->user->update($newValeurs);
+    }
+
 
     public function testMe(){
         $this->render('test');
