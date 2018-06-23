@@ -1,11 +1,13 @@
 <?php
 include 'header.php';
-use BWB\Framework\mvc\controllers\UtilisateurController;
-$newUser = new UtilisateurController();
+use BWB\Framework\mvc\controllers\TrucksController;
+use BWB\Framework\mvc\models\TrucksModel;
 
-$listeArg = ['nom' => 'Robin'];
-$toto = $newUser->getAllBy($listeArg);
-var_dump($toto);
+$newControl = new TrucksController();
 
-// $tutu = $newUser->create($toto);
+//CREATE
+echo "<h3>TEST CREATE</h3><br>";
+
+$newItem = new TrucksModel("3545454", "nomeee", "dfdf", 5, 2);
+var_dump($newControl->addTruck($newItem));
 ?>
