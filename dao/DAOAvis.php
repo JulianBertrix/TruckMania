@@ -26,6 +26,7 @@ class DAOAvis extends DAO{
         $this->getPdo()->query($sql);
     }
 
+    //Retourne un tableau de tous les tupples, chaque tupple est sous forme d'objet
     public function getAll() {
 
         $sql = "SELECT * FROM avis";
@@ -35,12 +36,7 @@ class DAOAvis extends DAO{
         $listeAvis = array();
 
         foreach ($resultats as $item) {
-            
-            $newAvis = new AvisModel($item['message'],$item['note']);
-
-            $newAvis->setId($item['id']); 
-            $newAvis->setDateAjout($item['date_ajout']);
-
+            $newAvis = $this->retrieve($item['id']);
             array_push($listeAvis,$newAvis);
         }
 
@@ -69,14 +65,7 @@ class DAOAvis extends DAO{
         $listeAvis = array();
 
         foreach ($resultats as $item) {
-            
-            $newAvis = new AvisModel();
-
-            $newAvis->setId($item['id']); 
-            $newAvis->setDateAjout($item['date_ajout']);
-            $newAvis->setMessage($item['message']);
-            $newAvis->setNote($item['note']);
-
+            $newAvis = $this->retrieve($item['id']);
             array_push($listeAvis,$newAvis);
         }
 
@@ -86,7 +75,7 @@ class DAOAvis extends DAO{
     public function retrieve($id) {
 
         $sql = "SELECT * FROM avis WHERE id=".$id;
-        $result = $this->getPdo()->query($sql)->fetch(); //PDO::FETCH_ASSOC
+        $result = $this->getPdo()->query($sql)->fetch();
         $avis = new AvisModel($result['message'],$result['note']);
         $avis->setId($result['id']); 
         $avis->setDateAjout($result['date_ajout']);
@@ -129,12 +118,8 @@ class DAOAvis extends DAO{
     public function theLastOne() {
 
         $sql = "SELECT * FROM avis ORDER BY id DESC";
-        $result = $this->getPdo()->query($sql)->fetch(); //PDO::FETCH_ASSOC
-        $avis = new AvisModel(null,null);
-        $avis->setId($result['id']); 
-        $avis->setDateAjout($result['date_ajout']);
-        $avis->setMessage($result['message']);
-        $avis->setNote($result['note']);
+        $result = $this->getPdo()->query($sql)->fetch();
+        $avis = $this->retrieve($result['id']);
 
         return $avis;
     }

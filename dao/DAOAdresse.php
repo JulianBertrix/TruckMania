@@ -1,47 +1,41 @@
 <?php
 namespace BWB\Framework\mvc\dao;
 use BWB\Framework\mvc\DAO;
-use BWB\Framework\mvc\models\CommandeModel;
-use BWB\Framework\mvc\dao\DAOUtilisateur;
-use BWB\Framework\mvc\dao\DAOTrucks;
-use BWB\Framework\mvc\dao\DAOAvis;
+use BWB\Framework\mvc\models\AdresseModel;
 
-class DAOCommande extends DAO{
+class DAOAdresse extends DAO{
 
     public function __construct(){
         parent::__construct();
     }
 
-    public function create($commande) {
-
-        $dateDuJour = date("Y-m-d H:i:s");
+    public function create($adresse) {
         
-        $sql = "INSERT INTO commande (date_commande, utilisateur_id, foodtruck_id, avis_id, total) VALUES ('"
-        .$dateDuJour."','"
-        .$commande->getUtilisateurId()."','"
-        .$commande->getFoodtruckId()."','"
-        .$commande->getAvisId()."','"
-        .$commande->getTotal()."')";
+        $sql = "INSERT INTO adresse (adresse, latitude, longitude) VALUES ('"
+        .$adresse->getAdresse()."','"
+        .$adresse->getLatitude()."','"
+        .$adresse->getLongitude()."')";
 
         $this->getPdo()->query($sql);
+        var_dump($sql);
     }
 
-    public function delete($numero) {
-        $sql = "DELETE FROM commande WHERE numero=".$numero;
+    public function delete($id) {
+        $sql = "DELETE FROM adresse WHERE id=".$id;
         $this->getPdo()->query($sql);
     }
 
     //Retourne un tableau de tous les tupples, chaque tupple est sous forme d'objet
     public function getAll() {
 
-        $sql = "SELECT * FROM commande";
+        $sql = "SELECT * FROM adresse";
 
         $resultats = $this->getPdo()->query($sql)->fetchAll();
 
         $listeToReturn = array();
 
         foreach ($resultats as $item) {
-            $newObjet = $this->retrieve($item['numero']);
+            $newObjet = $this->retrieve($item['id']);
             array_push($listeToReturn,$newObjet);
         }
 
@@ -51,7 +45,7 @@ class DAOCommande extends DAO{
     //Recup liste selon filtre du type ["attribut" => "valeur"]
     public function getAllBy($filter) {
         
-        $request = "SELECT * FROM commande ";
+        $request = "SELECT * FROM adresse ";
 
         $i = 0;
 
@@ -70,34 +64,22 @@ class DAOCommande extends DAO{
         $listeToReturn = array();
 
         foreach ($resultats as $item) {          
-            $newObjet = $this->retrieve($item['numero']);
+            $newObjet = $this->retrieve($item['id']);
             array_push($listeToReturn,$newObjet);
         }
 
         return $listeToReturn;
     }
 
-    public function retrieve($numero) {
+    public function retrieve($id) {
 
-        $sql = "SELECT * FROM commande WHERE numero=".$numero;
+        $sql = "SELECT * FROM adresse WHERE id=".$id;
         $item = $this->getPdo()->query($sql)->fetch();
-        $newObjet = new CommandeModel();
-        $newObjet->setNumero($item['numero']); 
-        $newObjet->setDateCommande($item['date_commande']);
-
-        //Recup de l'objet utilisateur
-        $newItem = (new DAOUtilisateur())->retrieve($item['utilisateur_id']);
-        $newObjet->setUtilisateurId($newItem);
-
-        //Recup de l'objet foodtruck
-        $newItem = (new DAOTrucks())->retrieve($item['foodtruck_id']);
-        $newObjet->setFoodtruckId($newItem);
-
-        //Recup de l'objet avis
-        $newItem = (new DAOAvis())->retrieve($item['avis_id']);
-        $newObjet->setAvisId($newItem);
-
-        $newObjet->setTotal($item['total']);
+        $newObjet = new AdresseModel();
+        $newObjet->setId($item['id']); 
+        $newObjet->setAdresse($item['adresse']);
+        $newObjet->setLatitude($item['latitude']);
+        $newObjet->setLongitude($item['longitude']);
 
         return $newObjet;
     }
@@ -106,7 +88,7 @@ class DAOCommande extends DAO{
     
     public function updateMe($idObjet,$newValeurs){
 
-        $sql = "UPDATE commande SET ";
+        $sql = "UPDATE adresse SET ";
 
         $compteur = 0;
 
@@ -121,7 +103,7 @@ class DAOCommande extends DAO{
             $compteur++;
         }
 
-        $sql .= "WHERE numero = " . $idObjet;
+        $sql .= "WHERE id = " . $idObjet;
 
         $this->getPdo()->query($sql);
 
@@ -136,9 +118,9 @@ class DAOCommande extends DAO{
 
     public function theLastOne() {
 
-        $sql = "SELECT * FROM commande ORDER BY numero DESC";
+        $sql = "SELECT * FROM adresse ORDER BY id DESC";
         $item = $this->getPdo()->query($sql)->fetch();
-        $newObjet = $this->retrieve($item['numero']);
+        $newObjet = $this->retrieve($item['id']);
         return $newObjet;
     }
 
