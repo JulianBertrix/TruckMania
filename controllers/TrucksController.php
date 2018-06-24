@@ -42,6 +42,10 @@ class TrucksController extends Controller {
     public function getAllTrucks(){
         return $this->truck->getAll();
     }
+
+    public function updateTruck($array){
+        return $this->truck->update($array);
+    }
     
     public function testMe(){
         $this->render("test");
