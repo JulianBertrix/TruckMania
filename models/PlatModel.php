@@ -22,7 +22,7 @@ class PlatModel {
     private $dateCreation;
     private $foodtruckId;
 
-    public function __construct($nom = null, $description = null, $prix = null, $image = null, $foodtruckId = null) {
+    public function __construct($id = null, $nom = null, $description = null, $prix = null, $image = null, $foodtruckId = null) {
         $this->id = $id;
         $this->nom = $nom;
         $this->description = $description;
