@@ -1,17 +1,17 @@
 <?php
 include 'header.php';
 
-use BWB\Framework\mvc\controllers\AdresseController;
-use BWB\Framework\mvc\models\AdresseModel;
+use BWB\Framework\mvc\controllers\UtilisateurController;
+use BWB\Framework\mvc\models\UtilisateurModel;
 
-$newControl = new AdresseController();
+$newControl = new UtilisateurController();
 
-echo "<h3>TEST CREATE</h3><br>";
-$newItem = $newControl->theLastOne();
-var_dump($newItem);
-$newControl->create($newItem);
+// echo "<h3>TEST CREATE</h3><br>";
+// $newItem = $newControl->theLastOne();
+// var_dump($newItem);
+// $newControl->create($newItem);
 
-var_dump($newControl->theLastOne());
+// var_dump($newControl->theLastOne());
 
 
 
@@ -30,14 +30,14 @@ var_dump($newControl->theLastOne());
 
 // echo "<h3>TEST GETALLBY</h3><br>";
 
-// $filtre = ['adresse' => '25 rue de la barre 02300 Abbécourt'];
+// $filtre = ['email' => 'et.pede@ipsumnonarcu.ca'];
 
 // var_dump($newControl->getAllBy($filtre));
 
 
 
-// echo "<h3>TEST RETRIEVE</h3><br>";
-// var_dump($newControl->retrieve(1));
+echo "<h3>TEST RETRIEVE</h3><br>";
+var_dump($newControl->retrieve(1));
 
 // echo "<h3>TEST UPDATE</h3><br>";
 // $datas = ['adresse' => 'tata'];

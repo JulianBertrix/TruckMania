@@ -47,4 +47,8 @@ class UtilisateurController extends Controller {
         $this->render('test');
     }
 
+    public function theLastOne() {
+        return $this->user->theLastOne();
+    }
+
 }
