@@ -2,6 +2,9 @@
 namespace BWB\Framework\mvc\dao;
 use BWB\Framework\mvc\DAO;
 use BWB\Framework\mvc\models\PresenceModel;
+use BWB\Framework\mvc\dao\DAOTrucks;
+use BWB\Framework\mvc\dao\DAOPlanning;
+use BWB\Framework\mvc\dao\DAOAdresse;
 
 class DAOPresence extends DAO{
 
@@ -37,7 +40,7 @@ class DAOPresence extends DAO{
         $listeToReturn = array();
 
         foreach ($resultats as $item) {
-            $newObjet = $this->retrieve($item['id']);
+            $newObjet = $this->retrieve(new PresenceModel($item['planning_id'],$item['foodtruck_id'],$item['adresse_id']));
             array_push($listeToReturn,$newObjet);
         }
 
@@ -66,7 +69,7 @@ class DAOPresence extends DAO{
         $listeToReturn = array();
 
         foreach ($resultats as $item) {          
-            $newObjet = $this->retrieve($item['id']);
+            $newObjet = $this->retrieve(new PresenceModel($item['planning_id'],$item['foodtruck_id'],$item['adresse_id']));
             array_push($listeToReturn,$newObjet);
         }
 
@@ -75,23 +78,23 @@ class DAOPresence extends DAO{
 
     public function retrieve($objet) {
 
-        $sql = "SELECT * FROM presence WHERE
-        planning_id=".$objet->getPlanningId()
-        ." AND foodtruck_id=".$objet->getFoodtruckId()
-        ." AND adresse_id=".$objet->getAdresseId();
+        //Recup de l'objet planning
+        $newPlanning = (new DAOPlanning())->retrieve($objet->getPlanningId());
 
-        $item = $this->getPdo()->query($sql)->fetch();
-        $newObjet = new PresenceModel();
-        $newObjet->setPlanningId($item['planning_id']); 
-        $newObjet->setFoodtruckId($item['foodtruck_id']);
-        $newObjet->setAdresseId($item['adresse_id']);
+        //Recup de l'objet foodtruck
+        $newTruck = (new DAOTrucks())->retrieve($objet->getFoodtruckId());
+
+        //Recup de l'objet adresse
+        $newAdresse = (new DAOAdresse())->retrieve($objet->getAdresseId());
+
+        $newObjet = new PresenceModel($newPlanning,$newTruck,$newAdresse);
 
         return $newObjet;
     }
 
     //Update d'un utilisateur selon son id, 2eme argument: tableau assoc "column => nouvelle valeur"
     
-    public function updateMe($idObjet,$newValeurs){
+    public function updateMe($objet,$newValeurs){
 
         $sql = "UPDATE presence SET ";
 
@@ -108,7 +111,9 @@ class DAOPresence extends DAO{
             $compteur++;
         }
 
-        $sql .= "WHERE id = " . $idObjet;
+        $sql .= "WHERE planning_id=".$objet->getPlanningId()
+        ." AND foodtruck_id=".$objet->getFoodtruckId()
+        ." AND adresse_id=".$objet->getAdresseId();;
 
         $this->getPdo()->query($sql);
 
