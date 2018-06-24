@@ -9,7 +9,7 @@ class TrucksModel {
     private $dateCreation;
     private $logo;
     private $categorieId;
-    private $moyenne;
+    private $moyenne; 
 
     public function __construct($id = null, $siret = null, $nom = null, $logo = null, $categorieId = null, $moyenne = null) {
         $this->id = $id;
