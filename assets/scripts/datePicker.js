@@ -1,1 +1,5 @@
-alert("tutu");
+jQuery(function($){
+
+    $('selecteur')
+
+});
