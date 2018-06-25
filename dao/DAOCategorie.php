@@ -21,8 +21,9 @@ class DAOCategorie extends DAO{
     
     public function create($array) {
         $sql = "INSERT INTO categorie (intitule) VALUE ('".$array->getIntitule()."')";
-        echo $sql;
-        return $this->getPdo()->query($sql)->fetch();
+        
+        $results = $this->getPdo()->query($sql);
+        
     }
 
     public function delete($id) {
@@ -32,7 +33,17 @@ class DAOCategorie extends DAO{
 
     public function getAll() {
         $sql = "SELECT * FROM categorie";
-        return $this->getPdo()->query($sql)->fetchAll();
+
+        $results = $this->getPdo()->query($sql)->fetchAll();
+
+        $categories = array();
+
+        foreach ($results as $result){
+            $categorie = new CategorieModel($result['id'],$result['intitule']);
+            array_push($categories, $categorie);
+        }
+        
+        return $categories;
     }
 
     public function getAllBy($filter) {
@@ -48,20 +59,16 @@ class DAOCategorie extends DAO{
             $sql .= $key."='".$value."' ";
             $i++;
         }
-        echo $sql;
+        
         $results = $this->getPdo()->query($sql)->fetchAll();
-        var_dump($results);
         
         $categories = array();
 
         foreach ($results as $result){
-            $categorie = new CategorieModel();
-            $categorie->setId($result->getId());
-            $categorie->setIntitule($result->getIntitule());
-            
+            $categorie = new CategorieModel($result['id'],$result['intitule']);
             array_push($categories, $categorie);
         }
-        var_dump($categories);
+        
         return $categories;
     }
 
