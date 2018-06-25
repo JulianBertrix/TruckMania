@@ -1,5 +1,6 @@
 {
     "/": "DefaultController:getDefault",
+    "/profil": "DefaultController:getProfil",
     "/login": "DefaultController:login",
     "/test": "UtilisateurController:testMe",
     "/logout": "DefaultController:logout",
