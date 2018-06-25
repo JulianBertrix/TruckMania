@@ -21,7 +21,7 @@
                 <!-- Recup des categories -->
                 <?php
                     foreach ($listeCat as $cat) {
-                    echo '<a class="dropdown-item" href="#">'.$cat->getIntitule().'</a>';
+                        echo '<a class="dropdown-item" href="#">'.$cat->getIntitule().'</a>';
                     }
                 ?>
             </div>

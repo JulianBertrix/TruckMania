@@ -1,4 +1,5 @@
 <?php
+use \BWB\Framework\mvc\models\CategorieModel;
 include 'header.php';
 ?>
 
