@@ -1,6 +1,7 @@
 <?php
 namespace BWB\Framework\mvc\dao;
 use BWB\Framework\mvc\DAO;
+use BWB\Framework\mvc\dao\DAOCategorie;
 use BWB\Framework\mvc\models\TrucksModel;
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -93,9 +94,12 @@ class DAOTrucks extends DAO{
         $newObjet->setNom($item['nom']);
         $newObjet->setDateCreation($item['date_creation']);
         $newObjet->setLogo($item['logo']);
-        $newObjet->setCategorieId($item['categorie_id']);
         $newObjet->setMoyenne($item['moyenne']);
-
+        
+        //Recup de l'objet categorie
+        $newItem = (new DAOCategorie())->retrieve($item['categorie_id']);
+        $newObjet->setCategorieId($newItem);
+        
         return $newObjet;
     }
 

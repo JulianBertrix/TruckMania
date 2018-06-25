@@ -1,6 +1,7 @@
 <?php
 namespace BWB\Framework\mvc\dao;
 use BWB\Framework\mvc\DAO;
+use BWB\Framework\mvc\dao\DAOTrucks;
 use \BWB\Framework\mvc\models\PlatModel;
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -90,8 +91,11 @@ class DAOPlat extends DAO{
         $newObjet->setPrix($item['prix']);
         $newObjet->setImage($item['image']);
         $newObjet->setDateCreation($item['date_creation']);
-        $newObjet->setFoodtruckId($item['foodtruck_id']);
-
+        
+        //Recup de l'objet foodtruck
+        $newItem = (new DAOTrucks())->retrieve($item['foodtruck_id']);
+        $newObjet->setFoodtruckId($newItem);
+        
         return $newObjet;
     }
 
