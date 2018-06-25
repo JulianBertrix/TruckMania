@@ -1,0 +1,6 @@
+    <!-- Bootstrap core JavaScript -->
+    <script src=<?=$_SERVER['DOCUMENT_ROOT'] . "config/routing.jsonvendor/jquery/jquery.min.js"?>></script>
+    <script src=<?=$_SERVER['DOCUMENT_ROOT'] . "vendor/bootstrap/js/bootstrap.bundle.min.js"?>></script>
+
+     <!-- DatePicker -->
+     <script type="text/javascript" src=<?=$_SERVER['DOCUMENT_ROOT'] . "assets/datePicker/jquery-ui.js"?>></script>

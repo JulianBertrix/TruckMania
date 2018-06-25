@@ -47,9 +47,18 @@
     </footer>
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.11/css/all.css" integrity="sha384-p2jx59pefphTFIpeqCcISO9MdVfIm4pNnsL08A6v5vaQc4owkQqxMV8kg4Yvhaw/" crossorigin="anonymous">
+    
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
     <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src=<?="http://".$_SERVER['SERVER_NAME'] . "/config/routing.jsonvendor/jquery/jquery.min.js"?>></script>
+    <script src=<?="http://".$_SERVER['SERVER_NAME'] . "/vendor/bootstrap/js/bootstrap.bundle.min.js"?>></script>
+
+     <!-- DatePicker -->
+     <script type="text/javascript" src="http://".$_SERVER['SERVER_NAME'] . "/assets/datePicker/jquery-ui.js"?>></script>
+
+     <script type="text/javascript" src=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/scripts/datePicker.js"?>></script>
 
   </body>
 
