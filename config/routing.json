@@ -1,5 +1,10 @@
 {
+<<<<<<< HEAD
     "/": "HomeController:homePage",
+=======
+    "/": "DefaultController:getDefault",
+    "/profil": "DefaultController:getProfil",
+>>>>>>> profil_client
     "/login": "DefaultController:login",
     "/test": "UtilisateurController:testMe",
     "/logout": "DefaultController:logout",

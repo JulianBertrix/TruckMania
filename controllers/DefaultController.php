@@ -26,7 +26,11 @@ class DefaultController extends Controller {
     public function getDefault() {
         $this->render("home");
     }
-
+    
+    public function getProfil(){
+        $this->render("profileClient");
+    }
+    
     public function login() {
         $this->security->generateToken(new DefaultModel());
         header("Location: http://" . $_SERVER['SERVER_NAME'] . "/token");
