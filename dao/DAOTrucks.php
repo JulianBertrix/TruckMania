@@ -35,7 +35,17 @@ class DAOTrucks extends DAO{
 
     public function getAll() {
         $sql = "SELECT * FROM foodtruck";
-        return $this->getPdo()->query($sql)->fetchAll();
+
+        $resultats = $this->getPdo()->query($sql)->fetchAll();
+
+        $foodtrucks = array();
+
+        foreach ($resultats as $item) {
+            $newTruck = $this->retrieve($item['id']);
+            array_push($foodtrucks,$newTruck);
+        }
+
+        return $foodtrucks;
     }
 
     public function getAllBy($filter) {

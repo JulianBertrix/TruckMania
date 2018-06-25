@@ -33,7 +33,17 @@ class DAOPlat extends DAO{
 
     public function getAll() {
         $sql = "SELECT * FROM plat";
-        return $this->getPdo()->query($sql)->fetchAll();
+
+        $resultats = $this->getPdo()->query($sql)->fetchAll();
+
+        $plats = array();
+
+        foreach ($resultats as $item) {
+            $newPlat = $this->retrieve($item['id']);
+            array_push($plats,$newPlat);
+        }
+
+        return $plats;
     }
 
     public function getAllBy($filter) {

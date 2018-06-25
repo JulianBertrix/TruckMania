@@ -36,7 +36,17 @@ class DAOAdresseFoodtruck extends DAO{
 
     public function getAll() {
         $sql = "SELECT * FROM adresse_foodtruck";
-        return $this->getPdo()->query($sql)->fetchAll();
+
+        $resultats = $this->getPdo()->query($sql)->fetchAll();
+
+        $liste = array();
+
+        foreach ($resultats as $item) {
+            $newAdresseFT = $this->retrieve(new AdresseFoodtruckModel($item['foodtruck_id'], $item['adresse_id']), $item['intitule']);
+            array_push($liste,$newAdresseFT);
+        }
+
+        return $liste;
     }
 
     public function getAllBy($filter) {
