@@ -20,10 +20,6 @@ class TrucksController extends Controller {
         return $this->truck->delete($id);
     }
     
-    public function updateTruck($array){
-        return $this->truck->update($array);
-    }
-    
     public function addTruck($array){
         return $this->truck->create($array);
     }
