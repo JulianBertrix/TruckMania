@@ -28,7 +28,8 @@
     <!-- CSS Custom DatePicker -->
     <link href=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/datePicker/jquery-ui.css"?> rel="stylesheet">
 
-
+    <!-- CSS TimePicker -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
    
 
   </head>

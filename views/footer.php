@@ -56,10 +56,11 @@
     <script src=<?="http://".$_SERVER['SERVER_NAME'] . "/vendor/bootstrap/js/bootstrap.bundle.min.js"?>></script>
 
      <!-- DatePicker -->
-     <script type="text/javascript" src="http://".$_SERVER['SERVER_NAME'] . "/assets/datePicker/jquery-ui.js"?>></script>
-
+     <script type="text/javascript" src=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/datePicker/jquery-ui.js"?>></script>
      <script type="text/javascript" src=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/scripts/datePicker.js"?>></script>
 
+    <!-- TimePicker -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
   </body>
 
 </html>
