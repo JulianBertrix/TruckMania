@@ -82,7 +82,17 @@ class DAOPlat extends DAO{
 
     public function retrieve($id) {
         $sql = "SELECT * FROM plat WHERE id=".$id;
-        return $this->getPdo()->query($sql)->fetch();
+        $item = $this->getPdo()->query($sql)->fetch();
+        $newObjet = new PlatModel();
+        $newObjet->setId($item['id']); 
+        $newObjet->setNom($item['nom']);
+        $newObjet->setDescription($item['description']);
+        $newObjet->setPrix($item['prix']);
+        $newObjet->setImage($item['image']);
+        $newObjet->setDateCreation($item['date_creation']);
+        $newObjet->setFoodtruckId($item['foodtruck_id']);
+
+        return $newObjet;
     }
 
     public function update($array) {

@@ -86,7 +86,17 @@ class DAOTrucks extends DAO{
 
     public function retrieve($id) {
         $sql = "SELECT * FROM foodtruck WHERE id=".$id;
-        return $this->getPdo()->query($sql)->fetch();
+        $item = $this->getPdo()->query($sql)->fetch();
+        $newObjet = new TrucksModel();
+        $newObjet->setId($item['id']); 
+        $newObjet->setSiret($item['siret']);
+        $newObjet->setNom($item['nom']);
+        $newObjet->setDateCreation($item['date_creation']);
+        $newObjet->setLogo($item['logo']);
+        $newObjet->setCategorieId($item['categorie_id']);
+        $newObjet->setMoyenne($item['moyenne']);
+
+        return $newObjet;
     }
 
     public function update($array) {
