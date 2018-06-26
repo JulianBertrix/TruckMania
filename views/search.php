@@ -1,5 +1,6 @@
 <?php
 use \BWB\Framework\mvc\models\CategorieModel;
+$faker = Faker\Factory::create();
 include 'header.php';
 ?>
 <div class="container">
@@ -12,17 +13,23 @@ include 'header.php';
     </div>
 </div>
 <div class="container">
-    <div class="row">
-        <div class="col-6">
-            <h4>Liste des Food Trucks</h4>
+
+  <div class="list">
+      <?php for ($i = 0; $i < 30; $i++): ?>
+        <div class="item js-marker" data-lat="<?= $faker->latitude(43, 44) ?>" data-lng="<?= $faker->longitude(2, 4) ?>" data-price="<?= $faker->numberBetween(0, 100) ?>">
+          <img src="https://via.placeholder.com/400x260" alt="">
+          <h4>3 barres de chocolat pour le prix de 2 !</h4>
+          <p>
+            Ici une petite description qui explique pourquoi c'est mieux ici
+          </p>
         </div>
-        <div class="col-6">
-            <h4>Carte</h4>
-        </div>
-    </div>
+      <?php endfor; ?>
+  </div>
+
+  <div class="map" id="map"></div>
+
 </div>
-
-
-<?php
-include 'footer.php';
-?>
+<script src=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/scripts/airbnb_vendor.js"?>></script>
+<script src=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/scripts/airbnb_app.js"?>></script>
+</body>
+</html>

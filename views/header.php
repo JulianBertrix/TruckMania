@@ -30,6 +30,9 @@
 
     <!-- CSS TimePicker -->
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+
+    <!-- CSS SearchPage -->
+    <link rel="stylesheet" href=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/css/search_page.css"?>>
    
 
   </head>

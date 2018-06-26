@@ -61,6 +61,10 @@
 
     <!-- TimePicker -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+
+    <!-- TimePicker -->
+    <script src=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/scripts/airbnb_vendor.js"?>></script>
+    <script src=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/scripts/airbnb_app.js"?>></script>
   </body>
 
 </html>
