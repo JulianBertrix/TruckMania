@@ -5,7 +5,7 @@ include "header.php";
 
 <h1 style="padding-left: 30px;"><strong>Resultats</strong></h1>
 
-<div class="container">
+<div class="containerListe">
 
   <div class="list">
       <?php 
