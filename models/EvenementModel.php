@@ -11,10 +11,12 @@ class EvenementModel {
     private $image;
     private $utilisateur_id;
     private $adresse_id;
+    private $NombreDeParticipant;
 
     public function __construct(){
         
     }
+
 
     /**
      * Get the value of id
@@ -192,6 +194,26 @@ class EvenementModel {
     public function setDescription($description)
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of description
+     */ 
+    public function getNombreDeParticipant()
+    {
+        return $this->NombreDeParticipant;
+    }
+
+    /**
+     * Set the value of description
+     *
+     * @return  self
+     */ 
+    public function setNombreDeParticipant($NombreDeParticipant)
+    {
+        $this->NombreDeParticipant = $NombreDeParticipant;
 
         return $this;
     }
