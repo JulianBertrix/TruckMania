@@ -1,32 +1,32 @@
 <?php
-?><!DOCTYPE html>
-<html>
-<head>
-  <title>Title</title>
-  <link rel="stylesheet" href=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/css/search_page.css"?>>
-</head>
-<body>
+use BWB\Framework\mvc\models\AdresseModel;
+include "header.php";
+?>
 
-<h1 style="padding-left: 30px;">Où acheter le meilleur <strong>chocopain</strong></h1>
+<h1 style="padding-left: 30px;"><strong>Resultats</strong></h1>
 
 <div class="container">
 
   <div class="list">
-      <?php for ($i = 0; $i < 10; $i++): ?>
-        <div class="item js-marker" data-lat="ttt" data-lng="ttt" data-price="5">
+      <?php 
+      
+      foreach ($listeAdress as $adress){ 
+        
+        ?>
+        <div class="item js-marker" data-lat=<?= $adress->getLatitude();?> data-lng=<?= $adress->getLongitude();?> data-price="5">
           <img src="https://via.placeholder.com/400x260" alt="">
-          <h4>3 barres de chocolat pour le prix de 2 !</h4>
+          <h4><?= $adress->getLatitude();?></h4>
+          <h4><?= $adress->getLongitude();?></h4>
           <p>
-            Ici une petite description qui explique pourquoi c'est mieux ici
+          <?= $adress->getAdresse();?>
           </p>
         </div>
-      <?php endfor; ?>
+      <?php }?>
   </div>
 
   <div class="map" id="map"></div>
 
 </div>
-<script src=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/scripts/airbnb_vendor.js"?>></script>
-<script src=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/scripts/airbnb_app.js"?>></script>
-</body>
-</html>
+<?php
+include "footer.php";
+?>

@@ -3,6 +3,7 @@
 namespace BWB\Framework\mvc\controllers;
 
 use BWB\Framework\mvc\Controller;
+use BWB\Framework\mvc\controllers\AdresseController;
 use BWB\Framework\mvc\models\AdresseModel;
 use BWB\Framework\mvc\dao\DAOAdresse;
 
@@ -18,13 +19,18 @@ class SearchController extends Controller {
         //recup des infos du post
         $datasPost = $this->inputPost();
 
+        
+        $listAdress = (new AdresseController())->getAll();
+        
         $testAdresse1 = (new DAOAdresse())->retrieve(1);
+        array_push($listAdress,$testAdresse1);
         $testAdresse2 = (new DAOAdresse())->retrieve(2);
+        array_push($listAdress,$testAdresse2);
 
 
-        //$datas = ['listeCat' => (new CategorieController())->getAllCategorie()];
+        $datas = ['listeAdress' => $listAdress];
 
-        $this->render("testAir");
+        $this->render("testAir",$datas);
 
     }
 
