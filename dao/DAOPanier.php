@@ -24,7 +24,7 @@ class DAOPanier extends DAO{
     
     public function create($array) {
         $sql = "INSERT INTO panier (commande_numero, plat_id, quantite)"
-                . " VALUES ('".$array->getNumeroCommande()."','".$array->getPlatId()."','".$array->getQuantite()."')";
+                . " VALUES ('".$array->getNumeroCommande()->getNumero()."','".$array->getPlatId()->getId()."','".$array->getQuantite()."')";
         echo $sql;
         return $this->getPdo()->query($sql)->fetch();
     }
@@ -64,13 +64,13 @@ class DAOPanier extends DAO{
             }
             $request .= $key."='".$value."' ";
         }
-        
+
         $resultats = $this->getPdo()->query($request)->fetchAll();
-        var_dump($resultats);
+
         $listeToReturn = array();
 
         foreach ($resultats as $item) {          
-            $newObjet = $this->retrieve($item['id']);
+            $newObjet = $this->retrieve(new PanierModel($item['commande_numero'],$item['plat_id'],$item['quantite']));
             array_push($listeToReturn,$newObjet);
         }
 
@@ -85,7 +85,7 @@ class DAOPanier extends DAO{
        $newPlat = (new DAOPlat())->retrieve($objet->getPlatId());
        
        //Creation du nouvel objet d'objets
-       $newObjet = new PanierModel($newCommande,$newPlat);
+       $newObjet = new PanierModel($newCommande,$newPlat,$objet->getQuantite());
        
        return $newObjet;
     }
@@ -96,5 +96,4 @@ class DAOPanier extends DAO{
         echo $sql;
         return $this->getPdo()->query($sql)->fetch();
     }
-
 }
