@@ -17,6 +17,8 @@ class DAOAdresse extends DAO{
         .$adresse->getLongitude()."')";
 
         $this->getPdo()->query($sql);
+
+        return $this->getPdo()->lastInsertId();
     }
 
     public function delete($id) {

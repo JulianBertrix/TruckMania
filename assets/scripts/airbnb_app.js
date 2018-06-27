@@ -92,11 +92,12 @@ class GoogleMap {
    * Ajoute un marker sur la carte
    * @param {string} lat
    * @param {string} lng
-   * @param {string} text
+   * @param {image} text
    * @return {TextMarker}
    */
   addMarker (lat, lng, text) {
     let point = new google.maps.LatLng(lat, lng)
+            this.text = text
     let marker = new this.textMarker(point, this.map, text)
     marker.onActivation.push(() => {
       this.map.setCenter(marker.pos)
@@ -120,7 +121,7 @@ const initMap = async function () {
   let enabledMarker = null
   await map.load($map)
   Array.from(document.querySelectorAll('.item')).forEach(function (item) {
-    let marker = map.addMarker(item.dataset.lat, item.dataset.lng, item.dataset.price + ' €')
+    let marker = map.addMarker(item.dataset.lat, item.dataset.lng, item.dataset.price)
     marker.setContent(item.innerHTML)
     marker.onActivation.push(function () {
       if (enabledMarker !== null) {

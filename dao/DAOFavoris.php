@@ -17,6 +17,8 @@ class DAOFavoris extends DAO{
         .$favoris->getUtilisateurId().","
         .$favoris->getFoodtruckId().")";
         $this->getPdo()->query($sql);
+
+        return $this->getPdo->getLastInsertId();
     }
 
     public function delete($objet) {

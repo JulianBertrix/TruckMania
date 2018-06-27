@@ -109,7 +109,22 @@ class DAOPlanning extends DAO{
 
     }
 
+    //Recup liste des planning englobant une date
+    public function getAllByDate($dateP) {
+        
+        $request = "SELECT * FROM planning WHERE date_debut <= '".$dateP."' AND date_fin >= '".$dateP."'";
 
+        $resultats = $this->getPdo()->query($request)->fetchAll();
+
+        $listeToReturn = array();
+
+        foreach ($resultats as $item) {          
+            $newObjet = $this->retrieve($item['id']);
+            array_push($listeToReturn,$newObjet);
+        }
+
+        return $listeToReturn;
+    }
     //Recupere le dernier tupple ajouté
 
     public function theLastOne() {

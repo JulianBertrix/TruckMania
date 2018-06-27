@@ -74,7 +74,8 @@ class DAOCategorie extends DAO{
 
     public function retrieve($id) {
         $sql = "SELECT * FROM categorie WHERE id=".$id;
-        return $this->getPdo()->query($sql)->fetch();
+        $result = $this->getPdo()->query($sql)->fetch();
+        return new CategorieModel($result['id'],$result['intitule']);
     }
 
     public function update($array) {

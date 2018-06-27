@@ -20,7 +20,6 @@ class DAOTrucks extends DAO{
         parent::__construct();
     }
 
-    //put your code here
     public function create($array) {
         $sql = "INSERT INTO foodtruck (siret, nom, date_creation, logo, categorie_id, moyenne)"
                 . " VALUES ('".$array->getSiret()."','".$array->getNom()."','".$array->getDateCreation()."','"
@@ -68,21 +67,11 @@ class DAOTrucks extends DAO{
         $trucks = array();
 
         foreach ($results as $result){
-            $truck = new TrucksModel();
-            $truck->setId($result->getId());
-            $truck->setSiret($result->getSiret());
-            $truck->setNom($result->getNom());       
-            $truck->setDateCreation($result->getDateCreation());
-            $truck->setCategorieId($result->getCategorieId());  
-            $truck->setMoyenne($result->setMoyenne());  
+            $truck = $this->retrieve($result['id']); 
             array_push($trucks, $truck);
         }
-        var_dump($trucks);
+        
         return $trucks;
-//        $sql = "SELECT * FROM foodtruck WHERE id=".$filter->getId()." OR siret=".$filter->getSiret()." OR nom='".$filter->getNom()."' "
-//                . "OR categorie_id=".$filter->getCategorieId()." OR moyenne=".$filter->getMoyenne();
-//        echo $sql;
-//        return $this->getPdo()->query($sql)->fetchAll();
     }
 
     public function retrieve($id) {
@@ -118,16 +107,8 @@ class DAOTrucks extends DAO{
         $trucks = array();
 
         foreach ($resultats as $result) {
-            $truck = new TrucksModel();
-            $truck->setId($result['id']);
-            $truck->setSiret($result['siret']);
-            $truck->setNom($result['nom']);
-            $truck->setDateCreation($result['date_creation']);
-            $truck->setLogo($result['logo']);
-            $truck->setCategorieId($result['categorie_id']);
-            $truck->setMoyenne($result['moyenne']);
-
-            array_push($trucks,$truck);
+            $truck = $this->retrieve($result['id']); 
+            array_push($trucks, $truck);
         }
 
         return $trucks;

@@ -3,9 +3,13 @@
 namespace BWB\Framework\mvc\controllers;
 
 use BWB\Framework\mvc\Controller;
-use BWB\Framework\mvc\controllers\AdresseController;
+use BWB\Framework\mvc\controllers\TrucksController;
 use BWB\Framework\mvc\models\AdresseModel;
+use BWB\Framework\mvc\models\PlanningModel;
 use BWB\Framework\mvc\dao\DAOAdresse;
+use BWB\Framework\mvc\dao\DAOPlanning;
+use BWB\Framework\mvc\dao\DAOPresence;
+use BWB\Framework\mvc\dao\DAOTrucks;
 
 class SearchController extends Controller {
 
@@ -19,33 +23,62 @@ class SearchController extends Controller {
         //recup des infos du post
         $datasPost = $this->inputPost();
 
-        
-        $listAdress = (new AdresseController())->getAll();
-        
-        $testAdresse1 = (new DAOAdresse())->retrieve(1);
-        array_push($listAdress,$testAdresse1);
-        $testAdresse2 = (new DAOAdresse())->retrieve(2);
-        array_push($listAdress,$testAdresse2);
+        $requestReponse = $this->searchMe($datasPost);
 
+        $datas = ['request' => $requestReponse];
 
-        $datas = ['listeAdress' => $listAdress];
-
-        $this->render("testAir",$datas);
+        $this->render("search",$datas);
 
     }
 
     //Fonction qui récupère le résultat du formulaire et requete la liste des FT
     public function searchMe($datas){
-        $location = $datas['location'];
-        // $localLongitude = $datas['longitude'];
-        // $localLatitude = $datas['latitude'];
-        $dateRequest = $datas['dateRequest'];
-        $hourRequest = $datas['heureRequest'];
+
+        $listeTrucksOK = [];
+
+        //Exple POST:array(4) { ["location"]=> string(5) "loooo" ["dateRequest"]=> string(10) "27/06/2018" ["heureRequest"]=> string(5) "13:00" ["catrequest"]=> string(6) "coreen" }
+        
+        $adresseFictive = new AdresseModel();
+        $adresseFictive->setLatitude('43.3201460686012');
+        $adresseFictive->setLongitude('1.58819016338447');
+
+        //Creation de la date au format SQL
+        $dateRequest = $datas['dateRequest']." ".$datas['heureRequest'];
+
+        $newDateString = date_format(date_create_from_format('d/m/Y H:i', $dateRequest), 'Y-m-d H:i');
+
         $catrequest = $datas['catRequest'];
 
+        //Recup des objets plannings
+        $listePlanning = (new DAOPlanning())->getAllByDate($newDateString);
+
+        //Selection des Objets Presence qui ont un id de $listePlanning, check si adresse est dans la zone
+        foreach($listePlanning as $planning){
+
+            $filter = ['planning_id' => $planning->getId()];
+
+            $listePresence = (new DAOPresence())->getAllBy($filter);
+
+            foreach($listePresence as $presence){
+
+                $newAdresse = $presence->getAdresseId();
+
+                if($this->calculDistance($adresseFictive,$newAdresse,1000)){
+
+                    $newCouple = ['truck' => $presence->getFoodtruckId(),'adresse' => $newAdresse];
+
+                    array_push($listeTrucksOK, $newCouple);
+                }
+            }
+
+        }
+
+        return $listeTrucksOK;
+        
+        
     }
 
-    //Fonction qui prend en argument 2 objets adresse et calcule la distance entre les 2 et retourne true si inferieure à maxDistance
+    //Fonction qui prend en argument 2 objets adresse et calcule la distance entre les 2 et retourne true si inferieure à maxDistance en Km
     public function calculDistance($adresseA,$adresseB,$maxDistance){
 
         /*

@@ -1,35 +1,35 @@
 <?php
-use \BWB\Framework\mvc\models\CategorieModel;
-$faker = Faker\Factory::create();
-include 'header.php';
+use BWB\Framework\mvc\models\AdresseModel;
+include "header.php";
 ?>
-<div class="container">
-    <div class="row">
-        <div class="col-xl-9 mx-auto">
-        <?php
-        include 'searchBar.php';
-        ?>
-        </div>
-    </div>
-</div>
-<div class="container">
+
+<h1 style="padding-left: 30px;"><strong>Resultats</strong></h1>
+
+<div class="containerListe">
 
   <div class="list">
-      <?php for ($i = 0; $i < 30; $i++): ?>
-        <div class="item js-marker" data-lat="<?= $faker->latitude(43, 44) ?>" data-lng="<?= $faker->longitude(2, 4) ?>" data-price="<?= $faker->numberBetween(0, 100) ?>">
-          <img src="https://via.placeholder.com/400x260" alt="">
-          <h4>3 barres de chocolat pour le prix de 2 !</h4>
+      <?php 
+      
+      foreach ($request as $couple){
+
+        $objetTruck = $couple['truck'];
+        $objetAdresse = $couple['adresse'];
+       
+        ?>
+        <div class="item js-marker" data-lat=<?= $objetAdresse->getLatitude();?> data-lng=<?= $objetAdresse->getLongitude();?> data-price="5">
+          <img src=<?="http://".$_SERVER['SERVER_NAME']."/assets/img/trucks/".$objetTruck->getLogo()?> alt="">
+          <h4><?=$objetTruck->getNom()?></h4>
+          <h5><?=$objetTruck->getMoyenne()?></h4>
           <p>
-            Ici une petite description qui explique pourquoi c'est mieux ici
+          
           </p>
         </div>
-      <?php endfor; ?>
+      <?php }?>
   </div>
 
   <div class="map" id="map"></div>
 
 </div>
-<script src=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/scripts/airbnb_vendor.js"?>></script>
-<script src=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/scripts/airbnb_app.js"?>></script>
-</body>
-</html>
+<?php
+include "footer.php";
+?>
