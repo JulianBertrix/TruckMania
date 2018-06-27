@@ -1,6 +1,8 @@
 {
     "/": "HomeController:homePage",
     "/search": "SearchController:searchPage",
+    "/testair": "SearchController:searchPage",
+    "/inscription": "InscriptionController:control",
     "/login": "DefaultController:login",
     "/test": "UtilisateurController:testMe",
     "/logout": "DefaultController:logout",
