@@ -1,5 +1,6 @@
 {
     "/": "HomeController:homePage",
+    "/profile": "ProfileClientController:profileClient",
     "/search": "SearchController:searchPage",
     "/testair": "SearchController:searchPage",
     "/login": "DefaultController:login",
