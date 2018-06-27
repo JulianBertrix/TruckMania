@@ -16,10 +16,11 @@ include "header.php";
         $objetAdresse = $couple['adresse'];
        
         ?>
-        <div class="item js-marker" data-lat=<?= $objetAdresse->getLatitude();?> data-lng=<?= $objetAdresse->getLongitude();?> data-price="5">
+        <div class="item js-marker" data-lat=<?= $objetAdresse->getLatitude();?> data-lng=<?= $objetAdresse->getLongitude();?> data-price=<?=$objetTruck->getMoyenne()?>>
           <img src=<?="http://".$_SERVER['SERVER_NAME']."/assets/img/trucks/".$objetTruck->getLogo()?> alt="">
           <h4><?=$objetTruck->getNom()?></h4>
-          <h5><?=$objetTruck->getMoyenne()?></h4>
+          <h5><?=$objetTruck->getMoyenne()?></h5>
+          <h5><?=$objetTruck->getCategorieId()->getIntitule()?></h5>
           <p>
           
           </p>
