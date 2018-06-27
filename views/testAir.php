@@ -21,7 +21,8 @@ include "header.php";
           <?= $adress->getAdresse();?>
           </p>
         </div>
-      <?php }?>
+      <?php 
+    }?>
   </div>
 
   <div class="map" id="map"></div>
