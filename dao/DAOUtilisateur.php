@@ -21,7 +21,7 @@ class DAOUtilisateur extends DAO{
         .$user->getDateCreation()."','"
         .$user->getRoleId()."','"
         .$user->getAdresseId()."')";
-
+    
         $this->getPdo()->query($sql);
     }
 
