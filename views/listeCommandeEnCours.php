@@ -19,38 +19,22 @@
     </thead>
     <tbody id="items">
         <?php
-            $filter = ["utilisateur_id" => 1];
-            $commande = (new CommandeController())->getAllBy($filter);
-            foreach ($commande as $key => $value){
-                if($value->getDateCommande() >= date("Y-m-d H:i:s")){
+            foreach ($listeCommandeEnCours as $value){
                 ?>
                 <tr>
-                    <td><?php echo $value->getDateCommande(); ?></td>
-                    <td><?php echo $value->getFoodtruckId()->getNom(); ?></td>
-                        <?php 
-                        $panierFilter = ["commande_numero" => $value->getNumero()];
-                        $panier = (new PanierController())->getAllPanierBy($panierFilter); 
-                        $plat = array();
-                        $quantite = array();
-                        foreach ($panier as $key => $val){ 
-                            if ($value->getNumero() === $val->getNumeroCommande()->getNumero()){
-                                array_push($plat, $val->getPlatId()->getNom());
-                                array_push($quantite, $val->getQuantite());
-                            }
-                        }
-                        ?>            
+                    <td><?php echo $dateCommandeEnCours; ?></td>
+                    <td><?php echo $foodtruckEnCours; ?></td>    
                     <td>
-                    <?php foreach ($plat as $key => $nom){
+                    <?php foreach ($listePlatEnCours as $key => $nom){
                         ?><li><?php echo $nom; ?></li><?php
                     }?></td>
                     <td>
-                    <?php foreach ($quantite as $key => $nom){
+                    <?php foreach ($listeQuantiteEnCours as $key => $nom){
                         ?><li><?php echo $nom; ?></li><?php
                     }?></td>
-                    <td><?php echo $value->getTotal(); ?></td>
+                    <td><?php echo $totalEnCours ?></td>
                 </tr>
             <?php
-                }
             }?>
     </tbody>
 </table>

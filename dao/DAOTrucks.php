@@ -113,5 +113,4 @@ class DAOTrucks extends DAO{
 
         return $trucks;
     }
-
 }
