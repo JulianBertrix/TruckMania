@@ -1,50 +1,40 @@
-
-    <!-- Footer -->
-    <footer class="footer bg-light">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
-            <ul class="list-inline mb-2">
-              <li class="list-inline-item">
-                <a href="#">About</a>
-              </li>
-              <li class="list-inline-item">&sdot;</li>
-              <li class="list-inline-item">
-                <a href="#">Contact</a>
-              </li>
-              <li class="list-inline-item">&sdot;</li>
-              <li class="list-inline-item">
-                <a href="#">Terms of Use</a>
-              </li>
-              <li class="list-inline-item">&sdot;</li>
-              <li class="list-inline-item">
-                <a href="#">Privacy Policy</a>
-              </li>
-            </ul>
-            <p class="text-muted small mb-4 mb-lg-0">&copy; Your Website 2018. All Rights Reserved.</p>
-          </div>
-          <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
-            <ul class="list-inline mb-0">
-              <li class="list-inline-item mr-3">
-                <a href="#">
-                  <i class="fa fa-facebook fa-2x fa-fw"></i>
-                </a>
-              </li>
-              <li class="list-inline-item mr-3">
-                <a href="#">
-                  <i class="fa fa-twitter fa-2x fa-fw"></i>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#">
-                  <i class="fa fa-instagram fa-2x fa-fw"></i>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </footer>
+	<!-- footer -->
+	<div class="footer">
+		<div class="container">
+			<div class="agileinfo_footer_grids">
+				<div class="col-lg-4 agileinfo_footer_grid">
+					<div class="agile-logo">
+						<h4><a href="index.html">Trucks <span>Mania</span></a></h4>
+					</div>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc non risus et ex bibendum posuere. Morbi semper leo sed tincidunt rhoncus. Curabitur nec erat rhoncus, efficitur nibh ac, porta leo. Nullam luctus lacinia urna sagittis tempus. </p>
+				</div>
+				<div class="col-lg-4 agileinfo_footer_grid">
+					<h3>Contact Info</h3>
+					<ul class="agileinfo_footer_grid_list">
+						<li><i class="fas fa-map-marker-alt"></i>BeWeb Avenue de la réussite, <span>34400 Lunel.</span></li>
+						<li><i class="far fa-envelope"></i><a href="#">l.derrieux@fondespierre.com</a></li>
+						<li><i class="fas fa-phone"></i>+1234 567 567</li>
+					</ul>
+				</div>
+				<div class="col-lg-4 agileinfo_footer_grid">
+					<h3>Navigation</h3>
+					<ul class="agileinfo_footer_grid_nav">
+						<li><span><i class="fas fa-chevron-right"></i></span><a href="#">Home</a></li>
+						<li><span><i class="fas fa-chevron-right"></i></span><a href="#">About</a></li>
+						<li><span><i class="fas fa-chevron-right"></i></span><a href="#">Gallery</a></li>
+						<li><span><i class="fas fa-chevron-right"></i></span><a href="#">Short Codes</a></li>
+						<li><span><i class="fas fa-chevron-right"></i></span><a href="#">Icons</a></li>
+						<li><span><i class="fas fa-chevron-right"></i></span><a href="#">Mail Us</a></li>
+					</ul>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+			<div class="w3agile_footer_copy">
+				<p>&copy; 2018 Truck Mania. All rights reserved | Design by Trucks Mania Team</a></p>
+			</div>
+		</div>
+	</div>
+	<!-- //footer -->
     <!-- Include Google Maps JS API -->
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&amp;key=AIzaSyDd0z6MCPdZ0v5TPvkbB6yWW9dli2vkN3c"></script>
 
