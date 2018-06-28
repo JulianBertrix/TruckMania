@@ -3,7 +3,7 @@
 ?>
 <div class="container-contact100">
 		<div class="wrap-contact100">
-			<form class="contact100-form validate-form" action=<?="http://".$_SERVER['SERVER_NAME'] . "/inscription"?> role="form" method="post">
+			<form class="contact100-form validate-form" action=<?="http://".$_SERVER['SERVER_NAME'] . "/inscriptionTrucks"?> role="form" method="post">
 				<span class="contact100-form-title">
 					INSCRIPTION
 				</span>
@@ -44,7 +44,19 @@
 			</div>
 			<!-- ./END AUTOCOMPLETE -->
 		</div>
-			<div class="container-contact100-form-btn">
+		<div class="row">
+            <div class="col-6"><div class="container-contact100-form-btn">
+					<div class="wrap-contact100-form-btn">
+						<div class="contact100-form-bgbtn"></div>
+						<button class="contact100-form-btn">
+							<span>
+								Annuler
+								<i class="fas fa-angle-right"></i>
+							</span>
+						</button>
+					</div>
+				</div></div>
+            <div class="col-6"><div class="container-contact100-form-btn">
 					<div class="wrap-contact100-form-btn">
 						<div class="contact100-form-bgbtn"></div>
 						<button class="contact100-form-btn">
@@ -53,9 +65,11 @@
 								<i class="fas fa-angle-right"></i>
 							</span>
 						</button>
-					</div>
-				</div>
-			</form>
+					    </div>
+				    </div>
+                </div>
+            </div>
+		    </form>
 		</div>
 	</div>
 <?php

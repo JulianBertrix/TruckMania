@@ -9,7 +9,7 @@ class DAOEvenement extends DAO{
 
     public function __construct(){
         parent::__construct();
-    }
+    }(){
     
     public function create($evenement) {
         $userId = $evenement->getUtilisateur_id()->getId();

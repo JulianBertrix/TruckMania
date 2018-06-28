@@ -74,8 +74,6 @@ class SearchController extends Controller {
         }
 
         return $listeTrucksOK;
-        
-        
     }
 
     //Fonction qui prend en argument 2 objets adresse et calcule la distance entre les 2 et retourne true si inferieure à maxDistance en Km

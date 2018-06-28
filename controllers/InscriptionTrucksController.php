@@ -9,24 +9,35 @@ use BWB\Framework\mvc\models\AdresseModel;
 use BWB\Framework\mvc\dao\DAOAdresse;
 use BWB\Framework\mvc\dao\DAORole;
 use BWB\Framework\mvc\models\RoleModel;
+use BWB\Framework\mvc\dao\DAOCategorie;
+use BWB\Framework\mvc\controllers\CategorieController;
 
-
-class InscriptionController extends Controller{
+class InscriptionTrucksController extends Controller{
 
     private $newUser;
     
     public function __construct(){
         parent::__construct();
         $this->securityLoader();
-        $this->newUser = new DAOUtilisateur();    
+        $this->newUser = new DAOUtilisateur(); 
+        //$this->newTrucks = new DAOTrucks();   
     }
 
     public function control(){
-        
+         
          //Requp des infos du formulaire
          $dataPost = $this->inputPost();
+         
 
          if(isset($dataPost['nom'])){
+            
+            $dataPost = new trucksModel();
+            $dataPost->setSiret($dataTrucks['siret']);
+            $dataPost->setNom($dataTrucks['nom']);
+            $dataPost->setDateCreation(date('Y-m-d H:i:s'));
+            //$newTrucks->setLogo($dataTrucks['logo']);
+            $dataPost->setCategorieId((new DAOCategorie())->retrieve());
+            $dataPost->setMoyenne($dataTrucks['moyenne']);
              
             $longitude = '5';
             $latitude = '3';
@@ -56,9 +67,28 @@ class InscriptionController extends Controller{
 
             //Redirection Home
             header('Location: http://'.$_SERVER['SERVER_NAME'] .'/');
-         }else{
-             $this->render('formulaire_inscription');
+         
+        }else{
+            $datas = ['listeCat' => (new CategorieController())->getAllCategorie()];
+            
+            $this->render('formulaire_trucks',$datas);
          }
+
+    }
+
+    public function inscriptionTruck(){
+        $dataTrucks = $this->inputPost();
+
+        if(isset($dataTrucks['nom'])){
+            
+            
+
+            $this->newTruck->create($newTrucks);
+
+            header('Location: http://'.$_SERVER['SERVER_NAME'] .'/');
+        }else{
+            $this->render('formulaire_trucks');
+        }
     }
 
      public function create(){
