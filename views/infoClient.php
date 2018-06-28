@@ -17,37 +17,66 @@ use BWB\Framework\mvc\models\AdresseModel;
               <li class="list-group-item text-right"><span class="pull-left"><strong>Prenom</strong></span><?php echo  $infoClient->getPrenom(); ?></li>
               <li class="list-group-item text-right"><span class="pull-left"><strong>Email</strong></span><?php echo $infoClient->getEmail(); ?></li>
               <li class="list-group-item text-right"><span class="pull-left"><strong>Adresse</strong></span><?php echo $infoClient->getAdresseId()->getAdresse(); ?></li>
-            </ul>            
-            <button  type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">edit</button>    
-        </div><!--/col-3-->                
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <form>
-                <div class="form-group">
-                  <label for="recipient-name" class="col-form-label">Recipient:</label>
-                  <input type="text" class="form-control" id="recipient-name">
+            </ul>
+        <div class="container">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+            edit
+            </button>    
+            </div><!--/col-3-->                
+        <!-- The Modal -->
+            <div class="modal" id="myModal">
+              <div class="modal-dialog">
+                <div class="modal-content">
+
+                  <!-- Modal Header -->
+                  <div class="modal-header">
+                    <h4 class="modal-title">Edition du profile</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+
+                  <!-- Modal body -->
+                <div class="modal-body">
+                    <form class="contact100-form validate-form" action=<?="http://".$_SERVER['SERVER_NAME'] . "/profile"?> role="form" method="post">
+				
+                        <div class="wrap-input100 validate-input" data-validate="Ce champ est requis">
+                                <span class="label-input100">Mot de passe</span>
+                                <input class="input100" type="password" name="mot_de_passe" placeholder="Mot de passe" required>
+                                <span class="focus-input100"></span>
+                        </div>
+
+
+                        <div class="wrap-input100 validate-input" data-validate = "Ce champ est requis">
+                                <span class="label-input100">E-Mail</span>
+                                <input class="input100" type="text" name="email" placeholder="E-Mail" required oninvalid="this.setCustomValidity('Veuillez entrer une adresse valide')">
+                                <span class="focus-input100"></span>
+                        </div>
+
+			<!-- AUTOCOMPLETE -->
+			<div class="col-12">
+                            <div class="wrap-input100 validate-input" data-validate="Ce champ est requis">
+                                <span class="label-input100">Adresse</span>
+                                <input class="input100" type="text" name="user_input_autocomplete_address" placeholder="Adresse" id="user_input_autocomplete_address" required>
+                                <span class="focus-input100"></span>
+                            </div>
+			</div>
+			<!-- ./END AUTOCOMPLETE -->
+	
+
+                    </form>
                 </div>
-                <div class="form-group">
-                  <label for="message-text" class="col-form-label">Message:</label>
-                  <textarea class="form-control" id="message-text"></textarea>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Valider</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                 </div>
-              </form>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Send message</button>
-            </div>
-          </div>
         </div>
-      </div>
     </div>
-</div>
+
+  
+
+
+
+
 
