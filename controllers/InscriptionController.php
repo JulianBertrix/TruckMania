@@ -53,6 +53,9 @@ class InscriptionController extends Controller{
 
             //REC BDD
             $this->newUser->create($user);
+
+            //Redirection Home
+            header('Location: http://'.$_SERVER['SERVER_NAME'] .'/');
          }else{
              $this->render('formulaire_inscription');
          }

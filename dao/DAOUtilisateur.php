@@ -14,8 +14,6 @@ class DAOUtilisateur extends DAO{
     }
 
     public function create($user) {
-
-        var_dump($user);
         
         $sql = "INSERT INTO utilisateur (nom, prenom, email, mot_de_passe, date_creation, role_id, adresse_id) VALUES ('"
         .$user->getNom()."','"
