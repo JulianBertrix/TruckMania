@@ -26,7 +26,7 @@ class InscriptionController extends Controller{
          //Requp des infos du formulaire
          $dataPost = $this->inputPost();
 
-         if($dataPost['nom']){
+         if(isset($dataPost['nom'])){
              
             $longitude = '5';
             $latitude = '3';

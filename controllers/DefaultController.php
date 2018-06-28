@@ -26,6 +26,10 @@ class DefaultController extends Controller {
     public function getDefault() {
         $this->render("home");
     }
+
+    public function getCalendar() {
+        $this->render("calendar");
+    }
     
     public function getProfil(){
         $this->render("profileClient");

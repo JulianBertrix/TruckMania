@@ -11,6 +11,7 @@ class UtilisateurModel {
     private $dateCreation;
     private $roleId;
     private $adresseId;
+    private $foodTruckId;
 
     public function __construct() {
         
@@ -173,6 +174,26 @@ class UtilisateurModel {
     public function setAdresseId($adresseId)
     {
         $this->adresseId = $adresseId;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of foodTruckId
+     */ 
+    public function getFoodTruckId()
+    {
+        return $this->foodTruckId;
+    }
+
+    /**
+     * Set the value of foodTruckId
+     *
+     * @return  self
+     */ 
+    public function setFoodTruckId($foodTruckId)
+    {
+        $this->foodTruckId = $foodTruckId;
 
         return $this;
     }

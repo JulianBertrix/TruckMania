@@ -38,8 +38,9 @@ class UtilisateurController extends Controller {
         return $this->user->updateMe($idUser,$newValeurs);
     }
 
-    public function update($newValeurs) {
-        return $this->user->update($newValeurs);
+    public function update($id) {
+        header("Content-Type: application/json");
+        echo $this->user->update($id);
     }
 
 
