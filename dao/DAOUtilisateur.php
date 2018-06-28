@@ -2,6 +2,8 @@
 namespace BWB\Framework\mvc\dao;
 use BWB\Framework\mvc\DAO;
 use BWB\Framework\mvc\models\UtilisateurModel;
+use BWB\Framework\mvc\models\RoleModel;
+use BWB\Framework\mvc\models\AdresseModel;
 use BWB\Framework\mvc\dao\DAORole;
 use BWB\Framework\mvc\dao\DAOAdresse;
 
@@ -12,6 +14,8 @@ class DAOUtilisateur extends DAO{
     }
 
     public function create($user) {
+
+        var_dump($user);
         
         $sql = "INSERT INTO utilisateur (nom, prenom, email, mot_de_passe, date_creation, role_id, adresse_id) VALUES ('"
         .$user->getNom()."','"
@@ -19,8 +23,8 @@ class DAOUtilisateur extends DAO{
         .$user->getEmail()."','"
         .$user->getMotDePasse()."','"
         .$user->getDateCreation()."','"
-        .$user->getRoleId()."','"
-        .$user->getAdresseId()."')";
+        .$user->getRoleId()->getId()."','"
+        .$user->getAdresseId()->getId()."')";
     
         $this->getPdo()->query($sql);
     }
