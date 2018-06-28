@@ -54,8 +54,7 @@
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.11/css/all.css">
     
-    <!-- JQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 
     <!-- Bootstrap core JavaScript -->
     <script src=<?="http://".$_SERVER['SERVER_NAME'] . "/config/routing.jsonvendor/jquery/jquery.min.js"?>></script>
@@ -74,6 +73,10 @@
 
     <!-- Geoloc -->
     <script src=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/scripts/geoloc.js"?>></script>
+
+        <!-- FullCalendar -->
+        <script src=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/scripts/moment.js"?>></script>
+        <script src=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/scripts/fullcalendar.js"?>></script>
   </body>
 
 </html>

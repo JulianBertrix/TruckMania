@@ -6,6 +6,7 @@ use BWB\Framework\mvc\models\RoleModel;
 use BWB\Framework\mvc\models\AdresseModel;
 use BWB\Framework\mvc\dao\DAORole;
 use BWB\Framework\mvc\dao\DAOAdresse;
+use BWB\Framework\mvc\dao\DAOTrucks;
 
 class DAOUtilisateur extends DAO{
 
@@ -15,14 +16,15 @@ class DAOUtilisateur extends DAO{
 
     public function create($user) {
         
-        $sql = "INSERT INTO utilisateur (nom, prenom, email, mot_de_passe, date_creation, role_id, adresse_id) VALUES ('"
+        $sql = "INSERT INTO utilisateur (nom, prenom, email, mot_de_passe, date_creation, role_id, adresse_id, foodtruck_id) VALUES ('"
         .$user->getNom()."','"
         .$user->getPrenom()."','"
         .$user->getEmail()."','"
         .$user->getMotDePasse()."','"
         .$user->getDateCreation()."','"
         .$user->getRoleId()->getId()."','"
-        .$user->getAdresseId()->getId()."')";
+        .$user->getAdresseId()->getId()."')"
+        .$user->getFoodTruckId()->getId()."')";
     
         $this->getPdo()->query($sql);
     }
@@ -98,6 +100,10 @@ class DAOUtilisateur extends DAO{
         $newItem = (new DAOAdresse())->retrieve($result['adresse_id']);
         $user->setAdresseId($newItem);
 
+        //Recup de l'objet foodtruck
+        $newItem = (new DAOTrucks())->retrieve($result['foodtruck_id']);
+        $user->setFoodTruckId($newItem);
+
         return $user;
     }
 
@@ -126,7 +132,22 @@ class DAOUtilisateur extends DAO{
 
     }
 
-    public function update($newValeurs){
+    public function update($id){
+        
+        $dataPost = $this->inputPost();
+        
+        $sql = "UPDATE utilisateur SET 
+        nom= '".$dataPost['nom']
+        ."', prenom='".$dataPost['prenom']
+        ."', email='".$dataPost['email']
+        ."', mot_de_passe='".$dataPost['mot_de_passe']
+        ."' WHERE id=".$id;
+
+        $this->getPdo()->query($sql);
+
+        
+
+       return $tutu;
 
     }
 
