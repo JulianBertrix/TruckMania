@@ -2,7 +2,7 @@
     "/": "HomeController:homePage",
     "/profile": "ProfileClientController:profileClient",
     "/search": "SearchController:searchPage",
-    "/testair": "SearchController:searchPage",
+    "/testcalendar": "DefaultController:getCalendar",
     "/inscription": "InscriptionController:control",
     "/login": "DefaultController:login",
     "/test": "UtilisateurController:testMe",
@@ -13,9 +13,13 @@
         "DELETE":"UserController:deleteAll",
         "POST":"UserController:test"
     },
-    "/api/users/(:)":{
-        "GET":"UserController:getUser",
-        "PUT":"UserController:updateUser",
-        "DELETE":"UserController:deleteUser"
-    }
+    "/api/utilisateur/(:)":{
+        "GET":"UtilisateurController:test",
+        "POST":"UtilisateurController:update",
+        "DELETE":"UtilisateurController:delete"
+    },
+    "/api/evenements/":{
+        "GET":"EvenementController:getAll"
+    },
+    "/api/poum/(:)":"UtilisateurController:update"
 }

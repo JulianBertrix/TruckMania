@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <!-- Custom fonts for this template -->
     <link href=<?="http://".$_SERVER['SERVER_NAME'] . "/vendor/font-awesome/css/font-awesome.min.css"?> rel="stylesheet" type="text/css">
@@ -40,6 +42,9 @@
     <link rel="stylesheet" type="text/css" href=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css"?>>
     <link rel="stylesheet" type="text/css" href=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/css/formulaire.css"?>>
     <!--===============================================================================================-->
+
+    <!-- FullCalendar -->
+    <link rel='stylesheet' href=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/css/fullcalendar.css"?>>
 
   </head>
 
