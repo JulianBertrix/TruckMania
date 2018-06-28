@@ -11,7 +11,7 @@ include 'header.php';
           <div class="col-xl-9 mx-auto">
             <h1 class="mb-5">Trouvez votre Food Truck</h1>
           </div>
-          <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+          <div class="mx-auto">
 <?php
   include 'searchBar.php';
 ?>

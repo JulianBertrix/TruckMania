@@ -7,6 +7,7 @@ use BWB\Framework\mvc\dao\DAOUtilisateur;
 use BWB\Framework\mvc\models\UtilisateurModel;
 use BWB\Framework\mvc\models\AdresseModel;
 use BWB\Framework\mvc\dao\DAOAdresse;
+use BWB\Framework\mvc\dao\DAORole;
 use BWB\Framework\mvc\models\RoleModel;
 
 
@@ -24,6 +25,7 @@ class InscriptionController extends Controller{
         
          //Requp des infos du formulaire
          $dataPost = $this->inputPost();
+
          if($dataPost['nom']){
              
             $longitude = '5';
@@ -48,10 +50,9 @@ class InscriptionController extends Controller{
             $user->setDateCreation(date('Y-m-d H:i:s'));
             $user->setRoleId((new DAORole())->retrieve(3));
             $user->setAdresseId((new DAOAdresse())->retrieve($newIdAdresse));
-            
-            var_dump($user);
+
             //REC BDD
-            //$newUser->create($user);
+            $this->newUser->create($user);
          }else{
              $this->render('formulaire_inscription');
          }
