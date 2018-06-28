@@ -4,27 +4,30 @@
 			<div class="agileinfo_footer_grids">
 				<div class="col-lg-4 agileinfo_footer_grid">
 					<div class="agile-logo">
-						<h4><a href="index.html">Trucks <span>Mania</span></a></h4>
+						<h4><a href="#">Trucks <span>Mania</span></a></h4>
 					</div>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc non risus et ex bibendum posuere. Morbi semper leo sed tincidunt rhoncus. Curabitur nec erat rhoncus, efficitur nibh ac, porta leo. Nullam luctus lacinia urna sagittis tempus. </p>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc non risus et ex bibendum posuere.
+						 Morbi semper leo 
+						sed tincidunt rhoncus. Curabitur nec erat rhoncus, efficitur nibh ac, porta leo. 
+						Nullam luctus lacinia urna sagittis tempus.
+					</p>
 				</div>
-				<div class="col-lg-4 agileinfo_footer_grid">
+				<div class="col-lg-4 agileinfo_footer_grid text-center">
 					<h3>Contact Info</h3>
-					<ul class="agileinfo_footer_grid_list">
-						<li><i class="fas fa-map-marker-alt"></i>BeWeb Avenue de la réussite, <span>34400 Lunel.</span></li>
-						<li><i class="far fa-envelope"></i><a href="#">l.derrieux@fondespierre.com</a></li>
-						<li><i class="fas fa-phone"></i>+1234 567 567</li>
+					<ul class="agileinfo_footer_grid_list text-center">
+						<li><i class="fas fa-map-marker-alt"></i>BeWeb Rue de la réussite, <span>34400 Lunel.</span></li>
+						<li><i class="far fa-envelope"></i><a href="#">Loic@fondespierre.com</a></li>
+						<li><i class="fas fa-phone"></i>+ 075 567 567</li>
 					</ul>
 				</div>
-				<div class="col-lg-4 agileinfo_footer_grid">
+				<div class="col-lg-4 agileinfo_footer_grid text-center">
 					<h3>Navigation</h3>
-					<ul class="agileinfo_footer_grid_nav">
-						<li><span><i class="fas fa-chevron-right"></i></span><a href="#">Home</a></li>
-						<li><span><i class="fas fa-chevron-right"></i></span><a href="#">About</a></li>
-						<li><span><i class="fas fa-chevron-right"></i></span><a href="#">Gallery</a></li>
-						<li><span><i class="fas fa-chevron-right"></i></span><a href="#">Short Codes</a></li>
-						<li><span><i class="fas fa-chevron-right"></i></span><a href="#">Icons</a></li>
-						<li><span><i class="fas fa-chevron-right"></i></span><a href="#">Mail Us</a></li>
+					<ul class="agileinfo_footer_grid_nav text-center">
+						<li><span><i class="fas fa-chevron-right"></i></span><a href="#"> Home</a></li>
+						<li><span><i class="fas fa-chevron-right"></i></span><a href="#"> About</a></li>
+						<li><span><i class="fas fa-chevron-right"></i></span><a href="#"> Gallery</a></li>
+						<li><span><i class="fas fa-chevron-right"></i></span><a href="#"> Icons</a></li>
+						<li><span><i class="fas fa-chevron-right"></i></span><a href="#"> Mail Us</a></li>
 					</ul>
 				</div>
 				<div class="clearfix"> </div>

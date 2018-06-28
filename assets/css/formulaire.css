@@ -493,9 +493,9 @@
   }
 
   /*-- footer --*/
+
 .agileinfo_footer_grid{
-  float: left;
-  display: inline-block;
+  float: left !important;
   position: relative;
   min-height: 1px;
   padding-right: 15px;
@@ -530,25 +530,24 @@
   display: block;
   font-size: .4em;
   letter-spacing: 5px;
-  text-align: center;
 }
 .agile-logo h4 a span:before {
   content: "";
   position: absolute;
-  background: #FFFFFF;
-  width: 10%;
-  top: 34px;
-  height: 1px;
-  left: 31%;
+  background: #8BC34A;
+  width: 20%;
+  top: 50px;
+  height: 2px;
+  left: 6%;
 }
 .agile-logo h4 a span:after {
   content: "";
   position: absolute;
-  background: #FFFFFF;
-  width: 10%;
-  top: 34px;
-  height: 1px;
-  right: 31%;
+  background: #8BC34A;
+  width: 20%;
+  top: 50px;
+  height: 2px;
+  right: 6%;
 }
 .agileinfo_footer_grid p{
   color: #999;
@@ -558,6 +557,7 @@
   text-align: center;
 }
 .agileinfo_footer_grid h3{
+  text-align: center;
   font-size: 1.2em;
   color: #ffffff;
   padding-bottom: .5em;
@@ -570,7 +570,7 @@
 .agileinfo_footer_grid h3:after{
   content: '';
   background: #8BC34A;
-  width: 15%;
+  width: 100%;
   height: 2px;
   position: absolute;
   bottom: 0%;
@@ -584,13 +584,16 @@ ul.agileinfo_footer_grid_nav {
   list-style-type: none;
   margin-bottom: 1em;
   color: #999;
-  font-size: .9em;
+  font-size: 1em;
+  text-align: left;
+  margin-left: 5px;
+  padding: 5px;
 }
 .agileinfo_footer_grid ul.agileinfo_footer_grid_list li i {
   color: #999;
-  border: 1px solid #999;
-  padding: .5em;
-  border-radius: 100%;
+  border: 3px solid #8BC34A;
+  padding: .7em;
+  border-radius: 50%;
   -webkit-border-radius: 100%;
   -moz-border-radius: 100%;
   -o-border-radius: 100%;
@@ -610,8 +613,7 @@ color:#FFFFFF;
 text-decoration:none;
 }
 .agileinfo_footer_grid_nav li span {
-  color: #999999;
-  padding-right: 1.5em;
+  color: #8BC34A;
 }
 .w3agile_footer_copy{
   margin: 3em 0 0;
