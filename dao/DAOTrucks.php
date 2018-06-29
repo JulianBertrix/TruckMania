@@ -24,8 +24,9 @@ class DAOTrucks extends DAO{
         $sql = "INSERT INTO foodtruck (siret, nom, date_creation, logo, categorie_id, moyenne)"
                 . " VALUES ('".$array->getSiret()."','".$array->getNom()."','".$array->getDateCreation()."','"
                 . "".$array->getLogo()."','".$array->getCategorieId()."','".$array->getMoyenne()."')";
-        echo $sql;
-        return $this->getPdo()->query($sql)->fetch();
+        
+     $this->getPdo()->query($sql);
+     return $this->getPdo()->lastInsertId();
     }
 
     public function delete($id) {
