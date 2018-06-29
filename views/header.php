@@ -14,7 +14,7 @@
     <!-- Bootstrap core CSS -->
     <link href=<?="http://".$_SERVER['SERVER_NAME'] . "/vendor/bootstrap/css/bootstrap.min.css"?> rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" ></script>
 
     <!-- JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -53,7 +53,11 @@
     <!-- Navigation -->
     <nav class="navbar navbar-light bg-light static-top">
       <div class="container">
-        <a class="navbar-brand" href="#">Trucks Mania</a>
+        <a class="navbar-brand" href=<?="http://".$_SERVER['SERVER_NAME'] . "/"?>>Trucks Mania</a>
+        <a class="" href=<?="http://".$_SERVER['SERVER_NAME'] . "/profile"?>>Profil</a>
+        <a class="" href=<?="http://".$_SERVER['SERVER_NAME'] . "/testcalendar"?>>TestCalendar</a>
+        <a class="" href=<?="http://".$_SERVER['SERVER_NAME'] . "/inscription"?>>Inscription Client</a>
+        <a class="" href=<?="http://".$_SERVER['SERVER_NAME'] . "/inscriptionTrucks"?>>Inscription Trucks</a>
         <a class="btn btn-primary" href="#">Sign In</a>
       </div>
     </nav>

@@ -1,6 +1,8 @@
 <?php
 namespace BWB\Framework\mvc\models;
 
+use BWB\Framework\mvc\models\AdresseModel;
+
 class EvenementModel {
     private $id;
     private $date_creation;
@@ -17,6 +19,22 @@ class EvenementModel {
         
     }
 
+    public function to_json(){
+
+        $array = array(
+            "id" => $this->id,
+            "date_creation" => $this->date_creation,
+            "intitule" => $this->intitule,
+            "date_debut" => $this->date_debut,
+            "date_fin" => $this->date_fin,
+            "description" => $this->description,
+            "image" => $this->image,
+            "adresse_id" => $this->adresse_id->to_json(),
+            "NombreDeParticipant" => $this->NombreDeParticipant
+        );
+
+        return json_encode($array);
+    }
 
     /**
      * Get the value of id
