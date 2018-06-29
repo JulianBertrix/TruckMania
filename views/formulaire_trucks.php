@@ -4,7 +4,7 @@
 ?>
 <div class="container-contact100">
 		<div class="wrap-contact100">
-			<form class="contact100-form validate-form" action=<?="http://".$_SERVER['SERVER_NAME'] . "/inscription"?> role="form" method="post">
+			<form class="contact100-form validate-form" action=<?="http://".$_SERVER['SERVER_NAME'] . "/inscriptionTrucks"?> role="form" method="post">
 				<span class="contact100-form-title">
 					TRUCKS
 				</span>
@@ -43,14 +43,14 @@
         <div class="col-6">
 			<div class="wrap-input100 validate-input" data-validate="Ce champ est requis">
 					<span class="label-input100">Nom du truck</span>
-					<input class="input100" type="text" placeholder="Nom du truck" required>
+					<input class="input100" type="text" name="nomtrucks" placeholder="Nom du truck" required>
 					<span class="focus-input100"></span>
 				</div>
 			</div>
             <div class="col-6">
 			<div class="wrap-input100 validate-input" data-validate="Ce champ est requis">
 					<span class="label-input100">N° Siret</span>
-					<input class="input100" type="text" placeholder="632789540" required>
+					<input class="input100" type="text" name="siret" placeholder="632789540" required>
 					<span class="focus-input100"></span>
 				</div>
 			</div>
