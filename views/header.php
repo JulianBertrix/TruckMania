@@ -14,7 +14,7 @@
     <!-- Bootstrap core CSS -->
     <link href=<?="http://".$_SERVER['SERVER_NAME'] . "/vendor/bootstrap/css/bootstrap.min.css"?> rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" ></script>
 
     <!-- JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -45,20 +45,7 @@
 
     <!-- FullCalendar -->
     <link rel='stylesheet' href=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/css/fullcalendar.css"?>>
-    
-    <!-- profil du client -->
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-    
+
   </head>
 
   <body>
@@ -66,9 +53,11 @@
     <!-- Navigation -->
     <nav class="navbar navbar-light bg-light static-top">
       <div class="container">
-        <a class="navbar-brand" href="#">Trucks Mania</a>
-        <a class="navbar-brand" href=<?="http://".$_SERVER['SERVER_NAME'] . "/profile"?>>Profil</a>
-        
+        <a class="navbar-brand" href=<?="http://".$_SERVER['SERVER_NAME'] . "/"?>>Trucks Mania</a>
+        <a class="" href=<?="http://".$_SERVER['SERVER_NAME'] . "/profile"?>>Profil</a>
+        <a class="" href=<?="http://".$_SERVER['SERVER_NAME'] . "/testcalendar"?>>TestCalendar</a>
+        <a class="" href=<?="http://".$_SERVER['SERVER_NAME'] . "/inscription"?>>Inscription Client</a>
+        <a class="" href=<?="http://".$_SERVER['SERVER_NAME'] . "/inscriptionTrucks"?>>Inscription Trucks</a>
         <a class="btn btn-primary" href="#">Sign In</a>
       </div>
     </nav>

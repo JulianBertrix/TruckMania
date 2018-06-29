@@ -17,7 +17,7 @@ $( document ).ready(function() {
             console.log(toto);
         },
         error: function (param1, param2) {
-            alert("erreur");
+            
         }
     });
 

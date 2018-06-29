@@ -34,6 +34,9 @@
 			</div>
 		</div>
 	</div><!-- //footer -->
+
+	<!-- Profil Client -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 	
     <!-- Include Google Maps JS API -->
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&amp;key=AIzaSyDd0z6MCPdZ0v5TPvkbB6yWW9dli2vkN3c"></script>
@@ -65,5 +68,7 @@
     <!-- FullCalendar -->
     <script src=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/scripts/moment.js"?>></script>
     <script src=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/scripts/fullcalendar.js"?>></script>
+  
+
   </body>
 </html>
