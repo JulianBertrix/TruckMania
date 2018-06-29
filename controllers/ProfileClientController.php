@@ -25,7 +25,6 @@ class ProfileClientController extends Controller{
     }
 
     public function profileClient() {
-        $this->modifData();
         $favoris = (new FavorisController())->getAllBy(["utilisateur_id" => 1]);
         
         foreach ($favoris as $key => $truck){
@@ -112,47 +111,9 @@ class ProfileClientController extends Controller{
             'listePlat' => $plat,
             'listeQuantite' => $quantite,
             'total' => $total
-            
-            //'applyModif' => $this->modifData()
-
         );
         
         $this->render("profileClient", $datas);
-    }
-    
-    public function modifData($id){
-        $post = $this->inputPost();
-        $newData = array();
-        
-        //$user = (new UtilisateurController())->retrieve(1);
-        //Modification de l'utilisateur
-        $modifUser = new UtilisateurModel();
-        $modifUser->setId($id);
-        $modifUser->setEmail($post['email']);
-        //$modifUser->setMotDePasse($post['mot_de_passe']);
-        $majUser = (new DAOUtilisateur())->update($modifUser->getId(), $modifUser);
-        var_dump($majUser);
-        array_push($newData, $majUser);
-        
-        
-        //$adresse = $user->getAdresseId();
-        //var_dump($adresse);
-        
-
-        //Modification de l'adresse
-        //$newAdresse = new AdresseModel();
-        //$newAdresse->setAdresse($post['adresse']);
-        //$newAdresse = $adresse->setLatitude();
-        //$newAdresse = $adresse->setLongitude();
-
-        //MAJ de l'adresse
-        //$majAdresse = (new DAOAdresse())->update($adresse, $newAdresse);
-
-        
-
-        var_dump($newData);
-        //array_push($newData, $modifUser);
-        return $newData;
     }
     
     public function login() {
