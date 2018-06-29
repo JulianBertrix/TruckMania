@@ -23,7 +23,7 @@ class DAOUtilisateur extends DAO{
         .$user->getMotDePasse()."','"
         .$user->getDateCreation()."','"
         .$user->getRoleId()->getId()."','"
-        .$user->getAdresseId()->getId()."')"
+        .$user->getAdresseId()->getId()."','"
         .$user->getFoodTruckId()->getId()."')";
     
         $this->getPdo()->query($sql);
