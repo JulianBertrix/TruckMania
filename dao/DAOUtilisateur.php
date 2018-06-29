@@ -134,7 +134,7 @@ class DAOUtilisateur extends DAO{
 
     public function update($id){
         
-        $dataPost = $this->inputPost();
+        $dataPost = (new UtilisateurController())->inputPost();
         
         $sql = "UPDATE utilisateur SET 
         nom= '".$dataPost['nom']

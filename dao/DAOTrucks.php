@@ -61,7 +61,7 @@ class DAOTrucks extends DAO{
             $sql .= $key."='".$value."' ";
             $i++;
         }
-        echo $sql;
+        
         $results = $this->getPdo()->query($sql)->fetchAll();
         var_dump($results);
         $trucks = array();

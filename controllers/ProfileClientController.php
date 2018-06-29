@@ -25,7 +25,7 @@ class ProfileClientController extends Controller{
     }
 
     public function profileClient() {
-        $this->modifData();
+        $this->modifData(1);
         $favoris = (new FavorisController())->getAllBy(["utilisateur_id" => 1]);
         
         foreach ($favoris as $key => $truck){

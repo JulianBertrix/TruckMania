@@ -19,7 +19,7 @@
         "POST":"UtilisateurController:update",
         "DELETE":"UtilisateurController:delete"
     },
-    "/api/evenements/":{
+    "/api/evenements":{
         "GET":"EvenementController:getAll"
     },
     "/api/poum/(:)":"UtilisateurController:update"
