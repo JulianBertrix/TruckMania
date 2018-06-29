@@ -2,7 +2,7 @@
 use BWB\Framework\mvc\models\UtilisateurModel;
 use BWB\Framework\mvc\models\AdresseModel;
 ?>
-<script src="profileClient.js"></script>
+<!--<script src="updateInfosClient.js"></script>-->
 <div class="container bootstrap snippet">
     <div class="row">
         <div class="col-sm-10"><h1>Mon Profile</h1></div>
@@ -40,14 +40,14 @@ use BWB\Framework\mvc\models\AdresseModel;
 				
                         <div class="wrap-input100 validate-input" data-validate="Ce champ est requis">
                                 <span class="label-input100">Mot de passe</span>
-                                <input class="input100" type="password" name="mot_de_passe" placeholder="Mot de passe" required>
+                                <input id="mot_de_passe" class="input100" type="password" name="mot_de_passe" placeholder="Mot de passe" required>
                                 <span class="focus-input100"></span>
                         </div>
 
 
                         <div class="wrap-input100 validate-input" data-validate = "Ce champ est requis">
                                 <span class="label-input100">E-Mail</span>
-                                <input class="input100" type="text" name="email" placeholder="E-Mail" required oninvalid="this.setCustomValidity('Veuillez entrer une adresse valide')">
+                                <input id="email" class="input100" type="text" name="email" placeholder="E-Mail" required oninvalid="this.setCustomValidity('Veuillez entrer une adresse valide')">
                                 <span class="focus-input100"></span>
                         </div>
 
@@ -55,7 +55,7 @@ use BWB\Framework\mvc\models\AdresseModel;
 			<div class="col-12">
                             <div class="wrap-input100 validate-input" data-validate="Ce champ est requis">
                                 <span class="label-input100">Adresse</span>
-                                <input class="input100" type="text" name="user_input_autocomplete_address" placeholder="Adresse" id="user_input_autocomplete_address" required>
+                                <input id="adresse" class="input100" type="text" name="user_input_autocomplete_address" placeholder="Adresse" id="user_input_autocomplete_address" required>
                                 <span class="focus-input100"></span>
                             </div>
 			</div>
