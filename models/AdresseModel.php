@@ -12,6 +12,17 @@ class AdresseModel {
     }
 
 
+    public function to_json(){
+
+        $array = array(
+            "id" => $this->id,
+            "adresse" => $this->adresse,
+            "latitude" => $this->latitude,
+            "longitude" => $this->longitude
+        );
+
+        return json_encode($array);
+    }
 
     /**
      * Get the value of id

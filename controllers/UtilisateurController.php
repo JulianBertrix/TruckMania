@@ -40,7 +40,16 @@ class UtilisateurController extends Controller {
 
     public function update($id) {
         header("Content-Type: application/json");
-        echo $this->user->update($id);
+        $dataPost = $this->inputPost();
+        
+        $newUser = new UtilisateurModel();
+        $newUser->setId($id);
+        $newUser->setNom($dataPost['nom']);
+        $newUser->setPrenom($dataPost['prenom']);
+        $newUser->setMotDePasse($dataPost['mot_de_passe']);
+        $newUser->setEmail($dataPost['email']);
+        
+        $this->user->update($newUser);
     }
 
 

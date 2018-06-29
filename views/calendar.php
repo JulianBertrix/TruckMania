@@ -4,6 +4,23 @@ include 'header.php';
 <script>
 $( document ).ready(function() {
 
+  //Recup des datas
+
+   $.ajax({
+        url: "http://trucks-mania.bwb/api/evenements",
+        type: "GET",
+        dataType: "json",
+        async: false,
+
+        success: function (toto) {
+          
+            console.log(toto);
+        },
+        error: function (param1, param2) {
+            alert("erreur");
+        }
+    });
+
 
     
 

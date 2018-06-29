@@ -10,7 +10,17 @@ class PlanningModel {
     public function __construct() {
     }
 
+    public function to_json(){
 
+        $array = array(
+            "id" => $this->id,
+            "date_debut" => $this->dateDebut,
+            "date_fin" => $this->dateFin
+        );
+
+        return json_encode($array);
+    }
+    
     /**
      * Get the value of id
      */ 
