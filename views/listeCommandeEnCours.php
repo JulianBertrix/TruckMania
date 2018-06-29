@@ -1,15 +1,6 @@
 <table class="table table-hover">
     <thead>
         <tr>
-            <?php
-                use BWB\Framework\mvc\controllers\CommandeController;
-                use BWB\Framework\mvc\dao\DAOCommande;
-                use BWB\Framework\mvc\models\CommandeModel;
-                use BWB\Framework\mvc\controllers\PanierController;
-                use BWB\Framework\mvc\dao\DAOPanier;
-                use BWB\Framework\mvc\models\PanierModel;
-                use BWB\Framework\mvc\models\PlatModel;
-            ?>
             <th>Date</th>
             <th>Food Truck</th>
             <th>Plat</th>
@@ -17,24 +8,28 @@
             <th>prix</th>
         </tr>
     </thead>
-    <tbody id="items">
-        <?php
-            foreach ($listeCommandeEnCours as $value){
-                ?>
-                <tr>
-                    <td><?php echo $dateCommandeEnCours; ?></td>
-                    <td><?php echo $foodtruckEnCours; ?></td>    
-                    <td>
-                    <?php foreach ($listePlatEnCours as $key => $nom){
-                        ?><li><?php echo $nom; ?></li><?php
-                    }?></td>
-                    <td>
-                    <?php foreach ($listeQuantiteEnCours as $key => $nom){
-                        ?><li><?php echo $nom; ?></li><?php
-                    }?></td>
-                    <td><?php echo $totalEnCours ?></td>
-                </tr>
-            <?php
-            }?>
+    <tbody id="items">       
+        <tr>
+            <td><?php echo $dateCommandeEnCours; ?></td>
+            <td><?php echo $foodtruckEnCours; ?></td>    
+            <td>
+                
+            <?php 
+            if($listePlatEnCours != NULL){
+                foreach ($listePlatEnCours as $plat){
+                    ?><li><?php echo $listePlatEnCours; ?></li><?php
+                }
+            }
+            ?></td>
+            <td>
+            <?php 
+            if(isset($listeQuantiteEnCours)){
+                foreach ($listeQuantiteEnCours as $quantite){
+                    ?><li><?php echo $quantite; ?></li><?php
+                }
+            }
+            ?></td>
+            <td><?php echo $totalEnCours ?></td>
+        </tr>         
     </tbody>
 </table>

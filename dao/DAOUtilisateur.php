@@ -132,23 +132,22 @@ class DAOUtilisateur extends DAO{
 
     }
 
+<<<<<<< HEAD
     public function update($id){
         
         $dataPost = (new UtilisateurController())->inputPost();
+=======
+    public function update($objet){
+>>>>>>> update_infoclient
         
         $sql = "UPDATE utilisateur SET 
-        nom= '".$dataPost['nom']
-        ."', prenom='".$dataPost['prenom']
-        ."', email='".$dataPost['email']
-        ."', mot_de_passe='".$dataPost['mot_de_passe']
-        ."' WHERE id=".$id;
+        nom= '".$objet->getNom()
+        ."', prenom='".$objet->getPrenom()
+        ."', email='".$objet->getEmail()
+        ."', mot_de_passe='".$objet->getMotDePasse()
+        ."' WHERE id=".$objet->getId();
 
         $this->getPdo()->query($sql);
-
-        
-
-       return $tutu;
-
     }
 
     //Recupere le dernier tupple ajouté
