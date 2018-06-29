@@ -15,12 +15,11 @@
         "POST":"UserController:test"
     },
     "/api/utilisateur/(:)":{
-        "GET":"UtilisateurController:test",
+        "GET":"UtilisateurController:retrieve",
         "POST":"UtilisateurController:update",
         "DELETE":"UtilisateurController:delete"
     },
     "/api/evenements/":{
         "GET":"EvenementController:getAll"
-    },
-    "/api/poum/(:)":"UtilisateurController:update"
+    }
 }

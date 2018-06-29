@@ -1,15 +1,6 @@
 <table class="table table-hover">
     <thead>
         <tr>
-            <?php 
-                use BWB\Framework\mvc\controllers\FavorisController;
-                use BWB\Framework\mvc\dao\DAOFavoris;
-                use BWB\Framework\mvc\models\TrucksModel;
-                use BWB\Framework\mvc\controllers\PresenceController;
-                use BWB\Framework\mvc\dao\DAOPresence;
-                use BWB\Framework\mvc\models\PresenceModel;
-
-            ?>
             <th>logo</th>
             <th>food truck</th>
             <th>emplacement</th>
