@@ -107,9 +107,6 @@ class ProfileClientController extends Controller{
             'foodtruck' => $foodtruck,
             'listePlat' => $plat,
             'listeQuantite' => $quantite,
-<<<<<<< HEAD
-            'total' => $total
-=======
             'total' => $total,
             
             'listeCommandeEnCours' => $commandeEnCours,
@@ -118,7 +115,6 @@ class ProfileClientController extends Controller{
             'listePlatEnCours' => $platEnCours,
             'listeQuantiteEnCours' => $quantiteEnCours,
             'totalEnCours' => $totalEnCours
->>>>>>> update_infoclient
         );
         
         $this->render("profileClient", $datas);

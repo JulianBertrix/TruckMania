@@ -132,13 +132,7 @@ class DAOUtilisateur extends DAO{
 
     }
 
-<<<<<<< HEAD
-    public function update($id){
-        
-        $dataPost = (new UtilisateurController())->inputPost();
-=======
     public function update($objet){
->>>>>>> update_infoclient
         
         $sql = "UPDATE utilisateur SET 
         nom= '".$objet->getNom()
