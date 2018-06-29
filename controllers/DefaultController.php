@@ -34,6 +34,14 @@ class DefaultController extends Controller {
         $this->render("home");
     }
 
+    //TESTS
+    public function getCalendar() {
+        $this->render("calendar");
+    }
+    
+    public function getProfil(){
+        $this->render("profileClient");
+    }
     /**
      * Simule un utilisateur qui se loggue.
      * On utilise l'objet {@see DefaultModel} qui retourne des valeurs par defaut
@@ -42,13 +50,6 @@ class DefaultController extends Controller {
      * @link /login URI definie dans le fichier config/routing.json     * 
      * 
      */
-    public function getCalendar() {
-        $this->render("calendar");
-    }
-    
-    public function getProfil(){
-        $this->render("profileClient");
-    }
     
     public function login() {
         $this->security->generateToken(new DefaultModel());
