@@ -10,7 +10,10 @@
     edit
     </button>
 </div>
-<?php include 'updateModal.php'; ?>         
+<div>
+   <?php include 'updateModal.php'; ?>   
+</div>
+       
         
 
 
