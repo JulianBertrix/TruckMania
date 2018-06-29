@@ -58,7 +58,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-    <!------ Include the above in your HEAD tag ---------->
     
   </head>
 
@@ -68,6 +67,8 @@
     <nav class="navbar navbar-light bg-light static-top">
       <div class="container">
         <a class="navbar-brand" href="#">Trucks Mania</a>
+        <a class="navbar-brand" href=<?="http://".$_SERVER['SERVER_NAME'] . "/profile"?>>Profil</a>
+        
         <a class="btn btn-primary" href="#">Sign In</a>
       </div>
     </nav>
