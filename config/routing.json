@@ -6,7 +6,7 @@
     "/inscription": "InscriptionController:control",
     "/inscriptionTrucks": "InscriptionTrucksController:control",
     "/login": "DefaultController:login",
-    "/test": "UtilisateurController:testMe",
+    "/test": "AdminController:getAllUser",
     "/logout": "DefaultController:logout",
     "/token": "DefaultController:token",
     "/api/default":{
