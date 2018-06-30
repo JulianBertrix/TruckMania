@@ -17,6 +17,23 @@ class DAOPlanning extends DAO{
         $this->getPdo()->query($sql);
     }
 
+    //Liste des planning pour un FT
+    public function planningForTruck($idTruck) {
+
+        $sql = "SELECT * FROM planning WHERE foodtruck_id = ".$idTruck;
+
+        $resultats = $this->getPdo()->query($sql)->fetchAll();
+
+        $ListeRetour = array();
+
+        foreach($resultats as $item){
+            $newObjet = (new DAOEvenement())->retrieve($item['evenement_id']);
+            array_push($ListeRetour,$newObjet);
+        }
+
+        return $ListeRetour;
+    }
+
     public function delete($id) {
         $sql = "DELETE FROM planning WHERE id=".$id;
         $this->getPdo()->query($sql);

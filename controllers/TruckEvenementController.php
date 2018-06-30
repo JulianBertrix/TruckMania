@@ -14,10 +14,10 @@ class TruckEvenementController extends Controller {
         $this->truckEvenement = new DAOTruckEvenement();
     }
 
-    public function getAllEventsForCalendar(){
+    public function getAllEventsForCalendar($idTruck){
 
         //Pour un FT, recup de tous ses objets events
-        $listeEventsObj = $this->truckEvenement->eventsForTruck(22);
+        $listeEventsObj = $this->truckEvenement->eventsForTruck($idTruck);
 
         //Creation de la liste en json des infos + format events de FullCalendar
 

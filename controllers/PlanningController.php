@@ -14,6 +14,23 @@ class PlanningController extends Controller {
         $this->planning = new DAOPlanning();
     }
 
+    public function getAllPlanningForCalendar($idTruck){
+
+        //Pour un FT, recup de tous ses objets planning
+        $listeplanningObj = $this->truckEvenement->eventsForTruck($idTruck);
+
+        //Creation de la liste en json des infos + format events de FullCalendar
+
+        $listeJson = [];
+
+        foreach($listeplanningObj as $objet){
+            array_push($listeJson,$objet->jsonSerialize());
+        }
+
+        header('Content-Type: application/json');
+        echo json_encode($listeJson);
+    }
+
     public function getAll(){
         return $this->planning->getAll();
     }

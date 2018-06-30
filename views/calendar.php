@@ -9,10 +9,10 @@ var listeEvents = {
 
 $( document ).ready(function() {
 
-  //Recup des datas
+  //Recup des Events
     
     $.ajax({
-        url: "http://trucks-mania.bwb/api/trucks",
+        url: "api/trucks/22/events",
         type: "GET",
         dataType: "json",
         async: false,
@@ -73,7 +73,6 @@ $( document ).ready(function() {
 
 <div class="container">
     <div class="row">
-    <p id="resultat">csdsdsd</p>
     <div class="col-8 offset-2" id='calendar'></div>
     </div>
 </div>
