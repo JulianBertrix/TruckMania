@@ -23,9 +23,13 @@ class EvenementModel implements JsonSerializable{
     public function jsonSerialize() {
         return [
             'id' => $this->id,
-            'intitule' => $this->intitule,
-            'date_debut' => $this->date_debut,
-            'date_fin' => $this->date_fin,
+            'events' => [
+                'title' => $this->intitule,
+                'start' => $this->date_debut,
+                'end' => $this->date_fin,
+                'color' => 'yellow', 
+                'textColor' => 'black'
+                ],
             'description' => $this->description,
             'NombreDeParticipant' => $this->NombreDeParticipant,
             'adresse' => $this->adresse_id->jsonSerialize()

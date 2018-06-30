@@ -19,7 +19,7 @@ class TruckEvenementController extends Controller {
         //Pour un FT, recup de tous ses objets events
         $listeEventsObj = $this->truckEvenement->eventsForTruck(22);
 
-        //Creation de la liste en json
+        //Creation de la liste en json des infos + format events de FullCalendar
 
         $listeJson = [];
 
@@ -28,7 +28,7 @@ class TruckEvenementController extends Controller {
         }
 
         header('Content-Type: application/json');
-        echo json_encode($listeJson,JSON_PRETTY_PRINT);
+        echo json_encode($listeJson);
     }
 
     public function getAll(){

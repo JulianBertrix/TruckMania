@@ -21,8 +21,7 @@
         "POST":"UtilisateurController:update",
         "DELETE":"UtilisateurController:delete"
     },
-
-    "/api/trucks/":{
+    "/api/trucks":{
         "GET":"TruckEvenementController:getAllEventsForCalendar"
     }
 }

@@ -2,87 +2,70 @@
 include 'header.php';
 ?>
 <script>
+var datas = [];
+var listeEvents = {
+    events:[]
+};
+
 $( document ).ready(function() {
 
   //Recup des datas
-
-   $.ajax({
+    
+    $.ajax({
         url: "http://trucks-mania.bwb/api/trucks",
         type: "GET",
-        //dataType: "json",
+        dataType: "json",
         async: false,
 
         success: function (data) {
-            console.log("data");
+            datas = data;
         },
         error: function (param1, param2) {
             console.log("error");
         }
     });
 
-    var datas = [
-    {
-        "id": "7",
-        "intitule": "Match",
-        "date_debut": "2018-07-21 16:00:00",
-        "date_fin": "2018-07-22 23:00:00",
-        "description": "Match de pr\u00e9paration \u00e0 la coupe du monde",
-        "NombreDeParticipant": "67000000",
-        "adresse": {
-            "id": "10",
-            "adresse": "14 rue saint-joseph 06600 Antibes",
-            "latitude": "43.5823278199388",
-            "longitude": "7.12630916100595"
-        }
-    },
-    {
-        "id": "8",
-        "intitule": "Concert Johnny Hallyday",
-        "date_debut": "2018-07-12 15:00:00",
-        "date_fin": "2018-07-13 01:00:00",
-        "description": "Concert d\u2019adieu de Johnny",
-        "NombreDeParticipant": "500000",
-        "adresse": {
-            "id": "5",
-            "adresse": "24 route de gariou\u00e8re 31210 Les Tourreilles",
-            "latitude": "43.108458135911",
-            "longitude": "0.575935975316764"
-        }
-    }
-];
+    //Creation de la variable events
 
+    datas.forEach(function(evenement) {
+        listeEvents['events'].push(evenement['events']);
+    });
 
-    
-
-$('#calendar').fullCalendar({
-
-    events: [
-    {
-      title  : datas[0]['intitule'],
-      start  : datas[0]['date_debut'],
-      end : datas[0]['date_fin'],
-    },
-    {
-      title  : 'event2',
-      start  : '2018-06-05',
-      end    : '2018-06-07'
-    },
-    {
-      title  : 'event3',
-      start  : '2018-06-25T12:30:00',
-      allDay : false // will make the time show
-    }
+    $('#calendar').fullCalendar({
+  eventSources: [
+    listeEvents
   ]
-
 });
 
-var calendar = $('#calendar').fullCalendar('getCalendar');
+//$('#calendar').fullCalendar('addEventSource', listeEvents );
+    // $('#calendar').fullCalendar({
 
-//Recup du clik utilsateur
-calendar.on('dayClick', function(date, jsEvent, view) {
+    //     eventSources: [
+
+    //     // your event source
+    //     {
+    //         events: [ // put the array in the `events` property
+    //         {
+    //             title  : 'event1',
+    //             start  : '2018-06-30'
+    //         }
+    //         ],
+    //         color: 'black',     // an option!
+    //         textColor: 'yellow' // an option!
+    //     }
+
+    //     // any other event sources...
+
+    // ]
+
+    // });
+    var calendar = $('#calendar').fullCalendar('getCalendar');
+
+    //Recup du clik utilsateur
+    calendar.on('dayClick', function(date, jsEvent, view) {
   //console.log('clicked on ' + date.format());
   
-});
+    });
 
 
 });
@@ -90,6 +73,7 @@ calendar.on('dayClick', function(date, jsEvent, view) {
 
 <div class="container">
     <div class="row">
+    <p id="resultat">csdsdsd</p>
     <div class="col-8 offset-2" id='calendar'></div>
     </div>
 </div>
