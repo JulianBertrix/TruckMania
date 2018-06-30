@@ -7,7 +7,7 @@ $( document ).ready(function() {
   //Recup des datas
 
    $.ajax({
-        url: "http://trucks-mania.bwb/api/evenements",
+        url: "http://trucks-mania.bwb/api/trucks/22/evenement",
         type: "GET",
         dataType: "json",
         async: false,
@@ -17,7 +17,7 @@ $( document ).ready(function() {
             console.log(toto);
         },
         error: function (param1, param2) {
-            
+            console.log("error");
         }
     });
 

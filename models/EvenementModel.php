@@ -21,6 +21,15 @@ class EvenementModel {
 
     public function to_json(){
 
+        //recup adresse en json
+
+        $adresse = array(
+            "id" => $this->adresse_id->getId(),
+            "adresse" => $this->adresse_id->getAdresse(),
+            "latitude" => $this->adresse_id->getLatitude(),
+            "longitude" => $this->adresse_id->getLongitude()
+        );
+
         $array = array(
             "id" => $this->id,
             "date_creation" => $this->date_creation,
@@ -29,7 +38,7 @@ class EvenementModel {
             "date_fin" => $this->date_fin,
             "description" => $this->description,
             "image" => $this->image,
-            "adresse_id" => $this->adresse_id->to_json(),
+            "adresse_id" => $adresse,
             "NombreDeParticipant" => $this->NombreDeParticipant
         );
 

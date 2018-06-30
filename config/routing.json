@@ -7,6 +7,7 @@
     "/inscriptionTrucks": "InscriptionTrucksController:control",
     "/login": "DefaultController:login",
     "/test": "AdminController:getAllUser",
+    "/testtc": "UtilisateurController:testMe",
     "/logout": "DefaultController:logout",
     "/token": "DefaultController:token",
     "/api/default":{
@@ -20,7 +21,8 @@
         "POST":"UtilisateurController:update",
         "DELETE":"UtilisateurController:delete"
     },
-    "/api/evenements":{
-        "GET":"EvenementController:getAll"
+
+    "/api/trucks/(:)/evenement":{
+        "GET":"TruckEvenementController:getAllEventsForCalendar"
     }
 }
