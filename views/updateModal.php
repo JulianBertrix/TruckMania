@@ -13,17 +13,17 @@
       <div class="modal-body">
         <form class="contact100-form validate-form" action=<?="http://".$_SERVER['SERVER_NAME'] . "/profile"?> role="form" method="post">
             <span class="label-input100">Email</span>
-            <input class="input100" type="text" name="email" placeholder="E-Mail">
+            <input id="email" class="input100" type="text" name="email" placeholder="<?php echo $infoClient->getEmail(); ?>">
             <span class="label-input100">Mot de passe</span>
-            <input class="input100" type="password" name="mot_de_passe" placeholder="Mot de passe">
+            <input id="motDePasse" class="input100" type="password" name="mot_de_passe" placeholder="Mot de passe">
             <span class="label-input100">Adresse</span>
-					<input class="input100" type="text" name="user_input_autocomplete_address" placeholder="Adresse" id="user_input_autocomplete_address">
+            <input class="input100" type="text" name="user_input_autocomplete_address" placeholder="<?php echo $infoClient->getAdresseId()->getAdresse(); ?>" id="user_input_autocomplete_address">
         </form>
       </div>
 
       <!-- Modal footer -->
       <div class="modal-footer">
-        <button type="button" class="btn btn-success" data-dismiss="modal">Valider</button>
+          <button type="button" class="btn btn-success" data-dismiss="modal" onclick="update()">Valider</button>
         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
       </div>
 
