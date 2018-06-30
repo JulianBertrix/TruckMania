@@ -1,9 +1,10 @@
 <?php
 namespace BWB\Framework\mvc\models;
+use JsonSerializable;
 
 use BWB\Framework\mvc\models\AdresseModel;
 
-class EvenementModel {
+class EvenementModel implements JsonSerializable{
     private $id;
     private $date_creation;
     private $intitule;
@@ -17,6 +18,18 @@ class EvenementModel {
 
     public function __construct(){
         
+    }
+
+    public function jsonSerialize() {
+        return [
+            'id' => $this->id,
+            'intitule' => $this->intitule,
+            'date_debut' => $this->date_debut,
+            'date_fin' => $this->date_fin,
+            'description' => $this->description,
+            'NombreDeParticipant' => $this->NombreDeParticipant,
+            'adresse' => $this->adresse_id->jsonSerialize()
+        ];
     }
 
     public function to_json(){

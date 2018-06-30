@@ -1,7 +1,9 @@
 <?php
 namespace BWB\Framework\mvc\models;
+use JsonSerializable;
 
-class AdresseModel {
+
+class AdresseModel implements JsonSerializable{
 
     private $id;
     private $adresse;
@@ -12,16 +14,13 @@ class AdresseModel {
     }
 
 
-    public function to_json(){
-
-        $array = array(
+    public function jsonSerialize() {
+        return [
             "id" => $this->id,
             "adresse" => $this->adresse,
             "latitude" => $this->latitude,
             "longitude" => $this->longitude
-        );
-
-        return json_encode($array);
+        ];
     }
 
     /**

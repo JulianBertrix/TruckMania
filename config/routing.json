@@ -22,7 +22,7 @@
         "DELETE":"UtilisateurController:delete"
     },
 
-    "/api/trucks/(:)/evenement":{
+    "/api/trucks/":{
         "GET":"TruckEvenementController:getAllEventsForCalendar"
     }
 }
