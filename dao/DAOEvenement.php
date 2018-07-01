@@ -73,8 +73,11 @@ class DAOEvenement extends DAO{
         }
 
     public function retrieve($id) {
+
         $sql = "SELECT * FROM evenement WHERE id=".$id;
+
         $result = $this->getPdo()->query($sql)->fetch();
+
         $evenement = new EvenementModel();
         $evenement->setId($result['id']);
         $evenement->setDate_creation($result['date_creation']);
@@ -91,6 +94,7 @@ class DAOEvenement extends DAO{
         $newItem = (new DAOAdresse())->retrieve($result['adresse_id']);
 
         $evenement->setAdresse_id($newItem);
+
         return $evenement;
         
     }

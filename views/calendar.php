@@ -2,112 +2,272 @@
 include 'header.php';
 ?>
 <script>
-$( document ).ready(function() {
+    var datas = [];
+    var listeEvents = {
+        events:[]
+    };
+    var listePlanning = {
+        events:[]
+    };
 
-  //Recup des datas
+    var updatedPlanning;
 
-   $.ajax({
-        url: "http://trucks-mania.bwb/api/evenements",
-        type: "GET",
-        dataType: "json",
-        async: false,
+//Chargement Calendar
+    $(document).ready(function() {
 
-        success: function (toto) {
-          
-            console.log(toto);
-        },
-        error: function (param1, param2) {
-            
-        }
+        $('#calendar').fullCalendar({
+            locale: 'fr',
+            timeFormat: 'H:mm'
+        });
+
+        //Recup des Events
+        checkTheEvents(22);
+    
+        var calendar = $('#calendar').fullCalendar('getCalendar');
+
+        //Recup du clik utilsateur
+        calendar.on('eventClick', function(calEvent, jsEvent, view) {
+
+        var dateDebut = calEvent.start.format('DD/MM/YYYY');
+        var heureDebut = calEvent.start.format('HH:mm');
+        var dateFin = calEvent.end.format('DD/MM/YYYY');
+        var heureFin = calEvent.end.format('HH:mm');
+
+        $('#titreInfo').val(calEvent.title);
+        $('#lieuInfo').val(calEvent.adresse['adresse']);
+        $('#startDate').val(dateDebut);
+        $('#startHeure').val(heureDebut);
+        $('#endDate').val(dateFin);
+        $('#endHeure').val(heureFin);
+
+        //Ajout du nombre de participants si evenement
+        if(typeof calEvent.NombreDeParticipant !== 'undefined'){
+            $('#rowParticipants').css("display","");
+            $('#nbParticipants').val(calEvent.NombreDeParticipant);
+        }else{
+            $('#rowParticipants').css("display","none");
+        };
+
+        //Stock les id du planning modifiable
+        updatedPlanning = calEvent.id;    
     });
 
 
-    
+    });
 
-$('#calendar').fullCalendar({
+//Recup des events
 
-    events: [
-    {
-      title  : 'event1',
-      start  : '2018-06-01'
-    },
-    {
-      title  : 'event2',
-      start  : '2018-06-05',
-      end    : '2018-06-07'
-    },
-    {
-      title  : 'event3',
-      start  : '2018-06-25T12:30:00',
-      allDay : false // will make the time show
+    function checkTheEvents(idTruck){
+
+        //Vide le calendrier
+        $('#calendar').fullCalendar('removeEventSource', listeEvents);
+        $('#calendar').fullCalendar('removeEventSource', listePlanning);
+
+        $.ajax({
+            url: "http://trucks-mania.bwb/api/trucks/"+idTruck+"/events",
+            type: "GET",
+            dataType: "json",
+            async: false,
+
+            success: function (data) {
+                datas = data;
+            },
+            error: function (param1, param2) {
+                console.log("error");
+            }
+        });
+
+        //Creation de la variable events
+
+        datas.forEach(function(evenement) {
+            listeEvents['events'].push(evenement['events']);
+        });
+
+        //Ajout
+        $('#calendar').fullCalendar('addEventSource', listeEvents);
+
+        //Recup des Plannings
+        
+        $.ajax({
+            url: "http://trucks-mania.bwb/api/trucks/"+idTruck+"/planning",
+            type: "GET",
+            dataType: "json",
+            async: false,
+
+            success: function (data) {
+                datas = data;
+            },
+            error: function (param1, param2) {
+                console.log("error");
+            }
+        });
+
+        //Creation de la variable events
+
+        datas.forEach(function(planning) {
+            listePlanning['events'].push(planning['events']);
+        });
+
+        //Ajout
+        $('#calendar').fullCalendar('addEventSource', listePlanning);
+        
+        // $('#calendar').fullCalendar({
+        //     locale: 'fr',
+        //     eventSources: [
+        //         listeEvents,
+        //         listePlanning
+        //     ],
+        //     timeFormat: 'H:mm'
+        // });
+
+        //$('#calendar').fullCalendar('option', 'locale', 'fr');
+
     }
-  ]
 
-});
+//Update Event
+    function updateMe(){
 
-var calendar = $('#calendar').fullCalendar('getCalendar');
+        //creation des 2 dates:
+        var newDateStart = changeTheDate($('#startDate').val(),$('#startHeure').val());
+        var newDateEnd= changeTheDate($('#endDate').val(),$('#endHeure').val());
 
-//Recup du clik utilsateur
-calendar.on('dayClick', function(date, jsEvent, view) {
-  //console.log('clicked on ' + date.format());
-  
-});
+        //Requete POST
+        $.ajax({
+            url: "http://trucks-mania.bwb/api/planning/update",
+            type: "POST",
+            data : {
+                listeIds : updatedPlanning,
+                adresse_id : $('#lieuInfo').val(),
+                date_debut : newDateStart,
+                date_fin : newDateEnd,
+                intitule : $('#titreInfo').val()
+            },
 
+            success: function (data) {
+                console.log("SUCCSSESSSS");
+            },
+            error: function (param1, param2) {
+                console.log("error");
+            }
+        });
 
-});
+        //Refresh Calendar
+        
+        checkTheEvents(22);        
+        $('#calendar').fullCalendar('refetchEvents');
+
+    };
+
+//Convert date + heure
+    function changeTheDate(oldDate,oldHeure){
+
+        var listeDate = oldDate.split('/');
+
+        var newDate = listeDate[2]+'-'+listeDate[1]+'-'+listeDate[0]+' '+oldHeure;
+
+        return newDate;
+
+    }
 </script>
 
 <div class="container">
     <div class="row">
-    <div class="col-8 offset-2" id='calendar'></div>
+         <!-- Calendrier -->
+        <div class="col-8" id='calendar'></div>
+
+        <!-- Infos -->
+        <div class="col-4" id='infosCalendar'>
+
+            <!-- Formulaire Modifs Infos -->
+            <h5>Gestion du jour</h5>
+            <form class="form">
+                <!-- Titre -->
+                <div class="form-row">
+                    <div class="form-group col">
+                        <div class="input-group input-group-sm">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">Libellé</div>
+                            </div>
+                            <input type="text" class="form-control" id="titreInfo" placeholder="">
+                        </div>
+                    </div>
+                </div>
+                <!-- Lieu -->
+                <div class="form-row">
+                    <div class="form-group col">
+                        <div class="input-group input-group-sm">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">Lieu</div>
+                            </div>
+                            <input type="text" class="form-control" id="lieuInfo" placeholder="">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Date + Heure Debut-->
+                <h6>Du</h6>
+                <div class="form-row">
+                    <div class="form-group col-7">
+                        <div class="input-group input-group-sm mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">Date</div>
+                            </div>
+                            <input type="text" class="form-control" id="startDate" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-group col-5">
+                        <div class="input-group input-group-sm mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">Heure</div>
+                            </div>
+                            <input type="text" class="form-control" id="startHeure" placeholder="">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Date + Heure Fin-->
+                <h6>Au</h6>
+                <div class="form-row">
+                    <div class="form-group col-7">
+                        <div class="input-group input-group-sm mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">Date</div>
+                            </div>
+                            <input type="text" class="form-control" id="endDate" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-group col-5">
+                        <div class="input-group input-group-sm mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">Heure</div>
+                            </div>
+                            <input type="text" class="form-control" id="endHeure" placeholder="">
+                        </div>
+                    </div>
+                </div>
+                <!-- Titre -->
+                <div class="form-row" id="rowParticipants" style="display: none;">
+                    <div class="form-group col">
+                        <div class="input-group input-group-sm">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">Participants</div>
+                            </div>
+                            <input type="text" class="form-control" id="nbParticipants" placeholder="">
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-outline-success mb-2 btn-sm" onclick="updateMe();">Modifier</button>
+            </form>
+            <br>
+            <h5>Gestion du mois</h5>
+            <h6>Dupliquer ce mois vers le mois suivant</h6>
+            <button type="button" class="btn btn-outline-info btn-sm" onclick="">Dupliquer</button>
+        </div>
     </div>
 </div>
 
 
 
 <?php
-
-// use BWB\Framework\mvc\controllers\AdresseController;
-// use BWB\Framework\mvc\models\AdresseModel;
-
-// $newControl = new AdresseController();
-
-// echo "<h3>TEST CREATE</h3><br>";
-// $newItem = $newControl->retrieve(1);
-
-// $tutu = $newControl->create($newItem);
-// var_dump($tutu);
-
-
-
-//var_dump($newControl->theLastOne());
-
-
-
-// echo "<h3>TEST DELETE</h3><br>";
-// $newItem = new FavorisModel(1,4);
-// $newControl->delete($newItem);
-
-
-
-// echo "<h3>TEST GETALL</h3><br>";
-
-// var_dump($newControl->getAll());
-
-
-
-// echo "<h3>TEST GETALLBY</h3><br>";
-
-// $filtre = ['utilisateur_id' => 1];
-
-// var_dump($newControl->getAllBy($filtre));
-
-
-
-// echo "<h3>TEST RETRIEVE</h3><br>";
-// var_dump($newControl->retrieve($newItem));
-
-
-
 include 'footer.php';
 ?>

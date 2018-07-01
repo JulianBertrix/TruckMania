@@ -2,6 +2,8 @@
 namespace BWB\Framework\mvc\dao;
 use BWB\Framework\mvc\DAO;
 use BWB\Framework\mvc\models\PlanningModel;
+use BWB\Framework\mvc\dao\DAOTrucks;
+use BWB\Framework\mvc\dao\DAOAdresse;
 
 class DAOPlanning extends DAO{
 
@@ -11,14 +13,21 @@ class DAOPlanning extends DAO{
 
     public function create($planning) {
 
-        $sql = "INSERT INTO planning (date_debut,date_fin) VALUES ('"
+        $sql = "INSERT INTO planning (foodtruck_id, adresse_id,date_debut,date_fin, intitule) VALUES ('"
+        .$planning->getFoodtruckId()."','"
+        .$planning->getAdresseId()."','"
         .$planning->getDateDebut()."','"
-        .$planning->getDateFin()."')";
+        .$planning->getDateFin()."','"
+        .$planning->getIntitule()."')";
         $this->getPdo()->query($sql);
     }
 
-    public function delete($id) {
-        $sql = "DELETE FROM planning WHERE id=".$id;
+    public function delete($listeIds) {
+        $sql = "DELETE FROM planning WHERE
+         foodtruck_id=".$listeIds['foodtruck_id']
+        ." AND date_debut= '".$listeIds['date_debut']
+        ."' AND date_fin= '".$listeIds['date_fin']."'";
+
         $this->getPdo()->query($sql);
     }
 
@@ -32,7 +41,8 @@ class DAOPlanning extends DAO{
         $listeToReturn = array();
 
         foreach ($resultats as $item) {
-            $newObjet = $this->retrieve($item['id']);
+            $liste = ['foodtruck_id'=>$item['foodtruck_id'],'date_debut'=>$item['date_debut'],'date_fin'=>$item['date_fin']];         
+            $newObjet = $this->retrieve($liste);
             array_push($listeToReturn,$newObjet);
         }
 
@@ -60,52 +70,39 @@ class DAOPlanning extends DAO{
 
         $listeToReturn = array();
 
-        foreach ($resultats as $item) {          
-            $newObjet = $this->retrieve($item['id']);
+        foreach ($resultats as $item) {
+            $liste = ['foodtruck_id'=>$item['foodtruck_id'],'date_debut'=>$item['date_debut'],'date_fin'=>$item['date_fin']];         
+            $newObjet = $this->retrieve($liste);
             array_push($listeToReturn,$newObjet);
         }
 
         return $listeToReturn;
     }
 
-    public function retrieve($id) {
+    public function retrieve($listeIds) {
 
-        $sql = "SELECT * FROM planning WHERE id=".$id;
+        $sql = "SELECT * FROM planning 
+        WHERE foodtruck_id=".$listeIds['foodtruck_id']
+        ." AND date_debut= '".$listeIds['date_debut']
+        ."' AND date_fin= '".$listeIds['date_fin']."'";
+        
         $item = $this->getPdo()->query($sql)->fetch();
         $newObjet = new PlanningModel();
-        $newObjet->setId($item['id']); 
+
+        //Recup objet FoodTruck
+        $newObjet->setFoodtruckId((new DAOTrucks())->retrieve($item['foodtruck_id'])); 
+
+        //Recup objet Adresse
+        $newObjet->setAdresseId((new DAOAdresse())->retrieve($item['adresse_id']));
+
         $newObjet->setDateDebut($item['date_debut']);
         $newObjet->setDateFin($item['date_fin']);
+        $newObjet->setIntitule($item['intitule']);
 
         return $newObjet;
     }
 
-    //Update d'un utilisateur selon son id, 2eme argument: tableau assoc "column => nouvelle valeur"
-    
-    public function updateMe($idObjet,$newValeurs){
-
-        $sql = "UPDATE planning SET ";
-
-        $compteur = 0;
-
-        foreach ($newValeurs as $key => $value) {
-
-            if($compteur === (count($newValeurs)-1)){
-                $sql .= $key . " = '" . $value . "' ";
-            }else{
-                $sql .= $key . " = '" . $value . "', ";
-            }
-
-            $compteur++;
-        }
-
-        $sql .= "WHERE id = " . $idObjet;
-
-        $this->getPdo()->query($sql);
-
-    }
-
-    public function update($newValeurs){
+    public function update($newObjet){
 
     }
 
@@ -118,21 +115,13 @@ class DAOPlanning extends DAO{
 
         $listeToReturn = array();
 
-        foreach ($resultats as $item) {          
-            $newObjet = $this->retrieve($item['id']);
+        foreach ($resultats as $item) {
+            $liste = ['foodtruck_id'=>$item['foodtruck_id'],'date_debut'=>$item['date_debut'],'date_fin'=>$item['date_fin']];          
+            $newObjet = $this->retrieve($liste);
             array_push($listeToReturn,$newObjet);
         }
 
         return $listeToReturn;
-    }
-    //Recupere le dernier tupple ajouté
-
-    public function theLastOne() {
-
-        $sql = "SELECT * FROM planning ORDER BY id DESC";
-        $item = $this->getPdo()->query($sql)->fetch();
-        $newObjet = $this->retrieve($item['id']);
-        return $newObjet;
     }
 
 }

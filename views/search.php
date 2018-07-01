@@ -1,4 +1,6 @@
 <?php
+use BWB\Framework\mvc\models\PlanningModel;
+use BWB\Framework\mvc\models\TrucksModel;
 use BWB\Framework\mvc\models\AdresseModel;
 include "header.php";
 ?>
@@ -10,10 +12,10 @@ include "header.php";
   <div class="list">
       <?php 
       
-      foreach ($request as $couple){
+      foreach ($request as $planning){
 
-        $objetTruck = $couple['truck'];
-        $objetAdresse = $couple['adresse'];
+        $objetTruck = $planning->getFoodtruckId();
+        $objetAdresse = $planning->getAdresseId();
        
         ?>
         <div class="item js-marker" data-lat=<?= $objetAdresse->getLatitude();?> data-lng=<?= $objetAdresse->getLongitude();?> data-price=<?=$objetTruck->getMoyenne()?>>
