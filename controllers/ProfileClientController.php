@@ -12,6 +12,7 @@ use BWB\Framework\mvc\models\UtilisateurModel;
 use BWB\Framework\mvc\dao\DAOUtilisateur;
 use BWB\Framework\mvc\models\AdresseModel;
 use BWB\Framework\mvc\dao\DAOAdresse;
+use BWB\Framework\mvc\dao\DAOPlanning;
 /**
  * Description of ProfileClientController
  *
@@ -28,7 +29,7 @@ class ProfileClientController extends Controller{
         $favoris = (new FavorisController())->getAllBy(["utilisateur_id" => 1]);
         
         foreach ($favoris as $key => $truck){
-            $presence = (new \BWB\Framework\mvc\dao\DAOPresence())->getAllBy(['foodtruck_id' => $truck->getFoodtruckId()->getId()]);
+            $presence = (new DAOPlanning())->getAllBy(['foodtruck_id' => $truck->getFoodtruckId()->getId()]);
             $dateDebut = array();
             $adresse = array();
             $dateFin = array();
@@ -36,8 +37,8 @@ class ProfileClientController extends Controller{
             foreach ($presence as $key => $value){
                 if ($value->getFoodtruckId()->getId() === $truck->getFoodtruckId()->getId()){
                     array_push($adresse, $value->getAdresseId()->getAdresse());                                       
-                    array_push($dateDebut, $value->getPlanningId()->getDateDebut());                                       
-                    array_push($dateFin, $value->getPlanningId()->getDateFin());
+                    array_push($dateDebut, $value->getDateDebut());                                       
+                    array_push($dateFin, $value->getDateFin());
                 }
             }
         }
