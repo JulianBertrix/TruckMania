@@ -16,8 +16,12 @@ class PlanningModel implements JsonSerializable{
 
     public function jsonSerialize() {
         return [
-            'id' => $this->foodtruckId->getId(),
             'events' => [
+                'id' => [
+                    'foodtruck_id' => $this->foodtruckId->getId(),
+                    'date_debut' => $this->dateDebut,
+                    'date_fin' => $this->dateFin,
+                ],
                 'title' => $this->intitule,
                 'start' => $this->dateDebut,
                 'end' => $this->dateFin,

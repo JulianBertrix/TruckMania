@@ -102,7 +102,7 @@ class DAOPlanning extends DAO{
         return $newObjet;
     }
 
-    public function update($newValeurs){
+    public function update($objet){
 
     }
 

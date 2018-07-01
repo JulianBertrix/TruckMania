@@ -61,7 +61,8 @@ include 'header.php';
             eventSources: [
                 listeEvents,
                 listePlanning
-            ]
+            ],
+            timeFormat: 'H:mm'
         });
 
         $('#calendar').fullCalendar('option', 'locale', 'fr');
@@ -71,8 +72,26 @@ include 'header.php';
         //Recup du clik utilsateur
         calendar.on('eventClick', function(calEvent, jsEvent, view) {
 
-            console.log('Event: ' + calEvent.title);
-            console.log('Event: ' + calEvent.adresse['adresse']);
+            var dateDebut = calEvent.start.format('DD/MM/YYYY');
+            var heureDebut = calEvent.start.format('HH:mm');
+            var dateFin = calEvent.end.format('DD/MM/YYYY');
+            var heureFin = calEvent.end.format('HH:mm');
+
+            $('#titreInfo').val(calEvent.title);
+            $('#lieuInfo').val(calEvent.adresse['adresse']);
+            $('#startDate').val(dateDebut);
+            $('#startheure').val(heureDebut);
+            $('#endDate').val(dateFin);
+            $('#endHeure').val(heureFin);
+
+            //Ajout du nombre de participants si evenement
+            if(typeof calEvent.NombreDeParticipant !== 'undefined'){
+                $('#rowParticipants').css("display","");
+                $('#nbParticipants').val(calEvent.NombreDeParticipant);
+            }else{
+                $('#rowParticipants').css("display","none");
+            };
+            
     
         });
 
@@ -84,9 +103,84 @@ include 'header.php';
     <div class="row">
         <div class="col-8" id='calendar'></div>
         <div class="col-4" id='infosCalendar'>
-            <h3 id="dateInfo">Date:</h3>
-            <h3 id="lieuInfo">Lieu:</h3>
-            <h4 id="horaireInfo">Plage horaire:</h4>
+            <form class="form">
+                <!-- Titre -->
+                <div class="form-row">
+                    <div class="form-group col">
+                        <div class="input-group input-group-sm">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">Libellé</div>
+                            </div>
+                            <input type="text" class="form-control" id="titreInfo" placeholder="">
+                        </div>
+                    </div>
+                </div>
+                <!-- Lieu -->
+                <div class="form-row">
+                    <div class="form-group col">
+                        <div class="input-group input-group-sm">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">Lieu</div>
+                            </div>
+                            <input type="text" class="form-control" id="lieuInfo" placeholder="">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Date + Heure Debut-->
+                <h6>Du</h6>
+                <div class="form-row">
+                    <div class="form-group col-7">
+                        <div class="input-group input-group-sm mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">Date</div>
+                            </div>
+                            <input type="text" class="form-control" id="startDate" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-group col-5">
+                        <div class="input-group input-group-sm mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">Heure</div>
+                            </div>
+                            <input type="text" class="form-control" id="startheure" placeholder="">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Date + Heure Debut-->
+                <h6>Au</h6>
+                <div class="form-row">
+                    <div class="form-group col-7">
+                        <div class="input-group input-group-sm mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">Date</div>
+                            </div>
+                            <input type="text" class="form-control" id="endDate" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-group col-5">
+                        <div class="input-group input-group-sm mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">Heure</div>
+                            </div>
+                            <input type="text" class="form-control" id="endHeure" placeholder="">
+                        </div>
+                    </div>
+                </div>
+                <!-- Titre -->
+                <div class="form-row" id="rowParticipants" style="display: none;">
+                    <div class="form-group col">
+                        <div class="input-group input-group-sm">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">Participants</div>
+                            </div>
+                            <input type="text" class="form-control" id="nbParticipants" placeholder="">
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary mb-2">Submit</button>
+            </form>
         </div>
     </div>
 </div>
@@ -94,48 +188,5 @@ include 'header.php';
 
 
 <?php
-
-// use BWB\Framework\mvc\controllers\AdresseController;
-// use BWB\Framework\mvc\models\AdresseModel;
-
-// $newControl = new AdresseController();
-
-// echo "<h3>TEST CREATE</h3><br>";
-// $newItem = $newControl->retrieve(1);
-
-// $tutu = $newControl->create($newItem);
-// var_dump($tutu);
-
-
-
-//var_dump($newControl->theLastOne());
-
-
-
-// echo "<h3>TEST DELETE</h3><br>";
-// $newItem = new FavorisModel(1,4);
-// $newControl->delete($newItem);
-
-
-
-// echo "<h3>TEST GETALL</h3><br>";
-
-// var_dump($newControl->getAll());
-
-
-
-// echo "<h3>TEST GETALLBY</h3><br>";
-
-// $filtre = ['utilisateur_id' => 1];
-
-// var_dump($newControl->getAllBy($filtre));
-
-
-
-// echo "<h3>TEST RETRIEVE</h3><br>";
-// var_dump($newControl->retrieve($newItem));
-
-
-
 include 'footer.php';
 ?>
