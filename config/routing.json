@@ -25,6 +25,6 @@
         "GET":"TruckEvenementController:getAllEventsForCalendar"
     },
     "/api/trucks/(:)/planning":{
-        "GET":"TruckEvenementController:getAllEventsForCalendar"
+        "GET":"PlanningController:getAllPlanningForCalendar"
     }
 }

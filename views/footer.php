@@ -69,7 +69,7 @@
     <script src=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/scripts/geoloc.js"?>></script>
 
     <!-- FullCalendar -->
-    <script src=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/scripts/moment.js"?>></script>
+    <script src=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/scripts/moment-with-locales.js"?>></script>
     <script src=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/scripts/fullcalendar.js"?>></script>
   
 

@@ -3,13 +3,8 @@
 namespace BWB\Framework\mvc\controllers;
 
 use BWB\Framework\mvc\Controller;
-use BWB\Framework\mvc\controllers\TrucksController;
 use BWB\Framework\mvc\models\AdresseModel;
-use BWB\Framework\mvc\models\PlanningModel;
-use BWB\Framework\mvc\dao\DAOAdresse;
 use BWB\Framework\mvc\dao\DAOPlanning;
-use BWB\Framework\mvc\dao\DAOPresence;
-use BWB\Framework\mvc\dao\DAOTrucks;
 
 class SearchController extends Controller {
 
@@ -47,28 +42,18 @@ class SearchController extends Controller {
 
         $newDateString = date_format(date_create_from_format('d/m/Y H:i', $dateRequest), 'Y-m-d H:i');
 
-        $catrequest = $datas['catRequest'];
+        $catrequest = $datas['catrequest'];
 
         //Recup des objets plannings
         $listePlanning = (new DAOPlanning())->getAllByDate($newDateString);
 
-        //Selection des Objets Presence qui ont un id de $listePlanning, check si adresse est dans la zone
+        //check si adresse est dans la zone
         foreach($listePlanning as $planning){
 
-            $filter = ['planning_id' => $planning->getId()];
+            $newAdresse = $planning->getAdresseId();
 
-            $listePresence = (new DAOPresence())->getAllBy($filter);
-
-            foreach($listePresence as $presence){
-
-                $newAdresse = $presence->getAdresseId();
-
-                if($this->calculDistance($adresseFictive,$newAdresse,1000)){
-
-                    $newCouple = ['truck' => $presence->getFoodtruckId(),'adresse' => $newAdresse];
-
-                    array_push($listeTrucksOK, $newCouple);
-                }
+            if($this->calculDistance($adresseFictive,$newAdresse,1000)){
+                array_push($listeTrucksOK, $planning);
             }
 
         }

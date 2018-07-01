@@ -1,5 +1,6 @@
 <?php
 namespace BWB\Framework\mvc\models;
+use JsonSerializable;
 
 class PlanningModel implements JsonSerializable{
 
@@ -7,23 +8,24 @@ class PlanningModel implements JsonSerializable{
     private $adresseId;
     private $dateDebut;
     private $dateFin;
+    private $intitule;
+
 
     public function __construct() {
     }
 
     public function jsonSerialize() {
         return [
-            'id' => $this->foodtruckId,
+            'id' => $this->foodtruckId->getId(),
             'events' => [
                 'title' => $this->intitule,
-                'start' => $this->date_debut,
-                'end' => $this->date_fin,
-                'color' => 'yellow', 
+                'start' => $this->dateDebut,
+                'end' => $this->dateFin,
+                'adresse' => $this->adresseId->jsonSerialize(),
+                'color' => '#89D175', 
                 'textColor' => 'black'
                 ],
-            'description' => $this->description,
-            'NombreDeParticipant' => $this->NombreDeParticipant,
-            'adresse' => $this->adresse_id->jsonSerialize()
+            
         ];
     }
     
@@ -105,6 +107,26 @@ class PlanningModel implements JsonSerializable{
     public function setDateFin($dateFin)
     {
         $this->dateFin = $dateFin;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of intitule
+     */ 
+    public function getIntitule()
+    {
+        return $this->intitule;
+    }
+
+    /**
+     * Set the value of intitule
+     *
+     * @return  self
+     */ 
+    public function setIntitule($intitule)
+    {
+        $this->intitule = $intitule;
 
         return $this;
     }

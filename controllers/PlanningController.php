@@ -17,7 +17,8 @@ class PlanningController extends Controller {
     public function getAllPlanningForCalendar($idTruck){
 
         //Pour un FT, recup de tous ses objets planning
-        $listeplanningObj = $this->truckEvenement->eventsForTruck($idTruck);
+        $filtre = ['foodtruck_id' => $idTruck];
+        $listeplanningObj = $this->planning->getAllBy($filtre);
 
         //Creation de la liste en json des infos + format events de FullCalendar
 
@@ -38,28 +39,30 @@ class PlanningController extends Controller {
     public function getAllBy($filter){
         return $this->planning->getAllBy($filter);
     }
-    public function retrieve($id){
-        return $this->planning->retrieve($id);
+
+    public function getAllByDate($dateP){
+        return $this->planning->getAllByDate($dateP);
+    }
+
+    public function retrieve($listeIds){
+        return $this->planning->retrieve($listeIds);
     }
 
     public function create($newPlanning){
         return $this->planning->create($newPlanning);
     }
 
-    public function delete($id){
-        return $this->planning->delete($id);
+    public function planningForTruck($idTruck){
+        return $this->planning->planningForTruck($idTruck);
     }
 
-    public function updateMe($idPlanning,$newValeurs) {
-        return $this->planning->updateMe($idPlanning,$newValeurs);
+    public function delete($id){
+        return $this->planning->delete($id);
     }
 
     public function update($newValeurs) {
         return $this->planning->update($newValeurs);
     }
 
-    public function theLastOne() {
-        return $this->planning->theLastOne();
-    }
 
 }
