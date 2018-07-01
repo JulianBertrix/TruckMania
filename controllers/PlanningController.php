@@ -4,6 +4,7 @@ namespace BWB\Framework\mvc\controllers;
 
 use BWB\Framework\mvc\Controller;
 use BWB\Framework\mvc\dao\DAOPlanning;
+use BWB\Framework\mvc\models\PlanningModel;
 
 class PlanningController extends Controller {
 
@@ -31,6 +32,27 @@ class PlanningController extends Controller {
         header('Content-Type: application/json');
         echo json_encode($listeJson);
     }
+
+    public function updateThePlanning(){
+
+        //Recup dats du Post
+        $dataPost = $this->inputPost();
+
+        //Suppression de l'ancien objet
+        $this->planning->delete($dataPost['listeIds']);
+
+        //Ajout du nouveau planning
+        $newPlanning = new PlanningModel();
+        $newPlanning->setFoodtruckId($dataPost['listeIds']['foodtruck_id']);
+        $newPlanning->setAdresseId($dataPost['adresse_id']);
+        $newPlanning->setDateDebut($dataPost['date_debut']);
+        $newPlanning->setDateFin($dataPost['date_fin']);
+        $newPlanning->setIntitule($dataPost['intitule']);
+
+        $this->planning->create($newPlanning);
+    }
+
+
 
     public function getAll(){
         return $this->planning->getAll();

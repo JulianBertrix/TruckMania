@@ -10,12 +10,61 @@ include 'header.php';
         events:[]
     };
 
-    $( document ).ready(function() {
+    var updatedPlanning;
 
-    //Recup des Events
-        
+//Chargement Calendar
+    $(document).ready(function() {
+
+        $('#calendar').fullCalendar({
+            locale: 'fr',
+            timeFormat: 'H:mm'
+        });
+
+        //Recup des Events
+        checkTheEvents(22);
+    
+        var calendar = $('#calendar').fullCalendar('getCalendar');
+
+        //Recup du clik utilsateur
+        calendar.on('eventClick', function(calEvent, jsEvent, view) {
+
+        var dateDebut = calEvent.start.format('DD/MM/YYYY');
+        var heureDebut = calEvent.start.format('HH:mm');
+        var dateFin = calEvent.end.format('DD/MM/YYYY');
+        var heureFin = calEvent.end.format('HH:mm');
+
+        $('#titreInfo').val(calEvent.title);
+        $('#lieuInfo').val(calEvent.adresse['adresse']);
+        $('#startDate').val(dateDebut);
+        $('#startHeure').val(heureDebut);
+        $('#endDate').val(dateFin);
+        $('#endHeure').val(heureFin);
+
+        //Ajout du nombre de participants si evenement
+        if(typeof calEvent.NombreDeParticipant !== 'undefined'){
+            $('#rowParticipants').css("display","");
+            $('#nbParticipants').val(calEvent.NombreDeParticipant);
+        }else{
+            $('#rowParticipants').css("display","none");
+        };
+
+        //Stock les id du planning modifiable
+        updatedPlanning = calEvent.id;    
+    });
+
+
+    });
+
+//Recup des events
+
+    function checkTheEvents(idTruck){
+
+        //Vide le calendrier
+        $('#calendar').fullCalendar('removeEventSource', listeEvents);
+        $('#calendar').fullCalendar('removeEventSource', listePlanning);
+
         $.ajax({
-            url: "http://trucks-mania.bwb/api/trucks/22/events",
+            url: "http://trucks-mania.bwb/api/trucks/"+idTruck+"/events",
             type: "GET",
             dataType: "json",
             async: false,
@@ -34,10 +83,13 @@ include 'header.php';
             listeEvents['events'].push(evenement['events']);
         });
 
+        //Ajout
+        $('#calendar').fullCalendar('addEventSource', listeEvents);
+
         //Recup des Plannings
         
         $.ajax({
-            url: "http://trucks-mania.bwb/api/trucks/1/planning",
+            url: "http://trucks-mania.bwb/api/trucks/"+idTruck+"/planning",
             type: "GET",
             dataType: "json",
             async: false,
@@ -55,54 +107,79 @@ include 'header.php';
         datas.forEach(function(planning) {
             listePlanning['events'].push(planning['events']);
         });
+
+        //Ajout
+        $('#calendar').fullCalendar('addEventSource', listePlanning);
         
-        $('#calendar').fullCalendar({
-            locale: 'fr',
-            eventSources: [
-                listeEvents,
-                listePlanning
-            ],
-            timeFormat: 'H:mm'
+        // $('#calendar').fullCalendar({
+        //     locale: 'fr',
+        //     eventSources: [
+        //         listeEvents,
+        //         listePlanning
+        //     ],
+        //     timeFormat: 'H:mm'
+        // });
+
+        //$('#calendar').fullCalendar('option', 'locale', 'fr');
+
+    }
+
+//Update Event
+    function updateMe(){
+
+        //creation des 2 dates:
+        var newDateStart = changeTheDate($('#startDate').val(),$('#startHeure').val());
+        var newDateEnd= changeTheDate($('#endDate').val(),$('#endHeure').val());
+
+        //Requete POST
+        $.ajax({
+            url: "http://trucks-mania.bwb/api/planning/update",
+            type: "POST",
+            data : {
+                listeIds : updatedPlanning,
+                adresse_id : $('#lieuInfo').val(),
+                date_debut : newDateStart,
+                date_fin : newDateEnd,
+                intitule : $('#titreInfo').val()
+            },
+
+            success: function (data) {
+                console.log("SUCCSSESSSS");
+            },
+            error: function (param1, param2) {
+                console.log("error");
+            }
         });
 
-        $('#calendar').fullCalendar('option', 'locale', 'fr');
+        //Refresh Calendar
+        
+        checkTheEvents(22);        
+        $('#calendar').fullCalendar('refetchEvents');
 
-        var calendar = $('#calendar').fullCalendar('getCalendar');
+    };
 
-        //Recup du clik utilsateur
-        calendar.on('eventClick', function(calEvent, jsEvent, view) {
+//Convert date + heure
+    function changeTheDate(oldDate,oldHeure){
 
-            var dateDebut = calEvent.start.format('DD/MM/YYYY');
-            var heureDebut = calEvent.start.format('HH:mm');
-            var dateFin = calEvent.end.format('DD/MM/YYYY');
-            var heureFin = calEvent.end.format('HH:mm');
+        var listeDate = oldDate.split('/');
 
-            $('#titreInfo').val(calEvent.title);
-            $('#lieuInfo').val(calEvent.adresse['adresse']);
-            $('#startDate').val(dateDebut);
-            $('#startheure').val(heureDebut);
-            $('#endDate').val(dateFin);
-            $('#endHeure').val(heureFin);
+        var newDate = listeDate[2]+'-'+listeDate[1]+'-'+listeDate[0]+' '+oldHeure;
 
-            //Ajout du nombre de participants si evenement
-            if(typeof calEvent.NombreDeParticipant !== 'undefined'){
-                $('#rowParticipants').css("display","");
-                $('#nbParticipants').val(calEvent.NombreDeParticipant);
-            }else{
-                $('#rowParticipants').css("display","none");
-            };
-            
-    
-        });
+        return newDate;
 
-
-    });
+    }
 </script>
 
 <div class="container">
     <div class="row">
+         <!-- Calendrier -->
         <div class="col-8" id='calendar'></div>
+
+        <!-- Infos -->
         <div class="col-4" id='infosCalendar'>
+
+            <!-- Formulaire Modifs Infos -->
+            <h5>Gestion du jour</h5>
             <form class="form">
                 <!-- Titre -->
                 <div class="form-row">
@@ -143,12 +220,12 @@ include 'header.php';
                             <div class="input-group-prepend">
                                 <div class="input-group-text">Heure</div>
                             </div>
-                            <input type="text" class="form-control" id="startheure" placeholder="">
+                            <input type="text" class="form-control" id="startHeure" placeholder="">
                         </div>
                     </div>
                 </div>
                 
-                <!-- Date + Heure Debut-->
+                <!-- Date + Heure Fin-->
                 <h6>Au</h6>
                 <div class="form-row">
                     <div class="form-group col-7">
@@ -179,8 +256,12 @@ include 'header.php';
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary mb-2">Submit</button>
+                <button type="button" class="btn btn-outline-success mb-2 btn-sm" onclick="updateMe();">Modifier</button>
             </form>
+            <br>
+            <h5>Gestion du mois</h5>
+            <h6>Dupliquer ce mois vers le mois suivant</h6>
+            <button type="button" class="btn btn-outline-info btn-sm" onclick="">Dupliquer</button>
         </div>
     </div>
 </div>
