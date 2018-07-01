@@ -62,22 +62,13 @@ class DAOPlat extends DAO{
         }
         
         $results = $this->getPdo()->query($sql)->fetchAll();
-        var_dump($results);
-        
         $plats = array();
 
         foreach ($results as $result){
-            $plat = new PlatModel();
-            $plat->setId($result->getId());
-            $plat->setNom($result->getNom());
-            $plat->setDescription($result->getDescription());       
-            $plat->setPrix($result->getPrix());
-            $plat->setImage($result->getImage());  
-            $plat->setDateCreation($result->getDateCreation());  
-            $plat->setFoodtruckId($result->getFoodtruckId());
+            $plat = $this->retrieve($result['id']); 
             array_push($plats, $plat);
         }
-        var_dump($plats);
+        
         return $plats;
     }
 

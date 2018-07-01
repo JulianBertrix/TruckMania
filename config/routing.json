@@ -1,6 +1,7 @@
 {
     "/": "HomeController:homePage",
     "/profile": "ProfileClientController:profileClient",
+    "/foodtruck": "FoodTruckProfileController:vueProfile",
     "/search": "SearchController:searchPage",
     "/testcalendar": "DefaultController:getCalendar",
     "/inscription": "InscriptionController:control",
