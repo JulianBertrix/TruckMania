@@ -46,7 +46,7 @@ class DAOTruckEvenement extends DAO{
     //Liste des evenements pour un FT
     public function eventsForTruck($idTruck) {
 
-        $request = "SELECT * FROM foodtruck_evenement WHERE foodtruck_id = ".$idTruck;
+        $sql = "SELECT * FROM foodtruck_evenement WHERE foodtruck_id = ".$idTruck;
 
         $resultats = $this->getPdo()->query($sql)->fetchAll();
 

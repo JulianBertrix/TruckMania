@@ -1,9 +1,10 @@
 <?php
 namespace BWB\Framework\mvc\models;
+use JsonSerializable;
 
 use BWB\Framework\mvc\models\AdresseModel;
 
-class EvenementModel {
+class EvenementModel implements JsonSerializable{
     private $id;
     private $date_creation;
     private $intitule;
@@ -19,7 +20,32 @@ class EvenementModel {
         
     }
 
+    public function jsonSerialize() {
+        return [
+            'events' => [
+                'id' => $this->id,
+                'title' => $this->intitule,
+                'start' => $this->date_debut,
+                'end' => $this->date_fin,
+                'description' => $this->description,
+                'NombreDeParticipant' => $this->NombreDeParticipant,
+                'adresse' => $this->adresse_id->jsonSerialize(),
+                'color' => '#79B2D2', 
+                'textColor' => 'black'
+                ] 
+        ];
+    }
+
     public function to_json(){
+
+        //recup adresse en json
+
+        $adresse = array(
+            "id" => $this->adresse_id->getId(),
+            "adresse" => $this->adresse_id->getAdresse(),
+            "latitude" => $this->adresse_id->getLatitude(),
+            "longitude" => $this->adresse_id->getLongitude()
+        );
 
         $array = array(
             "id" => $this->id,
@@ -29,7 +55,7 @@ class EvenementModel {
             "date_fin" => $this->date_fin,
             "description" => $this->description,
             "image" => $this->image,
-            "adresse_id" => $this->adresse_id->to_json(),
+            "adresse_id" => $adresse,
             "NombreDeParticipant" => $this->NombreDeParticipant
         );
 

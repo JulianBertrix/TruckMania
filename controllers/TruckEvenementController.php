@@ -11,7 +11,7 @@ class TruckEvenementController extends Controller {
 
     public function __construct(){
         parent::__construct();
-        $this->evenement = new DAOTruckEvenement();
+        $this->truckEvenement = new DAOTruckEvenement();
     }
 
     public function getAllEventsForCalendar($idTruck){
@@ -19,15 +19,16 @@ class TruckEvenementController extends Controller {
         //Pour un FT, recup de tous ses objets events
         $listeEventsObj = $this->truckEvenement->eventsForTruck($idTruck);
 
-        //Creation de la liste en json
+        //Creation de la liste en json des infos + format events de FullCalendar
 
         $listeJson = [];
 
         foreach($listeEventsObj as $objet){
-            array_push($listeJson,$objet->to_json());
+            array_push($listeJson,$objet->jsonSerialize());
         }
 
-        return ;
+        header('Content-Type: application/json');
+        echo json_encode($listeJson);
     }
 
     public function getAll(){

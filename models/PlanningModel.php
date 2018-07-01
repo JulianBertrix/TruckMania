@@ -1,42 +1,76 @@
 <?php
 namespace BWB\Framework\mvc\models;
+use JsonSerializable;
 
-class PlanningModel {
+class PlanningModel implements JsonSerializable{
 
-    private $id;
+    private $foodtruckId;
+    private $adresseId;
     private $dateDebut;
     private $dateFin;
+    private $intitule;
+
 
     public function __construct() {
     }
 
-    public function to_json(){
-
-        $array = array(
-            "id" => $this->id,
-            "date_debut" => $this->dateDebut,
-            "date_fin" => $this->dateFin
-        );
-
-        return json_encode($array);
+    public function jsonSerialize() {
+        return [
+            'events' => [
+                'id' => [
+                    'foodtruck_id' => $this->foodtruckId->getId(),
+                    'date_debut' => $this->dateDebut,
+                    'date_fin' => $this->dateFin,
+                ],
+                'title' => $this->intitule,
+                'start' => $this->dateDebut,
+                'end' => $this->dateFin,
+                'adresse' => $this->adresseId->jsonSerialize(),
+                'color' => '#89D175', 
+                'textColor' => 'black'
+                ],
+            
+        ];
     }
     
+
+
     /**
-     * Get the value of id
+     * Get the value of foodtruckId
      */ 
-    public function getId()
+    public function getFoodtruckId()
     {
-        return $this->id;
+        return $this->foodtruckId;
     }
 
     /**
-     * Set the value of id
+     * Set the value of foodtruckId
      *
      * @return  self
      */ 
-    public function setId($id)
+    public function setFoodtruckId($foodtruckId)
     {
-        $this->id = $id;
+        $this->foodtruckId = $foodtruckId;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of adresseId
+     */ 
+    public function getAdresseId()
+    {
+        return $this->adresseId;
+    }
+
+    /**
+     * Set the value of adresseId
+     *
+     * @return  self
+     */ 
+    public function setAdresseId($adresseId)
+    {
+        $this->adresseId = $adresseId;
 
         return $this;
     }
@@ -77,6 +111,26 @@ class PlanningModel {
     public function setDateFin($dateFin)
     {
         $this->dateFin = $dateFin;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of intitule
+     */ 
+    public function getIntitule()
+    {
+        return $this->intitule;
+    }
+
+    /**
+     * Set the value of intitule
+     *
+     * @return  self
+     */ 
+    public function setIntitule($intitule)
+    {
+        $this->intitule = $intitule;
 
         return $this;
     }
