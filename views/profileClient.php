@@ -1,21 +1,23 @@
-    
 <?php include 'header.php'; ?>
         
-<div class="container bootstrap snippet">
+<div class="container-fluid">
     <div class="row">
-        <div class="col-sm-10"><h1>Mon Profile</h1></div>
-    </div>
-    <div class="row">
-        <div class="col-sm-3"><!--left col-->
+        <div class="col-sm-2"><!--left col-->
             
         <?php include 'infoClient.php';?>  
         </div>
-        <div class="col-sm-9">
+        <div class="col-sm-10">
 
             <ul class="nav nav-tabs" id="myTab">
-              <li class="active"><a href="#favoris" data-toggle="tab">Mes favoris</a></li>
-              <li><a href="#commandes" data-toggle="tab">Mes commandes en cours</a></li>
-              <li><a href="#historique" data-toggle="tab">Mon historique des commandes</a></li>
+              <li class="nav-item">
+                <a class="nav-link active" href="#favoris" data-toggle="tab">Mes favoris</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#commandes" data-toggle="tab">Mes commandes en cours</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#historique" data-toggle="tab">Mon historique des commandes</a>
+              </li>
             </ul>
             <div class="tab-content">
                 <div class="tab-pane active" id="favoris">
