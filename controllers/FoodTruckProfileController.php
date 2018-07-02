@@ -26,8 +26,9 @@ class FoodTruckProfileController extends Controller{
         parent::__construct();
     }
 
-    public function vueProfile() {
-        $truck = (new DAOTrucks())->retrieve(1);
+    public function vueProfile($id) {
+        $truck = (new DAOTrucks())->retrieve($id);
+        //$id = $truck->getId();
         $nom = $truck->getNom();
         $logo = $truck->getLogo();
         $moyenne = $truck->getMoyenne();
@@ -35,7 +36,7 @@ class FoodTruckProfileController extends Controller{
         $categorie = $truck->getCategorieId()->getIntitule();
         
         $carte = array();
-        $plats = (new DAOPlat())->getAllBy(['foodtruck_id' => 1]);
+        $plats = (new DAOPlat())->getAllBy(['foodtruck_id' => $id]);
         
         foreach ($plats as $plat){
             array_push($carte, $plat->getNom());
@@ -43,7 +44,7 @@ class FoodTruckProfileController extends Controller{
         
         $listeAvis = array();
         $listeNote = array();
-        $avis = (new DAOCommande())->getAllBy(['foodtruck_id' => 1]);
+        $avis = (new DAOCommande())->getAllBy(['foodtruck_id' => $id]);
         
         foreach ($avis as $value){
             array_push($listeAvis, $value->getAvisId()->getMessage());
@@ -51,6 +52,7 @@ class FoodTruckProfileController extends Controller{
         }
         
         $datas = array(
+            'id' => $id,
             'nom' => $nom,
             'logo' => $logo,
             'categorie' => $categorie,

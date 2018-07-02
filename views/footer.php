@@ -74,6 +74,7 @@
   
     <!-- profil client -->
     <script src=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/scripts/updateInfoClient.js"?>></script>
+    <script src=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/scripts/redirectionProfileFoodtruck.js"?>></script>
     
   </body>
 </html>

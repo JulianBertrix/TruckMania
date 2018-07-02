@@ -5,6 +5,8 @@ namespace BWB\Framework\mvc\controllers;
 use BWB\Framework\mvc\Controller;
 use BWB\Framework\mvc\models\UtilisateurModel;
 use BWB\Framework\mvc\dao\DAOUtilisateur;
+use BWB\Framework\mvc\dao\DAOAdresse;
+use BWB\Framework\mvc\dao\DAOFavoris;
 
 class UtilisateurController extends Controller {
 
@@ -33,25 +35,31 @@ class UtilisateurController extends Controller {
     public function delete($id){
         return $this->user->delete($id);
     }
-
+    
     public function updateMe($idUser,$newValeurs) {
         return $this->user->updateMe($idUser,$newValeurs);
     }
 
     public function update($id) {
-        header("Content-Type: application/json");
+        header("Content-Type: text/plain");
         $dataPost = $this->inputPost();
         
-        $newUser = new UtilisateurModel();
-        $newUser->setId($id);
-        $newUser->setNom($dataPost['nom']);
-        $newUser->setPrenom($dataPost['prenom']);
-        $newUser->setMotDePasse($dataPost['mot_de_passe']);
-        $newUser->setEmail($dataPost['email']);
+        //$adresse = (new UtilisateurModel())->getAdresseId()->getId();
+        $newData = array(
+            'email' => $dataPost['email'],
+            'mot_de_passe' => $dataPost['mot_de_passe'],
+        );
         
-        $this->user->update($newUser);
+        $tutu = $this->user->updateMe($id, $newData);
+        $adresse = $this->user->retrieve($id)->getAdresseId()->getId();
+        
+        $newAdresse = array(
+            'adresse' => $dataPost['adresse']
+        );
+        
+        (new DAOAdresse())->updateMe($adresse, $newAdresse);
+        echo $tutu;
     }
-
 
     public function testMe(){
         $this->render('test');
