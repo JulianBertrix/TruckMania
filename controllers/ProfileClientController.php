@@ -27,25 +27,9 @@ class ProfileClientController extends Controller{
 
     public function profileClient() {
         $favoris = (new FavorisController())->getAllBy(["utilisateur_id" => 1]);
-        
-        foreach ($favoris as $key => $truck){
-            $presence = (new DAOPlanning())->getAllBy(['foodtruck_id' => $truck->getFoodtruckId()->getId()]);
-            $dateDebut = array();
-            $adresse = array();
-            $dateFin = array();
-
-            foreach ($presence as $key => $value){
-                if ($value->getFoodtruckId()->getId() === $truck->getFoodtruckId()->getId()){
-                    array_push($adresse, $value->getAdresseId()->getAdresse());                                       
-                    array_push($dateDebut, $value->getDateDebut());                                       
-                    array_push($dateFin, $value->getDateFin());
-                }
-            }
-        }
-        
         $commande = (new CommandeController())->getAllBy(["utilisateur_id" => 1]);
         $commandeEnCours = (new CommandeController())->getAllBy(["utilisateur_id" => 1]);
-        
+
         $dateCommande = null;
         $foodtruck = null;
         $total = null;
@@ -99,10 +83,7 @@ class ProfileClientController extends Controller{
             'infoClient' => (new UtilisateurController())->retrieve(1),
             
             'listeFavoris' => $favoris,
-            'listeAdresse' => $adresse,
-            'listeDateDebut' => $dateDebut,
-            'listeDateFin' => $dateFin,
-            
+
             'listeCommande' => $commande,
             'dateCommande' => $dateCommande,
             'foodtruck' => $foodtruck,

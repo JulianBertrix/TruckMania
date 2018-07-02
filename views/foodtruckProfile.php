@@ -28,7 +28,8 @@ include 'header.php';
                         </tr>
                     </tbody>
                 </table>
-                <button class="update btn btn-warning btn-sm"><span class="fa fa-star"></span>ajouter aux favoris</button>
+                <button class="update btn btn-warning btn-sm" onclick="addFavoris(
+                            <?php echo $id; ?>)"><span class="fa fa-star"></span>ajouter aux favoris</button>
             </div>
         </div>
         <div class="col-sm-12">

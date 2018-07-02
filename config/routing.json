@@ -1,7 +1,7 @@
 {
     "/": "HomeController:homePage",
     "/profile": "ProfileClientController:profileClient",
-    "/foodtruck": "FoodTruckProfileController:vueProfile",
+    "/foodtruck/(:)": "FoodTruckProfileController:vueProfile",
     "/search": "SearchController:searchPage",
     "/testcalendar": "DefaultController:getCalendar",
     "/inscription": "InscriptionController:control",
@@ -31,5 +31,11 @@
     },
     "/api/planning/update":{
         "POST":"PlanningController:updateThePlanning"
+    },
+    "/api/Favoris/delete/utilisateur/(:)/foodtruck/(:)":{
+        "POST":"FavorisController:delete"
+    },
+    "/api/Favoris/add/utilisateur/(:)/foodtruck/(:)":{
+        "POST":"FavorisController:create"
     }
 }

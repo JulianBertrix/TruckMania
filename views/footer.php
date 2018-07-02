@@ -74,6 +74,7 @@
   
     <!-- profil client -->
     <script src=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/scripts/updateInfoClient.js"?>></script>
+<<<<<<< HEAD
 
 	<!-- PAGE ADMIN -->
     <script type="text/javascript" src=<?="http://".$_SERVER['SERVER_NAME'] . "/admin/vendor/jquery/jquery.min.js"?>></script>
@@ -85,6 +86,9 @@
     <script type="text/javascript" src=<?="http://".$_SERVER['SERVER_NAME'] . "/admin/js/sb-admin.min.js"?>></script>
     <script type="text/javascript" src=<?="http://".$_SERVER['SERVER_NAME'] . "/admin/js/sb-admin-datatables.min.js"?>></script>
     <script type="text/javascript" src=<?="http://".$_SERVER['SERVER_NAME'] . "/admin/js/sb-admin-charts.min.js"?>></script>
+=======
+    <script src=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/scripts/redirectionProfileFoodtruck.js"?>></script>
+>>>>>>> debug_procli
     
   </body>
 </html>

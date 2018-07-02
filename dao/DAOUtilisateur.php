@@ -131,6 +131,7 @@ class DAOUtilisateur extends DAO{
         $sql .= "WHERE id = " . $idUser;
 
         $this->getPdo()->query($sql);
+        return $sql;
 
     }
 
