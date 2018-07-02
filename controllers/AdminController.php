@@ -8,6 +8,9 @@ use BWB\Framework\mvc\dao\DAOTrucks;
 use BWB\Framework\mvc\models\UtilisateurModel;
 use BWB\Framework\mvc\dao\DAOUtilisateur;
 
+use BWB\Framework\mvc\dao\DAOCommande;
+use BWB\Framework\mvc\dao\DAOEvenement;
+
 class AdminController extends Controller{
 
     public function __construct(){
@@ -15,27 +18,31 @@ class AdminController extends Controller{
         $this->securityLoader();
     }
 
-    public function getAllTrucks(){
-        $trucks = (new DAOTrucks)->getAll();
+    public function adminPage(){
+        $trucks = (new DAOTrucks())->getAll();
     
         $data = array(
             'listeTrucks'=> $trucks,
-            'listeUser' =>$this->getAllUser()
+            'listeUser' =>(new DAOUtilisateur())->getAll(),
+            'listeCommande' =>(new DAOCommande())->getAll(),
+            'listeEvenement' =>(new DAOEvenement())->getAll()
         );
 
-        $this->render('test',$data);
+        $this->render('admin/admin-page',$data);
         
     }
 
-    public function getAllUser(){
-        $user = (new DAOUtilisateur)->getAll();
+    // public function getAllUser(){
+    //     return  (new DAOUtilisateur())->getAll();
+    // }
 
-        $dataUser = array(
-            'listeUser'=> $user
-        );
+    // public function getAllCommande(){
+    //     return (new DAOCommande())->getAll();
+    // }
 
-        $this->render('test',$dataUser);
-    }
+    // public function getAllEvenement(){
+    //     return (new DAOEvenement())->getAll();
+    // }
 
 }
 

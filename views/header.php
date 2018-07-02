@@ -11,6 +11,12 @@
 
     <title>Trucks Mania</title>
 
+    <!-- ADMIN PAGE -->
+    <link rel="stylesheet" type="text/css" href=<?="http://".$_SERVER['SERVER_NAME'] . "/admin/vendor/bootstrap/css/bootstrap.min.css"?>>
+    <link rel="stylesheet" type="text/css" href=<?="http://".$_SERVER['SERVER_NAME'] . "/admin/vendor/font-awesome/css/font-awesome.min.css"?>>
+    <link rel="stylesheet" type="text/css" href=<?="http://".$_SERVER['SERVER_NAME'] . "/admin/vendor/datatables/dataTables.bootstrap4.css"?>>
+    <link rel="stylesheet" type="text/css" href=<?="http://".$_SERVER['SERVER_NAME'] . "/admin/css/sb-admin.css"?>>
+
     <!-- Bootstrap core CSS -->
     <link href=<?="http://".$_SERVER['SERVER_NAME'] . "/vendor/bootstrap/css/bootstrap.min.css"?> rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
@@ -58,6 +64,7 @@
         <a class="" href=<?="http://".$_SERVER['SERVER_NAME'] . "/testcalendar"?>>TestCalendar</a>
         <a class="" href=<?="http://".$_SERVER['SERVER_NAME'] . "/inscription"?>>Inscription Client</a>
         <a class="" href=<?="http://".$_SERVER['SERVER_NAME'] . "/inscriptionTrucks"?>>Inscription Trucks</a>
+        <a class="" href=<?="http://".$_SERVER['SERVER_NAME'] . "/administration"?>>Admin</a>
         <a class="btn btn-primary" href="#">Sign In</a>
       </div>
     </nav>

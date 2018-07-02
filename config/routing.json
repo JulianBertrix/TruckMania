@@ -7,7 +7,7 @@
     "/inscription": "InscriptionController:control",
     "/inscriptionTrucks": "InscriptionTrucksController:control",
     "/login": "DefaultController:login",
-    "/test": "AdminController:getAllUser",
+    "/administration": "AdminController:adminPage",
     "/testtc": "UtilisateurController:testMe",
     "/logout": "DefaultController:logout",
     "/token": "DefaultController:token",
