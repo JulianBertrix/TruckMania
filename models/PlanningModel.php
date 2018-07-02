@@ -14,27 +14,20 @@ class PlanningModel implements JsonSerializable{
     public function __construct() {
     }
 
-    // public function jsonSerialize() {
-    //     return [
-    //         'id' => [
-    //             'foodtruck_id' => $this->foodtruckId->getId(),
-    //             'date_debut' => $this->dateDebut,
-    //             'date_fin' => $this->dateFin,
-    //         ],
-    //         'title' => $this->intitule,
-    //         'start' => $this->dateDebut,
-    //         'end' => $this->dateFin,
-    //         'adresse' => $this->adresseId->jsonSerialize()
-    //         ];
-    // }
-    
     public function jsonSerialize() {
         return [
+            'id' => [
+                'foodtruck_id' => $this->foodtruckId->getId(),
+                'date_debut' => $this->dateDebut,
+                'date_fin' => $this->dateFin,
+            ],
             'title' => $this->intitule,
             'start' => $this->dateDebut,
             'end' => $this->dateFin,
+            'adresse' => $this->adresseId->jsonSerialize()
             ];
     }
+    
     /**
      * Get the value of foodtruckId
      */ 
