@@ -18,7 +18,7 @@ class DAOFavoris extends DAO{
         .$favoris->getFoodtruckId().")";
         $this->getPdo()->query($sql);
 
-        return $this->getPdo->getLastInsertId();
+        return $this->getPdo()->lastInsertId();
     }
 
     public function delete($objet) {
@@ -26,6 +26,7 @@ class DAOFavoris extends DAO{
         utilisateur_id=".$objet->getUtilisateurId()
         ." AND foodtruck_id=".$objet->getFoodtruckId();
         $this->getPdo()->query($sql);
+        return $sql;
     }
 
     //Retourne un tableau de tous les tupples, chaque tupple est sous forme d'objet

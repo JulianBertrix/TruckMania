@@ -4,6 +4,7 @@ namespace BWB\Framework\mvc\controllers;
 
 use BWB\Framework\mvc\Controller;
 use BWB\Framework\mvc\dao\DAOFavoris;
+use BWB\Framework\mvc\models\FavorisModel;
 
 class FavorisController extends Controller {
 
@@ -25,12 +26,20 @@ class FavorisController extends Controller {
         return $this->favoris->retrieve($objet);
     }
 
-    public function create($newFavoris){
-        return $this->favoris->create($newFavoris);
+    public function create($userId, $foodtruckId){
+               
+        $newFavoris = new FavorisModel($userId, $foodtruckId);
+        
+        $obj = $this->favoris->create($newFavoris);
+        echo $obj;
     }
 
-    public function delete($objet){
-        return $this->favoris->delete($objet);
+    public function delete($userId, $foodtruckId){
+        
+        $objet = new FavorisModel($userId, $foodtruckId);
+        
+        $obj = $this->favoris->delete($objet);
+        echo $obj;
     }
 
     public function updateMe($objet,$newValeurs) {
