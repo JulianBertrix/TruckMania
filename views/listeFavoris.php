@@ -1,10 +1,10 @@
 <table class="table table-hover text-center">
     <thead>
         <tr>
-            <th>logo</th>
-            <th>food truck</th>
-            <th>retirer des favoris</th>
-            <th>acceder au profile</th>
+            <th>Logo</th>
+            <th>Food Truck</th>
+            <th>Retirer des favoris</th>
+            <th>Acceder au profil</th>
         </tr>
     </thead>
     <tbody id="items">

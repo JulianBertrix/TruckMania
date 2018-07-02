@@ -15,17 +15,13 @@
 						sed tincidunt rhoncus. Curabitur nec erat rhoncus, efficitur nibh ac, porta leo. 
 						Nullam luctus lacinia urna sagittis tempus.
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc non risus et ex bibendum posuere.
-						 Morbi semper leo 
-						sed tincidunt rhoncus. Curabitur nec erat rhoncus, efficitur nibh ac, porta leo. 
-						Nullam luctus lacinia urna sagittis tempus.
-						sed tincidunt rhoncus. Curabitur nec erat rhoncus, efficitur nibh ac, porta leo. 
-						Nullam luctus lacinia urna sagittis tempus.
+						 Morbi semper leo.
 					</p>
 				</div>
 				<div class="col-lg-4 agileinfo_footer_grid text-center">
 					<h3>Contact Info</h3>
 					<ul class="agileinfo_footer_grid_list text-center">
-						<li><i class="fas fa-map-marker-alt"></i>BeWeb Rue de la réussite, <span>34400 Lunel.</span></li>
+						<li><i class="fas fa-map-marker-alt"></i>BeWeb, 34400 Lunel.</li>
 						<li><i class="far fa-envelope"></i><a href="#">Loic@fondespierre.com</a></li>
 						<li><i class="fas fa-phone"></i>+ 075 567 567</li>
 					</ul>

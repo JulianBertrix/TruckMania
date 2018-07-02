@@ -1,4 +1,4 @@
-<ul class="list-group">
+<br><br><ul class="list-group">
   <li class="list-group-item text-center">Mon profil</li>
   <li class="list-group-item text-right"><span class="pull-left"><strong>Nom</strong></span><?php echo $infoClient->getNom(); ?></li>
   <li class="list-group-item text-right"><span class="pull-left"><strong>Prenom</strong></span><?php echo  $infoClient->getPrenom(); ?></li>
