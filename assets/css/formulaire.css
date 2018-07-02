@@ -31,6 +31,10 @@
       font-family: Poppins-Regular, sans-serif;
       overflow-x: hidden;
   }
+
+  .table-responsive{
+    overflow-x: hidden;
+  }
   
   /*---------------------------------------------*/
   input {
