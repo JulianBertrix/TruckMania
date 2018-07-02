@@ -29,6 +29,8 @@ class PlanningController extends Controller {
             array_push($listeJson,$objet->jsonSerialize());
         }
 
+        $test = ['events' => $listeJson];
+
         header('Content-Type: application/json');
         echo json_encode($listeJson);
     }
@@ -43,13 +45,14 @@ class PlanningController extends Controller {
 
         //Ajout du nouveau planning
         $newPlanning = new PlanningModel();
-        $newPlanning->setFoodtruckId($dataPost['listeIds']['foodtruck_id']);
-        $newPlanning->setAdresseId($dataPost['adresse_id']);
+        $newPlanning->setFoodtruckId(intval($dataPost['listeIds']['foodtruck_id']));
+        $newPlanning->setAdresseId(1);
         $newPlanning->setDateDebut($dataPost['date_debut']);
         $newPlanning->setDateFin($dataPost['date_fin']);
         $newPlanning->setIntitule($dataPost['intitule']);
 
-        $this->planning->create($newPlanning);
+        $tutu = $this->planning->create($newPlanning);
+
     }
 
 
