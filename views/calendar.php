@@ -14,137 +14,48 @@ include 'header.php';
 
 //Chargement Calendar
     $(document).ready(function() {
-        $.ajax({
-            url: "http://trucks-mania.bwb/api/trucks/22/planning",
-            type: "GET",
-            dataType: "json",
-            async: true,
-
-            success: function (data) {
-                $('#calendar').fullCalendar({
-                    events: {
-    url: '../api/trucks/22/planning',
-    type: 'GET',
-    error: function() {
-      alert('there was an error while fetching events!');
-    },
-    color: 'yellow',   // a non-ajax option
-    textColor: 'black' // a non-ajax option
-  }
-            });
-            },
-            error: function (param1, param2) {
-                console.log("error");
-            }
-        });
 
 
-       // $('#calendar').fullCalendar({
-            //events:"http://trucks-mania.bwb/api/trucks/22/planning"
-//             events:[
-//     {
-//         "title": "Mairie",
-//         "start": "2018-07-02 11:00:00",
-//         "end": "2018-07-02 23:00:00"
-//     },
-//     {
-//         "title": "Carrfefour",
-//         "start": "2018-07-03 11:00:00",
-//         "end": "2018-07-03 23:00:00"
-//     },
-//     {
-//         "title": "Mairie",
-//         "start": "2018-09-28 11:00:00",
-//         "end": "2018-09-28 23:00:00"
-//     }
-//   ]
 
-        // eventSources: [
-
-        // // your event source
-        // {
-        // url: 'http://trucks-mania.bwb/api/trucks/22/planning',
-        // type: 'GET',
-        // error: function() {
-        //         alert('there was an error while fetching events!');
-        //     }
-
-        // }
-
-// //]
-
-            // events: {
-            //     url: 'http://trucks-mania.bwb/api/trucks/22/planning',
-            //     type: 'GET',
-            //     error: function(data) {
-            //     alert('there was an error while fetching events!');
-            //     },
-            //     color: 'yellow',   // a non-ajax option
-            //     textColor: 'black' // a non-ajax option
-            // }
-
-//             // any other sources...
-
-
-       // });
-
-        //Recup des Events
-        //checkTheEvents(22);
-        //'color' => '#89D175', 
-         //   'textColor' => 'black'
-        //  locale: 'fr',
-        //     timeFormat: 'H:mm',
+        Recup des Events
+        checkTheEvents(22);
+        'color' => '#89D175', 
+           'textColor' => 'black'
+         locale: 'fr',
+            timeFormat: 'H:mm',
     
-        // var calendar = $('#calendar').fullCalendar('getCalendar');
+        var calendar = $('#calendar').fullCalendar('getCalendar');
 
-        // //Recup du clik utilsateur
-        // calendar.on('eventClick', function(calEvent, jsEvent, view) {
+        //Recup du clik utilsateur
+        calendar.on('eventClick', function(calEvent, jsEvent, view) {
 
-        // var dateDebut = calEvent.start.format('DD/MM/YYYY');
-        // var heureDebut = calEvent.start.format('HH:mm');
-        // var dateFin = calEvent.end.format('DD/MM/YYYY');
-        // var heureFin = calEvent.end.format('HH:mm');
+        var dateDebut = calEvent.start.format('DD/MM/YYYY');
+        var heureDebut = calEvent.start.format('HH:mm');
+        var dateFin = calEvent.end.format('DD/MM/YYYY');
+        var heureFin = calEvent.end.format('HH:mm');
 
-        // $('#titreInfo').val(calEvent.title);
-        // $('#lieuInfo').val(calEvent.adresse['adresse']);
-        // $('#startDate').val(dateDebut);
-        // $('#startHeure').val(heureDebut);
-        // $('#endDate').val(dateFin);
-        // $('#endHeure').val(heureFin);
+        $('#titreInfo').val(calEvent.title);
+        $('#lieuInfo').val(calEvent.adresse['adresse']);
+        $('#startDate').val(dateDebut);
+        $('#startHeure').val(heureDebut);
+        $('#endDate').val(dateFin);
+        $('#endHeure').val(heureFin);
 
-        // //Ajout du nombre de participants si evenement
-        // if(typeof calEvent.NombreDeParticipant !== 'undefined'){
-        //     $('#rowParticipants').css("display","");
-        //     $('#nbParticipants').val(calEvent.NombreDeParticipant);
-        // }else{
-        //     $('#rowParticipants').css("display","none");
-        // };
+        //Ajout du nombre de participants si evenement
+        if(typeof calEvent.NombreDeParticipant !== 'undefined'){
+            $('#rowParticipants').css("display","");
+            $('#nbParticipants').val(calEvent.NombreDeParticipant);
+        }else{
+            $('#rowParticipants').css("display","none");
+        };
 
-        // //Stock les id du planning modifiable
-        // updatedPlanning = calEvent.id; 
-        //});
+        //Stock les id du planning modifiable
+        updatedPlanning = calEvent.id; 
+        });
 
 
     });
 
-
-//TEST
-
-function testMe() {
-    $.ajax({
-            url: "http://trucks-mania.bwb/api/trucks/22/planning",
-            type: "GET",
-            dataType: "json",
-            async: false,
-
-            success: function (data) {
-                console.log(data);
-            },
-            error: function (param1, param2) {
-                console.log("error");
-            }
-        });
-}
 
 //Recup des events
 
@@ -176,8 +87,6 @@ function testMe() {
         });
 
         //Ajout
-        console.log(datas);
-        console.log(listeEvents);
         $('#calendar').fullCalendar('addEventSource', datas);
 
         //Recup des Plannings
