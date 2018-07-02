@@ -161,7 +161,7 @@ include 'header.php';
         <div class="col-4" id='infosCalendar'>
 
             <!-- Formulaire Modifs Infos -->
-            <h5>Gestion du jour</h5>
+            <h5>Gestion du jour</h5><!-- NICO COL ICI -> CSS -->
             <form class="form">
                 <!-- Titre -->
                 <div class="form-row">
@@ -249,7 +249,7 @@ include 'header.php';
 </div>
 
 
-<br><br>
+<br><br><!-- NICO -->
 <?php
 include 'footer.php';
 ?>

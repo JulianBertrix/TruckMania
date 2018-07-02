@@ -7,7 +7,7 @@
             <table class="table table-bordered text-center" id="dataTable" width="100%" cellspacing="0">
               <thead>
                 <tr>
-                  <th>#id</th>
+                  <th># Id</th>
                   <th>N° Siret</th>
                   <th>Nom</th>
                   <th>Date création</th>
@@ -18,7 +18,7 @@
               </thead>
               <tfoot>
                 <tr>
-                  <th>#id</th>
+                  <th># Id</th>
                   <th>N° Siret</th>
                   <th>Nom</th>
                   <th>Date création</th>
