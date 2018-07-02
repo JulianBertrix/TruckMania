@@ -1,6 +1,6 @@
 	<!-- footer -->
 	<div class="footer">
-		<div class="container">
+		<div class="container-fluid">
 			<div class="agileinfo_footer_grids">
 				<div class="col-lg-4 agileinfo_footer_grid">
 					<div class="agile-logo">
@@ -74,6 +74,17 @@
   
     <!-- profil client -->
     <script src=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/scripts/updateInfoClient.js"?>></script>
+
+	<!-- PAGE ADMIN -->
+    <script type="text/javascript" src=<?="http://".$_SERVER['SERVER_NAME'] . "/admin/vendor/jquery/jquery.min.js"?>></script>
+    <script type="text/javascript" src=<?="http://".$_SERVER['SERVER_NAME'] . "/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"?>></script>
+    <script type="text/javascript" src=<?="http://".$_SERVER['SERVER_NAME'] . "/admin/vendor/jquery-easing/jquery.easing.min.js"?>></script>
+    <script type="text/javascript" src=<?="http://".$_SERVER['SERVER_NAME'] . "/admin/vendor/chart.js/Chart.min.js"?>></script>
+    <script type="text/javascript" src=<?="http://".$_SERVER['SERVER_NAME'] . "/admin/vendor/datatables/jquery.dataTables.js"?>></script>
+    <script type="text/javascript" src=<?="http://".$_SERVER['SERVER_NAME'] . "/admin/vendor/datatables/dataTables.bootstrap4.js"?>></script>
+    <script type="text/javascript" src=<?="http://".$_SERVER['SERVER_NAME'] . "/admin/js/sb-admin.min.js"?>></script>
+    <script type="text/javascript" src=<?="http://".$_SERVER['SERVER_NAME'] . "/admin/js/sb-admin-datatables.min.js"?>></script>
+    <script type="text/javascript" src=<?="http://".$_SERVER['SERVER_NAME'] . "/admin/js/sb-admin-charts.min.js"?>></script>
     
   </body>
 </html>
