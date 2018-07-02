@@ -15,14 +15,20 @@ include 'header.php';
 //Chargement Calendar
     $(document).ready(function() {
 
+        //Recup des Plannings
 
-
-        Recup des Events
+        $('#calendar').fullCalendar({
+            locale: 'fr',
+            timeFormat: 'H:mm'
+        });
+        
+        // Recup des Events
         checkTheEvents(22);
-        'color' => '#89D175', 
-           'textColor' => 'black'
-         locale: 'fr',
-            timeFormat: 'H:mm',
+
+        // 'color' => '#89D175', 
+        //    'textColor' => 'black'
+        //  locale: 'fr',
+        //     timeFormat: 'H:mm',
     
         var calendar = $('#calendar').fullCalendar('getCalendar');
 
@@ -56,16 +62,21 @@ include 'header.php';
 
     });
 
+    function testMe(idTruck){
+
+        
+    };
+
+
 
 //Recup des events
 
     function checkTheEvents(idTruck){
 
         //Vide le calendriers
-        // $('#calendar').fullCalendar('removeEventSource', listeEvents);
-        // $('#calendar').fullCalendar('removeEventSource', listePlanning);
-        $('#calendar').fullCalendar('removeEventSources');
+        $('#calendar').fullCalendar('removeEvents');
 
+        //Recup des Events
         $.ajax({
             url: "http://trucks-mania.bwb/api/trucks/"+idTruck+"/events",
             type: "GET",
@@ -73,24 +84,15 @@ include 'header.php';
             async: false,
 
             success: function (data) {
-                datas = data;
+                data.forEach(function(event) {
+                    $('#calendar').fullCalendar('renderEvent', event, false);
+                });
             },
             error: function (param1, param2) {
                 console.log("error");
             }
         });
-
-        //Creation de la variable events
-
-        datas.forEach(function(evenement) {
-            listeEvents['events'].push(evenement['events']);
-        });
-
-        //Ajout
-        $('#calendar').fullCalendar('addEventSource', datas);
-
         //Recup des Plannings
-        
         $.ajax({
             url: "http://trucks-mania.bwb/api/trucks/"+idTruck+"/planning",
             type: "GET",
@@ -98,33 +100,14 @@ include 'header.php';
             async: false,
 
             success: function (data) {
-                datas = data;
+                data.forEach(function(planning) {
+                    $('#calendar').fullCalendar('renderEvent', planning, false);
+                });
             },
             error: function (param1, param2) {
                 console.log("error");
             }
         });
-
-        //Creation de la variable events
-
-        datas.forEach(function(planning) {
-            listePlanning['events'].push(planning['events']);
-        });
-
-        //Ajout
-        $('#calendar').fullCalendar('addEventSource', listePlanning);
-        
-        // $('#calendar').fullCalendar({
-        //     locale: 'fr',
-        //     eventSources: [
-        //         listeEvents,
-        //         listePlanning
-        //     ],
-        //     timeFormat: 'H:mm'
-        // });
-
-        //$('#calendar').fullCalendar('option', 'locale', 'fr');
-
     }
 
 //Update Event
@@ -146,19 +129,13 @@ include 'header.php';
                 intitule : $('#titreInfo').val()
             },
 
-            success: function (data) {
-                console.log("SUCCSSESSSS");
+            success: function () {
+                checkTheEvents(22);
             },
             error: function (param1, param2) {
                 console.log("error");
             }
         });
-
-        //Refresh Calendar
-        
-        checkTheEvents(22);        
-       
-        $('#calendar').fullCalendar('refetchEvents');
 
     };
 
