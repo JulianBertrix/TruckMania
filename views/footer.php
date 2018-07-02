@@ -39,7 +39,7 @@
 				<div class="clearfix"> </div>
 			</div>
 			<div class="w3agile_footer_copy">
-				<p>&copy; 2018 Truck Mania. All rights reserved | Design by Trucks Mania Team</a></p>
+				<p> &copy; 2018 Truck Mania. All rights reserved | Design by Trucks Mania Team</p>
 			</div>
 		</div>
 	</div><!-- //footer -->

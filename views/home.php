@@ -24,10 +24,10 @@ include 'header.php';
 include 'home_Presentation.php';
 include 'carroussel_LastFive.php';
 ?>
- 
+ <hr class="container">
     <!-- Testimonials -->
     <section class="testimonials text-center bg-light">
-      <div class="container">
+      <div class="container-fluid">
         <h2 class="mb-5">What people are saying...</h2>
         <div class="row">
           <div class="col-lg-4">
@@ -54,6 +54,7 @@ include 'carroussel_LastFive.php';
         </div>
       </div>
     </section>
+    
 
     <!-- Call to Action -->
     <section class="call-to-action text-white text-center">
