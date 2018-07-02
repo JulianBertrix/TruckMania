@@ -2,11 +2,11 @@
  
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-3"><!--left col-->
+        <div class="col-sm-2"><!--left col-->
             
         <?php include 'infoClient.php';?>  
         </div>  
-        <div class="col-sm-9">
+        <div class="col-sm-10">
             <br><br>
             <ul class="nav nav-tabs" id="myTab">
               <li class="nav-item">

@@ -5,7 +5,7 @@
   <div class="container-fluid">
 
 
-<?php include 'include/icon-card.php' ?><hr><br><br><br><hr>
+<?php include 'include/icon-card.php' ?><br><br><br>
         
 <?php include 'include/data-table-food-truck.php' ?>
 

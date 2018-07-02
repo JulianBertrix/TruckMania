@@ -1,30 +1,34 @@
- <!-- Example DataTables Card-->
- <div class="card mb-3">
+<!-- Example DataTables Card-->
+<div class="card mb-3">
         <div class="card-header">
-          <i class="fa fa-table"></i> Food Trucks</div>
+          <i class="fa fa-table"></i> Evénements</div>
         <div class="card-body">
           <div class="table-responsive">
             <table class="table table-bordered text-center" id="dataTable" width="100%" cellspacing="0">
               <thead>
                 <tr>
                   <th>#id</th>
-                  <th>N° Siret</th>
-                  <th>Nom</th>
-                  <th>Date création</th>
+                  <th>Date Création</th>
+                  <th>Intitulé</th>
+                  <th>Date Début</th>
+                  <th>Date Fin</th>
+                  <th>Description</th>
                   <th>Logo</th>
-                  <th>Catégorie</th>
-                  <th>Moyenne</th>
+                  <th>Nbr Participant</th>
+                  <th>Utilisitateur Id</th>
+                  <th>Adresse Id</th>
                 </tr>
               </thead>
               <tfoot>
                 <tr>
-                  <th>#id</th>
-                  <th>N° Siret</th>
+                <th>#id</th>
                   <th>Nom</th>
-                  <th>Date création</th>
-                  <th>Logo</th>
-                  <th>Catégorie</th>
-                  <th>Moyenne</th>
+                  <th>Prénom</th>
+                  <th>E-Mail</th>
+                  <th>Password</th>
+                  <th>Rôle</th>
+                  <th>Adresse Id</th>
+                  <th>Food Truck Id</th>
                 </tr>
               </tfoot>
               <tbody>
