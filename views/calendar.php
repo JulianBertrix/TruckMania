@@ -1,6 +1,7 @@
 <?php
 include 'header.php';
 ?>
+<br><br>
 <script>
     var datas = [];
     var listeEvents = {
@@ -248,7 +249,7 @@ include 'header.php';
 </div>
 
 
-
+<br><br>
 <?php
 include 'footer.php';
 ?>

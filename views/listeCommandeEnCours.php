@@ -5,7 +5,7 @@
             <th>Food Truck</th>
             <th>Plat</th>
             <th>Quantité</th>
-            <th>prix</th>
+            <th>Prix</th>
         </tr>
     </thead>
     <tbody id="items">       

@@ -1,22 +1,22 @@
 <?php include 'header.php'; ?>
-        
+ 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-2"><!--left col-->
+        <div class="col-sm-3"><!--left col-->
             
         <?php include 'infoClient.php';?>  
-        </div>
-        <div class="col-sm-10">
-
+        </div>  
+        <div class="col-sm-9">
+            <br><br>
             <ul class="nav nav-tabs" id="myTab">
               <li class="nav-item">
                 <a class="nav-link active" href="#favoris" data-toggle="tab">Mes favoris</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#commandes" data-toggle="tab">Mes commandes en cours</a>
+                <a class="nav-link" href="#commandes" data-toggle="tab">Commandes en cours</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#historique" data-toggle="tab">Mon historique des commandes</a>
+                <a class="nav-link" href="#historique" data-toggle="tab">Mon historique</a>
               </li>
             </ul>
             <div class="tab-content">
@@ -45,6 +45,7 @@
         </div>
     </div>
 </div>
+<br><br><br><br>
 <?php
 include 'footer.php'; 
 ?>

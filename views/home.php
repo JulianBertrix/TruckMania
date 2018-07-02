@@ -70,7 +70,7 @@ include 'carroussel_LastFive.php';
                   <input type="email" class="form-control form-control-lg" placeholder="Enter your email...">
                 </div>
                 <div class="col-12 col-md-3">
-                  <button type="submit" class="btn btn-block btn-lg btn-primary">Sign up!</button>
+                  <button type="submit" class="btn btn-block btn-lg btn-primary">Envoyer</button>
                 </div>
               </div>
             </form>
