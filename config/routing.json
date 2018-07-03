@@ -17,6 +17,18 @@
         "PUT":"DefaultController:getDatasFromPUT",
         "DELETE":"DefaultController:delete"
     },
+    "/api/trucks":{
+        "GET":"TrucksController:getALL"
+    },
+    "/api/utilisateur":{
+        "GET":"UtilisateurController:getALL"
+    },
+    "/api/commande":{
+        "GET":"CommandeController:getALL"
+    },
+    "/api/evenement":{
+        "GET":"EvenementController:getALL"
+    },
     "/api/utilisateur/(:)":{
         "GET":"UtilisateurController:retrieve",
         "POST":"UtilisateurController:update",

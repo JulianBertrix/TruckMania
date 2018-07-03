@@ -49,6 +49,15 @@
     <link rel="stylesheet" type="text/css" href=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/css/formulaire.css"?>>
     <!--===============================================================================================-->
 
+    <!--===============================================================================================-->
+    <!-- DATA TABLE -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4-4.1.1/jq-3.3.1/dt-1.10.18/b-1.5.2/b-colvis-1.5.1/fh-3.1.4/r-2.2.2/sl-1.2.6/datatables.min.css"/>
+    <script type="text/javascript" src='DataTables/media/js/jquery.js'></script>
+    <script type="text/javascript" src="DataTables/media/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="tableau.js"></script>
+    <link rel="stylesheet" type="text/css" href="DataTables/media/css/jquery.dataTables.min.css">
+    <!--===============================================================================================-->
+
     <!-- FullCalendar -->
     <link rel='stylesheet' href=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/css/fullcalendar.css"?>>
 

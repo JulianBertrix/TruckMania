@@ -82,6 +82,9 @@
     <!-- profil client -->
     <script src=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/scripts/updateInfoClient.js"?>></script>
 
+	<!-- DATA TABLE -->
+	<script type="text/javascript" src="https://cdn.datatables.net/v/bs4-4.1.1/jq-3.3.1/dt-1.10.18/b-1.5.2/b-colvis-1.5.1/fh-3.1.4/r-2.2.2/sl-1.2.6/datatables.min.js"></script>
+	
 	<!-- PAGE ADMIN -->
     <script type="text/javascript" src=<?="http://".$_SERVER['SERVER_NAME'] . "/admin/vendor/jquery/jquery.min.js"?>></script>
     <script type="text/javascript" src=<?="http://".$_SERVER['SERVER_NAME'] . "/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"?>></script>

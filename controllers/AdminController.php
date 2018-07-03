@@ -4,10 +4,11 @@ namespace BWB\Framework\mvc\controllers;
 
 use BWB\Framework\mvc\Controller;
 use BWB\Framework\mvc\models\TrucksModel;
+use BWB\Framework\mvc\models\CategorieModel;
 use BWB\Framework\mvc\dao\DAOTrucks;
 use BWB\Framework\mvc\models\UtilisateurModel;
 use BWB\Framework\mvc\dao\DAOUtilisateur;
-
+use BWB\Framework\mvc\dao\DAOCategorie;
 use BWB\Framework\mvc\dao\DAOCommande;
 use BWB\Framework\mvc\dao\DAOEvenement;
 
