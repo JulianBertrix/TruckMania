@@ -4,7 +4,10 @@ namespace BWB\Framework\mvc\controllers;
 
 use BWB\Framework\mvc\Controller;
 use BWB\Framework\mvc\models\AdresseModel;
+use BWB\Framework\mvc\models\TrucksModel;
+use BWB\Framework\mvc\models\PlanningModel;
 use BWB\Framework\mvc\dao\DAOPlanning;
+use BWB\Framework\mvc\dao\DAOCategorie;
 use BWB\Framework\mvc\dao\DAOMap;
 
 class SearchController extends Controller {
@@ -18,6 +21,8 @@ class SearchController extends Controller {
 
         //recup des infos du post
         $datasPost = $this->inputPost();
+
+        var_dump($datasPost);
 
         //Recup des coord GPS
         $datasPost['gps'] = (new DAOMap())->giveMeTheGPS($datasPost['user_input_autocomplete_address']);
@@ -39,28 +44,50 @@ class SearchController extends Controller {
         $adresseObj->setLatitude($datas['gps']['lat']);
         $adresseObj->setLongitude($datas['gps']['lng']);
 
-        //Creation de la date au format SQL
-        $dateRequest = $datas['dateRequest']." ".$datas['heureRequest'];
+        //Check et creation de la date au format SQL
+        if($datas['dateRequest'] !== "" AND $datas['heureRequest'] !== ""){
+            $dateRequest = $datas['dateRequest']." ".$datas['heureRequest'];
+        }else if($datas['dateRequest'] !== ""){
+            $dateRequest = $datas['dateRequest']." ".date("H:i:s");
+        }else if($datas['heureRequest'] !== ""){
+            $dateRequest = date("Y-m-d")." ".$datas['heureRequest'];
+        }else{
+            $dateRequest = date("Y-m-d H:i:s");
+        }
+        
 
+        //recherche des planning correspondant avec la date
         $newDateString = date_format(date_create_from_format('d/m/Y H:i', $dateRequest), 'Y-m-d H:i');
-
-        $catrequest = $datas['catrequest'];
-
-        //Recup des objets plannings
-        $listePlanning = (new DAOPlanning())->getAllByDate($newDateString);
+        $listeFTPlanning = (new DAOPlanning())->getAllByDate($newDateString);
 
         //check si adresse est dans la zone
-        foreach($listePlanning as $planning){
+        foreach($listeFTPlanning as $truckPlanning){
 
-            $newAdresse = $planning->getAdresseId();
+            $newAdresse = $truckPlanning->getAdresseId();
 
-            if(($this->calculDistance($adresseObj,$newAdresse,10)) === true){
-                array_push($listeTrucksOK, $planning);
+            if(($this->calculDistance($adresseObj,$newAdresse,20)) === true){
+                array_push($listeTrucksOK, $truckPlanning);
             }
 
         }
 
-        return $listeTrucksOK;
+        
+
+        $listeTrucksFinal = [];
+
+        //Vérifie si liste des FT correspondent à la catégorie si elle est spécifiée
+        $catrequest = $datas['catrequest'];
+        if($catrequest !== "Toutes les catégories"){
+            foreach($listeTrucksOK as $truck){
+                if(($truck->getCategorieId()->getIntitule()) === $catrequest){
+                    array_push($listeTrucksFinal,$truck);
+                }
+            }
+        }else{
+            $listeTrucksFinal = $listeTrucksOK;
+        }
+        
+        return $listeTrucksFinal;
     }
 
     //Fonction qui prend en argument 2 objets adresse et calcule la distance entre les 2 et retourne true si inferieure à maxDistance en Km
