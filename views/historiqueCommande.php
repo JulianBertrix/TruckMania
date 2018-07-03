@@ -22,8 +22,10 @@
                 ?><li><?php echo $nom; ?></li><?php
             }?></td>
             <td><?php echo $total ?> €</td>
-            <td><button type="button" data-toggle="modal" data-target="#edit" data-uid="1" class="update btn btn-warning btn-sm"><span class="glyphicon glyphicon-pencil"></span></button></td>
+            <td><button type="button" data-toggle="modal" data-target="#avis" data-uid="1" class="update btn btn-warning btn-sm"><span class="fas fa-pencil-alt"></span></button></td>
         </tr>
     </tbody>
 </table>
-
+<div>
+    <?php include 'avisModal.php'; ?>
+</div>

@@ -53,16 +53,16 @@ include 'header.php';
             ?><span class="fa fa-star-half"></span><?php
         }
         if($moyenne == 1.5){
-            ?><span class="fa fa-star"></span><span class="fa fa-star-half"></span><?php
+            ?><span class="fa fa-star"></span><span class="fas fa-star-half-alt"></span><?php
         }
         if($moyenne == 2.5){
-            ?><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star-half"></span><?php
+            ?><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fas fa-star-half-alt"></span><?php
         }
         if($moyenne == 3.5){
-            ?><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star-half"></span><?php
+            ?><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fas fa-star-half-alt"></span><?php
         }
         if($moyenne == 4.5){
-            ?><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star-half"></span><?php
+            ?><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fas fa-star-half-alt"></span><?php
         }
         ?>
         </div>
@@ -87,6 +87,7 @@ include 'header.php';
             <h2 id="fullplanning">Planning</h2>
             <hr>
             <div id="calendar"></div>
+            <?php// include 'calendar.php'; ?>
             <div class="clear"></div>
             <hr>
             
@@ -117,19 +118,19 @@ include 'header.php';
                                 ?><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><?php
                             }
                             if($note == 0.5){
-                                ?><span class="fa fa-star-half"></span><?php
+                                ?><span class="fas fa-star-half-alt"></span><?php
                             }
                             if($note == 1.5){
-                                ?><span class="fa fa-star"></span><span class="fa fa-star-half"></span><?php
+                                ?><span class="fa fa-star"></span><span class="fas fa-star-half-alt"></span><?php
                             }
                             if($note == 2.5){
                                 ?><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star-half"></span><?php
                             }
                             if($note == 3.5){
-                                ?><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star-half"></span><?php
+                                ?><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fas fa-star-half-alt"></span><?php
                             }
                             if($note == 4.5){
-                                ?><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star-half"></span><?php
+                                ?><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fas fa-star-half-alt"></span><?php
                             }
                             //echo $note;
                         }?>

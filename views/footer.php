@@ -46,7 +46,9 @@
 
 	<!-- Profil Client -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-	
+	<script src=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/scripts/redirectionProfileFoodtruck.js"?>></script>
+        
+        
     <!-- Include Google Maps JS API ET FONCTIONS GEOLOC-->
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&amp;key=AIzaSyDd0z6MCPdZ0v5TPvkbB6yWW9dli2vkN3c"></script>
 	<script src=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/scripts/geoloc.js"?>></script>
@@ -81,7 +83,8 @@
   
     <!-- profil client -->
     <script src=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/scripts/updateInfoClient.js"?>></script>
-
+    <script src=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/scripts/posterAvis.js"?>></script>
+    
 	<!-- PAGE ADMIN -->
     <script type="text/javascript" src=<?="http://".$_SERVER['SERVER_NAME'] . "/admin/vendor/jquery/jquery.min.js"?>></script>
     <script type="text/javascript" src=<?="http://".$_SERVER['SERVER_NAME'] . "/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"?>></script>

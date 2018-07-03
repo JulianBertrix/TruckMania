@@ -4,7 +4,6 @@ use BWB\Framework\mvc\DAO;
 use BWB\Framework\mvc\models\CommandeModel;
 use BWB\Framework\mvc\dao\DAOUtilisateur;
 use BWB\Framework\mvc\dao\DAOTrucks;
-use BWB\Framework\mvc\dao\DAOAvis;
 
 class DAOCommande extends DAO{
 
@@ -16,13 +15,12 @@ class DAOCommande extends DAO{
 
         $dateDuJour = date("Y-m-d H:i:s");
         
-        $sql = "INSERT INTO commande (date_commande, utilisateur_id, foodtruck_id, avis_id, total) VALUES ('"
+        $sql = "INSERT INTO commande (date_commande, utilisateur_id, foodtruck_id, total) VALUES ('"
         .$dateDuJour."','"
         .$commande->getUtilisateurId()."','"
         .$commande->getFoodtruckId()."','"
-        .$commande->getAvisId()."','"
         .$commande->getTotal()."')";
-
+        echo $sql;
         $this->getPdo()->query($sql);
     }
 
@@ -92,10 +90,6 @@ class DAOCommande extends DAO{
         //Recup de l'objet foodtruck
         $newItem = (new DAOTrucks())->retrieve($item['foodtruck_id']);
         $newObjet->setFoodtruckId($newItem);
-
-        //Recup de l'objet avis
-        $newItem = (new DAOAvis())->retrieve($item['avis_id']);
-        $newObjet->setAvisId($newItem);
 
         $newObjet->setTotal($item['total']);
 
