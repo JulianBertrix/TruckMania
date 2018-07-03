@@ -5,6 +5,7 @@ namespace BWB\Framework\mvc\controllers;
 use BWB\Framework\mvc\Controller;
 use BWB\Framework\mvc\models\AdresseModel;
 use BWB\Framework\mvc\dao\DAOPlanning;
+use BWB\Framework\mvc\dao\DAOMap;
 
 class SearchController extends Controller {
 
@@ -18,9 +19,12 @@ class SearchController extends Controller {
         //recup des infos du post
         $datasPost = $this->inputPost();
 
+        //Recup des coord GPS
+        $datasPost['gps'] = (new DAOMap())->giveMeTheGPS($datasPost['user_input_autocomplete_address']);
+
         $requestReponse = $this->searchMe($datasPost);
 
-        $datas = ['request' => $requestReponse];
+        $datas = ['request' => $requestReponse,'listeCat' => (new CategorieController())->getAllCategorie()];
 
         $this->render("search",$datas);
 
@@ -30,12 +34,10 @@ class SearchController extends Controller {
     public function searchMe($datas){
 
         $listeTrucksOK = [];
-
-        //Exple POST:array(4) { ["location"]=> string(5) "loooo" ["dateRequest"]=> string(10) "27/06/2018" ["heureRequest"]=> string(5) "13:00" ["catrequest"]=> string(6) "coreen" }
         
-        $adresseFictive = new AdresseModel();
-        $adresseFictive->setLatitude('43.3201460686012');
-        $adresseFictive->setLongitude('1.58819016338447');
+        $adresseObj = new AdresseModel();
+        $adresseObj->setLatitude($datas['gps']['lat']);
+        $adresseObj->setLongitude($datas['gps']['lng']);
 
         //Creation de la date au format SQL
         $dateRequest = $datas['dateRequest']." ".$datas['heureRequest'];
@@ -52,7 +54,7 @@ class SearchController extends Controller {
 
             $newAdresse = $planning->getAdresseId();
 
-            if($this->calculDistance($adresseFictive,$newAdresse,1000)){
+            if(($this->calculDistance($adresseObj,$newAdresse,10)) === true){
                 array_push($listeTrucksOK, $planning);
             }
 
@@ -92,14 +94,15 @@ class SearchController extends Controller {
                 $distance =  $degrees * 59.97662; // 1 degré = 59.97662 milles nautiques, sur base du diamètre moyen de la Terre (6,876.3 milles nautiques)
         }
 
-        return round($distance, $decimals);
-        // $distanceFinale =  round($distance, $decimals);
+        //return round($distance, $decimals);
 
-        // if($distanceFinale > $maxDistance){
-        //     return false;
-        // }else{
-        //     return true;
-        // }
+        $distanceFinale = round($distance, $decimals);
+
+        if($distanceFinale > $maxDistance){
+            return false;
+        }else{
+            return true;
+        }
 
     }
 
