@@ -25,6 +25,9 @@
     "/api/trucks/(:)/events":{
         "GET":"TruckEvenementController:getAllEventsForCalendar"
     },
+    "/api/trucks/(:)/events/(:)":{
+        "DELETE":"TruckEvenementController:deleteMe"
+    },
     "/api/trucks/(:)/planning":{
         "GET":"PlanningController:getAllPlanningForCalendar",
         "POST":"PlanningController:updateThePlanning"

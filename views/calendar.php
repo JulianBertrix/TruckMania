@@ -13,11 +13,13 @@ include 'header.php';
 
     var updatedPlanning;
 
+    var idTruck = 22;
+
 //Chargement Calendar
     $(document).ready(function() {
 
         // Recup des Events
-        checkTheEvents(22);
+        checkTheEvents(idTruck);
     
         var calendar = $('#calendar').fullCalendar('getCalendar');
 
@@ -47,7 +49,7 @@ include 'header.php';
         //Modif du bouton
         if(typeof calEvent.NombreDeParticipant !== 'undefined'){
             $('#modifButt').attr('class', 'btn btn-outline-danger btn-sm');
-            $('#modifButt').attr('onclick', '');
+            $('#modifButt').attr('onclick', 'deleteEvent('+idTruck+','+calEvent.id+')');
             $('#modifButt').html('Supprimer');
         }else{
             $('#modifButt').attr('class', 'btn btn-outline-success btn-sm');
@@ -68,7 +70,7 @@ include 'header.php';
 
         $('#calendar').fullCalendar({
             locale: 'fr',
-            showNonCurrentDates: false,
+            //showNonCurrentDates: false,
             timeFormat: 'H:mm'
         });
 
@@ -144,7 +146,7 @@ include 'header.php';
             },
 
             success: function () {
-                checkTheEvents(22);
+                checkTheEvents(idTruck);
             },
             error: function (param1, param2) {
                 console.log("error");
@@ -153,25 +155,58 @@ include 'header.php';
 
     };
 
+//Supprimer la participation à un évenement api/trucks/(:)/events/(:)
+
+    function deleteEvent(idTruck,idEvent){
+
+        $.ajax({
+            url: "http://trucks-mania.bwb/api/trucks/"+idTruck+"/events/"+idEvent,
+            type: "DELETE",
+
+            success: function () {
+                checkTheEvents(idTruck);
+            },
+            error: function (param1, param2) {
+                console.log("error");
+            }
+        });
+    }
+
 //Duplicate du mois
 
     function cloneMe(){
 
-        var dateStart = $('#calendar').fullCalendar('getView').intervalStart;
-        var dateEnd = $('#calendar').fullCalendar('getView').intervalEnd.subtract(1, 'days');
+        var dateStart = $('#calendar').fullCalendar('getView').start;
+        var dateEnd = $('#calendar').fullCalendar('getView').end.subtract(1, 'days');
 
         //Mois en cours
-        var thisMonthStart = dateStart.format('YYYY-MM-DD').toString();
-        var thisMonthEnd = dateEnd.format('YYYY-MM-DD').toString();
+        var thisMonthStart = $('#calendar').fullCalendar('getView').start.format('YYYY-MM-DD').toString();
+        var thisMonthEnd = $('#calendar').fullCalendar('getView').intervalEnd.subtract(1, 'days').format('YYYY-MM-DD').toString();
 
         //next mois
-        var nextMonthStart = dateStart.add(1, 'months').format('YYYY-MM-DD').toString();
-        var nextMonthEnd = dateEnd.add(1, 'months').format('YYYY-MM-DD').toString();
+        var nextMonthStart = $('#calendar').fullCalendar('getView').intervalStart.add(1, 'months').format('YYYY-MM-DD').toString();
+        var nextMonthEnd = $('#calendar').fullCalendar('getView').intervalEnd.add(1, 'months').format('YYYY-MM-DD').toString();
 
-        console.log(thisMonthStart);
-        console.log(thisMonthEnd);
-        console.log(nextMonthStart);
-        console.log(nextMonthEnd);
+
+        //Requete POST
+        $.ajax({
+            url: "http://trucks-mania.bwb/api/trucks/"+idTruck+"/planning/duplicate",
+            type: "POST",
+            data : {
+                PostThisMonthStart : thisMonthStart,
+                PostThisMonthEnd : thisMonthEnd,
+                PostNextMonthStart : nextMonthStart,
+                PostNextMonthEnd : nextMonthEnd
+            },
+
+            success: function () {
+                checkTheEvents(idTruck);
+                $('#calendar').fullCalendar('next');
+            },
+            error: function (param1, param2) {
+                console.log("error");
+            }
+        });
     };
 
 //Convert date + heure
@@ -276,7 +311,7 @@ include 'header.php';
             </form>
             <br>
             <h5>Gestion du mois</h5>
-            <h6>Dupliquer ce mois vers le mois suivant</h6>
+            <h6>Dupliquer le planning vers le mois suivant</h6>
             <button type="button" class="btn btn-outline-info btn-sm" onclick="cloneMe();">Dupliquer</button>
         </div>
     </div>

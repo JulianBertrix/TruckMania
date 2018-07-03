@@ -83,29 +83,57 @@ class PlanningController extends Controller {
 
     }
 
-    //DUPLIQUER UN MOIS
+//DUPLIQUER UN MOIS
     public function duplicateMonth($id){
         
         //Recup dates dans le Post
         $dataPost = $this->inputPost();
-        $startDate = $dataPost['start'];
-        $endDate = $dataPost['end'];
+        $thisMonthStart = $dataPost['PostThisMonthStart'];
+        $thisMonthEnd = $dataPost['PostThisMonthEnd'];
+        $nextMonthStart = $dataPost['PostNextMonthStart'];
+        $nextMonthEnd = $dataPost['PostNextMonthEnd'];
 
         //Si mois suivant déjà rempli, supprime les dates
-        $oldDates = getTheDateBetween($id,$startDate,$endDate);
+        $oldDates = $this->planning->getTheDateBetween($id,$nextMonthStart,$nextMonthEnd);
 
         if(sizeof($oldDates) > 0){
 
             foreach ($oldDates as $myDate) {
+                
                 $listeIds = [
-                    'foodtruck_id' => $myDate->getFoodtruckId()->getId,
+                    'foodtruck_id' => $myDate->getFoodtruckId()->getId(),
                     'date_debut'=> $myDate->getDateDebut(),
                     'date_fin'=>$myDate->getDateFin()
                 ];
 
                 $this->planning->delete($listeIds);
+
             }
 
+        }
+
+        //Creation des nouveaux planning
+        $newDates = $this->planning->getTheDateBetween($id,$thisMonthStart,$thisMonthEnd);
+
+        foreach ($newDates as $myDate) {
+
+            //Modif des dates
+            $newStart = date_create($myDate->getDateDebut());
+            date_add($newStart,date_interval_create_from_date_string("35 days"));
+            $newStart = date_format($newStart,"Y-m-d H:i:s");
+
+            $newEnd = date_create($myDate->getDateFin());
+            date_add($newEnd,date_interval_create_from_date_string("35 days"));
+            $newEnd = date_format($newEnd,"Y-m-d H:i:s");
+
+            $newPlanning = new PlanningModel();
+            $newPlanning->setFoodtruckId($myDate->getFoodtruckId()->getId());
+            $newPlanning->setAdresseId($myDate->getAdresseId()->getId());
+            $newPlanning->setDateDebut($newStart);
+            $newPlanning->setDateFin($newEnd);
+            $newPlanning->setIntitule($myDate->getIntitule());
+
+            $this->planning->create($newPlanning);
         }
 
     }

@@ -5,6 +5,7 @@ use BWB\Framework\mvc\Controller;
 use BWB\Framework\mvc\dao\DAOTruckEvenement;
 use BWB\Framework\mvc\models\EvenementModel;
 use BWB\Framework\mvc\models\TrucksModel;
+use BWB\Framework\mvc\models\TruckEvenementModel;
 
 class TruckEvenementController extends Controller {
     private $truckEvenement;
@@ -31,6 +32,18 @@ class TruckEvenementController extends Controller {
         echo json_encode($listeJson);
     }
 
+    public function deleteMe($idTruck,$idEvent){
+
+        $newEvent = new TruckEvenementModel();
+        $newEvent->setMyTruck($idTruck);
+        $newEvent->setMyEvent($idEvent);
+
+        $this->truckEvenement->delete($newEvent);
+    }
+
+    public function delete($id){
+    }
+
     public function getAll(){
     }
 
@@ -41,9 +54,6 @@ class TruckEvenementController extends Controller {
     }
 
     public function create($newEvenement){
-    }
-
-    public function delete($id){
     }
 
     public function update($newValeurs){

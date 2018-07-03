@@ -23,8 +23,8 @@ class DAOTruckEvenement extends DAO{
         
     }
 
-    public function delete($id) {
-        $sql = "DELETE FROM foodtruck_evenement WHERE id=".$id;
+    public function delete($objet) {
+        $sql = "DELETE FROM foodtruck_evenement WHERE foodtruck_id = ".$objet->getMyTruck()." AND evenement_id = ".$objet->getMyEvent();
         $this->getPdo()->query($sql);
     }
 
