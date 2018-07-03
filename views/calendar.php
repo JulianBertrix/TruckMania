@@ -16,20 +16,8 @@ include 'header.php';
 //Chargement Calendar
     $(document).ready(function() {
 
-        //Recup des Plannings
-
-        $('#calendar').fullCalendar({
-            locale: 'fr',
-            timeFormat: 'H:mm'
-        });
-        
         // Recup des Events
         checkTheEvents(22);
-
-        // 'color' => '#89D175', 
-        //    'textColor' => 'black'
-        //  locale: 'fr',
-        //     timeFormat: 'H:mm',
     
         var calendar = $('#calendar').fullCalendar('getCalendar');
 
@@ -42,7 +30,7 @@ include 'header.php';
         var heureFin = calEvent.end.format('HH:mm');
 
         $('#titreInfo').val(calEvent.title);
-        $('#lieuInfo').val(calEvent.adresse['adresse']);
+        $('#user_input_autocomplete_address').val(calEvent.adresse['adresse']);
         $('#startDate').val(dateDebut);
         $('#startHeure').val(heureDebut);
         $('#endDate').val(dateFin);
@@ -56,6 +44,17 @@ include 'header.php';
             $('#rowParticipants').css("display","none");
         };
 
+        //Modif du bouton
+        if(typeof calEvent.NombreDeParticipant !== 'undefined'){
+            $('#modifButt').attr('class', 'btn btn-outline-danger btn-sm');
+            $('#modifButt').attr('onclick', '');
+            $('#modifButt').html('Supprimer');
+        }else{
+            $('#modifButt').attr('class', 'btn btn-outline-success btn-sm');
+            $('#modifButt').attr('onclick', 'updateMe();');
+            $('#modifButt').html('Modifier');
+        };
+
         //Stock les id du planning modifiable
         updatedPlanning = calEvent.id; 
         });
@@ -63,19 +62,26 @@ include 'header.php';
 
     });
 
-    function testMe(idTruck){
-
-        
-    };
-
-
-
 //Recup des events
 
     function checkTheEvents(idTruck){
 
+        $('#calendar').fullCalendar({
+            locale: 'fr',
+            showNonCurrentDates: false,
+            timeFormat: 'H:mm'
+        });
+
         //Vide le calendriers
-        $('#calendar').fullCalendar('removeEvents');
+        $('#calendar').fullCalendar('removeEventSources');
+
+        //Vide les sources
+        listeEvents = {
+            events:[]
+        };
+        listePlanning = {
+            events:[]
+        };
 
         //Recup des Events
         $.ajax({
@@ -86,8 +92,9 @@ include 'header.php';
 
             success: function (data) {
                 data.forEach(function(event) {
-                    $('#calendar').fullCalendar('renderEvent', event, false);
+                    listeEvents.events.push(event);
                 });
+                $('#calendar').fullCalendar('addEventSource', listeEvents);
             },
             error: function (param1, param2) {
                 console.log("error");
@@ -102,13 +109,16 @@ include 'header.php';
 
             success: function (data) {
                 data.forEach(function(planning) {
-                    $('#calendar').fullCalendar('renderEvent', planning, false);
+                    listePlanning.events.push(planning);
                 });
+                $('#calendar').fullCalendar('addEventSource', listePlanning);
             },
             error: function (param1, param2) {
                 console.log("error");
             }
         });
+
+
     }
 
 //Update Event
@@ -118,13 +128,16 @@ include 'header.php';
         var newDateStart = changeTheDate($('#startDate').val(),$('#startHeure').val());
         var newDateEnd= changeTheDate($('#endDate').val(),$('#endHeure').val());
 
+        //Preparation adresse
+        newAdresse = $('#user_input_autocomplete_address').val().replace(/, France/g,'');
+
         //Requete POST
         $.ajax({
             url: "http://trucks-mania.bwb/api/planning/update",
             type: "POST",
             data : {
                 listeIds : updatedPlanning,
-                adresse_id : $('#lieuInfo').val(),
+                adresse : newAdresse,
                 date_debut : newDateStart,
                 date_fin : newDateEnd,
                 intitule : $('#titreInfo').val()
@@ -138,6 +151,27 @@ include 'header.php';
             }
         });
 
+    };
+
+//Duplicate du mois
+
+    function cloneMe(){
+
+        var dateStart = $('#calendar').fullCalendar('getView').intervalStart;
+        var dateEnd = $('#calendar').fullCalendar('getView').intervalEnd.subtract(1, 'days');
+
+        //Mois en cours
+        var thisMonthStart = dateStart.format('YYYY-MM-DD').toString();
+        var thisMonthEnd = dateEnd.format('YYYY-MM-DD').toString();
+
+        //next mois
+        var nextMonthStart = dateStart.add(1, 'months').format('YYYY-MM-DD').toString();
+        var nextMonthEnd = dateEnd.add(1, 'months').format('YYYY-MM-DD').toString();
+
+        console.log(thisMonthStart);
+        console.log(thisMonthEnd);
+        console.log(nextMonthStart);
+        console.log(nextMonthEnd);
     };
 
 //Convert date + heure
@@ -181,7 +215,7 @@ include 'header.php';
                             <div class="input-group-prepend">
                                 <div class="input-group-text">Lieu</div>
                             </div>
-                            <input type="text" class="form-control" id="lieuInfo" placeholder="">
+                            <input class="form-control" type="text" id="user_input_autocomplete_address">
                         </div>
                     </div>
                 </div>
@@ -238,12 +272,12 @@ include 'header.php';
                         </div>
                     </div>
                 </div>
-                <button type="button" class="btn btn-outline-success mb-2 btn-sm" onclick="updateMe();">Modifier</button>
+                <button id="modifButt" type="button" class="btn btn-outline-success mb-2 btn-sm" onclick="updateMe();">Modifier</button>
             </form>
             <br>
             <h5>Gestion du mois</h5>
             <h6>Dupliquer ce mois vers le mois suivant</h6>
-            <button type="button" class="btn btn-outline-info btn-sm" onclick="testMe();">Dupliquer</button>
+            <button type="button" class="btn btn-outline-info btn-sm" onclick="cloneMe();">Dupliquer</button>
         </div>
     </div>
 </div>

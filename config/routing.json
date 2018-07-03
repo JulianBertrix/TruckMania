@@ -29,6 +29,9 @@
         "GET":"PlanningController:getAllPlanningForCalendar",
         "POST":"PlanningController:updateThePlanning"
     },
+    "/api/trucks/(:)/planning/duplicate":{
+        "POST":"PlanningController:duplicateMonth"
+    },
     "/api/planning/update":{
         "POST":"PlanningController:updateThePlanning"
     },
