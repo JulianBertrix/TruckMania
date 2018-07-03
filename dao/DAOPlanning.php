@@ -124,4 +124,22 @@ class DAOPlanning extends DAO{
         return $listeToReturn;
     }
 
+    //Recup liste des planning entre 2 dates pour un Truck
+    public function getTheDateBetween($idTruck,$dateStart,$dateEnd) {
+        
+        $request = "SELECT * FROM planning WHERE date_debut <= '".$dateEnd."' AND date_fin >= '".$dateStart."' AND foodtruck_id = ".$idTruck;
+
+        $resultats = $this->getPdo()->query($request)->fetchAll();
+
+        $listeToReturn = array();
+
+        foreach ($resultats as $item) {
+            $liste = ['foodtruck_id'=>$item['foodtruck_id'],'date_debut'=>$item['date_debut'],'date_fin'=>$item['date_fin']];          
+            $newObjet = $this->retrieve($liste);
+            array_push($listeToReturn,$newObjet);
+        }
+
+        return $listeToReturn;
+    }
+
 }

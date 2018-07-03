@@ -25,9 +25,15 @@
     "/api/trucks/(:)/events":{
         "GET":"TruckEvenementController:getAllEventsForCalendar"
     },
+    "/api/trucks/(:)/events/(:)":{
+        "DELETE":"TruckEvenementController:deleteMe"
+    },
     "/api/trucks/(:)/planning":{
         "GET":"PlanningController:getAllPlanningForCalendar",
         "POST":"PlanningController:updateThePlanning"
+    },
+    "/api/trucks/(:)/planning/duplicate":{
+        "POST":"PlanningController:duplicateMonth"
     },
     "/api/planning/update":{
         "POST":"PlanningController:updateThePlanning"

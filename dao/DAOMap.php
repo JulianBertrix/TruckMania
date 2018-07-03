@@ -18,20 +18,32 @@ class DAOMap extends DAO{
 
         $coord;
 
-        $newAdresse = str_replace(" ","+",$adresse);
+        if($adresse !== ""){
 
-        if ($stream = fopen('https://maps.googleapis.com/maps/api/geocode/json?address='.$newAdresse.'&key=AIzaSyDd0z6MCPdZ0v5TPvkbB6yWW9dli2vkN3c', 'r')) {
-            
-            $resultJson = stream_get_contents($stream, -1, 0);
+            $newAdresse = str_replace(" ","+",$adresse);
+
+            if ($stream = fopen('https://maps.googleapis.com/maps/api/geocode/json?address='.$newAdresse.'&key=AIzaSyDd0z6MCPdZ0v5TPvkbB6yWW9dli2vkN3c', 'r')) {
+                
+                $resultJson = stream_get_contents($stream, -1, 0);
+        
+                //Conversion en tableau
+                $result = json_decode($resultJson, true);
     
-            //Conversion en tableau
-            $result = json_decode($resultJson, true);
+                fclose($stream);
 
-            fclose($stream);
-
-            $coord = $result["results"][0]["geometry"]["location"];
+                //Check du statut
+                if($result["status"] === "OK"){
+                    $coord = $result["results"][0]["geometry"]["location"];
+                }else{
+                    $coord = ["lat" => "43.610769" , "lng" => "3.876716"]; //Coord de Montpellier
+                }
+            }
+    
+        }else{
+            $coord = ["lat" => "43.610769" , "lng" => "3.876716"]; //Coord de Montpellier;
         }
 
+        
         return $coord;
     }
 
@@ -55,10 +67,15 @@ class DAOMap extends DAO{
 
             fclose($stream);
 
-            $adresse = $result["results"][0]["formatted_address"];
+            //Check du statut
+            if($result["status"] === "OK"){
+                $adresse = $result["results"][0]["formatted_address"];
+                //Supression du ", France" de l'adresse
+                $adresse = str_replace(", France","",$adresse);
 
-            //Supression du ", France" de l'adresse
-            $adresse = str_replace(", France","",$adresse);
+            }else{
+                $adresse = "Adresse inconnue";
+            }
 
         }
 

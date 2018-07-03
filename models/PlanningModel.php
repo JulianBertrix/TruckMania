@@ -24,7 +24,9 @@ class PlanningModel implements JsonSerializable{
             'title' => $this->intitule,
             'start' => $this->dateDebut,
             'end' => $this->dateFin,
-            'adresse' => $this->adresseId->jsonSerialize()
+            'adresse' => $this->adresseId->jsonSerialize(),
+            'color' => '#89D175', 
+            'textColor' => 'black'
             ];
     }
     
