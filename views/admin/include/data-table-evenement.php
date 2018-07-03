@@ -5,7 +5,7 @@
         <div class="card-body">
           <div class="table-responsive">
             <div class="container-fluid"></div>
-            <table class="table table-striped table-bordered text-center" id="dataTable" style="width:100%">
+            <table class="table table-striped table-bordered text-center" id="" style="width:100%">
               <thead>
                 <tr>
                   <th>Id</th>
@@ -45,4 +45,3 @@
       </div>
     </div>
    
-  </div><!-- ./END CONTAINER DATA TABLE -->

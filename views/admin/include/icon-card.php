@@ -9,7 +9,7 @@
               <div class="mr-5">Food Trucks</div>
             </div>
             <a class="card-footer text-white clearfix small z-1" href="">
-              <span id="trucks" class="float-left">Voir Details</span>
+              <span id="trucksRoute" class="float-left">Voir Details</span>
               <span class="float-right">
                 <i class="fa fa-angle-right"></i>
               </span>
@@ -25,7 +25,7 @@
               <div class="mr-5">Clients</div>
             </div>
             <a class="card-footer text-white clearfix small z-1" href="">
-              <span id="utilisateur" class="float-left">Voir Details</span>
+              <span id="utilisateurRoute" class="float-left">Voir Details</span>
               <span class="float-right">
                 <i class="fa fa-angle-right"></i>
               </span>
@@ -41,7 +41,7 @@
               <div class="mr-5">Commandes</div>
             </div>
             <a class="card-footer text-white clearfix small z-1" href="">
-              <span id="commande" class="float-left">Voir Details</span>
+              <span id="commandeRoute" class="float-left">Voir Details</span>
               <span class="float-right">
                 <i class="fa fa-angle-right"></i>
               </span>
@@ -57,7 +57,7 @@
               <div class="mr-5">Evénements</div>
             </div>
             <a class="card-footer text-white clearfix small z-1" href="">
-              <span id="evenement" class="float-left">Voir Details</span>
+              <span id="evenementRoute" class="float-left">Voir Details</span>
               <span class="float-right">
                 <i class="fa fa-angle-right"></i>
               </span>

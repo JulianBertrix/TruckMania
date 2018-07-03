@@ -11,19 +11,16 @@
 
     <title>Trucks Mania</title>
 
-    <!-- ADMIN PAGE -->
-    <link rel="stylesheet" type="text/css" href=<?="http://".$_SERVER['SERVER_NAME'] . "/admin/vendor/bootstrap/css/bootstrap.min.css"?>>
-    <link rel="stylesheet" type="text/css" href=<?="http://".$_SERVER['SERVER_NAME'] . "/admin/vendor/font-awesome/css/font-awesome.min.css"?>>
-    <link rel="stylesheet" type="text/css" href=<?="http://".$_SERVER['SERVER_NAME'] . "/admin/vendor/datatables/dataTables.bootstrap4.css"?>>
-    <link rel="stylesheet" type="text/css" href=<?="http://".$_SERVER['SERVER_NAME'] . "/admin/css/sb-admin.css"?>>
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.11/css/all.css" type="text/css">
 
     <!-- Bootstrap core CSS -->
     <link href=<?="http://".$_SERVER['SERVER_NAME'] . "/vendor/bootstrap/css/bootstrap.min.css"?> rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" ></script>
-
-    <!-- JQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 
     <!-- Custom fonts for this template -->
     <link href=<?="http://".$_SERVER['SERVER_NAME'] . "/vendor/font-awesome/css/font-awesome.min.css"?> rel="stylesheet" type="text/css">
@@ -51,18 +48,18 @@
 
     <!--===============================================================================================-->
     <!-- DATA TABLE -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4-4.1.1/jq-3.3.1/dt-1.10.18/b-1.5.2/b-colvis-1.5.1/fh-3.1.4/r-2.2.2/sl-1.2.6/datatables.min.css"/>
-    <script type="text/javascript" src='DataTables/media/js/jquery.js'></script>
-    <script type="text/javascript" src="DataTables/media/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="tableau.js"></script>
-    <link rel="stylesheet" type="text/css" href="DataTables/media/css/jquery.dataTables.min.css">
+    <link href="https://code.jquery.com/jquery-3.3.1.js">
+    <link href="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js">
+    <link href="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js">
+    <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+    <link href=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/scripts/data_table.js"?>>
     <!--===============================================================================================-->
 
+    
     <!-- FullCalendar -->
     <link rel='stylesheet' href=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/css/fullcalendar.css"?>>
 
-  </head>
-
+</head>
   <body>
 
     <!-- Navigation -->

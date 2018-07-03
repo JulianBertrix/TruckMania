@@ -5,7 +5,7 @@
         <div class="card-body">
           <div class="table-responsive">
             <div class="container-fluid">
-              <table class="table table-striped table-bordered text-center" id="dataTable" style="width:100%">
+              <table id="dataTabletruck" class="table table-striped table-bordered text-center" style="width:100%">
                 <thead>
                     <tr>
                       <th>Id</th>
