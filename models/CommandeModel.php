@@ -7,7 +7,6 @@ class CommandeModel {
     private $dateCommande;
     private $utilisateurId;
     private $foodtruckId;
-    private $avisId;
     private $total;
 
 
@@ -91,26 +90,6 @@ class CommandeModel {
     public function setFoodtruckId($foodtruckId)
     {
         $this->foodtruckId = $foodtruckId;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of avisId
-     */ 
-    public function getAvisId()
-    {
-        return $this->avisId;
-    }
-
-    /**
-     * Set the value of avisId
-     *
-     * @return  self
-     */ 
-    public function setAvisId($avisId)
-    {
-        $this->avisId = $avisId;
 
         return $this;
     }

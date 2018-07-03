@@ -32,12 +32,15 @@ class ProfileClientController extends Controller{
 
         $dateCommande = null;
         $foodtruck = null;
+        $foodtruckId = null;
         $total = null;
+        $numeroCommande = null;
         
         foreach ($commande as $key => $value){
             if($value->getDateCommande() <= date("Y-m-d H:i:s")){
                 $dateCommande = $value->getDateCommande(); 
                 $foodtruck = $value->getFoodtruckId()->getNom();
+                $foodtruckId = $value->getFoodtruckId()->getId();
                 $total = $value->getTotal();
                 
                 $panier = (new PanierController())->getAllPanierBy(["commande_numero" => $value->getNumero()]); 
@@ -45,7 +48,8 @@ class ProfileClientController extends Controller{
                 $quantite = array();
                 
                 foreach ($panier as $key => $val){
-                    if ($value->getNumero() === $val->getNumeroCommande()->getNumero()){
+                    $numeroCommande = $val->getNumeroCommande()->getNumero();
+                    if ($value->getNumero() === $numeroCommande){
                         array_push($plat, $val->getPlatId()->getNom());
                         array_push($quantite, $val->getQuantite());
                     }
@@ -82,8 +86,11 @@ class ProfileClientController extends Controller{
         $datas = array(
             'infoClient' => (new UtilisateurController())->retrieve(1),
             
+            'foodtruckId' => $foodtruckId,
+            
             'listeFavoris' => $favoris,
-
+            
+            'numeroCommande' => $numeroCommande,
             'listeCommande' => $commande,
             'dateCommande' => $dateCommande,
             'foodtruck' => $foodtruck,

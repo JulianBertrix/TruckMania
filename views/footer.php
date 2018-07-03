@@ -46,7 +46,9 @@
 
 	<!-- Profil Client -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-	
+	<script src=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/scripts/redirectionProfileFoodtruck.js"?>></script>
+        
+        
     <!-- Include Google Maps JS API ET FONCTIONS GEOLOC-->
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&amp;key=AIzaSyDd0z6MCPdZ0v5TPvkbB6yWW9dli2vkN3c"></script>
 	<script src=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/scripts/geoloc.js"?>></script>
@@ -81,10 +83,15 @@
   
     <!-- profil client -->
     <script src=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/scripts/updateInfoClient.js"?>></script>
+<<<<<<< HEAD
 
 	<!-- DATA TABLE -->
 	<script type="text/javascript" src="https://cdn.datatables.net/v/bs4-4.1.1/jq-3.3.1/dt-1.10.18/b-1.5.2/b-colvis-1.5.1/fh-3.1.4/r-2.2.2/sl-1.2.6/datatables.min.js"></script>
 	
+=======
+    <script src=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/scripts/posterAvis.js"?>></script>
+    
+>>>>>>> planning_foodtruck
 	<!-- PAGE ADMIN -->
     <script type="text/javascript" src=<?="http://".$_SERVER['SERVER_NAME'] . "/admin/vendor/jquery/jquery.min.js"?>></script>
     <script type="text/javascript" src=<?="http://".$_SERVER['SERVER_NAME'] . "/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"?>></script>

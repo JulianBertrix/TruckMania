@@ -2,6 +2,12 @@
 namespace BWB\Framework\mvc\dao;
 use BWB\Framework\mvc\DAO;
 use BWB\Framework\mvc\models\AvisModel;
+use BWB\Framework\mvc\dao\DAOTrucks;
+use BWB\Framework\mvc\models\TrucksModel;
+use BWB\Framework\mvc\dao\DAOCommande;
+use BWB\Framework\mvc\models\CommandeModel;
+use BWB\Framework\mvc\dao\DAOUtilisateur;
+use BWB\Framework\mvc\models\UtilisateurModel;
 
 class DAOAvis extends DAO{
 
@@ -13,10 +19,13 @@ class DAOAvis extends DAO{
 
         $dateDuJour = date("Y-m-d H:i:s");
         
-        $sql = "INSERT INTO avis (date_ajout, message, note) VALUES ('"
+        $sql = "INSERT INTO avis (date_ajout, message, note, commande_numero, foodtruck_id, utilisateur_id) VALUES ('"
         .$dateDuJour."','"
         .$avis->getMessage()."','"
-        .$avis->getNote()."')";
+        .$avis->getNote()."','"
+        .$avis->getCommandeNumero()."','"
+        .$avis->getFoodtruckId()."','"
+        .$avis->getUtilisateurId()."')";
 
         $this->getPdo()->query($sql);
     }
@@ -68,19 +77,37 @@ class DAOAvis extends DAO{
             $newAvis = $this->retrieve($item['id']);
             array_push($listeAvis,$newAvis);
         }
-
+        
         return $listeAvis;
     }
 
     public function retrieve($id) {
 
+//        $sql = "SELECT * FROM avis WHERE id=".$id;
+//        $result = $this->getPdo()->query($sql)->fetch();
+//        $avis = new AvisModel($result['message'],$result['note']);
+//        $avis->setId($result['id']); 
+//        $avis->setDateAjout($result['date_ajout']);
+//        
+//        return $avis;
         $sql = "SELECT * FROM avis WHERE id=".$id;
-        $result = $this->getPdo()->query($sql)->fetch();
-        $avis = new AvisModel($result['message'],$result['note']);
-        $avis->setId($result['id']); 
-        $avis->setDateAjout($result['date_ajout']);
-
-        return $avis;
+        $item = $this->getPdo()->query($sql)->fetch();
+        $newObjet = new AvisModel();
+        $newObjet->setId($item['id']); 
+        $newObjet->setDateAjout($item['date_ajout']);
+        $newObjet->setMessage($item['message']);
+        $newObjet->setNote($item['note']);
+   
+        //Recup de l'objet foodtruck
+        $newItem = (new DAOTrucks())->retrieve($item['foodtruck_id']);
+        $newObjet->setFoodtruckId($newItem);
+        
+        //Recup de l'objet utilisateur
+        $newItem = (new DAOUtilisateur())->retrieve($item['utilisateur_id']);
+        $newObjet->setUtilisateurId($newItem);
+        
+        $newItem = (new DAOCommande())->retrieve($item['commande_numero']);
+        return $newObjet;
     }
 
     //Update d'un utilisateur selon son id, 2eme argument: tableau assoc "column => nouvelle valeur"
