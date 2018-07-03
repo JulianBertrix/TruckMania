@@ -23,7 +23,8 @@ function giveMeTheGPS(adresse){
                 console.log("error");
             }
         });
-        console.log(coordGPS)
+
+        return coordGPS;
         
 }
 

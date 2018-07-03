@@ -47,8 +47,9 @@
 	<!-- Profil Client -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 	
-    <!-- Include Google Maps JS API -->
+    <!-- Include Google Maps JS API ET FONCTIONS GEOLOC-->
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&amp;key=AIzaSyDd0z6MCPdZ0v5TPvkbB6yWW9dli2vkN3c"></script>
+	<script src=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/scripts/geoloc.js"?>></script>
 
     <!-- Custom JS code to bind to Autocomplete API -->
     <script type="text/javascript" src=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/scripts/autocomplete.js"?>></script>
