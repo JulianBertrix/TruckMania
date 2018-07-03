@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
-
   <head>
-
     <meta charset="utf-8">
     <link rel="icon" type="image/png" href="./favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -14,13 +12,20 @@
     <!-- JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
+    <!--===============================================================================================-->
+    <!-- DATA TABLE -->
+    <link href="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js">
+    <link href="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js">
+    <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+    <link href=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/scripts/data_table.js"?>>
+    <!--===============================================================================================-->
+
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.11/css/all.css" type="text/css">
 
     <!-- Bootstrap core CSS -->
     <link href=<?="http://".$_SERVER['SERVER_NAME'] . "/vendor/bootstrap/css/bootstrap.min.css"?> rel="stylesheet">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
     <!-- Custom fonts for this template -->
     <link href=<?="http://".$_SERVER['SERVER_NAME'] . "/vendor/font-awesome/css/font-awesome.min.css"?> rel="stylesheet" type="text/css">
@@ -46,16 +51,6 @@
     <link rel="stylesheet" type="text/css" href=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/css/formulaire.css"?>>
     <!--===============================================================================================-->
 
-    <!--===============================================================================================-->
-    <!-- DATA TABLE -->
-    <link href="https://code.jquery.com/jquery-3.3.1.js">
-    <link href="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js">
-    <link href="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js">
-    <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
-    <link href=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/scripts/data_table.js"?>>
-    <!--===============================================================================================-->
-
-    
     <!-- FullCalendar -->
     <link rel='stylesheet' href=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/css/fullcalendar.css"?>>
 

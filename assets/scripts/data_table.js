@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(document).ready(function() {
     $('#dataTabletruck').DataTable({
        dom: 'pftlrp',
        responsive: true,
