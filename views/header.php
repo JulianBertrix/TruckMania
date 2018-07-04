@@ -66,6 +66,52 @@
         <a class="" href=<?="http://".$_SERVER['SERVER_NAME'] . "/inscription"?>>Inscription Client</a>
         <a class="" href=<?="http://".$_SERVER['SERVER_NAME'] . "/inscriptionTrucks"?>>Inscription Trucks</a>
         <a class="" href=<?="http://".$_SERVER['SERVER_NAME'] . "/administration"?>>Admin</a>
-        <a class="btn btn-primary" href="#">Sign In</a>
+
+        <!-- Bouton Login/logout -->
+        <?php
+          if(isset($user)){
+            echo '<button type="button" class="btn btn-outline-info" onclick="deconnectMe();">Log out</button>';
+          }else{
+            echo '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">Sign In</button>';
+          }
+        ?>
+        
+        
       </div>
     </nav>
+
+<!-- Modal LOGIN-->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Se connecter</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">email</div>
+                </div>
+                <input type="text" class="form-control" id="login" value="rhoncus.id@neccursusa.net">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">Mot de passe</div>
+                </div>
+                <input class="form-control" type="password" id="password" value="123">
+            </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Annuler</button>
+        <button type="button" class="btn btn-outline-primary" onclick="checkMyName();">Valider</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -17,29 +17,38 @@ use BWB\Framework\mvc\dao\DAOUtilisateur;
  *
  * @author loic
  */
-class HomeController extends Controller {
+class LoginController extends Controller {
 
     function __construct() {
         parent::__construct();
         $this->securityLoader();
     }
 
-    public function homePage() {
+    public function checkUser() {
 
-        $datas = ['listeCat' => (new CategorieController())->getAllCategorie()];
+        //recup des infos du post
+        $datasPost = $this->inputPost();
 
-        $this->render("home",$datas);
+        //Check datas en BDD
+        $utilisateur = (new DAOUtilisateur())->checkCredits($datasPost['login'],$datasPost['password']);
 
+        if($utilisateur !== false){ //User OK -> generation du token
+            $this->security->generateToken($utilisateur);
+        }
+
+        //Retourne la page en cours
+        header('Content-Type: text/plain');
+        echo $_SERVER['HTTP_REFERER'];
+        
     }
 
     public function login() {
-        $this->security->generateToken(new UtilisateurModel());
-        header("Location: http://" . $_SERVER['SERVER_NAME'] . "/token");
     }
 
     public function logout() {
         $this->security->deactivate();
-        header("Location: http://" . $_SERVER['SERVER_NAME'] . "/token");
+        header('Content-Type: text/plain');
+        echo "http://".$_SERVER['SERVER_NAME'] . "/";
     }
 
     public function token() {
