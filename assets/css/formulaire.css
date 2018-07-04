@@ -18,12 +18,25 @@
     font-family: Poppins-SemiBold;
     src: url('../fonts/poppins/Poppins-SemiBold.ttf'); 
   }
-
+  .container-contact100{
+    background: url("../img/foodtruck.jpg") no-repeat;
+    width:  100px; /*or 70%, or what you want*/
+    height: 200px; /*or 70%, or what you want*/
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
   
   * {
       margin: 0px; 
       padding: 0px; 
       box-sizing: border-box;
+  }
+
+  .list-group-item,mail{
+    font-size: 60%;
+    overflow: hidden;
   }
 
   body, html {
@@ -121,7 +134,7 @@
   .contact100-form-title {
     display: block;
     font-family: Poppins-Bold;
-    font-size: 39px;
+    font-size: 35px;
     color: #333333;
     line-height: 1.2;
     text-align: center;
@@ -154,7 +167,7 @@
     width: 100%;
     background: transparent;
     font-family: Poppins-Medium;
-    font-size: 18px;
+    font-size: px;
     color: #333333;
     line-height: 1.2;
     padding: 0 5px;
