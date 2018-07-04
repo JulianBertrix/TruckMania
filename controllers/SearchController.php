@@ -22,13 +22,21 @@ class SearchController extends Controller {
         //recup des infos du post
         $datasPost = $this->inputPost();
 
-        //var_dump($datasPost);
+        if(isset($datasPost['user_input_autocomplete_address'])){
 
-        //Recup des coord GPS
-        $datasPost['gps'] = (new DAOMap())->giveMeTheGPS($datasPost['user_input_autocomplete_address']);
+            //Recup des coord GPS
+            $datasPost['gps'] = (new DAOMap())->giveMeTheGPS($datasPost['user_input_autocomplete_address']);
+
+
+        }else{
+            $datasPost['gps'] = (new DAOMap())->giveMeTheGPS("");
+            $datasPost['catrequest'] = "Toutes les catégories";
+            $datasPost['dateRequest'] = "";
+            $datasPost['heureRequest'] = "12:00";
+        }
 
         $requestReponse = $this->searchMe($datasPost);
-
+        
         $datas = ['request' => $requestReponse,'listeCat' => (new CategorieController())->getAllCategorie()];
 
         $this->render("search",$datas);
@@ -56,7 +64,6 @@ class SearchController extends Controller {
         }else{
             $newDateString = date("Y-m-d H:i");
         }
-        
 
         //recherche des planning correspondant avec la date
         $listeFTPlanning = (new DAOPlanning())->getAllByDate($newDateString);
@@ -72,11 +79,12 @@ class SearchController extends Controller {
 
         }
 
+        
+
         $listeTrucksFinal = [];
 
         //Vérifie si liste des FT correspondent à la catégorie si elle est spécifiée
-        $catrequest = $datas['catrequest'];
-        if($catrequest !== "Toutes les catégories"){
+        if($datas['catrequest'] !== "Toutes les catégories"){
             foreach($listeTrucksOK as $truck){
                 if(($truck->getCategorieId()->getIntitule()) === $catrequest){
                     array_push($listeTrucksFinal,$truck);

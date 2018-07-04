@@ -62,7 +62,7 @@
       <div class="container">
         <a class="navbar-brand" href=<?="http://".$_SERVER['SERVER_NAME'] . "/"?>>Trucks Mania</a>
         <a class="" href=<?="http://".$_SERVER['SERVER_NAME'] . "/profile"?>>Profil</a>
-        <a class="" href=<?="http://".$_SERVER['SERVER_NAME'] . "/testcalendar"?>>TestCalendar</a>
+        <a class="" href=<?="http://".$_SERVER['SERVER_NAME'] . "/foodtruck/1"?>>VueProfilTruck</a>
         <a class="" href=<?="http://".$_SERVER['SERVER_NAME'] . "/inscription"?>>Inscription Client</a>
         <a class="" href=<?="http://".$_SERVER['SERVER_NAME'] . "/inscriptionTrucks"?>>Inscription Trucks</a>
         <a class="" href=<?="http://".$_SERVER['SERVER_NAME'] . "/administration"?>>Admin</a>
