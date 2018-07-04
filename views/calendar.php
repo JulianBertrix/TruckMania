@@ -1,7 +1,4 @@
-<?php
-include 'header.php';
-?>
-<br><br>
+
 <script>
     var datas = [];
     var listeEvents = {
@@ -221,7 +218,6 @@ include 'header.php';
     }
 </script>
 
-<div class="container">
     <div class="row">
          <!-- Calendrier -->
         <div class="col-8" id='calendar'></div>
@@ -230,11 +226,11 @@ include 'header.php';
         <div class="col-4" id='infosCalendar'>
 
             <!-- Formulaire Modifs Infos -->
-            <h5>Gestion du jour</h5><!-- NICO COL ICI -> CSS -->
+            <h5>Gestion du jour</h5>
             <form class="form">
                 <!-- Titre -->
                 <div class="form-row">
-                    <div class="form-group col">
+                    <div class="form-group">
                         <div class="input-group input-group-sm">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">Libellé</div>
@@ -245,7 +241,7 @@ include 'header.php';
                 </div>
                 <!-- Lieu -->
                 <div class="form-row">
-                    <div class="form-group col">
+                    <div class="form-group">
                         <div class="input-group input-group-sm">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">Lieu</div>
@@ -315,10 +311,3 @@ include 'header.php';
             <button type="button" class="btn btn-outline-info btn-sm" onclick="cloneMe();">Dupliquer</button>
         </div>
     </div>
-</div>
-
-
-<br><br><!-- NICO -->
-<?php
-include 'footer.php';
-?>
