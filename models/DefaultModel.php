@@ -1,7 +1,6 @@
 <?php
 namespace BWB\Framework\mvc\models;
 use BWB\Framework\mvc\UserInterface;
-use JsonSerializable;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -13,7 +12,7 @@ use JsonSerializable;
  *
  * @author loic
  */
-class DefaultModel implements UserInterface,JsonSerializable{
+class DefaultModel implements UserInterface{
     public function getPassword() {
         return "doe";
     }
@@ -27,10 +26,6 @@ class DefaultModel implements UserInterface,JsonSerializable{
 
     public function getUsername() {
         return "john";
-    }
-
-    public function jsonSerialize() {
-
     }
 
 }

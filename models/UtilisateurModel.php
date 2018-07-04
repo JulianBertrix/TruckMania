@@ -1,7 +1,8 @@
 <?php
 namespace BWB\Framework\mvc\models;
+use BWB\Framework\mvc\UserInterface;
 
-class UtilisateurModel {
+class UtilisateurModel implements UserInterface{
 
     private $id;
     private $nom;
@@ -13,8 +14,21 @@ class UtilisateurModel {
     private $adresseId;
     private $foodTruckId;
 
-    public function __construct() {
-        
+    public function __construct() {    
+    }
+
+    public function getPassword() {
+        return $this->motDePasse;
+    }
+
+    public function getRoles() {
+        return [
+            $this->roleId->getNom()
+        ];
+    }
+
+    public function getUsername() {
+        return $this->prenom;
     }
 
 

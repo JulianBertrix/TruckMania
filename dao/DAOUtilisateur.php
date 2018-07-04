@@ -149,14 +149,19 @@ class DAOUtilisateur extends DAO{
 
     //Recupere le dernier tupple ajouté
 
-    public function theLastOne() {
+    public function checkCredits($email,$password) {
 
-        $sql = "SELECT * FROM utilisateur ORDER BY id DESC";
+        $hashPwd = hash("sha1",$password);
+
+        $sql = "SELECT * FROM utilisateur WHERE email = '".$email."' && mot_de_passe = '".$hashPwd."';";
+        
         $item = $this->getPdo()->query($sql)->fetch();
-        $newObjet = $this->retrieve($item['id']);
-        return $newObjet;
+
+        if($item !== false){
+            return $this->retrieve($item['id']);
+        }else{
+            return false;
+        }
     }
-
-
 
 }

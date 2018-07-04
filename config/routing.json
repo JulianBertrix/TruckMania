@@ -1,5 +1,8 @@
 {
     "/": "HomeController:homePage",
+    "/checklogin":{
+        "POST":"LoginController:checkUser"
+    },
     "/profile": "ProfileClientController:profileClient",
     "/foodtruck/(:)": "FoodTruckProfileController:vueProfile",
     "/search": "SearchController:searchPage",
@@ -9,7 +12,7 @@
     "/login": "DefaultController:login",
     "/administration": "AdminController:adminPage",
     "/testtc": "UtilisateurController:testMe",
-    "/logout": "DefaultController:logout",
+    "/logout": "LoginController:logout",
     "/token": "DefaultController:token",
     "/api/default":{
         "GET":"DefaultController:getDatasFromGET",
