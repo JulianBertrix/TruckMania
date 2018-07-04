@@ -22,7 +22,7 @@ class SearchController extends Controller {
         //recup des infos du post
         $datasPost = $this->inputPost();
 
-        var_dump($datasPost);
+        //var_dump($datasPost);
 
         //Recup des coord GPS
         $datasPost['gps'] = (new DAOMap())->giveMeTheGPS($datasPost['user_input_autocomplete_address']);
@@ -47,17 +47,18 @@ class SearchController extends Controller {
         //Check et creation de la date au format SQL
         if($datas['dateRequest'] !== "" AND $datas['heureRequest'] !== ""){
             $dateRequest = $datas['dateRequest']." ".$datas['heureRequest'];
+            $newDateString = date_format(date_create_from_format('d/m/Y H:i', $dateRequest), 'Y-m-d H:i');
         }else if($datas['dateRequest'] !== ""){
             $dateRequest = $datas['dateRequest']." ".date("H:i:s");
+            $newDateString = date_format(date_create_from_format('d/m/Y H:i', $dateRequest), 'Y-m-d H:i');
         }else if($datas['heureRequest'] !== ""){
-            $dateRequest = date("Y-m-d")." ".$datas['heureRequest'];
+            $newDateString = date("Y-m-d")." ".$datas['heureRequest'];
         }else{
-            $dateRequest = date("Y-m-d H:i:s");
+            $newDateString = date("Y-m-d H:i");
         }
         
 
         //recherche des planning correspondant avec la date
-        $newDateString = date_format(date_create_from_format('d/m/Y H:i', $dateRequest), 'Y-m-d H:i');
         $listeFTPlanning = (new DAOPlanning())->getAllByDate($newDateString);
 
         //check si adresse est dans la zone
@@ -70,8 +71,6 @@ class SearchController extends Controller {
             }
 
         }
-
-        
 
         $listeTrucksFinal = [];
 

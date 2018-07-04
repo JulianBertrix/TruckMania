@@ -3,6 +3,7 @@ use BWB\Framework\mvc\models\PlanningModel;
 use BWB\Framework\mvc\models\TrucksModel;
 use BWB\Framework\mvc\models\AdresseModel;
 include "header.php";
+include "searchBar.php";
 ?>
 
 <h1 style="padding-left: 30px;"><strong>Resultats</strong></h1>
