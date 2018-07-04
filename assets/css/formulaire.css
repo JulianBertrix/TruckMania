@@ -18,7 +18,15 @@
     font-family: Poppins-SemiBold;
     src: url('../fonts/poppins/Poppins-SemiBold.ttf'); 
   }
-
+  .container-contact100{
+    background: url("../img/foodtruck.jpg") no-repeat;
+    width:  100px; /*or 70%, or what you want*/
+    height: 200px; /*or 70%, or what you want*/
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
   
   * {
       margin: 0px; 

@@ -72,6 +72,7 @@
 		    </form>
 		</div>
 	</div>
+	<div class="bottom-inscription"></div>
 <?php
 	include 'footer.php'
 ?>
