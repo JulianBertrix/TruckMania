@@ -2,7 +2,7 @@
 	use \BWB\Framework\mvc\models\CategorieModel;
 	include 'header.php';
 ?>
-<div class="container-contact100 trucks">
+<div class="container-contact100">
 		<div class="wrap-contact100">
 			<form class="contact100-form validate-form" action=<?="http://".$_SERVER['SERVER_NAME'] . "/inscriptionTrucks"?> role="form" method="post">
 				<span class="contact100-form-title">

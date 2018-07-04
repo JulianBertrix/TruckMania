@@ -34,6 +34,11 @@
       box-sizing: border-box;
   }
 
+  .list-group-item,mail{
+    font-size: 10px;
+    overflow: hidden;
+  }
+
   body, html {
       height: 100%;
       font-family: Poppins-Regular, sans-serif;
@@ -129,7 +134,7 @@
   .contact100-form-title {
     display: block;
     font-family: Poppins-Bold;
-    font-size: 39px;
+    font-size: 35px;
     color: #333333;
     line-height: 1.2;
     text-align: center;
@@ -162,7 +167,7 @@
     width: 100%;
     background: transparent;
     font-family: Poppins-Medium;
-    font-size: 18px;
+    font-size: px;
     color: #333333;
     line-height: 1.2;
     padding: 0 5px;
