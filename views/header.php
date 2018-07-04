@@ -58,18 +58,29 @@
   <body>
 
     <!-- Navigation -->
+   
     <nav class="navbar navbar-light bg-light static-top">
       <div class="container">
         <a class="navbar-brand" href=<?="http://".$_SERVER['SERVER_NAME'] . "/"?>>Trucks Mania</a>
-        <a class="" href=<?="http://".$_SERVER['SERVER_NAME'] . "/profile"?>>Profil</a>
-        <a class="" href=<?="http://".$_SERVER['SERVER_NAME'] . "/foodtruck/1"?>>VueProfilTruck</a>
-        <a class="" href=<?="http://".$_SERVER['SERVER_NAME'] . "/inscription"?>>Inscription Client</a>
-        <a class="" href=<?="http://".$_SERVER['SERVER_NAME'] . "/inscriptionTrucks"?>>Inscription Trucks</a>
-        <a class="" href=<?="http://".$_SERVER['SERVER_NAME'] . "/administration"?>>Admin</a>
-
+        <?php
+        //Profil
+        if(isset($user)){
+          echo '<a class="" href="http://'.$_SERVER['SERVER_NAME'].'/profile/'.$user->username[0].'">Mon profil</a>';
+          //Ajout page FT si besoin
+          if($user->roles[0] === "foodtruck"){
+            echo '<a class="" href="http://'.$_SERVER['SERVER_NAME'].'/foodtruck/'.$user->username[2].'">Mon FoodTruck</a>';
+          }else if($user->roles[0] === "admin"){ //Page Admin
+            echo '<a class="" href="'.$_SERVER['SERVER_NAME'].'/administration">Admin</a>';
+          }
+        }else{
+          echo '<a class="" href="http://'.$_SERVER['SERVER_NAME'].'/inscription">Inscription Client</a>';
+          echo '<a class="" href="http://'.$_SERVER['SERVER_NAME'].'/inscriptionTrucks">Inscription Trucks</a>';
+        }
+        ?>
         <!-- Bouton Login/logout -->
         <?php
           if(isset($user)){
+            echo '<h5>Bonjour '.$user->username[1].' !</h5>';
             echo '<button type="button" class="btn btn-outline-info" onclick="deconnectMe();">Log out</button>';
           }else{
             echo '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">Sign In</button>';
@@ -91,6 +102,10 @@
         </button>
       </div>
       <div class="modal-body">
+      <h5>Admin: malesuada@Sedet.ca</h5>
+      <h5>Client: non@Maurisnondui.net</h5>
+      <h5>Pro: sagittis.placerat@Donecat.co.uk</h5>
+      <h5>Truck: rhoncus.id@neccursusa.net</h5>
         <div class="form-group">
             <div class="input-group">
                 <div class="input-group-prepend">

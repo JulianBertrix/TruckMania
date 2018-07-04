@@ -51,6 +51,8 @@ class DAOUtilisateur extends DAO{
         return $listeUsers;
     }
 
+    //Recup de l'objet utilisateur à partir du 
+
     //Recup liste selon filtre du type ["attribut" => "valeur"]
     public function getAllBy($filter) {
         

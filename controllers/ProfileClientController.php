@@ -25,10 +25,14 @@ class ProfileClientController extends Controller{
         $this->securityLoader();
     }
 
-    public function profileClient() {
-        $favoris = (new FavorisController())->getAllBy(["utilisateur_id" => 1]);
-        $commande = (new CommandeController())->getAllBy(["utilisateur_id" => 1]);
-        $commandeEnCours = (new CommandeController())->getAllBy(["utilisateur_id" => 1]);
+    public function profileClient($id) {
+
+        //Recup de l'objet User en cours
+        $utilisateur = (new DAOUtilisateur())->retrieve($id);
+
+        $favoris = (new FavorisController())->getAllBy(["utilisateur_id" => $utilisateur->getId()]);
+        $commande = (new CommandeController())->getAllBy(["utilisateur_id" => $utilisateur->getId()]);
+        $commandeEnCours = (new CommandeController())->getAllBy(["utilisateur_id" => $utilisateur->getId()]);
 
         $dateCommande = null;
         $foodtruck = null;
@@ -84,7 +88,7 @@ class ProfileClientController extends Controller{
         }
 
         $datas = array(
-            'infoClient' => (new UtilisateurController())->retrieve(1),
+            'infoClient' => $utilisateur,
             
             'foodtruckId' => $foodtruckId,
             

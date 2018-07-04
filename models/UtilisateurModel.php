@@ -25,10 +25,16 @@ class UtilisateurModel implements UserInterface{
         return [
             $this->roleId->getNom()
         ];
+        
     }
 
     public function getUsername() {
-        return $this->prenom;
+        return 
+        [
+            $this->id,
+            $this->prenom,
+            $this->foodTruckId->getId()
+        ];
     }
 
 

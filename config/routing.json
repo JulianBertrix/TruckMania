@@ -3,7 +3,7 @@
     "/checklogin":{
         "POST":"LoginController:checkUser"
     },
-    "/profile": "ProfileClientController:profileClient",
+    "/profile/(:)": "ProfileClientController:profileClient",
     "/foodtruck/(:)": "FoodTruckProfileController:vueProfile",
     "/search": "SearchController:searchPage",
     "/testcalendar": "DefaultController:getCalendar",
