@@ -111,7 +111,7 @@
                 <div class="input-group-prepend">
                     <div class="input-group-text">email</div>
                 </div>
-                <input type="text" class="form-control" id="login" value="rhoncus.id@neccursusa.net">
+                <input type="text" class="form-control" id="login" value="malesuada@sedet.ca">
             </div>
         </div>
         <div class="form-group">

@@ -38,7 +38,7 @@ class LoginController extends Controller {
 
         //Retourne la page en cours
         header('Content-Type: text/plain');
-        echo $_SERVER['HTTP_REFERER'];
+        echo "http://".$_SERVER['SERVER_NAME'] . "/";
         
     }
 
