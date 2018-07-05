@@ -21,6 +21,7 @@ class PlatModel {
     private $image;
     private $dateCreation;
     private $foodtruckId;
+    private $quantite = 1;
 
     public function __construct($id = null, $nom = null, $description = null, $prix = null, $image = null, $foodtruckId = null) {
         $this->id = $id;

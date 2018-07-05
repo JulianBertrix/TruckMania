@@ -4,6 +4,8 @@ use BWB\Framework\mvc\DAO;
 use BWB\Framework\mvc\models\CommandeModel;
 use BWB\Framework\mvc\dao\DAOUtilisateur;
 use BWB\Framework\mvc\dao\DAOTrucks;
+use BWB\Framework\mvc\dao\DAOAvis;
+use BWB\Framework\mvc\models\AvisModel;
 
 class DAOCommande extends DAO{
 
@@ -15,10 +17,18 @@ class DAOCommande extends DAO{
 
         $dateDuJour = date("Y-m-d H:i:s");
         
-        $sql = "INSERT INTO commande (date_commande, utilisateur_id, foodtruck_id, total) VALUES ('"
+        //creation d'un nouvel avis
+        $avis = new AvisModel();
+        $avis->setMessage("");
+        $avis->setNote(0);
+        (new DAOAvis())->create($avis);
+        $idAvis = $this->getPdo()->lastInsertId();
+        
+        $sql = "INSERT INTO commande (date_commande, utilisateur_id, foodtruck_id, avis_id, total) VALUES ('"
         .$dateDuJour."','"
         .$commande->getUtilisateurId()."','"
         .$commande->getFoodtruckId()."','"
+        .$idAvis."','"
         .$commande->getTotal()."')";
         echo $sql;
         $this->getPdo()->query($sql);
