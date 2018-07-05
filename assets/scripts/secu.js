@@ -1,6 +1,6 @@
 //Verification credits Users
 function checkMyName(){
-    console.log($('#login').val()+" "+$('#password').val());
+
     $.ajax({
         url: "http://trucks-mania.bwb/checklogin",
         type: "POST",
@@ -10,7 +10,6 @@ function checkMyName(){
         },
 
         success: function (data) {
-            console.log(data);
             window.location.href= data
         },
         error: function (param1, param2) {

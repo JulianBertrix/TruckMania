@@ -29,11 +29,17 @@ class UtilisateurModel implements UserInterface{
     }
 
     public function getUsername() {
+
+        if(isset($this->foodTruckId)){
+            $idTruck = $this->foodTruckId->getId();
+        }else{
+            $idTruck = null;
+        }
         return 
         [
             $this->id,
             $this->prenom,
-            $this->foodTruckId->getId()
+            $idTruck
         ];
     }
 
