@@ -2,12 +2,6 @@
 namespace BWB\Framework\mvc\dao;
 use BWB\Framework\mvc\DAO;
 use BWB\Framework\mvc\models\AvisModel;
-use BWB\Framework\mvc\dao\DAOTrucks;
-use BWB\Framework\mvc\models\TrucksModel;
-use BWB\Framework\mvc\dao\DAOCommande;
-use BWB\Framework\mvc\models\CommandeModel;
-use BWB\Framework\mvc\dao\DAOUtilisateur;
-use BWB\Framework\mvc\models\UtilisateurModel;
 
 class DAOAvis extends DAO{
 
@@ -80,13 +74,6 @@ class DAOAvis extends DAO{
 
     public function retrieve($id) {
 
-//        $sql = "SELECT * FROM avis WHERE id=".$id;
-//        $result = $this->getPdo()->query($sql)->fetch();
-//        $avis = new AvisModel($result['message'],$result['note']);
-//        $avis->setId($result['id']); 
-//        $avis->setDateAjout($result['date_ajout']);
-//        
-//        return $avis;
         $sql = "SELECT * FROM avis WHERE id=".$id;
         $item = $this->getPdo()->query($sql)->fetch();
         $newObjet = new AvisModel();
@@ -95,15 +82,6 @@ class DAOAvis extends DAO{
         $newObjet->setMessage($item['message']);
         $newObjet->setNote($item['note']);
    
-        //Recup de l'objet foodtruck
-        $newItem = (new DAOTrucks())->retrieve($item['foodtruck_id']);
-        $newObjet->setFoodtruckId($newItem);
-        
-        //Recup de l'objet utilisateur
-        $newItem = (new DAOUtilisateur())->retrieve($item['utilisateur_id']);
-        $newObjet->setUtilisateurId($newItem);
-        
-        $newItem = (new DAOCommande())->retrieve($item['commande_numero']);
         return $newObjet;
     }
 
@@ -134,18 +112,6 @@ class DAOAvis extends DAO{
 
     public function update($newValeurs){
 
-    }
-
-
-    //Recupere le dernier tupple ajouté
-
-    public function theLastOne() {
-
-        $sql = "SELECT * FROM avis ORDER BY id DESC";
-        $result = $this->getPdo()->query($sql)->fetch();
-        $avis = $this->retrieve($result['id']);
-
-        return $avis;
     }
 
 }

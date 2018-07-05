@@ -17,7 +17,7 @@ class DAOCommande extends DAO{
 
         $dateDuJour = date("Y-m-d H:i:s");
         
-        //creation d'un nouvel avis
+        //creation d'un nouvel avis VIDE mais avec un ID
         $avis = new AvisModel();
         $avis->setMessage("");
         $avis->setNote(0);
@@ -101,6 +101,10 @@ class DAOCommande extends DAO{
         $newItem = (new DAOTrucks())->retrieve($item['foodtruck_id']);
         $newObjet->setFoodtruckId($newItem);
 
+        //Recup de l'objet avis
+        $newItem = (new DAOAvis())->retrieve($item['avis_id']);
+        $newObjet->setAvisId($newItem);
+
         $newObjet->setTotal($item['total']);
 
         return $newObjet;
@@ -133,17 +137,6 @@ class DAOCommande extends DAO{
 
     public function update($newValeurs){
 
-    }
-
-
-    //Recupere le dernier tupple ajouté
-
-    public function theLastOne() {
-
-        $sql = "SELECT * FROM commande ORDER BY numero DESC";
-        $item = $this->getPdo()->query($sql)->fetch();
-        $newObjet = $this->retrieve($item['numero']);
-        return $newObjet;
     }
 
 }
