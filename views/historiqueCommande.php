@@ -25,7 +25,7 @@
                 ?><li><?php echo $nom; ?></li><?php
             }?></td>
             <td><?php echo $commande->getTotal() ?> €</td>
-            <td><button  onclick="showModal(<?php echo $commande->getFoodtruckId()->getId(); ?>)"type="button" data-toggle="modal" data-target="#avis" data-uid="" class="update btn btn-warning btn-sm"><span class="fas fa-pencil-alt"></span></button></td>
+            <td><button  onclick="showModal()"type="button" data-toggle="modal" data-target="#avis" data-productid="<?php echo $commande->getAvisId()->getId(); ?>" class="update btn btn-warning btn-sm"><span class="fas fa-pencil-alt"></span></button></td>
         </tr>
         <?php   }
         }

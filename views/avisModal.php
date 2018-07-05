@@ -11,8 +11,8 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-        <form class="contact100-form validate-form" action=<?="http://".$_SERVER['SERVER_NAME'] . "/foodtruck/"."showModal(".$commande->getFoodtruckId()->getId().")" ?>role="form" method="post">
-            <?php echo "showModal(".$commande->getFoodtruckId()->getId().")"?> <span class="label-input100"><h3>Message</h3></span><br>
+        <form class="contact100-form validate-form" action=<?="http://".$_SERVER['SERVER_NAME'] . "/profile" ?> role="form" method="post">
+            <span class="label-input100"><h3>Message</h3></span><br>
             <input id="message" class="input100" type="text" name="message" placeholder="Message"><br>
             <span class="label-input100"><h3>Note</h3></span>
             <select class="form-control" id="note" name="note">
@@ -33,10 +33,7 @@
 
       <!-- Modal footer -->
       <div class="modal-footer">
-          <button type="button" class="btn btn-success" data-dismiss="modal" onclick="addAvis(<?php 
-            echo $numeroCommande;?>,
-            <?php echo $truck->getFoodtruckId()->getId();
-          ?>)">Valider</button>
+          <button id="valider" type="button" class="btn btn-success" data-dismiss="modal" onclick="">Valider</button>
         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
       </div>
 

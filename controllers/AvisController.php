@@ -5,6 +5,8 @@ namespace BWB\Framework\mvc\controllers;
 use BWB\Framework\mvc\Controller;
 use BWB\Framework\mvc\models\AvisModel;
 use BWB\Framework\mvc\dao\DAOAvis;
+use BWB\Framework\mvc\controllers\CommandeController;
+use BWB\Framework\mvc\models\CommandeModel;
 
 class AvisController extends Controller {
 
@@ -22,30 +24,30 @@ class AvisController extends Controller {
     public function getAllBy($filter){
         return $this->avis->getAllBy($filter);
     }
+    
     public function retrieve($id){
         return $this->avis->retrieve($id);
     }
 
-    public function create($numeroCommande, $foodtruckId, $userId){
-        $dataPost = $this->inputPost();
-        
-        $newAvis = new AvisModel();
-        $newAvis->setMessage($dataPost['message']);
-        $newAvis->setNote($dataPost['note']);
-        $newAvis->setNumeroCommande($numeroCommande);
-        $newAvis->setFoodtruckId($foodtruckId);
-        $newAvis->setUtilisateurId($userId);
-        $obj = $this->avis->create($newAvis);
-        echo $obj;
-
+    public function create($avis){
+        return $this->avis->create($avis);
     }
 
     public function delete($id){
         return $this->avis->delete($id);
     }
 
-    public function updateMe($idAvis,$newValeurs) {
-        return $this->avis->updateMe($idAvis,$newValeurs);
+    public function updateMe($idAvis) {
+        $dataPost = $this->inputPost();
+        
+        
+        $newValeurs = array(
+            "date_ajout" => date("Y-m-d H:i"),
+            "message" => $newValeurs->setMessage($dataPost['message']),
+            "note" => $newValeurs->setNote($dataPost['note'])
+        );
+        
+        $this->avis->updateMe($idAvis,$newValeurs);
     }
 
     public function update($newValeurs) {
