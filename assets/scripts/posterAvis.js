@@ -1,11 +1,13 @@
-function addAvis(numeroCommande,id){
+var id = 0;
+
+function addAvis(idAvis){
     $.ajax({
-        url : "http://trucks-mania.bwb/api/Avis/add/utilisateur/1/commande/"+numeroCommande+"foodtruck/"+id,
+        url : "http://trucks-mania.bwb/api/Avis/"+idAvis,
         type : "POST",
         
         data : {
-           note : $("#note").val(),
-           message : $("#message").val() 
+           message : $("#message").val(),
+           note : $("#note").val()      
         },
         
         success : function(data){
@@ -13,10 +15,21 @@ function addAvis(numeroCommande,id){
             alert("vous avez ajouté un avis");
         },
         
-        error : function(){
+        error : function(data){
+            console.log(data);
             alert("essaie encore");
         }
     });
 } 
 
+function showModal(){
+    $('#avis').on('show.bs.modal', function (event) { // id of the modal with event
+
+        var button = $(event.relatedTarget) // Image that triggered the modal
+
+        var productid = button.data('productid') // Extract info from data-* attributes
+        console.log(productid);
+        $("#valider").attr("onclick", "addAvis("+productid+")");
+    });
+}
 

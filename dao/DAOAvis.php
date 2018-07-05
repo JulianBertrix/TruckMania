@@ -19,14 +19,11 @@ class DAOAvis extends DAO{
 
         $dateDuJour = date("Y-m-d H:i:s");
         
-        $sql = "INSERT INTO avis (date_ajout, message, note, commande_numero, foodtruck_id, utilisateur_id) VALUES ('"
+        $sql = "INSERT INTO avis (date_ajout, message, note) VALUES ('"
         .$dateDuJour."','"
         .$avis->getMessage()."','"
-        .$avis->getNote()."','"
-        .$avis->getCommandeNumero()."','"
-        .$avis->getFoodtruckId()."','"
-        .$avis->getUtilisateurId()."')";
-
+        .$avis->getNote()."')";
+        
         $this->getPdo()->query($sql);
     }
 

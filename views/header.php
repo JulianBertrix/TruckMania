@@ -25,7 +25,11 @@
 
     <!-- Bootstrap core CSS -->
     <link href=<?="http://".$_SERVER['SERVER_NAME'] . "/vendor/bootstrap/css/bootstrap.min.css"?> rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" ></script>
 
     <!-- Custom fonts for this template -->
     <link href=<?="http://".$_SERVER['SERVER_NAME'] . "/vendor/font-awesome/css/font-awesome.min.css"?> rel="stylesheet" type="text/css">
@@ -53,8 +57,11 @@
 
     <!-- FullCalendar -->
     <link rel='stylesheet' href=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/css/fullcalendar.css"?>>
+    
+    <script src=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/scripts/redirectionProfileFoodtruck.js"?>></script>
+    <script src=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/scripts/updateInfoClient.js"?>></script>
+  </head>
 
-</head>
   <body>
 
     <!-- Navigation -->
