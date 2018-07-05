@@ -102,7 +102,7 @@
         </button>
       </div>
       <div class="modal-body">
-      <h5>Admin: malesuada@Sedet.ca</h5>
+      <h5>Admin: malesuada@sedet.ca</h5>
       <h5>Client: non@Maurisnondui.net</h5>
       <h5>Pro: sagittis.placerat@Donecat.co.uk</h5>
       <h5>Truck: rhoncus.id@neccursusa.net</h5>
