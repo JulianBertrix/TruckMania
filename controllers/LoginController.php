@@ -38,8 +38,7 @@ class LoginController extends Controller {
 
         //Retourne la page en cours
         header('Content-Type: text/plain');
-        echo "http://".$_SERVER['SERVER_NAME'] . "/";
-        
+        echo "http://".$_SERVER['SERVER_NAME'];
     }
 
     public function login() {

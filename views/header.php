@@ -64,13 +64,14 @@
         <a class="navbar-brand" href=<?="http://".$_SERVER['SERVER_NAME'] . "/"?>>Trucks Mania</a>
         <?php
         //Profil
+        //var_dump($user);
         if(isset($user)){
           echo '<a class="" href="http://'.$_SERVER['SERVER_NAME'].'/profile/'.$user->username[0].'">Mon profil</a>';
           //Ajout page FT si besoin
           if($user->roles[0] === "foodtruck"){
             echo '<a class="" href="http://'.$_SERVER['SERVER_NAME'].'/foodtruck/'.$user->username[2].'">Mon FoodTruck</a>';
           }else if($user->roles[0] === "admin"){ //Page Admin
-            echo '<a class="" href="'.$_SERVER['SERVER_NAME'].'/administration">Admin</a>';
+            echo '<a class="" href="http://'.$_SERVER['SERVER_NAME'].'/administration">Admin</a>';
           }
         }else{
           echo '<a class="" href="http://'.$_SERVER['SERVER_NAME'].'/inscription">Inscription Client</a>';
@@ -111,7 +112,7 @@
                 <div class="input-group-prepend">
                     <div class="input-group-text">email</div>
                 </div>
-                <input type="text" class="form-control" id="login" value="malesuada@sedet.ca">
+                <input type="text" class="form-control" id="login" value="malesuada@Sedet.ca">
             </div>
         </div>
         <div class="form-group">
