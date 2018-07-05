@@ -81,12 +81,12 @@
     <script src=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/scripts/fullcalendar.js"?>></script>
   
     <!-- profil client -->
-    
+	<script src=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/scripts/updateInfoClient.js"?>></script>
     <script src=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/scripts/posterAvis.js"?>></script>
-	<script src=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/scripts/posterAvis.js"?>></script>
 
 	<!-- Securite -->
     <script src=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/scripts/secu.js"?>></script>
+
     
 	</body>
 </html>
