@@ -56,7 +56,7 @@
     "/api/Favoris/add/utilisateur/(:)/foodtruck/(:)":{
         "POST":"FavorisController:create"
     },
-    "/api/Avis/add/utilisateur/(:)/commande/(:)/foodtruck/(:)":{
+    "/api/Avis/add/commande/(:)/foodtruck/(:)/utilisateur/(:)":{
         "POST":"AvisController:create"
     }
 }

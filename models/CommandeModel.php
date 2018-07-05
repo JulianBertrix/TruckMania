@@ -8,7 +8,11 @@ class CommandeModel {
     private $utilisateurId;
     private $foodtruckId;
     private $total;
-
+    /**
+     *
+     * @var PanierModel
+     */
+    private $panier;
 
     public function __construct() {
     }

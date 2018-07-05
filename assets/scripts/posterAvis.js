@@ -1,11 +1,13 @@
-function addAvis(numeroCommande,id){
+var id = 0;
+
+function addAvis(numeroCommande){
     $.ajax({
-        url : "http://trucks-mania.bwb/api/Avis/add/utilisateur/1/commande/"+numeroCommande+"foodtruck/"+id,
+        url : "http://trucks-mania.bwb/api/Avis/add/commande/"+numeroCommande+"foodtruck/"+id+"/utilisateur/1",
         type : "POST",
         
         data : {
-           note : $("#note").val(),
-           message : $("#message").val() 
+           message : $("#message").value,
+           note : $("#note").val()      
         },
         
         success : function(data){
@@ -19,4 +21,9 @@ function addAvis(numeroCommande,id){
     });
 } 
 
+function showModal(idFT){
+    id = idFT;
+    alert(idFT);
+    $("#avis").show();
+}
 

@@ -18,6 +18,13 @@ class PanierModel {
     private $platId;
     private $quantite;
     
+    /**
+     *
+     * @var array
+     */
+    private $plats;
+    
+    
     public function __construct($numeroCommande = null, $platId = null, $quantite = null) {
         $this->numeroCommande = $numeroCommande;
         $this->platId = $platId;

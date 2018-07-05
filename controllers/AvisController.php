@@ -26,8 +26,18 @@ class AvisController extends Controller {
         return $this->avis->retrieve($id);
     }
 
-    public function create($newAvis){
-        return $this->avis->create($newAvis);
+    public function create($numeroCommande, $foodtruckId, $userId){
+        $dataPost = $this->inputPost();
+        
+        $newAvis = new AvisModel();
+        $newAvis->setMessage($dataPost['message']);
+        $newAvis->setNote($dataPost['note']);
+        $newAvis->setNumeroCommande($numeroCommande);
+        $newAvis->setFoodtruckId($foodtruckId);
+        $newAvis->setUtilisateurId($userId);
+        $obj = $this->avis->create($newAvis);
+        echo $obj;
+
     }
 
     public function delete($id){
