@@ -18,6 +18,8 @@
     font-family: Poppins-SemiBold;
     src: url('../fonts/poppins/Poppins-SemiBold.ttf'); 
   }
+
+    /*----------CSS MODAL JULIAN------------*/
   .container-contact100{
     background: url("../img/foodtruck.jpg") no-repeat;
     width:  100px; /*or 70%, or what you want*/
@@ -26,8 +28,39 @@
     background-position: center;
     background-repeat: no-repeat;
   }
+
+  .rating {
+    width: 226px;
+    margin: 0 auto 1em;
+    font-size: 45px;
+    overflow:hidden;
+}
+.rating a {
+    float:right;
+    color: #aaa;
+    text-decoration: none;
+    -webkit-transition: color .4s;
+    -moz-transition: color .4s;
+    -o-transition: color .4s;
+    transition: color .4s;
+}
+.rating a:hover,
+.rating a:hover ~ a,
+.rating a:focus,
+.rating a:focus ~ a     {
+    color: orange;
+    cursor: pointer;
+}
+.rating2 {
+    direction: rtl;
+}
+.rating2 a {
+    float:none
+}
   
-  
+  /*---------------------------------------------*/
+
+
   * {
       margin: 0px; 
       padding: 0px; 
