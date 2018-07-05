@@ -38,8 +38,8 @@ class AvisController extends Controller {
     }
 
     public function updateMe($idAvis) {
+
         $dataPost = $this->inputPost();
-        
         
         $newValeurs = array(
             "date_ajout" => date("Y-m-d H:i"),

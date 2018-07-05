@@ -21,13 +21,19 @@
                 ?><li><?php echo $nom; ?></li><?php
             }?></td>
             <td>
-            <?php foreach ($listeQuantite as $key => $nom){
-                ?><li><?php echo $nom; ?></li><?php
-            }?></td>
-            <td><?php echo $commande->getTotal() ?> €</td>
-            <td><button  onclick="showModal()"type="button" data-toggle="modal" data-target="#avis" data-productid="<?php echo $commande->getAvisId()->getId(); ?>" class="update btn btn-warning btn-sm"><span class="fas fa-pencil-alt"></span></button></td>
-        </tr>
-        <?php   }
+            
+                <?php 
+                foreach ($listeQuantite as $key => $nom){?>
+                    <li><?php echo $nom; ?></li>
+                <?php
+                }
+                ?>
+            </td>
+            <td><?php echo $commande->getTotal();?> €</td>
+            <td><button type="button" data-toggle="modal" data-target="#avis" data-uid="1" data-productid="<?php echo $commande->getAvisId()->getId(); ?>" class="update btn btn-warning btn-sm" onclick="showModal();"><span class="fas fa-pencil-alt"></span></button></td>
+       </tr>
+        <?php
+           }
         }
         ?>
     </tbody>

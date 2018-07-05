@@ -1,11 +1,11 @@
-<?php include 'header.php'; ?>
+<?php include 'header.php';?>
  
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-2"><!--left col-->
-            
-        <?php include 'infoClient.php';?>  
+            <?php include 'infoClient.php';?>  
         </div>  
+
         <div class="col-sm-10">
             <br><br>
             <ul class="nav nav-tabs" id="myTab">
@@ -32,8 +32,8 @@
                 </div><!--/tab-pane-->
                 <div class="tab-pane" id="commandes">
                     <div class="table-responsive">
-                            <?php include 'listeCommandeEnCours.php';?>
-                        </div> 
+                        <?php include 'listeCommandeEnCours.php';?>
+                    </div> 
                 </div><!--/tab-pane-->
                 
                 <div class="tab-pane" id="historique">
@@ -45,7 +45,6 @@
         </div>
     </div>
 </div>
-
 <?php
 include 'footer.php'; 
 ?>
