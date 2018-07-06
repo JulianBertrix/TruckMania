@@ -24,6 +24,7 @@ use BWB\Framework\mvc\dao\DAOAvis;
 class FoodTruckProfileController extends Controller{
     function __construct() {
         parent::__construct();
+        $this->securityLoader();
     }
 
     public function vueProfile($id) {
