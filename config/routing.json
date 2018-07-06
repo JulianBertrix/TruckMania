@@ -14,6 +14,10 @@
     "/testtc": "UtilisateurController:testMe",
     "/logout": "LoginController:logout",
     "/token": "DefaultController:token",
+    "/demoClient": "DevController:switchClient",
+    "/demoTruck": "DevController:switchTruck",
+    "/demoAdmin": "DevController:switchAdmin",
+    "/demoPro": "DevController:switchPro",
     "/api/default":{
         "GET":"DefaultController:getDatasFromGET",
         "POST":"DefaultController:getDatasFromPOST",

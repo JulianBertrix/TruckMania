@@ -47,7 +47,7 @@ class LoginController extends Controller {
     public function logout() {
         $this->security->deactivate();
         header('Content-Type: text/plain');
-        echo "http://".$_SERVER['SERVER_NAME'] . "/";
+        header('location: http://'.$_SERVER['SERVER_NAME'] .'/');
     }
 
     public function token() {
