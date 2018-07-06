@@ -3,6 +3,8 @@ include 'header.php';
 ?>
 
 <div class="container">
+    <!-- Div SR-ONLY id du FT -->
+    <input class="sr-only" id="idTruck" value=<?= $id;?>>
     <div class="row">
         <div class="col-3">            
             <img src="<?php echo "http://".$_SERVER['SERVER_NAME'] . "/assets/img/trucks/".$logo; ?>">            
@@ -78,7 +80,7 @@ include 'header.php';
     <div class="row">
         <h2>Planning</h2>
     </div>
-    <?php include 'calendar.php'; ?>
+    <?php include 'calendarStatique.php'; ?>
     <hr>
     <div class="row">     
         <h2>Les avis</h2>

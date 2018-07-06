@@ -10,7 +10,7 @@
 
     var updatedPlanning;
 
-    var idTruck = 22;
+    var idTruck = $id;
 
 //Chargement Calendar
     $(document).ready(function() {
