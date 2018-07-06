@@ -25,6 +25,14 @@ class HomeController extends Controller {
     }
 
     public function homePage() {
+        
+        // if(checkMe($this->security->acceptConnexion(),$_SERVER['REQUEST_URI'])){
+        //     $datas = ['listeCat' => (new CategorieController())->getAllCategorie()];
+
+        //     $this->render("home",$datas);
+        // }else{
+        //     header("Location: http://" . $_SERVER['SERVER_NAME'] . "/");
+        // }
 
         $datas = ['listeCat' => (new CategorieController())->getAllCategorie()];
 

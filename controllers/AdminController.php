@@ -11,6 +11,7 @@ use BWB\Framework\mvc\dao\DAOUtilisateur;
 use BWB\Framework\mvc\dao\DAOCategorie;
 use BWB\Framework\mvc\dao\DAOCommande;
 use BWB\Framework\mvc\dao\DAOEvenement;
+require 'CheckURI.php';
 
 class AdminController extends Controller{
 
@@ -20,17 +21,23 @@ class AdminController extends Controller{
     }
 
     public function adminPage(){
-        $trucks = (new DAOTrucks())->getAll();
-    
-        $data = array(
-            'listeTrucks'=> $trucks,
-            'listeUser' =>(new DAOUtilisateur())->getAll(),
-            'listeCommande' =>(new DAOCommande())->getAll(),
-            'listeEvenement' =>(new DAOEvenement())->getAll()
-        );
 
-        $this->render('admin/admin-page',$data);
-        
+        //CHECH SECURITY
+        if(checkMe($this->security->acceptConnexion(),$_SERVER['REQUEST_URI'])){
+            $trucks = (new DAOTrucks())->getAll();
+    
+            $data = array(
+                'listeTrucks'=> $trucks,
+                'listeUser' =>(new DAOUtilisateur())->getAll(),
+                'listeCommande' =>(new DAOCommande())->getAll(),
+                'listeEvenement' =>(new DAOEvenement())->getAll()
+            );
+    
+            $this->render('admin/admin-page',$data);
+      
+        }else{
+            header("Location: http://" . $_SERVER['SERVER_NAME'] . "/");
+        }
     }
 
     // public function getAllUser(){

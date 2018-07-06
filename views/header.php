@@ -58,13 +58,37 @@
     <!-- FullCalendar -->
     <link rel='stylesheet' href=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/css/fullcalendar.css"?>>
 
-    
+    <!-- CSS General -->
+    <link rel="stylesheet" href=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/css/general.css"?>>
+
     <script src=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/scripts/redirectionProfileFoodtruck.js"?>></script>
 
     
   </head>
 
   <body>
+
+    <?php 
+    //var_dump($this->security->acceptConnexion()->username[0]);
+?>
+        <!-- BARRE DEV -->
+          <div class="container-fluid">
+            <div>
+          <a class="" href="http://<?=$_SERVER['SERVER_NAME']?>/demoClient">
+            <button type="button" class="btn btn-outline-secondary btn-sm buttDev">Client</button>
+          </a>
+          <a class="" href="http://<?=$_SERVER['SERVER_NAME']?>/demoTruck">
+            <button type="button" class="btn btn-outline-success btn-sm buttDev">FoodTruck</button>
+          </a>
+          <a class="" href="http://<?=$_SERVER['SERVER_NAME']?>/demoAdmin">
+            <button type="button" class="btn btn-outline-warning btn-sm buttDev">Admin</button>
+          </a>
+          <a class="" href="http://<?=$_SERVER['SERVER_NAME']?>/demoPro">
+            <button type="button" class="btn btn-outline-info btn-sm buttDev">Pro</button>
+          </a>
+          </div>
+          </div>
+
 
     <!-- Navigation -->
    
@@ -91,7 +115,8 @@
         <?php
           if(isset($user)){
             echo '<h5>Bonjour '.$user->username[1].' !</h5>';
-            echo '<button type="button" class="btn btn-outline-info" onclick="deconnectMe();">Log out</button>';
+            echo '<a class="btn btn-outline-info" href="http://'.$_SERVER['SERVER_NAME'].'/logout">Logout</a>';
+           
           }else{
             echo '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">Sign In</button>';
           }
@@ -112,10 +137,6 @@
         </button>
       </div>
       <div class="modal-body">
-      <h5>Admin: malesuada@Sedet.ca</h5>
-      <h5>Client: non@Maurisnondui.net</h5>
-      <h5>Pro: sagittis.placerat@Donecat.co.uk</h5>
-      <h5>Truck: rhoncus.id@neccursusa.net</h5>
         <div class="form-group">
             <div class="input-group">
                 <div class="input-group-prepend">
