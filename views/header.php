@@ -94,7 +94,11 @@
    
     <nav class="navbar navbar-light bg-light static-top">
       <div class="container">
+        <div>
+        <img src=<?php echo "http://".$_SERVER['SERVER_NAME'] . "/assets/img/food-truck.png"?> id="logoNav">
         <a class="navbar-brand" href=<?="http://".$_SERVER['SERVER_NAME'] . "/"?>>Trucks Mania</a>
+        </div>
+       
         <?php
         //Profil
         //var_dump($user);
