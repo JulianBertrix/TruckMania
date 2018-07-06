@@ -14,21 +14,27 @@ function checkMe($connexion,$uri){
     //Check connexion
     if($connexion !== false){
 
-        return true;
-
         //Check du role et de l'uri
 
-        switch($connexion->roles[0]){
+        switch($uri){
 
-            case 'utilisateur':
+            case '/profile/'.$connexion->username[0]: //Accès à son profil
+                $result = true;
+                break;
+            
+            case '/foodtruck/'.$connexion->username[2]: //Accès au profil admin d'un FT
+                $result = true;
+                break;
 
-                switch($uri){
+            case '/administration': //Accès à page administration du site
 
-                    case '/profile/'.$connexion->username[0]: //Accès à son profil
-                        return true;
-                        break;
+                if($connexion->roles[0] === "admin"){
+                    $result = true;
                 }
+                break;
 
+            default:
+                break;
         }
     }
 

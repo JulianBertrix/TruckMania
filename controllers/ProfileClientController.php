@@ -29,13 +29,9 @@ class ProfileClientController extends Controller{
 
     public function profileClient($id) {
 
-        $userDatas = $this->security->acceptConnexion();
-        $uri = $_SERVER['REQUEST_URI'];
-
-        var_dump(checkMe($userDatas,$uri));
-
         //CHECH SECURITY
-        //if(checkMe($this->security->acceptConnexion(),$_SERVER['REQUEST_URI'])){
+
+        if(checkMe($this->security->acceptConnexion(),$_SERVER['REQUEST_URI'])){
 
             //Recup de l'objet User en cours
             $utilisateur = (new DAOUtilisateur())->retrieve($id);
@@ -114,9 +110,9 @@ class ProfileClientController extends Controller{
             
             $this->render("profileClient", $datas);
 
-        // }else{
-        //     header("Location: http://" . $_SERVER['SERVER_NAME'] . "/");
-        // }
+        }else{
+            header("Location: http://" . $_SERVER['SERVER_NAME'] . "/");
+        }
 
     }
     
