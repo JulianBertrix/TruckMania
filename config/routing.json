@@ -59,7 +59,7 @@
     "/api/Favoris/add/utilisateur/(:)/foodtruck/(:)":{
         "POST":"FavorisController:create"
     },
-    "/api/Avis/add/(:)":{
-        "POST":"AvisController:updateMe"
+    "/api/Avis/(:)":{
+        "PUT":"AvisController:updateMe"
     }
 }

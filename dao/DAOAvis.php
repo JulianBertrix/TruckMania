@@ -106,7 +106,7 @@ class DAOAvis extends DAO{
 
         $sql .= "WHERE id = " . $idAvis;
 
-        $this->getPdo()->query($sql);
+        $this->getPdo()->exec($sql);
 
     }
 

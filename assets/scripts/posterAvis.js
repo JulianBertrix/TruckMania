@@ -3,7 +3,7 @@ var id = 0;
 function addAvis(idAvis){
     $.ajax({
         url : "http://trucks-mania.bwb/api/Avis/"+idAvis,
-        type : "POST",
+        type : "PUT",
         
         data : {
            message : $("#message").val(),
