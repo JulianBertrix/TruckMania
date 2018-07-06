@@ -30,7 +30,12 @@
                 ?>
             </td>
             <td><?php echo $commande->getTotal();?> €</td>
-            <td><button type="button" data-toggle="modal" data-target="#avis" data-uid="1" data-productid="<?php echo $commande->getAvisId()->getId(); ?>" class="update btn btn-warning btn-sm" onclick="showModal();"><span class="fas fa-pencil-alt"></span></button></td>
+            <?php if($commande->getAvisId()->getMessage() !== ""){?>
+            <td>avis posté</td>
+            <?php }
+            else{
+            ?><td><button type="button" data-toggle="modal" data-target="#avis" data-uid="1" data-productid="<?php echo $commande->getAvisId()->getId(); ?>" class="update btn btn-warning btn-sm" onclick="showModal();"><span class="fas fa-pencil-alt"></span></button></td>
+            <?php }?>
        </tr>
         <?php
            }

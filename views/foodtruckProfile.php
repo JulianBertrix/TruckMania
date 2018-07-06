@@ -92,6 +92,7 @@ include 'header.php';
                 </div>
                 <div class="col-sm-2">
                     <?php foreach ($listeNote as $note){
+                        ?><li><?php
                         if($note == 1.0){
                             ?><span class="fa fa-star"></span><?php
                         }
@@ -123,7 +124,7 @@ include 'header.php';
                             ?><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fas fa-star-half-alt"></span><?php
                         }
                         //echo $note;
-                    }?>
+                        }?></li>
                 </div>
             </div>
         </div>
