@@ -6,8 +6,6 @@ use BWB\Framework\mvc\Controller;
 use BWB\Framework\mvc\models\UtilisateurModel;
 use BWB\Framework\mvc\dao\DAOUtilisateur;
 
-require 'CheckURI.php';
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -28,7 +26,13 @@ class HomeController extends Controller {
 
     public function homePage() {
         
-        //var_dump(checkMe($this->security->acceptConnexion(),$_SERVER['REQUEST_URI']));
+        // if(checkMe($this->security->acceptConnexion(),$_SERVER['REQUEST_URI'])){
+        //     $datas = ['listeCat' => (new CategorieController())->getAllCategorie()];
+
+        //     $this->render("home",$datas);
+        // }else{
+        //     header("Location: http://" . $_SERVER['SERVER_NAME'] . "/");
+        // }
 
         $datas = ['listeCat' => (new CategorieController())->getAllCategorie()];
 

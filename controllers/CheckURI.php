@@ -11,40 +11,27 @@ function checkMe($connexion,$uri){
 
     $result = false;
 
-    //Accès aux pages visibles pour tout le monde
-    if($uri === '/' || $uri === '/inscription' || $uri === '/inscriptionTrucks'){
-        return true;
-    }else{
-        //Check connexion
+    //Check connexion
     if($connexion !== false){
 
+        return true;
+
         //Check du role et de l'uri
-        if($uri === '/'){
 
-            return true;    //Tout le monde accède à Home
+        switch($connexion->roles[0]){
 
-        }else{
+            case 'utilisateur':
 
-            switch($connexion->roles[0]){
+                switch($uri){
 
-                case 'utilisateur':
-    
-                    switch($uri){
-    
-                        case 'profile'.$connexion->username[0]: //Accès à son profil
-                            return true;
-                            break;
-                        
+                    case '/profile/'.$connexion->username[0]: //Accès à son profil
+                        return true;
+                        break;
+                }
 
-                    }
-
-            }
         }
-        
+    }
 
-        $result = true;
-    }
-    }
 
     //Accès aux uri /foodtrucks/
 

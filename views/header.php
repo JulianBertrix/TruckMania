@@ -68,6 +68,9 @@
 
   <body>
 
+    <?php 
+    //var_dump($this->security->acceptConnexion()->username[0]);
+?>
         <!-- BARRE DEV -->
           <div class="container-fluid">
             <div>
