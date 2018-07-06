@@ -44,11 +44,11 @@ class FoodTruckProfileController extends Controller{
         
         $listeAvis = array();
         $listeNote = array();
-        $avis = (new DAOAvis())->getAllBy(['foodtruck_id' => $id]);
-
-        foreach ($avis as $value){
-            array_push($listeAvis, $value->getMessage());
-            array_push($listeNote, $value->getNote());
+        $commande = (new DAOCommande())->getAllBy(['foodtruck_id' => $id]);
+        
+        foreach ($commande as $value){
+            array_push($listeAvis, $value->getAvisId()->getMessage());
+            array_push($listeNote, $value->getAvisId()->getNote());
         }
         
         $datas = array(
