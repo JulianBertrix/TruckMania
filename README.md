@@ -17,8 +17,7 @@ recherche multicritère et la géolocalisation des food trucks.
     "password" : ""
 }
 5. Tester l'application et l'accès à la BDD avec une requette http a la racine (http://trucks-mania.bwb/), au milieu de la page, les logos des 5 derniers foodtrucks doivent défiler.
-6. Vous devrez voir apparaitre le texte suivant : FRAMEWORK MVC PHP beWeb
-7. Créer une clé API pour un accès aux API de Google Cloud Plateform, activer pour ce projet les API suivantes:
+6. Créer une clé API pour un accès aux API de Google Cloud Plateform, activer pour ce projet les API suivantes:
     Maps JavaScript API
     Places API
     Geocoding API
