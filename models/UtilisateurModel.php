@@ -1,8 +1,9 @@
 <?php
 namespace BWB\Framework\mvc\models;
 use BWB\Framework\mvc\UserInterface;
+use JSONSerializable;
 
-class UtilisateurModel implements UserInterface{
+class UtilisateurModel implements UserInterface,JSONSerializable{
 
     private $id;
     private $nom;
@@ -15,6 +16,19 @@ class UtilisateurModel implements UserInterface{
     private $foodTruckId;
 
     public function __construct() {    
+    }
+
+    public function jsonSerialize(){
+        return array(
+            "id"=> $this->id,
+            "nom"=> $this->nom,
+            "prenom"=> $this->prenom,
+            "email"=> $this->email,
+            "dateCreation"=> $this->dateCreation,
+            "roleId"=> $this->roleId,
+            "adresseId"=> $this->adresseId,
+            "foodTruckId"=> $this->foodTruckId,
+            );
     }
 
     public function getPassword() {

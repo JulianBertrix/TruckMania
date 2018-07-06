@@ -8,11 +8,27 @@ use BWB\Framework\mvc\dao\DAOEvenement;
 
 
 class EvenementController extends Controller {
+
+    private $id;
+    private $dateCreation;
+    private $intitule;
+    private $dateDebut;
+    private $dateFin;
+    private $description;
+    private $image;
+    private $nombreDeParticipant;
+    private $utilisateurId;
+    private $adresseId;
     private $evenement;
 
     public function __construct(){
         parent::__construct();
         $this->evenement = new DAOEvenement();
+    }
+
+    public function getAllJSON(){
+        header("Content-type: application/json");
+        echo json_encode($this->evenement->getAll());
     }
 
     public function getAll(){

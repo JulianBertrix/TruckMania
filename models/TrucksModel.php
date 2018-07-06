@@ -1,7 +1,8 @@
 <?php
 namespace BWB\Framework\mvc\models;
+use JSONSerializable;
 
-class TrucksModel {
+class TrucksModel implements JSONSerializable{
 
     private $id;
     private $siret;
@@ -19,6 +20,18 @@ class TrucksModel {
         $this->logo = $logo;
         $this->categorieId = $categorieId;
         $this->moyenne = $moyenne;
+    }
+
+    public function jsonSerialize(){
+        return array(
+            "id"=> $this->id,
+            "siret"=> $this->siret,
+            "nom"=> $this->nom,
+            "dateCreation"=> $this->dateCreation,
+            "logo"=> $this->logo,
+            "categorieId"=> $this->categorieId,
+            "moyenne"=> $this->moyenne,
+        );
     }
     
     //Accesseurs

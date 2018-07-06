@@ -5,33 +5,33 @@
         <div class="card-body">
           <div class="table-responsive">
             <div class="container-fluid"></div>
-            <table class="table table-striped table-bordered text-center" id="" style="width:100%">
+            <table id="myTableEvenement" class="table table-striped table-bordered text-center" style="width:100%">
               <thead>
                 <tr>
                   <th>Id</th>
-                  <th>Date Création</th>
+                  <th>Date</th>
                   <th>Intitulé</th>
-                  <th>Date Début</th>
-                  <th>Date Fin</th>
+                  <th>Début</th>
+                  <th>Fin</th>
                   <th>Description</th>
                   <th>Logo</th>
                   <th>Nbr Participant</th>
-                  <th>Utilisitateur Id</th>
-                  <th>Adresse Id</th>
+                  <th>Utilisateur</th>
+                  <th>Adresse</th>
                 </tr>
               </thead>
               <tfoot>
                 <tr>
                   <th>Id</th>
-                  <th>Date Création</th>
+                  <th>Date</th>
                   <th>Intitulé</th>
-                  <th>Date Début</th>
-                  <th>Date Fin</th>
+                  <th>Début</th>
+                  <th>Fin</th>
                   <th>Description</th>
                   <th>Logo</th>
                   <th>Nbr Participant</th>
-                  <th>Utilisitateur Id</th>
-                  <th>Adresse Id</th>
+                  <th>Utilisateur</th>
+                  <th>Adresse</th>
                 </tr>
               </tfoot>
               <tbody>
@@ -45,3 +45,4 @@
       </div>
     </div>
    
+

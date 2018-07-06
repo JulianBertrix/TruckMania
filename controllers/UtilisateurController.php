@@ -10,11 +10,24 @@ use BWB\Framework\mvc\dao\DAOFavoris;
 
 class UtilisateurController extends Controller {
 
+    private $id;
+    private $nom;
+    private $prenom;
+    private $email;
+    private $dateCreation;
+    private $roleId;
+    private $adresseId;
+    private $foodTruckId;
     private $user;
 
     public function __construct(){
         parent::__construct();
         $this->user = new DAOUtilisateur();
+    }
+
+    public function getAllJSON(){
+        header("Content-Type: application/json");
+        echo json_encode($this->user->getAll());
     }
 
     public function getAll(){

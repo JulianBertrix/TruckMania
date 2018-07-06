@@ -1,5 +1,5 @@
  <!-- Example DataTables Card-->
- <div class="card mb-3" id="card-trucks">
+ <div class="card mb-3">
     <div class="card-header">
       <i class="fa fa-truck"></i> Food Trucks</div>
         <div class="card-body">

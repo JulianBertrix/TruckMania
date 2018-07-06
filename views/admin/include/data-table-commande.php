@@ -5,14 +5,14 @@
         <div class="card-body">
           <div class="table-responsive">
             <div class="container-fluid">
-            <table class="table table-striped table-bordered text-center" id="" style="width:100%">
+            <table id="myTableCommande" class="table table-striped table-bordered text-center" style="width:100%">
               <thead>
                 <tr>
                   <th>N°</th>
-                  <th>Date Commande</th>
-                  <th>Utilisateur Id</th>
-                  <th>Food Truck Id</th>
-                  <th>Avis Id</th>
+                  <th>Date</th>
+                  <th>Utilisateur</th>
+                  <th>Truck</th>
+                  <th>Avis</th>
                   <th>Total</th>
                 </tr>
               </thead>
@@ -24,10 +24,10 @@
               <tfoot>
                 <tr>
                   <th>N°</th>
-                  <th>Date Commande</th>
-                  <th>Utilisateur Id</th>
-                  <th>Food Truck Id</th>
-                  <th>Avis Id</th>
+                  <th>Date</th>
+                  <th>Utilisateur</th>
+                  <th>Truck</th>
+                  <th>Avis</th>
                   <th>Total</th>
                 </tr>
               </tfoot>
