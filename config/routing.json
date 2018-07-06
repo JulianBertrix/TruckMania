@@ -21,16 +21,16 @@
         "DELETE":"DefaultController:delete"
     },
     "/api/trucks":{
-        "GET":"TrucksController:getALL"
+        "GET":"TrucksController:getALLJSON"
     },
     "/api/utilisateur":{
-        "GET":"UtilisateurController:getALL"
+        "GET":"UtilisateurController:getALLJSON"
     },
     "/api/commande":{
-        "GET":"CommandeController:getALL"
+        "GET":"CommandeController:getALLJSON"
     },
     "/api/evenement":{
-        "GET":"EvenementController:getALL"
+        "GET":"EvenementController:getALLJSON"
     },
     "/api/utilisateur/(:)":{
         "GET":"UtilisateurController:retrieve",
