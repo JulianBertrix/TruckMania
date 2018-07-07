@@ -1,7 +1,8 @@
 <?php
 namespace BWB\Framework\mvc\models;
+use JsonSerializable;
 
-class CommandeModel {
+class CommandeModel implements JsonSerializable{
 
     private $numero;
     private $dateCommande;
@@ -18,7 +19,15 @@ class CommandeModel {
     public function __construct() {
     }
 
-
+    public function jsonSerialize() {
+        return [
+            'numero' => $this->numero,
+            'dateCommande' => $this->dateCommande,
+            'utilisateurId' => $this->utilisateurId,
+            'avisId' => $this->avisId,
+            'total' => $this->total
+        ];
+    }
     /**
      * Get the value of id
      */ 

@@ -18,6 +18,7 @@
     "/demoTruck": "DevController:switchTruck",
     "/demoAdmin": "DevController:switchAdmin",
     "/demoPro": "DevController:switchPro",
+    "/user/(:)/truck/(:)": "AdminTruckController:adminTruck",
     "/api/default":{
         "GET":"DefaultController:getDatasFromGET",
         "POST":"DefaultController:getDatasFromPOST",

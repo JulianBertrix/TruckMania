@@ -3,3 +3,5 @@ config/database.json
 nbproject/
 preparatifs/
 .gitignore
+
+controllers/\.DS_Store

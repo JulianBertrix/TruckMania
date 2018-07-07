@@ -8,13 +8,10 @@
 
 namespace BWB\Framework\mvc\controllers;
 use BWB\Framework\mvc\Controller;
-
-
-use BWB\Framework\mvc\models\UtilisateurModel;
-use BWB\Framework\mvc\dao\DAOUtilisateur;
-use BWB\Framework\mvc\models\AdresseModel;
-use BWB\Framework\mvc\dao\DAOAdresse;
-use BWB\Framework\mvc\dao\DAOPlanning;
+use BWB\Framework\mvc\dao\DAOTrucks;
+use BWB\Framework\mvc\dao\DAOFavoris;
+use BWB\Framework\mvc\dao\DAOCommandes;
+use BWB\Framework\mvc\dao\DAOPlats;
 
 require 'CheckURI.php';
 
@@ -25,88 +22,52 @@ class AdminTruckController extends Controller{
         $this->securityLoader();
     }
 
-    public function profileClient($id) {
+    public function adminTruck($idUser,$idTruck) {
 
         //CHECH SECURITY
 
         if(checkMe($this->security->acceptConnexion(),$_SERVER['REQUEST_URI'])){
 
-            //Recup de l'objet User en cours
-            $utilisateur = (new DAOUtilisateur())->retrieve($id);
+            //Recup de l'objet truck en cours
+            $truck = (new DAOTrucks())->retrieve($idTruck);
 
-            $favoris = (new FavorisController())->getAllBy(["utilisateur_id" => $utilisateur->getId()]);
-            $commande = (new CommandeController())->getAllBy(["utilisateur_id" => $utilisateur->getId()]);
-            $commandeEnCours = (new CommandeController())->getAllBy(["utilisateur_id" => $utilisateur->getId()]);
+            //Infos du truck + categorie
+            $infos = [
+                "siret" => $truck->getSiret(),
+                "nom" => $truck->getNom(),
+                "logo" => $truck->getLogo(),
+                "moyenne" => $truck->getLogo(),
+                "catId" => $truck->getCategorieId()->getId(),
+                "catIntitule" => $truck->getCategorieId()->getIntitule()
+            ];
 
-            $foodtruckId = null;
-            $numeroCommande = null;
-            $avisId = null;
-            foreach ($commande as $key => $value){
-                if($value->getDateCommande() <= date("Y-m-d H:i:s")){
-                    $foodtruckId = $value->getFoodtruckId()->getId();
-                    $avisId = $value->getAvisId()->getId();
-                    $panier = (new PanierController())->getAllPanierBy(["commande_numero" => $value->getNumero()]); 
-                    $plat = array();
-                    $quantite = array();
-                    
-                    foreach ($panier as $key => $val){
-                        $numeroCommande = $val->getNumeroCommande()->getNumero();
-                        if ($value->getNumero() === $numeroCommande){
-                            array_push($plat, $val->getPlatId()->getNom());
-                            array_push($quantite, $val->getQuantite());
-                        }
-                    } 
-                }
-            }
-            
-            $dateCommandeEnCours = null;
-            $foodtruckEnCours = null;
-            $totalEnCours = null;
-            
-            $platEnCours = null;
-            $quantiteEnCours = null;
-            
-            foreach ($commandeEnCours as $key => $value){
-                if($value->getDateCommande() >= date("Y-m-d H:i:s")){
-                    $dateCommandeEnCours = $value->getDateCommande(); 
-                    $foodtruckEnCours = $value->getFoodtruckId()->getNom();
-                    $totalEnCours = $value->getTotal();
-                    
-                    $panierEnCours = (new PanierController())->getAllPanierBy(["commande_numero" => $value->getNumero()]); 
-                    $platEnCours = array();
-                    $quantiteEnCours = array();
-                    
-                    foreach ($panierEnCours as $key => $val){
-                        if ($value->getNumero() === $val->getNumeroCommande()->getNumero()){
-                            array_push($platEnCours, $val->getPlatId()->getNom());
-                            array_push($quantiteEnCours, $val->getQuantite());
-                        }
-                    } 
-                }
+            //Liste des commandes completes avec methode theFullCommande($numero)
+            $listeObjetsCommandes = (new DAOCommandes())->getAllBy(["foodtruck_id" => $truck->getId()]);
+            $listeCommandes = [];
+            foreach($listeObjetsCommandes as $item){
+                array_push($listeCommandes,(new DAOCommandes())->theFullCommande($item->getNumero()));
             }
 
+            //Nombre de favoris tableau de stats
+            $nbFavoris = sizeof((new DAOFavoris())->getAllBy(["foodtruck_id" => $truck->getId()]));
+
+            //Liste de ses adresses
+            $listeAdresseObj = getAdressesForTruck($truck->getId());
+            $listeAdresses = [];
+            foreach($listeAdresseObj as $item){
+                array_push($listeAdresses,$item->jsonSerialize());
+            }
+
+            //Creation de datas
             $datas = array(
-                'infoClient' => $utilisateur,
-                
-                'foodtruckId' => $foodtruckId,
-                'avisId' => $avisId,
-                'listeFavoris' => $favoris,
-                
-                'numeroCommande' => $numeroCommande,
-                'listeCommande' => $commande,
-
-                'listePlat' => $plat,
-                'listeQuantite' => $quantite,
-                
-                'listeCommandeEnCours' => $commandeEnCours,
-                'dateCommandeEnCours' => $dateCommandeEnCours,
-                'foodtruckEnCours' => $foodtruckEnCours,
-                'listePlatEnCours' => $platEnCours,
-                'listeQuantiteEnCours' => $quantiteEnCours,
-                'totalEnCours' => $totalEnCours
-            );
-            
-            $this->render("profileClient", $datas);
+                'infosTruck' => $infos,
+                'listeAdresse' => $listeAdresses,
+                'listeCommandes' => $listeCommandes,
+                'nbFavoris' => $nbFavoris
+            );         
+         
+            //Creation de la vue
+            $this->render("profileTruck", $datas);
 
         }else{
             header("Location: http://" . $_SERVER['SERVER_NAME'] . "/");
