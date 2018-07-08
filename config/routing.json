@@ -66,5 +66,8 @@
     },
     "/api/Avis/(:)":{
         "PUT":"AvisController:updateMe"
+    },
+    "/api/trucks/(:)/infos":{
+        "PUT":"TrucksController:updateTruck"
     }
 }

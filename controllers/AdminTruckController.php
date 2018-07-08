@@ -10,8 +10,9 @@ namespace BWB\Framework\mvc\controllers;
 use BWB\Framework\mvc\Controller;
 use BWB\Framework\mvc\dao\DAOTrucks;
 use BWB\Framework\mvc\dao\DAOFavoris;
-use BWB\Framework\mvc\dao\DAOCommandes;
+use BWB\Framework\mvc\dao\DAOCommande;
 use BWB\Framework\mvc\dao\DAOPlats;
+use BWB\Framework\mvc\dao\DAOPlanning;
 
 require 'CheckURI.php';
 
@@ -33,26 +34,28 @@ class AdminTruckController extends Controller{
 
             //Infos du truck + categorie
             $infos = [
+                "id" => $truck->getId(),
                 "siret" => $truck->getSiret(),
                 "nom" => $truck->getNom(),
                 "logo" => $truck->getLogo(),
-                "moyenne" => $truck->getLogo(),
+                "logoChemin" => "http://".$_SERVER['SERVER_NAME'] . "/assets/img/trucks/".$truck->getLogo(),
+                "moyenne" => $truck->getMoyenne(),
                 "catId" => $truck->getCategorieId()->getId(),
                 "catIntitule" => $truck->getCategorieId()->getIntitule()
             ];
 
             //Liste des commandes completes avec methode theFullCommande($numero)
-            $listeObjetsCommandes = (new DAOCommandes())->getAllBy(["foodtruck_id" => $truck->getId()]);
+            $listeObjetsCommandes = (new DAOCommande())->getAllBy(["foodtruck_id" => $truck->getId()]);
             $listeCommandes = [];
             foreach($listeObjetsCommandes as $item){
-                array_push($listeCommandes,(new DAOCommandes())->theFullCommande($item->getNumero()));
+                array_push($listeCommandes,(new DAOCommande())->theFullCommande($item->getNumero()));
             }
 
             //Nombre de favoris tableau de stats
-            $nbFavoris = sizeof((new DAOFavoris())->getAllBy(["foodtruck_id" => $truck->getId()]));
+            $nbFavoris = count((new DAOFavoris())->getAllBy(["foodtruck_id" => $truck->getId()]));
 
             //Liste de ses adresses
-            $listeAdresseObj = getAdressesForTruck($truck->getId());
+            $listeAdresseObj = (new DAOPlanning())->getAdressesForTruck($truck->getId());
             $listeAdresses = [];
             foreach($listeAdresseObj as $item){
                 array_push($listeAdresses,$item->jsonSerialize());

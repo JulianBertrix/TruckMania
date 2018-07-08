@@ -1,9 +1,9 @@
 <?php include 'header.php';?>
- 
+
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-2"><!--left col-->
-            <?php include 'infoClient.php';?>  
+        <div class="col-sm-2">
+            <?php include 'infoTruck.php';?>  
         </div>  
 
         <div class="col-sm-10">
@@ -22,23 +22,23 @@
             <div class="tab-content">
                 <div class="tab-pane active" id="favoris">
                     <div class="table-responsive">
-                        <?php include 'listeFavoris.php';?>
+                        <?php //include 'listeFavoris.php';?>
                         <div class="row">
                           <div class="col-md-6 col-md-offset-4 text-center">
                                 <ul class="pagination" id="myPager"></ul>
                           </div>
                         </div>
-                    </div><!--/table-resp-->
-                </div><!--/tab-pane-->
+                    </div>
+                </div>
                 <div class="tab-pane" id="commandes">
                     <div class="table-responsive">
-                        <?php include 'listeCommandeEnCours.php';?>
+                        <?php //include 'listeCommandeEnCours.php';?>
                     </div> 
-                </div><!--/tab-pane-->
+                </div>
                 
                 <div class="tab-pane" id="historique">
                     <div class="table-responsive">
-                        <?php include 'historiqueCommande.php'; ?>
+                        <?php //include 'historiqueCommande.php'; ?>
                     </div>
                 </div>
             </div> 

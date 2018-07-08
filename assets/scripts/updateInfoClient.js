@@ -58,3 +58,25 @@ function addFavoris(id){
         }
     });
 }
+
+//UPDATE INFOS TRUCK
+function updateTruck(idTruck){
+    $.ajax({
+        url : "http://trucks-mania.bwb/api/trucks/"+idTruck+"/infos",
+        type : "PUT",
+        data : {
+           nom : $("#nomModif").val(),
+           siret : $("#siretModif").val(),     
+           logo : $("#logoModif").val()     
+        },
+        
+        success : function(){
+            document.location.href = document.location.href;
+        },
+        
+        error : function(data){
+            console.log(data);
+            alert("essaie encore");
+        }
+    });
+}
