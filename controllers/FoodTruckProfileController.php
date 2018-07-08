@@ -32,47 +32,41 @@ class FoodTruckProfileController extends Controller{
 
     public function vueProfile($id) {
 
-        if(checkMe($this->security->acceptConnexion(),$_SERVER['REQUEST_URI'])){
-            $truck = (new DAOTrucks())->retrieve($id);
-            //$id = $truck->getId();
-            $nom = $truck->getNom();
-            $logo = $truck->getLogo();
-            $moyenne = $truck->getMoyenne();
-            
-            $categorie = $truck->getCategorieId()->getIntitule();
-            
-            $carte = array();
-            $plats = (new DAOPlat())->getAllBy(['foodtruck_id' => $id]);
-            
-            foreach ($plats as $plat){
-                array_push($carte, $plat->getNom());
-            }
-            
-            $listeAvis = array();
-            $listeNote = array();
-            $commande = (new DAOCommande())->getAllBy(['foodtruck_id' => $id]);
-            
-            foreach ($commande as $value){
-                array_push($listeAvis, $value->getAvisId()->getMessage());
-                array_push($listeNote, $value->getAvisId()->getNote());
-            }
-            
-            $datas = array(
-                'id' => $id,
-                'nom' => $nom,
-                'logo' => $logo,
-                'categorie' => $categorie,
-                'carte' => $carte,
-                'listeAvis' => $listeAvis,
-                'listeNote' => $listeNote,
-                'moyenne' => $moyenne
-            );
+        $truck = (new DAOTrucks())->retrieve($id);
+        //$id = $truck->getId();
+        $nom = $truck->getNom();
+        $logo = $truck->getLogo();
+        $moyenne = $truck->getMoyenne();
         
-            $this->render('foodtruckProfile', $datas);
-
-        }else{
-            header("Location: http://" . $_SERVER['SERVER_NAME'] . "/");
-        }   
+        $categorie = $truck->getCategorieId()->getIntitule();
         
+        $carte = array();
+        $plats = (new DAOPlat())->getAllBy(['foodtruck_id' => $id]);
+        
+        foreach ($plats as $plat){
+            array_push($carte, $plat->getNom());
+        }
+        
+        $listeAvis = array();
+        $listeNote = array();
+        $commande = (new DAOCommande())->getAllBy(['foodtruck_id' => $id]);
+        
+        foreach ($commande as $value){
+            array_push($listeAvis, $value->getAvisId()->getMessage());
+            array_push($listeNote, $value->getAvisId()->getNote());
+        }
+        
+        $datas = array(
+            'id' => $id,
+            'nom' => $nom,
+            'logo' => $logo,
+            'categorie' => $categorie,
+            'carte' => $carte,
+            'listeAvis' => $listeAvis,
+            'listeNote' => $listeNote,
+            'moyenne' => $moyenne
+        );
+    
+        $this->render('foodtruckProfile', $datas);        
     }
 }

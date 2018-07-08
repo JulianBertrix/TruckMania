@@ -18,6 +18,7 @@
     "/demoTruck": "DevController:switchTruck",
     "/demoAdmin": "DevController:switchAdmin",
     "/demoPro": "DevController:switchPro",
+    "/user/(:)/truck/(:)": "AdminTruckController:adminTruck",
     "/api/default":{
         "GET":"DefaultController:getDatasFromGET",
         "POST":"DefaultController:getDatasFromPOST",
@@ -57,6 +58,9 @@
     "/api/planning/update":{
         "POST":"PlanningController:updateThePlanning"
     },
+    "/api/planning/delete":{
+        "POST":"PlanningController:delete"
+    },
     "/api/Favoris/delete/utilisateur/(:)/foodtruck/(:)":{
         "POST":"FavorisController:delete"
     },
@@ -65,5 +69,11 @@
     },
     "/api/Avis/(:)":{
         "PUT":"AvisController:updateMe"
+    },
+    "/api/trucks/(:)/infos":{
+        "PUT":"TrucksController:updateTruck"
+    },
+    "/api/adresse/(:)/update":{
+        "POST":"AdresseController:update"
     }
 }

@@ -7,13 +7,13 @@
  */
 
 namespace BWB\Framework\mvc\models;
-
+use JsonSerializable;
 /**
  * Description of PlatModel
  *
  * @author julianbertrix
  */
-class PlatModel {
+class PlatModel implements JsonSerializable{
     private $id;
     private $nom;
     private $description;
@@ -21,7 +21,6 @@ class PlatModel {
     private $image;
     private $dateCreation;
     private $foodtruckId;
-    private $quantite = 1;
 
     public function __construct($id = null, $nom = null, $description = null, $prix = null, $image = null, $foodtruckId = null) {
         $this->id = $id;
@@ -31,6 +30,17 @@ class PlatModel {
         $this->image = $image;
         $this->dateCreation = date("Y-m-d H:i:s");
         $this->foodtruckId = $foodtruckId;
+    }
+
+    public function jsonSerialize() {
+        return [
+            'id' => $this->id,
+            'nom' => $this->nom,
+            'description' => $this->description,
+            'prix' => $this->prix,
+            'image' => $this->image,
+            'dateCreation' => $this->dateCreation
+        ];
     }
 
 //Accesseurs

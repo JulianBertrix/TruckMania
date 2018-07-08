@@ -93,11 +93,31 @@ class DAOTrucks extends DAO{
         return $newObjet;
     }
 
-    public function update($array) {
-        $sql = "UPDATE foodtruck SET nom='".$array->getNom()."', logo='".$array->getLogo()."', "
-                . "categorie_id='".$array->getCategorieId()."' WHERE id=".$array->getId();
-        return $this->getPdo()->query($sql)->fetch();
+    public function updateMe($id,$array) {
+
+        $sql = "UPDATE foodtruck SET ";
+
+        $compteur = 0;
+
+        foreach ($array as $key => $value) {
+
+            if($compteur === (count($array)-1)){
+                $sql .= $key . " = '" . $value . "' ";
+            }else{
+                $sql .= $key . " = '" . $value . "', ";
+            }
+
+            $compteur++;
+        }
+
+        $sql .= "WHERE id = " . $id;
+
+        $this->getPdo()->query($sql);
+
+        return $sql;
     }
+
+    public function update($array) {}
 
     public function getLastFive() {
         

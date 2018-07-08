@@ -108,21 +108,12 @@ class DAOAdresse extends DAO{
 
         $this->getPdo()->query($sql);
 
+        return $sql;
+
     }
 
     public function update($newValeurs){
 
-    }
-
-
-    //Recupere le dernier tupple ajouté
-
-    public function theLastOne() {
-
-        $sql = "SELECT * FROM adresse ORDER BY id DESC";
-        $item = $this->getPdo()->query($sql)->fetch();
-        $newObjet = $this->retrieve($item['id']);
-        return $newObjet;
     }
 
 }

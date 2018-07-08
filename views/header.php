@@ -106,7 +106,7 @@
           echo '<a class="" href="http://'.$_SERVER['SERVER_NAME'].'/profile/'.$user->username[0].'">Mon profil</a>';
           //Ajout page FT si besoin
           if($user->roles[0] === "foodtruck"){
-            echo '<a class="" href="http://'.$_SERVER['SERVER_NAME'].'/foodtruck/'.$user->username[2].'">Mon FoodTruck</a>';
+            echo '<a class="" href="http://'.$_SERVER['SERVER_NAME'].'/user/'.$user->username[0].'/truck/'.$user->username[2].'">Mon FoodTruck</a>';
           }else if($user->roles[0] === "admin"){ //Page Admin
             echo '<a class="" href="http://'.$_SERVER['SERVER_NAME'].'/administration">Admin</a>';
           }

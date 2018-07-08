@@ -25,8 +25,8 @@ class DAOPlanning extends DAO{
     public function delete($listeIds) {
         $sql = "DELETE FROM planning WHERE
          foodtruck_id=".$listeIds['foodtruck_id']
-        ." AND date_debut= '".$listeIds['date_debut']
-        ."' AND date_fin= '".$listeIds['date_fin']."'";
+        ." AND date_debut= '".$listeIds["date_debut"]
+        ."' AND date_fin= '".$listeIds["date_fin"]."'";
 
         $this->getPdo()->query($sql);
     }
@@ -82,9 +82,9 @@ class DAOPlanning extends DAO{
     public function retrieve($listeIds) {
 
         $sql = "SELECT * FROM planning 
-        WHERE foodtruck_id=".$listeIds['foodtruck_id']
-        ." AND date_debut= '".$listeIds['date_debut']
-        ."' AND date_fin= '".$listeIds['date_fin']."'";
+        WHERE foodtruck_id=".$listeIds["foodtruck_id"]
+        ." AND date_debut= '".$listeIds["date_debut"]
+        ."' AND date_fin= '".$listeIds["date_fin"]."'";
         
         $item = $this->getPdo()->query($sql)->fetch();
         $newObjet = new PlanningModel();
@@ -136,6 +136,23 @@ class DAOPlanning extends DAO{
         foreach ($resultats as $item) {
             $liste = ['foodtruck_id'=>$item['foodtruck_id'],'date_debut'=>$item['date_debut'],'date_fin'=>$item['date_fin']];          
             $newObjet = $this->retrieve($liste);
+            array_push($listeToReturn,$newObjet);
+        }
+
+        return $listeToReturn;
+    }
+
+    //Recup des adresses distinctes d'un truck
+    public function getAdressesForTruck($idTruck) {
+        
+        $request = "SELECT DISTINCT adresse_id FROM planning WHERE foodtruck_id = ".$idTruck;
+
+        $resultats = $this->getPdo()->query($request)->fetchAll();
+
+        $listeToReturn = array();
+
+        foreach ($resultats as $item) {
+            $newObjet = (new DAOAdresse())->retrieve($item['adresse_id']);
             array_push($listeToReturn,$newObjet);
         }
 

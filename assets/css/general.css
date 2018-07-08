@@ -7,8 +7,20 @@
 #logoNav{
     max-height: 40px;
 }
+/*------------------Profil truck------------------*/
+.cardAdresse{
+    margin: 20px;
+    text-align: center;
+}
 
+.inputAdresse{
+    width: 300px;
+    margin-right: 20px;
+}
 
+.buttonAdd{
+    margin-left: 20px;
+}
 
 /*------------------Modal Julian------------------*/
   .rating {

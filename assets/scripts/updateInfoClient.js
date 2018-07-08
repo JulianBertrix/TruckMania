@@ -58,3 +58,67 @@ function addFavoris(id){
         }
     });
 }
+
+//UPDATE INFOS TRUCK
+function updateTruck(idTruck){
+    $.ajax({
+        url : "http://trucks-mania.bwb/api/trucks/"+idTruck+"/infos",
+        type : "PUT",
+        data : {
+           nom : $("#nomModif").val(),
+           siret : $("#siretModif").val(),     
+           logo : $("#logoModif").val()     
+        },
+        
+        success : function(){
+            document.location.href = document.location.href;
+        },
+        
+        error : function(data){
+            console.log(data);
+            alert("essaie encore");
+        }
+    });
+}
+
+//UPDATE Adresse
+function updateAdresse(idAdresse){
+    $.ajax({
+        url : "http://trucks-mania.bwb/api/adresse/"+idAdresse+"/update",
+        type : "POST",
+        data : {
+           adresse : $("#nom"+idAdresse).val()  
+        },
+        
+        success : function(retour){
+            //Modif de la carte
+            $("#carte"+idAdresse).attr("src",retour);
+        },
+
+        error : function(data){
+            console.log(data);
+            alert("essaie encore");
+        }
+    });
+}
+
+//Add Adresse
+function addAdresse(){
+    $.ajax({
+        url : "http://trucks-mania.bwb/api/adresse/"+idTruck+"/add",
+        type : "POST",
+        data : {
+           adresse : $("#nom"+idAdresse).val()  
+        },
+        
+        success : function(retour){
+            //Modif de la carte
+            $("#carte"+idAdresse).attr("src",retour);
+        },
+
+        error : function(data){
+            console.log(data);
+            alert("essaie encore");
+        }
+    });
+}
