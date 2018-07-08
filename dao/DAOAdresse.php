@@ -108,6 +108,8 @@ class DAOAdresse extends DAO{
 
         $this->getPdo()->query($sql);
 
+        return $sql;
+
     }
 
     public function update($newValeurs){

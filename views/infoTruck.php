@@ -12,7 +12,7 @@
 <ul class="list-group">
   <li class="list-group-item text-center"><strong>Statistiques</strong></li>
   <li class="list-group-item text-right"><span class="pull-left"><strong>Nombre de favoris</strong></span><?php echo $nbFavoris; ?></li>
-  <li class="list-group-item text-right"><span class="pull-left"><strong>Note moyenne avis</strong></span><?php echo  $infosTruck['moyenne']; ?></li>
+  <li class="list-group-item text-right"><span class="pull-left"><strong>Note moyenne avis</strong></span><?php echo  giveMeTheStars($infosTruck['moyenne']); ?></li>
 </ul>
 <!-- Modal -->
 <div class="modal fade" id="modifInfosTruck" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

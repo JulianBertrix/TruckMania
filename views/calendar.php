@@ -1,4 +1,3 @@
-
 <script>
     var datas = [];
     var listeEvents = {
@@ -10,7 +9,7 @@
 
     var updatedPlanning;
 
-    var idTruck = $id;
+    var idTruck = $('#idTruck').val();
 
 //Chargement Calendar
     $(document).ready(function() {
@@ -44,20 +43,17 @@
         };
 
         //Modif du bouton
-        if(typeof calEvent.NombreDeParticipant !== 'undefined'){
-            $('#modifButt').attr('class', 'btn btn-outline-danger btn-sm');
-            $('#modifButt').attr('onclick', 'deleteEvent('+idTruck+','+calEvent.id+')');
-            $('#modifButt').html('Supprimer');
-        }else{
-            $('#modifButt').attr('class', 'btn btn-outline-success btn-sm');
-            $('#modifButt').attr('onclick', 'updateMe();');
-            $('#modifButt').html('Modifier');
+        if(typeof calEvent.NombreDeParticipant !== 'undefined'){ //Evenement
+            $('#modifButt').css("display","none");
+            $('#supprButt').attr('onclick', 'deleteEvent('+idTruck+','+calEvent.id+');');
+        }else{  //Planning
+            $('#modifButt').css("display","");
+            $('#supprButt').attr('onclick', 'deletePlanning();');
         };
 
-        //Stock les id du planning modifiable
+        //Stock les id du planning modifiable 
         updatedPlanning = calEvent.id; 
         });
-
 
     });
 
@@ -67,7 +63,7 @@
 
         $('#calendar').fullCalendar({
             locale: 'fr',
-            //showNonCurrentDates: false,
+            showNonCurrentDates: false,
             timeFormat: 'H:mm'
         });
 
@@ -169,6 +165,26 @@
         });
     }
 
+//Supprimer un planning
+
+    function deletePlanning(){
+
+        $.ajax({
+            url: "http://trucks-mania.bwb/api/planning/delete",
+            type: "POST",
+            data : {
+                listeIds : updatedPlanning
+            },
+
+            success: function () {
+                checkTheEvents(idTruck);
+            },
+            error: function (param1, param2) {
+                console.log("error");
+            }
+        });
+    }
+
 //Duplicate du mois
 
     function cloneMe(){
@@ -178,11 +194,11 @@
 
         //Mois en cours
         var thisMonthStart = $('#calendar').fullCalendar('getView').start.format('YYYY-MM-DD').toString();
-        var thisMonthEnd = $('#calendar').fullCalendar('getView').intervalEnd.subtract(1, 'days').format('YYYY-MM-DD').toString();
+        var thisMonthEnd = $('#calendar').fullCalendar('getView').end.format('YYYY-MM-DD').toString();
 
         //next mois
-        var nextMonthStart = $('#calendar').fullCalendar('getView').intervalStart.add(1, 'months').format('YYYY-MM-DD').toString();
-        var nextMonthEnd = $('#calendar').fullCalendar('getView').intervalEnd.add(1, 'months').format('YYYY-MM-DD').toString();
+        var nextMonthStart = $('#calendar').fullCalendar('getView').start.add(1, 'months').format('YYYY-MM-DD').toString();
+        var nextMonthEnd = $('#calendar').fullCalendar('getView').end.add(1, 'months').format('YYYY-MM-DD').toString();
 
 
         //Requete POST
@@ -292,7 +308,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- Titre -->
+                <!-- Participants -->
                 <div class="form-row" id="rowParticipants" style="display: none;">
                     <div class="form-group col">
                         <div class="input-group input-group-sm">
@@ -303,7 +319,9 @@
                         </div>
                     </div>
                 </div>
+                <!-- Boutons -->
                 <button id="modifButt" type="button" class="btn btn-outline-success mb-2 btn-sm" onclick="updateMe();">Modifier</button>
+                <button id="supprButt" type="button" class="btn btn-outline-danger mb-2 btn-sm" onclick="">Supprimer</button>
             </form>
             <br>
             <h5>Gestion du mois</h5>

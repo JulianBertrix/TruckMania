@@ -59,5 +59,25 @@ function giveMeTheAdresse(lat,lon){
         return adresse;       
 }
 
+// //AUTOCOMPLETE
+
+// var autocomplete;
+
+// function initializeAutocomplete(id) {
+//     var element = document.getElementById(id);
+//     if (element) {
+//       autocomplete = new google.maps.places.Autocomplete(element, { types: ['geocode'] });
+//       autocomplete.addListener('place_changed', fillInAddress);
+//     }
+//   }
+
+//   function fillInAddress() {
+//     // Get the place details from the autocomplete object.
+//     var place = autocomplete.getPlace();
+
+//     for (var component in componentForm) {
+//       document.getElementById(component).value = '';
+//       document.getElementById(component).disabled = false;
+//     }
 
 

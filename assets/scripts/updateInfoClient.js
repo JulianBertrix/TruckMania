@@ -80,3 +80,24 @@ function updateTruck(idTruck){
         }
     });
 }
+
+//UPDATE Adresse
+function updateAdresse(idAdresse){
+    $.ajax({
+        url : "http://trucks-mania.bwb/api/adresse/"+idAdresse+"/update",
+        type : "POST",
+        data : {
+           adresse : $("#nom"+idAdresse).val()  
+        },
+        
+        success : function(retour){
+            //Modif de la carte
+            $("#carte"+idAdresse).attr("src",retour);
+        },
+
+        error : function(data){
+            console.log(data);
+            alert("essaie encore");
+        }
+    });
+}

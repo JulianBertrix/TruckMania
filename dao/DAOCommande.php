@@ -163,6 +163,7 @@ class DAOCommande extends DAO{
                 'message' => $commande->getAvisId()->getMessage(),
                 'note' => $commande->getAvisId()->getNote()
             ],
+            'total' => $commande->getTotal(),
             'liste_paniers' => $listePanier
         ];
 

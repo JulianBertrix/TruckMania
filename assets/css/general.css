@@ -1,7 +1,12 @@
 /*------------------Barre DEV------------------*/
-
 .buttDev{
     margin: 0px 5px;
+}
+
+/*------------------Barre DEV------------------*/
+.cardAdresse{
+    margin: 20px;
+    text-align: center;
 }
 
 

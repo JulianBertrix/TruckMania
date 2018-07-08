@@ -58,6 +58,9 @@
     "/api/planning/update":{
         "POST":"PlanningController:updateThePlanning"
     },
+    "/api/planning/delete":{
+        "POST":"PlanningController:delete"
+    },
     "/api/Favoris/delete/utilisateur/(:)/foodtruck/(:)":{
         "POST":"FavorisController:delete"
     },
@@ -69,5 +72,8 @@
     },
     "/api/trucks/(:)/infos":{
         "PUT":"TrucksController:updateTruck"
+    },
+    "/api/adresse/(:)/update":{
+        "POST":"AdresseController:update"
     }
 }
