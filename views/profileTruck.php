@@ -133,16 +133,7 @@
                 </div>
 <!-- ADRESSES --> 
                 <div class="tab-pane" id="adresses">
-                    <br>
-                    <h5>Ajouter une adresse</h5>
-                    <!-- Recherche Adresse --> 
-                    <div class="d-inline-flex justify-content-center">
-                        <div class="p2 cardAdresse">
-                            <input class="form-control" type="text" id="tutu" placeholder="Où ?" size="120">
-                        </div>
-                    </div>
                     <!-- Cards -->
-                    <h5>Mes adresses</h5> 
                     <div class="d-flex justify-content-center">
                         <?php
                         foreach($listeAdresse as $adresse){

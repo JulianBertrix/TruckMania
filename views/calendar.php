@@ -242,7 +242,15 @@
         <div class="col-4" id='infosCalendar'>
 
             <!-- Formulaire Modifs Infos -->
-            <h5>Gestion du jour</h5>
+            <div class="d-flex justify-content-left">
+                <div class="p2">
+                    <h5>Evenement </h5>
+                </div>
+                <div class="p2 buttonAdd">
+                    <button id="addEvt" type="button" class="btn btn-primary btn-sm" onclick=""> + </button>
+                </div>
+            </div>
+           <br>
             <form class="form">
                 <!-- Titre -->
                 <div class="form-row">
