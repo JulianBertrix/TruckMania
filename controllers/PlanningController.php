@@ -83,6 +83,14 @@ class PlanningController extends Controller {
 
     }
 
+//SUPPRIMER PLANNING
+    public function delete(){
+        //Recup datas du Post
+        $dataPost = $this->inputPost();
+        
+        $this->planning->delete($dataPost['listeIds']);
+    }
+
 //DUPLIQUER UN MOIS
     public function duplicateMonth($id){
         
@@ -96,7 +104,7 @@ class PlanningController extends Controller {
         //Si mois suivant déjà rempli, supprime les dates
         $oldDates = $this->planning->getTheDateBetween($id,$nextMonthStart,$nextMonthEnd);
 
-        if(sizeof($oldDates) > 0){
+        if(count($oldDates) > 0){
 
             foreach ($oldDates as $myDate) {
                 
@@ -119,11 +127,11 @@ class PlanningController extends Controller {
 
             //Modif des dates
             $newStart = date_create($myDate->getDateDebut());
-            date_add($newStart,date_interval_create_from_date_string("35 days"));
+            date_add($newStart,date_interval_create_from_date_string("28 days"));
             $newStart = date_format($newStart,"Y-m-d H:i:s");
 
             $newEnd = date_create($myDate->getDateFin());
-            date_add($newEnd,date_interval_create_from_date_string("35 days"));
+            date_add($newEnd,date_interval_create_from_date_string("28 days"));
             $newEnd = date_format($newEnd,"Y-m-d H:i:s");
 
             $newPlanning = new PlanningModel();
@@ -162,9 +170,7 @@ class PlanningController extends Controller {
         return $this->planning->planningForTruck($idTruck);
     }
 
-    public function delete($id){
-        return $this->planning->delete($id);
-    }
+
 
     public function update($newValeurs) {
         return $this->planning->update($newValeurs);

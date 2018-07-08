@@ -5,6 +5,7 @@ use BWB\Framework\mvc\models\CommandeModel;
 use BWB\Framework\mvc\dao\DAOUtilisateur;
 use BWB\Framework\mvc\dao\DAOTrucks;
 use BWB\Framework\mvc\dao\DAOAvis;
+use BWB\Framework\mvc\dao\DAOPanier;
 use BWB\Framework\mvc\models\AvisModel;
 
 class DAOCommande extends DAO{
@@ -133,6 +134,40 @@ class DAOCommande extends DAO{
 
         $this->getPdo()->query($sql);
 
+    }
+
+    //Methode qui renvoi un tableau d'une commande complete avec avis,panier et plats
+    public function theFullCommande($numero){
+
+        //Objet commande
+        $commande = $this->retrieve($numero);
+
+        //Liste panier
+        $listePanierObject = (new DAOPanier())->getAllBy(['commande_numero' => $numero]);
+        $listePanier = [];
+        foreach($listePanierObject as $panier){
+            $panierYoplait = [
+                'plat' => $panier->getPlatId()->jsonSerialize(),
+                'quantite'  => $panier->getQuantite()
+            ];
+            array_push($listePanier,$panierYoplait);
+        }
+
+        //The Full Commande
+        $fullCommande = [
+            'numero' => $commande->getNumero(),
+            'date_commande' => $commande->getDateCommande(),
+            'avis' => [
+                'id' => $commande->getAvisId()->getId(),
+                'date_ajout' => $commande->getAvisId()->getDateAjout(),
+                'message' => $commande->getAvisId()->getMessage(),
+                'note' => $commande->getAvisId()->getNote()
+            ],
+            'total' => $commande->getTotal(),
+            'liste_paniers' => $listePanier
+        ];
+
+        return $fullCommande;
     }
 
     public function update($newValeurs){

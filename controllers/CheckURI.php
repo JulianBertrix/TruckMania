@@ -22,7 +22,7 @@ function checkMe($connexion,$uri){
                 $result = true;
                 break;
             
-            case '/foodtruck/'.$connexion->username[2]: //Accès au profil admin d'un FT
+            case '/user/'.$connexion->username[0].'/truck/'.$connexion->username[2]: //Accès au profil admin d'un FT
                 $result = true;
                 break;
 

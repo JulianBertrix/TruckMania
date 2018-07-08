@@ -73,9 +73,6 @@
     <script src=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/scripts/airbnb_vendor.js"?>></script>
     <script src=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/scripts/airbnb_app.js"?>></script>
 
-    <!-- Geoloc -->
-    <script src=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/scripts/geoloc.js"?>></script>
-
     <!-- FullCalendar -->
     <script src=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/scripts/moment-with-locales.js"?>></script>
     <script src=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/scripts/fullcalendar.js"?>></script>
