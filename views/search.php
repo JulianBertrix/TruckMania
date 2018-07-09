@@ -25,7 +25,9 @@ include "searchBar.php";
         ?>
         <div class="item js-marker" data-lat=<?= $objetAdresse->getLatitude();?> data-lng=<?= $objetAdresse->getLongitude();?> data-price=<?=$objetTruck->getMoyenne()?>>
           <div class="imgLogo">
+          <a <?php echo "href=http://".$_SERVER['SERVER_NAME'] ."/foodtruck/".$objetTruck->getId(); ?>>
             <img src=<?="http://".$_SERVER['SERVER_NAME']."/assets/img/trucks/".$objetTruck->getLogo()?> alt="">
+            </a>
           </div>
           <h4><?=$objetTruck->getNom()?></h4>
           <h5><?=$objetTruck->getMoyenne()?></h5>
