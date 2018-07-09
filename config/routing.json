@@ -10,7 +10,7 @@
     "/inscription": "InscriptionController:control",
     "/inscriptionTrucks": "InscriptionTrucksController:control",
     "/login": "DefaultController:login",
-    "/administration": "AdminController:adminPage",
+    "/administration/(:)": "AdminController:adminPage",
     "/testtc": "UtilisateurController:testMe",
     "/logout": "LoginController:logout",
     "/token": "DefaultController:token",
@@ -21,16 +21,16 @@
         "DELETE":"DefaultController:delete"
     },
     "/api/trucks":{
-        "GET":"TrucksController:getALLJSON"
+        "GET":"TrucksController:getALL"
     },
     "/api/utilisateur":{
-        "GET":"UtilisateurController:getALLJSON"
+        "GET":"UtilisateurController:getALL"
     },
     "/api/commande":{
-        "GET":"CommandeController:getALLJSON"
+        "GET":"CommandeController:getALL"
     },
     "/api/evenement":{
-        "GET":"EvenementController:getALLJSON"
+        "GET":"EvenementController:getALL"
     },
     "/api/utilisateur/(:)":{
         "GET":"UtilisateurController:retrieve",

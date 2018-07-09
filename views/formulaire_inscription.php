@@ -45,24 +45,26 @@
 			<!-- ./END AUTOCOMPLETE -->
 		</div>
 		<div class="row">
-            <div class="col-6"><div class="container-contact100-form-btn">
+            <div class="col-6">
+				<div class="container-contact100-form-btn">
 					<div class="wrap-contact100-form-btn">
 						<div class="contact100-form-bgbtn"></div>
-						<button class="contact100-form-btn">
+						<button class="contact100-form-btn btn btn-danger">
 							<span>
 								Annuler
-								<i class="fas fa-angle-right"></i>
+								<!--<i class="fas fa-angle-right"></i>-->
 							</span>
 						</button>
 					</div>
 				</div></div>
-            <div class="col-6"><div class="container-contact100-form-btn">
+            <div class="col-6">
+				<div class="container-contact100-form-btn">
 					<div class="wrap-contact100-form-btn">
 						<div class="contact100-form-bgbtn"></div>
-						<button class="contact100-form-btn">
+						<button class="contact100-form-btn btn btn-success">
 							<span>
 								Envoyer
-								<i class="fas fa-angle-right"></i>
+								<!-- <i class="fas fa-angle-right"></i> -->
 							</span>
 						</button>
 					    </div>

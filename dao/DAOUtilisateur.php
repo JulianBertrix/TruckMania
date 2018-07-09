@@ -103,10 +103,12 @@ class DAOUtilisateur extends DAO{
         $user->setAdresseId($newItem);
 
         //Recup de l'objet foodtruck SI EXISTE (!= 0)
-        if($result['foodtruck_id'] != 0){
-            $newItem = (new DAOTrucks())->retrieve($result['foodtruck_id']);
-            $user->setFoodTruckId($newItem);
-        }
+       if($result['foodtruck_id'] != 0){
+           $newItem = (new DAOTrucks())->retrieve($result['foodtruck_id']);
+           $user->setFoodTruckId($newItem);
+       }else{
+           $user->setFoodTruckId(0);
+       }
        
         return $user;
     }

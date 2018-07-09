@@ -5,7 +5,7 @@
         <div class="card-body">
           <div class="table-responsive">
             <div class="container-fluid">
-            <table id="myTableCommande" class="table table-striped table-bordered text-center" style="width:100%">
+            <table id="" class="table table-striped table-bordered text-center" style="width:100%">
               <thead>
                 <tr>
                   <th>N°</th>
@@ -14,12 +14,25 @@
                   <th>Truck</th>
                   <th>Avis</th>
                   <th>Total</th>
+                  <th>Supprimer</th>
                 </tr>
               </thead>
                 <tbody>
-                   <tr>
-                    <td></td>
-                  </tr>
+                <?php 
+                use BWB\Framework\mvc\models\CommandeModel;
+                foreach ($listeCommande as $commandes){
+                    ?>
+                    <tr>
+                      <td><?php echo $commandes->getNumero(); ?></td>
+                      <td><?php echo $commandes->getDateCommande(); ?></td>
+                      <td><?php echo $commandes->getUtilisateurId()->getNom(); ?></td>
+                      <td><?php echo $commandes->getfoodTruckId()->getNom(); ?></td>
+                      <td><?php echo $commandes->getAvisId()->getMessage(); ?></td>
+                      <td><?php echo $commandes->getTotal(); ?>€</td>
+                      <td><button type="button" class="btn btn-danger">Supprimer</button></td>
+                    </tr>
+                  <?php }
+                ?>
                </tbody>
               <tfoot>
                 <tr>
@@ -29,6 +42,7 @@
                   <th>Truck</th>
                   <th>Avis</th>
                   <th>Total</th>
+                  <th>Supprimer</th>
                 </tr>
               </tfoot>
             </table>

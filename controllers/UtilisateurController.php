@@ -26,8 +26,15 @@ class UtilisateurController extends Controller {
     }
 
     public function getAllJSON(){
+        $users = $this->user->getAll();
+        $listeUserJSON = [];
+        foreach ($users as $user) {
+            array_push(
+                $listeUserJSON,$user->jsonSerialize()
+            );
+        }
         header("Content-Type: application/json");
-        echo json_encode($this->user->getAll());
+        return json_encode($listeUserJSON);
     }
 
     public function getAll(){

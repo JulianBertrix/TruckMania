@@ -7,20 +7,25 @@
 <?php include 'include/icon-card.php' ?>
 
 <br><br><br>
-<div class="card mb-3">
-  <div class="card-header">
-    <i class="fas fa-table"></i> Détails</div>
-        <div class="card-body">
-          <div class="table-responsive">
-          <div class="container-fluid">
-            <table id="tableAdmin" class="table table-striped table-bordered text-center hover" style="width:100%">
-              
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-  <br><br><br>
+
+<?php 
+
+switch($_SERVER["REQUEST_URI"]){
+  case "/administration/trucks":
+  include 'include/data-table-food-truck.php';
+  break;
+  case "/administration/users":
+  include 'include/data-table-client.php';
+  break;
+  case "/administration/commande":
+  include 'include/data-table-commande.php';
+  break;
+  case "/administration/evenement":
+  include 'include/data-table-evenement.php';
+  break;
+}
+?>
+<br><br><br>
 </div><!-- /.content-wrapper-->
 </div><!-- /.container-fluid-->
 

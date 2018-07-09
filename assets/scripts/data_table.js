@@ -1,4 +1,4 @@
-$(document).click(function(){
+$(document).ready(function(){
     $("#foodtrucktable").click(function(e){
         e.preventDefault;
         cols = [
@@ -37,6 +37,7 @@ $(document).click(function(){
             url:"http://trucks-mania.bwb/api/utilisateur",
             dataType:'json',
             success: function(datas){
+                
                 updateTable(datas,cols);
             },
             error:function(e){

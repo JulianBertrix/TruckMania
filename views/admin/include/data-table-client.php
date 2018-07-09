@@ -5,7 +5,7 @@
         <div class="card-body">
           <div class="table-responsive">
           <div class="container-fluid">
-            <table id="myTableUtilisateur" class="table table-striped table-bordered text-center hover" style="width:100%">
+            <table id="" class="table table-striped table-bordered text-center hover" style="width:100%">
               <thead>
                 <tr>
                   <th>Id</th>
@@ -16,12 +16,35 @@
                   <th>Rôle</th>
                   <th>Adresse</th>
                   <th>Truck</th>
+                  <th>Supprimer</th>
                 </tr>
                 </thead>
                   <tbody>
+                  <?php 
+                    use BWB\Framework\mvc\models\UtilisateurModel;
+                      foreach ($listeUsers as $utilisateurs){
+                    ?>
                     <tr>
-                      <td></td>
+                      <td><?php echo $utilisateurs->getId(); ?></td>
+                      <td><?php echo $utilisateurs->getNom(); ?></td>
+                      <td><?php echo $utilisateurs->getPrenom(); ?></td>
+                      <td><?php echo $utilisateurs->getEmail(); ?></td>
+                      <td><?php echo $utilisateurs->getDateCreation(); ?></td>
+                      <td><?php echo $utilisateurs->getRoleId()->getNom(); ?></td>
+                      <td><?php echo $utilisateurs->getAdresseId()->getAdresse(); ?></td>
+                      <td><?php 
+                        if($utilisateurs->getfoodTruckId() !== 0){
+                          echo $utilisateurs->getfoodTruckId()->getNom(); 
+                        }else{
+                          echo "";
+                        };
+                        ?> 
+                        </td>
+                      <td><button type="button" class="btn btn-danger">Supprimer</button></td>
                     </tr>
+                  <?php 
+                  }
+                ?>
                   </tbody>
                 <tfoot>
                 <tr>
@@ -33,6 +56,7 @@
                   <th>Rôle</th>
                   <th>Adresse</th>
                   <th>Truck</th>
+                  <th>Supprimer</th>
                 </tr>
               </tfoot>
             </table>
