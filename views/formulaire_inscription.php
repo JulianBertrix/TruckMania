@@ -3,7 +3,7 @@
 ?>
 <div class="container-contact100">
 		<div class="wrap-contact100">
-			<form class="contact100-form validate-form" action=<?="http://".$_SERVER['SERVER_NAME'] . "/inscriptionTrucks"?> role="form" method="post">
+			<form class="contact100-form validate-form" action=<?="http://".$_SERVER["SERVER_NAME"]."/inscription/client"?> role="form" method="post">
 				<span class="contact100-form-title">
 					INSCRIPTION
 				</span>

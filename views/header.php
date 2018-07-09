@@ -111,8 +111,8 @@
             echo '<a class="" href="http://'.$_SERVER['SERVER_NAME'].'/administration">Admin</a>';
           }
         }else{
-          echo '<a class="" href="http://'.$_SERVER['SERVER_NAME'].'/inscription">Inscription Client</a>';
-          echo '<a class="" href="http://'.$_SERVER['SERVER_NAME'].'/inscriptionTrucks">Inscription Trucks</a>';
+          echo '<a class="" href="http://'.$_SERVER['SERVER_NAME'].'/inscription/client">Inscription Client</a>';
+          echo '<a class="" href="http://'.$_SERVER['SERVER_NAME'].'/inscription/truck">Inscription Trucks</a>';
         }
         ?>
         <!-- Bouton Login/logout -->

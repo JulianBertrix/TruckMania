@@ -162,8 +162,34 @@ class PlanningController extends Controller {
         return $this->planning->retrieve($listeIds);
     }
 
-    public function create($newPlanning){
-        return $this->planning->create($newPlanning);
+    public function create($idTruck){
+
+        //Recup dates dans le Post
+        $dataPost = $this->inputPost();
+
+        //Recup des coordonnees GPS de la nouvelle adresse
+        $coord = (new DAOMap())->giveMeTheGPS($dataPost['adresse']);
+
+        //creation du nouvel objet Adresse
+        $newAdresse = new AdresseModel();
+        $newAdresse->setAdresse($dataPost['adresse']);
+        $newAdresse->setLatitude($coord['lat']);
+        $newAdresse->setLongitude($coord['lng']);
+
+        $idReturn = (new DAOAdresse())->create($newAdresse);
+
+        //Ajout du nouveau planning
+        $newPlanning = new PlanningModel();
+        $newPlanning->setFoodtruckId($idTruck);
+        $newPlanning->setAdresseId($idReturn);
+        $newPlanning->setDateDebut($dataPost['date_debut']);
+        $newPlanning->setDateFin($dataPost['date_fin']);
+        $newPlanning->setIntitule($dataPost['intitule']);
+
+        $this->planning->create($newPlanning);
+
+        // header('Content-Type: text/plain');
+        // echo $idTruck;
     }
 
     public function planningForTruck($idTruck){

@@ -22,39 +22,47 @@
         //Recup du clik utilsateur
         calendar.on('eventClick', function(calEvent, jsEvent, view) {
 
-        var dateDebut = calEvent.start.format('DD/MM/YYYY');
-        var heureDebut = calEvent.start.format('HH:mm');
-        var dateFin = calEvent.end.format('DD/MM/YYYY');
-        var heureFin = calEvent.end.format('HH:mm');
+            var dateDebut = calEvent.start.format('DD/MM/YYYY');
+            var heureDebut = calEvent.start.format('HH:mm');
+            var dateFin = calEvent.end.format('DD/MM/YYYY');
+            var heureFin = calEvent.end.format('HH:mm');
 
-        $('#titreInfo').val(calEvent.title);
-        $('#user_input_autocomplete_address').val(calEvent.adresse['adresse']);
-        $('#startDate').val(dateDebut);
-        $('#startHeure').val(heureDebut);
-        $('#endDate').val(dateFin);
-        $('#endHeure').val(heureFin);
+            $('#titreInfo').val(calEvent.title);
+            $('#calendarAdresse').val(calEvent.adresse['adresse']);
+            $('#startDate').val(dateDebut);
+            $('#startHeure').val(heureDebut);
+            $('#endDate').val(dateFin);
+            $('#endHeure').val(heureFin);
 
-        //Ajout du nombre de participants si evenement
-        if(typeof calEvent.NombreDeParticipant !== 'undefined'){
-            $('#rowParticipants').css("display","");
-            $('#nbParticipants').val(calEvent.NombreDeParticipant);
-        }else{
-            $('#rowParticipants').css("display","none");
-        };
+            //Ajout du nombre de participants si evenement
+            if(typeof calEvent.NombreDeParticipant !== 'undefined'){
+                $('#rowParticipants').css("display","");
+                $('#nbParticipants').val(calEvent.NombreDeParticipant);
+            }else{
+                $('#rowParticipants').css("display","none");
+            };
 
-        //Modif du bouton
-        if(typeof calEvent.NombreDeParticipant !== 'undefined'){ //Evenement
-            $('#modifButt').css("display","none");
-            $('#supprButt').attr('onclick', 'deleteEvent('+idTruck+','+calEvent.id+');');
-        }else{  //Planning
-            $('#modifButt').css("display","");
-            $('#supprButt').attr('onclick', 'deletePlanning();');
-        };
+            //Modif des boutons 
+            $('#supprButt').css("display","");
+            if(typeof calEvent.NombreDeParticipant !== 'undefined'){ //Evenement
+                $('#modifButt').css("display","none");
+                $('#supprButt').attr('onclick', 'deleteEvent('+idTruck+','+calEvent.id+');');
+            }else{  //Planning
+                $('#modifButt').text('Modifier');
+                $('#supprButt').attr('onclick', 'deletePlanning();');
+                $('#modifButt').attr('onclick', 'updateMe();');
+                $('#modifButt').css("display","");
+            };
 
-        //Stock les id du planning modifiable 
-        updatedPlanning = calEvent.id; 
+            //Stock les id du planning modifiable 
+            updatedPlanning = calEvent.id; 
         });
 
+        //Recup du clik sur date pour nouvel ajout
+        calendar.on('dayClick', function(date, jsEvent, view) {
+            resetTheForm(date)
+        });
+        resetTheForm(moment());
     });
 
 //Recup des events
@@ -123,8 +131,8 @@
         var newDateStart = changeTheDate($('#startDate').val(),$('#startHeure').val());
         var newDateEnd= changeTheDate($('#endDate').val(),$('#endHeure').val());
 
-        //Preparation adresse
-        newAdresse = $('#user_input_autocomplete_address').val().replace(/, France/g,'');
+        //Preparation adresse, suppression du "France" ajouté par API
+        newAdresse = $('#calendarAdresse').val().replace(/, France/g,'');
 
         //Requete POST
         $.ajax({
@@ -140,6 +148,7 @@
 
             success: function () {
                 checkTheEvents(idTruck);
+                resetTheForm(moment());
             },
             error: function (param1, param2) {
                 console.log("error");
@@ -147,6 +156,38 @@
         });
 
     };
+
+//Insert Planning
+function insertEvent(){
+
+    //creation des 2 dates:
+    var newDateStart = changeTheDate($('#startDate').val(),$('#startHeure').val());
+    var newDateEnd= changeTheDate($('#endDate').val(),$('#endHeure').val());
+
+    //Preparation adresse, suppression du "France" ajouté par API
+    newAdresse = $('#calendarAdresse').val().replace(/, France/g,'');
+
+    //Requete POST
+    $.ajax({
+        url: "http://trucks-mania.bwb/api/planning/insert/"+idTruck,
+        type: "POST",
+        data : {
+            adresse : newAdresse,
+            date_debut : newDateStart,
+            date_fin : newDateEnd,
+            intitule : $('#titreInfo').val()
+        },
+
+        success: function () {
+            checkTheEvents(idTruck);
+            resetTheForm(moment());
+        },
+        error: function (param1, param2) {
+            console.log("error");
+        }
+    });
+
+};
 
 //Supprimer la participation à un évenement api/trucks/(:)/events/(:)
 
@@ -158,6 +199,7 @@
 
             success: function () {
                 checkTheEvents(idTruck);
+                resetTheForm(moment());
             },
             error: function (param1, param2) {
                 console.log("error");
@@ -178,6 +220,7 @@
 
             success: function () {
                 checkTheEvents(idTruck);
+                resetTheForm(moment());
             },
             error: function (param1, param2) {
                 console.log("error");
@@ -215,6 +258,7 @@
             success: function () {
                 checkTheEvents(idTruck);
                 $('#calendar').fullCalendar('next');
+                resetTheForm(moment());
             },
             error: function (param1, param2) {
                 console.log("error");
@@ -232,6 +276,24 @@
         return newDate;
 
     }
+
+//Reset champs droite
+function resetTheForm(date){
+
+        $('#titreInfo').val("");
+        $('#calendarAdresse').val("");
+        $('#startDate').val(date.format('DD/MM/YYYY'));
+        $('#startHeure').val(date.format('HH:mm'));
+        $('#endDate').val(date.format('DD/MM/YYYY'));
+        $('#endHeure').val(date.format('HH:mm'));
+
+        //Modif des boutons
+        $('#supprButt').css("display","none");
+        $('#modifButt').attr('onclick', 'insertEvent();');
+        $('#modifButt').text('Ajouter');
+        $('#modifButt').css("display","");
+
+}
 </script>
 
     <div class="row">
@@ -242,15 +304,8 @@
         <div class="col-4" id='infosCalendar'>
 
             <!-- Formulaire Modifs Infos -->
-            <div class="d-flex justify-content-left">
-                <div class="p2">
-                    <h5>Evenement </h5>
-                </div>
-                <div class="p2 buttonAdd">
-                    <button id="addEvt" type="button" class="btn btn-primary btn-sm" onclick=""> + </button>
-                </div>
-            </div>
-           <br>
+            <h5>Evenement </h5>
+            <br>
             <form class="form">
                 <!-- Titre -->
                 <div class="form-row">
@@ -270,7 +325,7 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text">Lieu</div>
                             </div>
-                            <input class="form-control" type="text" id="user_input_autocomplete_address">
+                            <input class="form-control" type="text" id="calendarAdresse">
                         </div>
                     </div>
                 </div>

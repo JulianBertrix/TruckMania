@@ -29,5 +29,8 @@ google.maps.event.addDomListener(window, 'load', function() {
   initializeAutocomplete('tutu');
 });
 
+google.maps.event.addDomListener(window, 'load', function() {
+  initializeAutocomplete('calendarAdresse');
+});
 
 

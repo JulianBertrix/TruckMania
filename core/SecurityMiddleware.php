@@ -63,7 +63,7 @@ class SecurityMiddleware {
             "exp" => time() + $this->expiration
         );
         $tkn = JWT::encode($this->payload, $this->passport);
-        setcookie("tkn", $tkn, $this->payload['exp'], "http://" . $_SERVER['SERVER_NAME']);
+        setcookie("tkn", $tkn, $this->payload['exp'], "/");
         return $tkn;
         
     }

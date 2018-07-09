@@ -30,10 +30,10 @@ class UtilisateurModel implements UserInterface{
 
     public function getUsername() {
 
-        if(isset($this->foodTruckId)){
+        if($this->foodTruckId !== 0){
             $idTruck = $this->foodTruckId->getId();
         }else{
-            $idTruck = null;
+            $idTruck = 0;
         }
         return 
         [
