@@ -25,6 +25,9 @@ class AdminController extends Controller{
     }
 
     public function adminPage($partie){
+        
+        //CHECH SECURITY
+        if(checkMe($this->security->acceptConnexion(),$_SERVER['REQUEST_URI'])){
         switch ($partie){
             case "trucks":
             $this->trucksPage();
@@ -38,6 +41,10 @@ class AdminController extends Controller{
             case "evenement":
             $this->evenementPage();
             break;
+        }
+
+        }else{
+            header("Location: http://" . $_SERVER['SERVER_NAME'] . "/");
         }
     }
 
