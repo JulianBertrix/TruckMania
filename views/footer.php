@@ -84,6 +84,8 @@
 	<!-- Securite -->
     <script src=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/scripts/secu.js"?>></script>
 
+    <!-- passer une commande -->
+    <script src=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/scripts/commander.js"?>></script>
     
 	</body>
 </html>

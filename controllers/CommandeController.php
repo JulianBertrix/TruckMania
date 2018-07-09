@@ -4,6 +4,10 @@ namespace BWB\Framework\mvc\controllers;
 
 use BWB\Framework\mvc\Controller;
 use BWB\Framework\mvc\dao\DAOCommande;
+use BWB\Framework\mvc\dao\DAOPanier;
+use BWB\Framework\mvc\models\PanierModel;
+use BWB\Framework\mvc\models\CommandeModel;
+use BWB\Framework\mvc\dao\DAOPlat;
 
 class CommandeController extends Controller {
 
@@ -36,8 +40,28 @@ class CommandeController extends Controller {
         return $this->commande->retrieve($id);
     }
 
-    public function create($newCommande){
-        return $this->commande->create($newCommande);
+    public function create(){
+        header("Content-Type: text/plain");
+        $dataPost = $this->inputPost();
+        
+        $newCommande = new CommandeModel();
+        $newCommande->setUtilisateurId($dataPost['utilisateur_id']);
+        $newCommande->setFoodtruckId($dataPost['foodtruck_id']);
+        $newCommande->setTotal($dataPost['total']);
+        $newCommandeId = $this->commande->create($newCommande);
+        
+        for($i = 0; $i < count($dataPost['plat']); $i++){
+            if($dataPost['quantite'][$i] != 0){
+                //recuperation id du plat
+                $filter = ['nom' => $dataPost['plat'][$i],
+                        'foodtruck_id' => $dataPost['foodtruck_id']];
+                $platId = (new DAOPlat)->getAllBy($filter)[0]->getId();
+                $panier = new PanierModel((new DAOCommande())->retrieve($newCommandeId), 
+                        (new DAOPlat())->retrieve($platId), $dataPost['quantite'][$i]);
+                (new DAOPanier)->create($panier);
+            }
+        }
+        echo $dataPost['plat'][0];
     }
 
     public function delete($id){
@@ -54,6 +78,10 @@ class CommandeController extends Controller {
 
     public function theLastOne() {
         return $this->commande->theLastOne();
+    }
+    
+    public function getFullCommande($numero){
+        return $this->commande->theFullCommande($numero);
     }
 
 }
