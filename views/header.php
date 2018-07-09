@@ -108,7 +108,7 @@
           if($user->roles[0] === "foodtruck"){
             echo '<a class="" href="http://'.$_SERVER['SERVER_NAME'].'/user/'.$user->username[0].'/truck/'.$user->username[2].'">Mon FoodTruck</a>';
           }else if($user->roles[0] === "admin"){ //Page Admin
-            echo '<a class="" href="http://'.$_SERVER['SERVER_NAME'].'/administration">Admin</a>';
+            echo '<a class="" href="http://'.$_SERVER['SERVER_NAME'].'/administration/trucks">Admin</a>';
           }
         }else{
           echo '<a class="" href="http://'.$_SERVER['SERVER_NAME'].'/inscription/client">Inscription Client</a>';

@@ -26,7 +26,10 @@ function checkMe($connexion,$uri){
                 $result = true;
                 break;
 
-            case '/administration': //Accès à page administration du site
+            case '/administration/trucks': //Accès à page administration du site
+            case '/administration/users':
+            case '/administration/evenement':
+            case '/administration/commande':
 
                 if($connexion->roles[0] === "admin"){
                     $result = true;

@@ -9,7 +9,7 @@
     "/testcalendar": "DefaultController:getCalendar",
     "/inscription/(:)": "InscriptionsController:inscritMoi",
     "/login": "DefaultController:login",
-    "/administration": "AdminController:adminPage",
+    "/administration/(:)": "AdminController:adminPage",
     "/testtc": "UtilisateurController:testMe",
     "/logout": "LoginController:logout",
     "/token": "DefaultController:token",
