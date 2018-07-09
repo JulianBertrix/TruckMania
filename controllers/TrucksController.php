@@ -8,12 +8,24 @@ use BWB\Framework\mvc\dao\DAOTrucks;
 
 class TrucksController extends Controller {
 
+    private $id;
+    private $siret;
+    private $nom;
+    private $dateCreation;
+    private $logo;
+    private $categorieId;
+    private $moyenne;
     private $truck;
 
     function __construct(){
         parent::__construct();
         //Creation d'un DAOTrucks
         $this->truck = new DAOTrucks();
+    }
+
+    public function getAllJSON(){
+        header("Content-Type: application/json");
+        echo json_encode($this->truck->getAll());
     }
     
     public function deleteTruck($id){

@@ -8,8 +8,8 @@
               </div>
               <div class="mr-5">Food Trucks</div>
             </div>
-            <a class="card-footer text-white clearfix small z-1" href="">
-              <span id="trucksRoute" class="float-left">Voir Details</span>
+            <a id="foodtrucktable" class="card-footer text-white clearfix small z-1" href="<?="http://".$_SERVER['SERVER_NAME'] . "/administration/trucks"?>">
+              <span  class="float-left">Voir Details</span>
               <span class="float-right">
                 <i class="fa fa-angle-right"></i>
               </span>
@@ -22,10 +22,10 @@
               <div class="card-body-icon">
                 <i class="fa fa-user"></i>
               </div>
-              <div class="mr-5">Clients</div>
+              <div class="mr-5">Utilisateurs</div>
             </div>
-            <a class="card-footer text-white clearfix small z-1" href="">
-              <span id="utilisateurRoute" class="float-left">Voir Details</span>
+            <a id="utilisateurtable" class="card-footer text-white clearfix small z-1" href="<?="http://".$_SERVER['SERVER_NAME'] . "/administration/users"?>">
+              <span class="float-left">Voir Details</span>
               <span class="float-right">
                 <i class="fa fa-angle-right"></i>
               </span>
@@ -40,8 +40,8 @@
               </div>
               <div class="mr-5">Commandes</div>
             </div>
-            <a class="card-footer text-white clearfix small z-1" href="">
-              <span id="commandeRoute" class="float-left">Voir Details</span>
+            <a id="commandetable" class="card-footer text-white clearfix small z-1" href="<?="http://".$_SERVER['SERVER_NAME'] . "/administration/commande"?>">
+              <span class="float-left">Voir Details</span>
               <span class="float-right">
                 <i class="fa fa-angle-right"></i>
               </span>
@@ -56,8 +56,8 @@
               </div>
               <div class="mr-5">Evénements</div>
             </div>
-            <a class="card-footer text-white clearfix small z-1" href="">
-              <span id="evenementRoute" class="float-left">Voir Details</span>
+            <a id="evenementtable" class="card-footer text-white clearfix small z-1" href="<?="http://".$_SERVER['SERVER_NAME'] . "/administration/evenement"?>">
+              <span class="float-left">Voir Details</span>
               <span class="float-right">
                 <i class="fa fa-angle-right"></i>
               </span>
