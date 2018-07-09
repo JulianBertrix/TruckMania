@@ -78,7 +78,7 @@ include 'header.php';
             </ul>
         </div>
         <div class="col-sm-4">
-            <button type="button" class="update btn btn-warning btn-sm" data-toggle="modal" data-target="#order" data-uid="1" data-productid=""><span class="fas fa-cart-arrow-down"></span><h6>Commander</h6></button>
+            <button type="button" class="update btn btn-warning btn-sm" data-toggle="modal" data-target="#order" data-uid="<?= $id;?>" data-productid=""><span class="fas fa-cart-arrow-down"></span><h6>Commander</h6></button>
         </div>
         <?php include 'orderModal.php';?>
     </div>   
