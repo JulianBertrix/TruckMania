@@ -7,8 +7,7 @@
     "/foodtruck/(:)": "FoodTruckProfileController:vueProfile",
     "/search": "SearchController:searchPage",
     "/testcalendar": "DefaultController:getCalendar",
-    "/inscription": "InscriptionController:control",
-    "/inscriptionTrucks": "InscriptionTrucksController:control",
+    "/inscription/(:)": "InscriptionsController:inscritMoi",
     "/login": "DefaultController:login",
     "/administration": "AdminController:adminPage",
     "/testtc": "UtilisateurController:testMe",
@@ -57,6 +56,9 @@
     },
     "/api/planning/update":{
         "POST":"PlanningController:updateThePlanning"
+    },
+    "/api/planning/insert/(:)":{
+        "POST":"PlanningController:create"
     },
     "/api/planning/delete":{
         "POST":"PlanningController:delete"

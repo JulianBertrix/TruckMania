@@ -15,6 +15,13 @@ class DAOUtilisateur extends DAO{
     }
 
     public function create($user) {
+
+        //Check du getFoodTruckId
+        if($user->getFoodTruckId() === 0){
+            $idTruck = 0;
+        }else{
+            $idTruck = $user->getFoodTruckId()->getId();
+        }
         
         $sql = "INSERT INTO utilisateur (nom, prenom, email, mot_de_passe, date_creation, role_id, adresse_id, foodtruck_id) VALUES ('"
         .$user->getNom()."','"
@@ -24,9 +31,16 @@ class DAOUtilisateur extends DAO{
         .$user->getDateCreation()."','"
         .$user->getRoleId()->getId()."','"
         .$user->getAdresseId()->getId()."','"
-        .$user->getFoodTruckId()->getId()."')";
-    
-        $this->getPdo()->query($sql);
+        .$idTruck."')";
+
+        $requete = $this->getPdo()->query($sql);
+
+        //Retourne le nombre de ligne inseree et l'id créé sous la forme ['nbLignes' => xx,'newId' => xx]
+
+        return [
+                'nbLignes' => $requete->rowCount(),
+                'newId' => $this->getPdo()->lastInsertId()
+            ];
     }
 
     public function delete($id) {
@@ -106,6 +120,8 @@ class DAOUtilisateur extends DAO{
         if($result['foodtruck_id'] != 0){
             $newItem = (new DAOTrucks())->retrieve($result['foodtruck_id']);
             $user->setFoodTruckId($newItem);
+        }else{
+            $user->setFoodTruckId(0);
         }
        
         return $user;

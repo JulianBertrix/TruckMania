@@ -22,8 +22,7 @@ class InscriptionTrucksController extends Controller{
     public function __construct(){
         parent::__construct();
         $this->securityLoader();
-        $this->newUser = new DAOUtilisateur(); 
-        //$this->newTrucks = new DAOTrucks();   
+        $this->newUser = new DAOUtilisateur();   
     }
 
     public function control(){
