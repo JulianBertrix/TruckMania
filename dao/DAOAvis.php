@@ -3,6 +3,13 @@ namespace BWB\Framework\mvc\dao;
 use BWB\Framework\mvc\DAO;
 use BWB\Framework\mvc\models\AvisModel;
 
+use BWB\Framework\mvc\dao\DAOTrucks;
+use BWB\Framework\mvc\models\TrucksModel;
+use BWB\Framework\mvc\dao\DAOCommande;
+use BWB\Framework\mvc\models\CommandeModel;
+use BWB\Framework\mvc\dao\DAOUtilisateur;
+use BWB\Framework\mvc\models\UtilisateurModel;
+
 class DAOAvis extends DAO{
 
     public function __construct(){

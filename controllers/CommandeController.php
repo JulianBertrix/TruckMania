@@ -7,11 +7,22 @@ use BWB\Framework\mvc\dao\DAOCommande;
 
 class CommandeController extends Controller {
 
+    private $numero;
+    private $dateCommande;
+    private $utilisateurId;
+    private $foodtruckId;
+    private $avisId;
+    private $total;
     private $commande;
 
     public function __construct(){
         parent::__construct();
         $this->commande = new DAOCommande();
+    }
+
+    public function getAllJSON(){
+        header("Content-Type: application/json");
+        echo json_encode($this->commande->getAll());
     }
 
     public function getAll(){
