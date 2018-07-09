@@ -33,19 +33,14 @@ class FoodTruckProfileController extends Controller{
     public function vueProfile($id) {
 
         $truck = (new DAOTrucks())->retrieve($id);
-        //$id = $truck->getId();
+
         $nom = $truck->getNom();
         $logo = $truck->getLogo();
         $moyenne = $truck->getMoyenne();
         
         $categorie = $truck->getCategorieId()->getIntitule();
         
-        $carte = array();
-        $plats = (new DAOPlat())->getAllBy(['foodtruck_id' => $id]);
-        
-        foreach ($plats as $plat){
-            array_push($carte, $plat->getNom());
-        }
+        $carte = (new DAOPlat())->getAllBy(['foodtruck_id' => $id]);
         
         $listeAvis = array();
         $listeNote = array();

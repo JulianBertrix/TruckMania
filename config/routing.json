@@ -77,5 +77,8 @@
     },
     "/api/adresse/(:)/update":{
         "POST":"AdresseController:update"
+    },
+    "/api/Commande":{
+        "POST":"CommandeController:create"
     }
 }

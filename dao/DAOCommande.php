@@ -6,6 +6,7 @@ use BWB\Framework\mvc\dao\DAOUtilisateur;
 use BWB\Framework\mvc\dao\DAOTrucks;
 use BWB\Framework\mvc\dao\DAOAvis;
 use BWB\Framework\mvc\dao\DAOPanier;
+use BWB\Framework\mvc\models\PanierModel;
 use BWB\Framework\mvc\models\AvisModel;
 
 class DAOCommande extends DAO{
@@ -31,8 +32,8 @@ class DAOCommande extends DAO{
         .$commande->getFoodtruckId()."','"
         .$idAvis."','"
         .$commande->getTotal()."')";
-        echo $sql;
         $this->getPdo()->query($sql);
+        return $this->getPdo()->lastInsertId();
     }
 
     public function delete($numero) {
