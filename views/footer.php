@@ -86,6 +86,6 @@
 
     <!-- passer une commande -->
     <script src=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/scripts/commander.js"?>></script>
-    
+    <script src=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/scripts/redirectionInscriptionClient.js"?>></script>
 	</body>
 </html>

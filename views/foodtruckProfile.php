@@ -77,9 +77,16 @@ include 'header.php';
                 ?>
             </ul>
         </div>
+        <?php if(isset($user)){?>
         <div class="col-sm-4">
             <button type="button" class="update btn btn-warning btn-sm" data-toggle="modal" data-target="#order" data-uid="<?= $id;?>" data-productid=""><span class="fas fa-cart-arrow-down"></span><h6>Commander</h6></button>
         </div>
+        <?php }else{?>
+        <div class="col-sm-4">
+            <button type="button" class="update btn btn-warning btn-sm" onclick="getSub()"><span class="fas fa-cart-arrow-down"></span><h6>Commander</h6></button>
+            <p>veuillez vous connecter ou vous inscrire passer une commande</p>
+        </div>
+        <?php }?>
         <?php include 'orderModal.php';?>
     </div>   
     <hr>
