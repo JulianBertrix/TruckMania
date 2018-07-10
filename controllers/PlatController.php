@@ -30,8 +30,13 @@ class PlatController extends Controller {
         return $this->plat->delete($id);
     }
     
-    public function updatePlat($array){
-        return $this->plat->update($array);
+    public function updatePlat($idPlat){
+
+        //POST
+        $dataPost = $this->inputPost();
+
+        $newPlat = new PlatModel($idPlat,$dataPost['intitule'],$dataPost['description'],$dataPost['prix'],$dataPost['image'],null);
+        echo $this->plat->update($newPlat);
     }
     
     public function addPlat($array){

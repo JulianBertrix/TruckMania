@@ -93,8 +93,7 @@ class DAOPlat extends DAO{
     public function update($array) {
         $sql = "UPDATE plat SET nom='".$array->getNom()."', description='".$array->getDescription()."', "
         . "prix='".$array->getPrix()."', image='".$array->getImage()."' WHERE id=".$array->getId();
-        echo $sql;
-        return $this->getPdo()->query($sql)->fetch();
+        return $this->getPdo()->query($sql)->rowcount();
     }
 
 }

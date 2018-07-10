@@ -122,3 +122,26 @@ function addAdresse(){
         }
     });
 }
+
+//Active Butt Validate Modifs Plat
+function saveThePlat(idPlat){
+
+    $.ajax({
+        url : "http://trucks-mania.bwb/api/plat/"+idPlat,
+        type : "POST",
+        data : {
+            intitule : $("#plat"+idPlat).val(),
+            description : $("#description"+idPlat).val(),
+            prix : $("#prix"+idPlat).val(),
+            image : $("#image"+idPlat).val(),
+        },
+        
+        success : function(retour){
+            console.log(retour);
+        },
+
+        error : function(data){
+            console.log(data);
+        }
+    });
+}

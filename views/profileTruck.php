@@ -16,6 +16,9 @@
                 <a class="nav-link" href="#commandesTerminees" data-toggle="tab">Commandes terminées</a>
               </li>
               <li class="nav-item">
+                <a class="nav-link" href="#carte" data-toggle="tab">Ma carte</a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link" href="#calendrier" data-toggle="tab">Mon calendrier</a>
               </li>
               <li class="nav-item">
@@ -119,7 +122,38 @@
                             </tbody>
                         </table>
                     </div>
-                </div> 
+                </div>
+<!-- CARTE -->
+                <div class="tab-pane" id="carte">
+                    <div class="table-responsive">
+                        <table class="table table-hover text-center">
+                            <thead>
+                                <tr>
+                                    <th>Image</th>
+                                    <th>Intitule</th>
+                                    <th>prix</th>
+                                    <th>description</th>
+                                </tr>
+                            </thead>
+                            <tbody id="Plats">
+
+                                <?php
+                                foreach ($listePlats as $plat){
+                                ?>
+                                    <tr data-toggle="collapse" data-target="#demo1" class="accordion-toggle">
+                                        <td><input id="image<?= $plat['id'];?>" class="form-control form-control-sm" type="text" value=<?php echo $plat['image']; ?>></td>                                  
+                                        <td><input id="plat<?= $plat['id'];?>" class="form-control form-control-sm" type="text" value=<?php echo $plat['nom']; ?>></td>                                  
+                                        <td><input id="prix<?= $plat['id'];?>" class="form-control form-control-sm" type="text" value=<?php echo $plat['prix']." €"; ?>></td>                                  
+                                        <td><input id="description<?= $plat['id'];?>" class="form-control form-control-sm" type="text" value=<?php echo $plat['description']; ?>></td>                                  
+                                        <td><button type="button" class="btn btn-warning btn-sm" onclick="saveThePlat(<?= $plat['id'];?>)"><i class="fas fa-check"></i></button></td>
+                                    </tr>                             
+                                <?php
+                                }
+                                ?>                 
+                            </tbody>
+                        </table>
+                    </div>
+                </div>  
 <!-- CALENDRIER -->   
                 <!-- Div SR-ONLY id du FT -->
                 <input class="sr-only" id="idTruck" value=<?= $infosTruck['id'];?>>            

@@ -54,6 +54,9 @@
     "/api/trucks/(:)/planning/duplicate":{
         "POST":"PlanningController:duplicateMonth"
     },
+    "/api/plat/(:)":{
+        "POST":"PlatController:updatePlat"
+    },
     "/api/planning/update":{
         "POST":"PlanningController:updateThePlanning"
     },
