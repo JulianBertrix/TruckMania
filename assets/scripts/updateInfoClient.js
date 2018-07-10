@@ -137,7 +137,13 @@ function saveThePlat(idPlat){
         },
         
         success : function(retour){
-            console.log(retour);
+            if(retour > 0){
+                console.log('tutu');
+                $('#ligne'+idPlat).animate({
+                        //color: '#00FF00'
+                        backgroundColor: "green"
+                    }, 1500);
+                };
         },
 
         error : function(data){

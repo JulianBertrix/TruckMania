@@ -140,12 +140,12 @@
                                 <?php
                                 foreach ($listePlats as $plat){
                                 ?>
-                                    <tr data-toggle="collapse" data-target="#demo1" class="accordion-toggle">
+                                    <tr id="ligne<?= $plat['id'];?>" data-toggle="collapse" data-target="#demo1" class="accordion-toggle">
                                         <td><input id="image<?= $plat['id'];?>" class="form-control form-control-sm" type="text" value=<?php echo $plat['image']; ?>></td>                                  
                                         <td><input id="plat<?= $plat['id'];?>" class="form-control form-control-sm" type="text" value=<?php echo $plat['nom']; ?>></td>                                  
                                         <td><input id="prix<?= $plat['id'];?>" class="form-control form-control-sm" type="text" value=<?php echo $plat['prix']." €"; ?>></td>                                  
                                         <td><input id="description<?= $plat['id'];?>" class="form-control form-control-sm" type="text" value=<?php echo $plat['description']; ?>></td>                                  
-                                        <td><button type="button" class="btn btn-warning btn-sm" onclick="saveThePlat(<?= $plat['id'];?>)"><i class="fas fa-check"></i></button></td>
+                                        <td><button id="butt<?= $plat['id'];?>" type="button" class="btn btn-warning btn-sm" onclick="saveThePlat(<?= $plat['id'];?>)"><i class="fas fa-check"></i></button></td>
                                     </tr>                             
                                 <?php
                                 }
