@@ -149,7 +149,15 @@
                                     </tr>                             
                                 <?php
                                 }
-                                ?>                 
+                                ?>
+                                <!-- Ajout -->
+                                <tr id="ligneAjout" data-toggle="collapse" data-target="#demo1" class="accordion-toggle">
+                                    <td><input id="ajoutImage" class="form-control form-control-sm" type="text" value=""></td>                                  
+                                    <td><input id="ajoutPlat" class="form-control form-control-sm" type="text" value=""></td>                                  
+                                    <td><input id="ajoutPrix" class="form-control form-control-sm" type="text" value=""></td>                                  
+                                    <td><input id="description" class="form-control form-control-sm" type="text" value=""></td>                                  
+                                    <td><button type="button" class="btn btn-success btn-sm" onclick="addThePlat()"><i class="fas fa-plus"></i></button></td>
+                                </tr>                   
                             </tbody>
                         </table>
                     </div>
