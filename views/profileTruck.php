@@ -1,6 +1,8 @@
 <?php include 'header.php';?>
 
 <div class="container-fluid">
+    <!-- Div SR-ONLY id du FT -->
+    <input class="sr-only" id="idTruck" value=<?= $infosTruck['id'];?>>
     <div class="row">
         <div class="col-sm-2">
             <?php include 'infoTruck.php';?>  
@@ -136,35 +138,17 @@
                                 </tr>
                             </thead>
                             <tbody id="Plats">
+                            <script>
+                                $(document).ready(function() {
+                                    giveMeThePlats();
 
-                                <?php
-                                foreach ($listePlats as $plat){
-                                ?>
-                                    <tr id="ligne<?= $plat['id'];?>" data-toggle="collapse" data-target="#demo1" class="accordion-toggle">
-                                        <td><input id="image<?= $plat['id'];?>" class="form-control form-control-sm" type="text" value=<?php echo $plat['image']; ?>></td>                                  
-                                        <td><input id="plat<?= $plat['id'];?>" class="form-control form-control-sm" type="text" value=<?php echo $plat['nom']; ?>></td>                                  
-                                        <td><input id="prix<?= $plat['id'];?>" class="form-control form-control-sm" type="text" value=<?php echo $plat['prix']." €"; ?>></td>                                  
-                                        <td><input id="description<?= $plat['id'];?>" class="form-control form-control-sm" type="text" value=<?php echo $plat['description']; ?>></td>                                  
-                                        <td><button id="butt<?= $plat['id'];?>" type="button" class="btn btn-warning btn-sm" onclick="saveThePlat(<?= $plat['id'];?>)"><i class="fas fa-check"></i></button></td>
-                                    </tr>                             
-                                <?php
-                                }
-                                ?>
-                                <!-- Ajout -->
-                                <tr id="ligneAjout" data-toggle="collapse" data-target="#demo1" class="accordion-toggle">
-                                    <td><input id="ajoutImage" class="form-control form-control-sm" type="text" value=""></td>                                  
-                                    <td><input id="ajoutPlat" class="form-control form-control-sm" type="text" value=""></td>                                  
-                                    <td><input id="ajoutPrix" class="form-control form-control-sm" type="text" value=""></td>                                  
-                                    <td><input id="description" class="form-control form-control-sm" type="text" value=""></td>                                  
-                                    <td><button type="button" class="btn btn-success btn-sm" onclick="addThePlat()"><i class="fas fa-plus"></i></button></td>
-                                </tr>                   
+                                });
+                            </script>               
                             </tbody>
                         </table>
                     </div>
                 </div>  
-<!-- CALENDRIER -->   
-                <!-- Div SR-ONLY id du FT -->
-                <input class="sr-only" id="idTruck" value=<?= $infosTruck['id'];?>>            
+<!-- CALENDRIER -->        
                 <div class="tab-pane" id="calendrier">
                     <div class="table-responsive">
                         <br><br>
