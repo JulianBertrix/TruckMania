@@ -19,7 +19,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Annuler</button>
-        <button type="button" class="btn btn-success" data-dismiss="modal" onclick="updateInfo()">Valider</button>
+        <button type="button" class="btn btn-success" data-dismiss="modal" onclick="updateInfo(<?php echo $user->username[0]; ?>)">Valider</button>
       </div>
     </div>
   </div>

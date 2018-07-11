@@ -1,6 +1,6 @@
-function updateInfo(){
+function updateInfo(id){
     $.ajax({
-        url : "http://trucks-mania.bwb/api/utilisateur/1",
+        url : "http://trucks-mania.bwb/api/utilisateur/"+id,
         type : "POST",
         
         data : {
@@ -10,7 +10,8 @@ function updateInfo(){
         },
         
         success : function(data){
-            alert("vos modifications ont bien été prises en compte");
+            alert("vos infos ont bien été mis a jour");
+            document.location.href = document.location.href;
         },
         
         error : function(){
@@ -19,9 +20,9 @@ function updateInfo(){
     });
 }
 
-function deleteFavoris(id){
+function deleteFavoris(idUser,idFT){
     $.ajax({
-        url : "http://trucks-mania.bwb/api/Favoris/delete/utilisateur/1/foodtruck/"+id,
+        url : "http://trucks-mania.bwb/api/Favoris/delete/utilisateur/"+idUser+"/foodtruck/"+idFT,
         type : "POST",
         
         data : {
@@ -29,8 +30,8 @@ function deleteFavoris(id){
         },
         
         success : function(data){
-            console.log(data);
             alert("foodtruck supprimer de vos favoris");
+            document.location.href = document.location.href;
         },
         
         error : function(){
@@ -39,9 +40,9 @@ function deleteFavoris(id){
     });
 }
 
-function addFavoris(id){
+function addFavoris(idUser,idFT){
     $.ajax({
-        url : "http://trucks-mania.bwb/api/Favoris/add/utilisateur/1/foodtruck/"+id,
+        url : "http://trucks-mania.bwb/api/Favoris/add/utilisateur/"+idUser+"/foodtruck/"+idFT,
         type : "POST",
         
         data : {
