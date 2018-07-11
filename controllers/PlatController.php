@@ -30,20 +30,39 @@ class PlatController extends Controller {
         return $this->plat->delete($id);
     }
     
-    public function updatePlat($array){
-        return $this->plat->update($array);
+    public function updatePlat($idPlat){
+
+        //POST
+        $dataPost = $this->inputPost();
+
+        $newPlat = new PlatModel($idPlat,$dataPost['intitule'],$dataPost['description'],$dataPost['prix'],$dataPost['image'],null);
+        echo $this->plat->update($newPlat);
     }
     
-    public function addPlat($array){
-        return $this->plat->create($array);
+    public function addPlat($idTruck){
+
+        //POST
+        $dataPost = $this->inputPost();
+
+        $newPlat = new PlatModel(null,$dataPost['intitule'],$dataPost['description'],$dataPost['prix'],$dataPost['image'],$idTruck);
+        echo $this->plat->create($newPlat);
+
     }
     
     public function getPlat($id){
         return $this->plat->retrieve($id);
     }
     
-    public function getAllPlatsBy($filter){
-        return $this->plat->getAllBy($filter);
+    public function getAllPlatsBy($idTruck){
+
+        $listePlatsObj = $this->plat->getAllBy(['foodtruck_id' => $idTruck]);
+        $listePlats = [];
+
+        foreach($listePlatsObj as $plat){
+            array_push($listePlats,$plat->jsonSerialize());
+        };
+
+        echo json_encode($listePlats);
     }
     
     public function getAllPlats(){

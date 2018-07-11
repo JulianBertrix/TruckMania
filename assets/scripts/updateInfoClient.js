@@ -123,3 +123,161 @@ function addAdresse(){
         }
     });
 }
+
+
+//GET All plats for this Truck
+function giveMeThePlats(){
+
+    var idTruck = $('#idTruck').val();
+
+    $.ajax({
+        url: "http://trucks-mania.bwb/api/plat/"+idTruck,
+        type: "GET",
+        dataType: "json",
+        async: false,
+
+        success: function (data) {
+
+            //Vide la table
+            $("#Plats").empty()
+            //Creation des tr/td
+            data.forEach(element => {
+                
+                $("#Plats").append(
+                    $("<tr>")
+                        .attr("data-toggle","collapse")
+                        .attr("id","ligne"+element.id)
+                        .addClass("accordion-toggle")
+                        //IMAGE
+                        .append($("<td>")
+                            .append($("<input>")
+                                .attr("id", "image"+element.id)
+                                .attr("type", "text")
+                                .addClass("form-control form-control-sm")
+                                .attr("value", element.image)))
+                        //NOM
+                        .append($("<td>")
+                            .append($("<input>")
+                                .attr("id", "plat"+element.id)
+                                .attr("type", "text")
+                                .addClass("form-control form-control-sm")
+                                .attr("value", element.nom)))
+                        //PRIX
+                        .append($("<td>")
+                            .append($("<input>")
+                                .attr("id", "prix"+element.id)
+                                .attr("type", "text")
+                                .addClass("form-control form-control-sm")
+                                .attr("value", element.prix)))
+                        //DESCRIPTION
+                        .append($("<td>")
+                            .append($("<input>")
+                                .attr("id", "description"+element.id)
+                                .attr("type", "text")
+                                .addClass("form-control form-control-sm")
+                                .attr("value", element.description)))
+                        //BUTTON VALIDATE
+                        .append($("<td>")
+                            .append($("<button>")
+                                .attr("id", "butt"+element.id)
+                                .attr("type", "button")
+                                .addClass("btn btn-warning btn-sm")
+                                .attr("onclick", "saveThePlat("+element.id+")")
+                                .html("<i class='fas fa-check'></i>")))
+                );
+            });
+
+            //Ajout de la ligne ajout en dernier
+            $("#Plats").append(
+                $("<tr>")
+                    .attr("data-toggle","collapse")
+                    .attr("id","ligneAjout")
+                    .addClass("accordion-toggle")
+                    //IMAGE
+                    .append($("<td>")
+                        .append($("<input>")
+                            .attr("id", "ajoutImage")
+                            .attr("type", "text")
+                            .addClass("form-control form-control-sm")
+                            .attr("value", "")))
+                    //NOM
+                    .append($("<td>")
+                        .append($("<input>")
+                            .attr("id", "ajoutPlat")
+                            .attr("type", "text")
+                            .addClass("form-control form-control-sm")
+                            .attr("value", "")))
+                    //PRIX
+                    .append($("<td>")
+                        .append($("<input>")
+                            .attr("id", "ajoutPrix")
+                            .attr("type", "text")
+                            .addClass("form-control form-control-sm")
+                            .attr("value", "")))
+                    //DESCRIPTION
+                    .append($("<td>")
+                        .append($("<input>")
+                            .attr("id", "ajoutDescription")
+                            .attr("type", "text")
+                            .addClass("form-control form-control-sm")
+                            .attr("value", "")))
+                    //BUTTON VALIDATE
+                    .append($("<td>")
+                        .append($("<button>")
+                            .attr("type", "button")
+                            .addClass("btn btn-success btn-sm")
+                            .attr("onclick", "addThePlat("+idTruck+")")
+                            .html("<i class='fas fa-plus'></i>")))
+            );
+        },
+        error: function (param1, param2) {
+            console.log("error");
+        }
+    });
+}
+
+//Validate Modifs Plat
+function saveThePlat(idPlat){
+
+    $.ajax({
+        url : "http://trucks-mania.bwb/api/plat/"+idPlat,
+        type : "POST",
+        data : {
+            intitule : $("#plat"+idPlat).val(),
+            description : $("#description"+idPlat).val(),
+            prix : $("#prix"+idPlat).val(),
+            image : $("#image"+idPlat).val(),
+        },
+        
+        success : function(retour){
+            giveMeThePlats();
+        },
+
+        error : function(data){
+            console.log(data);
+        }
+    });
+}
+
+//Ajout Plat
+function addThePlat(idTruck){
+
+    $.ajax({
+        url : "http://trucks-mania.bwb/api/plat/add/"+idTruck,
+        type : "POST",
+        data : {
+            intitule : $("#ajoutPlat").val(),
+            description : $("#ajoutDescription").val(),
+            prix : $("#ajoutPrix").val(),
+            image : $("#ajoutImage").val(),
+        },
+        
+        success : function(){
+            giveMeThePlats();
+        },
+
+        error : function(data){
+            console.log(data);
+        }
+    });
+}

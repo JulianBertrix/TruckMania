@@ -11,7 +11,7 @@ use BWB\Framework\mvc\Controller;
 use BWB\Framework\mvc\dao\DAOTrucks;
 use BWB\Framework\mvc\dao\DAOFavoris;
 use BWB\Framework\mvc\dao\DAOCommande;
-use BWB\Framework\mvc\dao\DAOPlats;
+use BWB\Framework\mvc\dao\DAOPlat;
 use BWB\Framework\mvc\dao\DAOPlanning;
 
 require 'CheckURI.php';
@@ -61,12 +61,20 @@ class AdminTruckController extends Controller{
                 array_push($listeAdresses,$item->jsonSerialize());
             }
 
+            //Liste de tous ses plats pour gestion carte
+            $listePlatsObj = (new DAOPlat())->getAllBy(['foodtruck_id' => $truck->getId()]);
+            $listePlats = [];
+            foreach($listePlatsObj as $item){
+                array_push($listePlats,$item->jsonSerialize());
+            }
+
             //Creation de datas
             $datas = array(
                 'infosTruck' => $infos,
                 'listeAdresse' => $listeAdresses,
                 'listeCommandes' => $listeCommandes,
-                'nbFavoris' => $nbFavoris
+                'nbFavoris' => $nbFavoris,
+                'listePlats' => $listePlats
             );         
          
             //Creation de la vue

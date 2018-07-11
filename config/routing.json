@@ -54,6 +54,13 @@
     "/api/trucks/(:)/planning/duplicate":{
         "POST":"PlanningController:duplicateMonth"
     },
+    "/api/plat/(:)":{
+        "GET":"PlatController:getAllPlatsBy",
+        "POST":"PlatController:updatePlat"
+    },
+    "/api/plat/add/(:)":{
+        "POST":"PlatController:addPlat"
+    },
     "/api/planning/update":{
         "POST":"PlanningController:updateThePlanning"
     },

@@ -23,8 +23,10 @@ class DAOPlat extends DAO{
         $sql = "INSERT INTO plat (nom, description, prix, image, date_creation, foodtruck_id)"
                 . " VALUES ('".$array->getNom()."','".$array->getDescription()."','".$array->getPrix()."','"
                 . "".$array->getImage()."','".$array->getDateCreation()."','".$array->getFoodtruckId()."')";
-        echo $sql;
-        return $this->getPdo()->query($sql)->fetch();
+
+        $this->getPdo()->query($sql);
+
+        return $this->getPdo()->lastInsertId();
     }
 
     public function delete($id) {
@@ -60,6 +62,9 @@ class DAOPlat extends DAO{
             $sql .= $key."='".$value."' ";
             $i++;
         }
+
+        //Ordre de creation descendant
+        $sql .= " ORDER BY date_creation";
         
         $results = $this->getPdo()->query($sql)->fetchAll();
         $plats = array();
@@ -93,8 +98,7 @@ class DAOPlat extends DAO{
     public function update($array) {
         $sql = "UPDATE plat SET nom='".$array->getNom()."', description='".$array->getDescription()."', "
         . "prix='".$array->getPrix()."', image='".$array->getImage()."' WHERE id=".$array->getId();
-        echo $sql;
-        return $this->getPdo()->query($sql)->fetch();
+        return $this->getPdo()->query($sql)->rowcount();
     }
 
 }

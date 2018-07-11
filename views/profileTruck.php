@@ -1,6 +1,8 @@
 <?php include 'header.php';?>
 
 <div class="container-fluid">
+    <!-- Div SR-ONLY id du FT -->
+    <input class="sr-only" id="idTruck" value=<?= $infosTruck['id'];?>>
     <div class="row">
         <div class="col-sm-2">
             <?php include 'infoTruck.php';?>  
@@ -14,6 +16,9 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#commandesTerminees" data-toggle="tab">Commandes terminées</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#carte" data-toggle="tab">Ma carte</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#calendrier" data-toggle="tab">Mon calendrier</a>
@@ -119,10 +124,31 @@
                             </tbody>
                         </table>
                     </div>
-                </div> 
-<!-- CALENDRIER -->   
-                <!-- Div SR-ONLY id du FT -->
-                <input class="sr-only" id="idTruck" value=<?= $infosTruck['id'];?>>            
+                </div>
+<!-- CARTE -->
+                <div class="tab-pane" id="carte">
+                    <div class="table-responsive">
+                        <table class="table table-hover text-center">
+                            <thead>
+                                <tr>
+                                    <th>Image</th>
+                                    <th>Intitule</th>
+                                    <th>prix</th>
+                                    <th>description</th>
+                                </tr>
+                            </thead>
+                            <tbody id="Plats">
+                            <script>
+                                $(document).ready(function() {
+                                    giveMeThePlats();
+
+                                });
+                            </script>               
+                            </tbody>
+                        </table>
+                    </div>
+                </div>  
+<!-- CALENDRIER -->        
                 <div class="tab-pane" id="calendrier">
                     <div class="table-responsive">
                         <br><br>
