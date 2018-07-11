@@ -17,16 +17,21 @@
             <td><?php echo $commande->getDateCommande(); ?></td>
             <td><?php echo $commande->getFoodtruckId()->getNom(); ?></td>
             <td>
-            <?php foreach ($listePlat as $key => $nom){
-                ?><li><?php echo $nom; ?></li><?php
-            }?></td>
-            <td>
-            
+            <?php 
+            foreach ($fullCommande as $key => $value){
+                if($value["numero"] === $commande->getNumero()){
+                    foreach ($value["liste_paniers"] as $panier){                   
+                        ?><li><?php echo $panier["plat"]["nom"]; ?></li><?php                   
+                    }?>
+            </td>
+            <td>          
                 <?php 
-                foreach ($listeQuantite as $key => $nom){?>
-                    <li><?php echo $nom; ?></li>
+                foreach ($value["liste_paniers"] as $panier){?>
+                    <li><?php echo $panier["quantite"]; ?></li>
                 <?php
+                    }
                 }
+            }
                 ?>
             </td>
             <td><?php echo $commande->getTotal();?> €</td>

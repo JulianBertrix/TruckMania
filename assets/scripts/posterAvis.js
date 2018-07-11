@@ -10,9 +10,9 @@ function addAvis(idAvis){
            note : $("#note").val()      
         },
         
-        success : function(data){
-            console.log(data);
+        success : function(data){           
             alert("vous avez ajouté un avis");
+            document.location.href = document.location.href;
         },
         
         error : function(data){

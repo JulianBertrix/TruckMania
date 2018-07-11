@@ -16,7 +16,7 @@
             <td><img src=<?php echo "http://".$_SERVER['SERVER_NAME'] . "/assets/img/trucks/".$truck->getFoodtruckId()->getLogo(); ?>></td>
             <td><?php echo $truck->getFoodtruckId()->getNom(); ?></td>                   
             <td><button class="update btn btn-warning btn-sm" onclick="deleteFavoris(
-                        <?php echo $truck->getFoodtruckId()->getId(); ?>)"><span class="fa fa-star"></span></button></td>
+                        <?php echo $user->username[0].",".$truck->getFoodtruckId()->getId(); ?>)"><span class="fa fa-star"></span></button></td>
             <td><a <?php echo "href=http://".$_SERVER['SERVER_NAME'] ."/foodtruck/".$truck->getFoodtruckId()->getId(); ?>><button class="btn btn-default btn-xs"><span class="fa fa-eye"></span></button></a></td>
         </tr>
        <?php 
