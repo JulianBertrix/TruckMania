@@ -43,12 +43,14 @@ class FoodTruckProfileController extends Controller{
         $carte = (new DAOPlat())->getAllBy(['foodtruck_id' => $id]);
         
         $listeAvis = array();
-        $listeNote = array();
+
         $commande = (new DAOCommande())->getAllBy(['foodtruck_id' => $id]);
         
         foreach ($commande as $value){
-            array_push($listeAvis, $value->getAvisId()->getMessage());
-            array_push($listeNote, $value->getAvisId()->getNote());
+            array_push($listeAvis, [
+                'message' => $value->getAvisId()->getMessage(),
+                'note' => $value->getAvisId()->getNote()
+            ]);
         }
         
         $datas = array(
@@ -58,7 +60,6 @@ class FoodTruckProfileController extends Controller{
             'categorie' => $categorie,
             'carte' => $carte,
             'listeAvis' => $listeAvis,
-            'listeNote' => $listeNote,
             'moyenne' => $moyenne
         );
     

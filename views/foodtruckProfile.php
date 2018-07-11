@@ -35,31 +35,32 @@ include 'header.php';
     </div>
     <hr>
     <div class="row">
-        <h3>La carte</h3>             
+        <h3>La carte</h3>
     </div>
-
     <div class="row">
-        <div class="col-sm-8">
-            <ul>
-                <?php foreach ($carte as $value){?>
-                <li><?php echo $value->getNom(); ?></li>
-                <?php
-                }
-                ?>
-            </ul>
-        </div>
         <?php if(isset($user)){?>
-        <div class="col-sm-4">
-            <button type="button" class="update btn btn-warning btn-sm" data-toggle="modal" data-target="#order" data-uid="<?= $id;?>" data-productid=""><span class="fas fa-cart-arrow-down"></span><h6>Commander</h6></button>
-        </div>
+            <button type="button" class="btn btn-outline-success btn-sm" data-toggle="modal" data-target="#order" data-uid="<?= $id;?>" data-productid=""><span class="fas fa-cart-arrow-down"></span><h6>Commander</h6></button>
         <?php }else{?>
-        <div class="col-sm-4">
-            <button type="button" class="update btn btn-warning btn-sm" onclick="getSub()"><span class="fas fa-cart-arrow-down"></span><h6>Commander</h6></button>
-            <p>veuillez vous connecter ou vous inscrire pour passer une commande</p>
-        </div>
+            <button type="button" class="btn btn-outline-warning btn-sm" onclick="getSub()"><i class="fas fa-edit"></i><h6>S'inscrire</h6></button>
         <?php }?>
-        <?php include 'orderModal.php';?>
-    </div>   
+    </div>
+                     
+    <div class="row">
+        <?php foreach ($carte as $value){?>
+            <div class="card cardPlats" style="width: 10rem;">
+                <img class="card-img-top" src=<?= "http://".$_SERVER['SERVER_NAME'] . "/assets/img/plats/".$value->getImage(); ?> alt="Card image cap">
+                <div class="card-body">
+                    <input type="text" class="input100" value="<?=$value->getNom();?>">
+                    <input type="text" class="input100" value="<?=$value->getPrix();?> €">
+                </div>
+            </div>
+            <?php
+            }
+            ?>
+    </div>
+        
+    <?php include 'orderModal.php';?>
+  
     <hr>
     <div class="row">
         <h2>Planning</h2>
@@ -69,59 +70,16 @@ include 'header.php';
     <div class="row">     
         <h2>Les avis</h2>
     </div>
-    <div class="panel-group">
-            <div class="row">
-                <div class="col-sm-10">
-                    <?php 
-                    foreach ($listeAvis as $avis){
-                        if($avis !== ""){
-                            ?><li><?php echo $avis; ?></li><?php
-                        }
-                    }
-                    ?>
-                </div>
-                <div class="col-sm-2">
-                    <?php 
-                    foreach ($listeNote as $note){
-                        if($note != 0){
-                            ?><li><?php
-                            if($note == 1.0){
-                                ?><span class="fa fa-star"></span><?php
-                            }
-                            if($note == 2.0){
-                                ?><span class="fa fa-star"></span><span class="fa fa-star"></span><?php
-                            }
-                            if($note == 3.0){
-                                ?><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><?php
-                            }
-                            if($note == 4.0){
-                                ?><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><?php
-                            }
-                            if($note == 5.0){
-                                ?><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><?php
-                            }
-                            if($note == 0.5){
-                                ?><span class="fas fa-star-half-alt"></span><?php
-                            }
-                            if($note == 1.5){
-                                ?><span class="fa fa-star"></span><span class="fas fa-star-half-alt"></span><?php
-                            }
-                            if($note == 2.5){
-                                ?><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star-half"></span><?php
-                            }
-                            if($note == 3.5){
-                                ?><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fas fa-star-half-alt"></span><?php
-                            }
-                            if($note == 4.5){
-                                ?><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fas fa-star-half-alt"></span><?php
-                            }
-                        }
-                    }    
-                    ?></li>
-                </div>
-            </div>
-        </div>
-        </div>
+    <div class="row">
+        <?php 
+        foreach ($listeAvis as $avis){
+            if($avis['message'] !== ""){?>
+                <div class="col-sm-10"><?php echo $avis['message']; ?></div>
+                <div class="col-sm-2"><?php giveMeTheStars($avis['note']);?></div>
+        <?php
+            }
+        }
+        ?>
     </div>
 </div>
                  

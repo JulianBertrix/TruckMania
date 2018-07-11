@@ -146,7 +146,7 @@
                 <div class="input-group-prepend">
                     <div class="input-group-text">email</div>
                 </div>
-                <input type="text" class="form-control" id="login" value="malesuada@Sedet.ca">
+                <input type="text" class="form-control" id="login" value="">
             </div>
         </div>
         <div class="form-group">
@@ -154,7 +154,7 @@
                 <div class="input-group-prepend">
                     <div class="input-group-text">Mot de passe</div>
                 </div>
-                <input class="form-control" type="password" id="password" value="123">
+                <input class="form-control" type="password" id="password" value="">
             </div>
         </div>
       </div>
