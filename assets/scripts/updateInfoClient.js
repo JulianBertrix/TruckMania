@@ -137,7 +137,6 @@ function giveMeThePlats(){
         async: false,
 
         success: function (data) {
-
             //Vide la table
             $("#Plats").empty()
             //Creation des tr/td
@@ -150,11 +149,10 @@ function giveMeThePlats(){
                         .addClass("accordion-toggle")
                         //IMAGE
                         .append($("<td>")
-                            .append($("<input>")
+                            .append($("<img>")
                                 .attr("id", "image"+element.id)
-                                .attr("type", "text")
-                                .addClass("form-control form-control-sm")
-                                .attr("value", element.image)))
+                                .attr("src", element.image)
+                                .attr("alt", "Image plat "+element.id)))
                         //NOM
                         .append($("<td>")
                             .append($("<input>")

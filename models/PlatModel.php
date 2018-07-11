@@ -38,7 +38,7 @@ class PlatModel implements JsonSerializable{
             'nom' => $this->nom,
             'description' => $this->description,
             'prix' => $this->prix,
-            'image' => $this->image,
+            'image' => "http://".$_SERVER['SERVER_NAME'] . "/assets/img/plats/".$this->image,
             'dateCreation' => $this->dateCreation
         ];
     }
