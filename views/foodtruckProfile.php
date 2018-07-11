@@ -54,7 +54,7 @@ include 'header.php';
             <br>
             <div class="row">
                 <button class="update btn btn-warning btn-sm" onclick="addFavoris(
-                            <?php echo $id; ?>)"><span class="fa fa-star"></span>ajouter aux favoris</button>
+                            <?php echo $user->username[0].",".$id; ?>)"><span class="fa fa-star"></span>ajouter aux favoris</button>
             </div>
         </div>
     </div>
@@ -84,7 +84,7 @@ include 'header.php';
         <?php }else{?>
         <div class="col-sm-4">
             <button type="button" class="update btn btn-warning btn-sm" onclick="getSub()"><span class="fas fa-cart-arrow-down"></span><h6>Commander</h6></button>
-            <p>veuillez vous connecter ou vous inscrire passer une commande</p>
+            <p>veuillez vous connecter ou vous inscrire pour passer une commande</p>
         </div>
         <?php }?>
         <?php include 'orderModal.php';?>
@@ -101,45 +101,52 @@ include 'header.php';
     <div class="panel-group">
             <div class="row">
                 <div class="col-sm-10">
-                    <?php foreach ($listeAvis as $avis){
-                        ?><li><?php echo $avis; ?></li><?php
-                    }?>
+                    <?php 
+                    foreach ($listeAvis as $avis){
+                        if($avis !== ""){
+                            ?><li><?php echo $avis; ?></li><?php
+                        }
+                    }
+                    ?>
                 </div>
                 <div class="col-sm-2">
-                    <?php foreach ($listeNote as $note){
-                        ?><li><?php
-                        if($note == 1.0){
-                            ?><span class="fa fa-star"></span><?php
+                    <?php 
+                    foreach ($listeNote as $note){
+                        if($note != 0){
+                            ?><li><?php
+                            if($note == 1.0){
+                                ?><span class="fa fa-star"></span><?php
+                            }
+                            if($note == 2.0){
+                                ?><span class="fa fa-star"></span><span class="fa fa-star"></span><?php
+                            }
+                            if($note == 3.0){
+                                ?><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><?php
+                            }
+                            if($note == 4.0){
+                                ?><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><?php
+                            }
+                            if($note == 5.0){
+                                ?><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><?php
+                            }
+                            if($note == 0.5){
+                                ?><span class="fas fa-star-half-alt"></span><?php
+                            }
+                            if($note == 1.5){
+                                ?><span class="fa fa-star"></span><span class="fas fa-star-half-alt"></span><?php
+                            }
+                            if($note == 2.5){
+                                ?><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star-half"></span><?php
+                            }
+                            if($note == 3.5){
+                                ?><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fas fa-star-half-alt"></span><?php
+                            }
+                            if($note == 4.5){
+                                ?><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fas fa-star-half-alt"></span><?php
+                            }
                         }
-                        if($note == 2.0){
-                            ?><span class="fa fa-star"></span><span class="fa fa-star"></span><?php
-                        }
-                        if($note == 3.0){
-                            ?><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><?php
-                        }
-                        if($note == 4.0){
-                            ?><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><?php
-                        }
-                        if($note == 5.0){
-                            ?><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><?php
-                        }
-                        if($note == 0.5){
-                            ?><span class="fas fa-star-half-alt"></span><?php
-                        }
-                        if($note == 1.5){
-                            ?><span class="fa fa-star"></span><span class="fas fa-star-half-alt"></span><?php
-                        }
-                        if($note == 2.5){
-                            ?><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star-half"></span><?php
-                        }
-                        if($note == 3.5){
-                            ?><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fas fa-star-half-alt"></span><?php
-                        }
-                        if($note == 4.5){
-                            ?><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fas fa-star-half-alt"></span><?php
-                        }
-                        //echo $note;
-                        }?></li>
+                    }    
+                    ?></li>
                 </div>
             </div>
         </div>

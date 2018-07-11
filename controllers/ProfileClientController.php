@@ -38,74 +38,20 @@ class ProfileClientController extends Controller{
 
             $favoris = (new FavorisController())->getAllBy(["utilisateur_id" => $utilisateur->getId()]);
             $commande = (new CommandeController())->getAllBy(["utilisateur_id" => $utilisateur->getId()]);
-            $commandeEnCours = (new CommandeController())->getAllBy(["utilisateur_id" => $utilisateur->getId()]);
-
-            $foodtruckId = null;
-            $numeroCommande = null;
-            $avisId = null;
+            
+            $getCommande = null;
+            $listeCommandes = array();
+            
             foreach ($commande as $key => $value){
-                if($value->getDateCommande() <= date("Y-m-d H:i:s")){
-                    $foodtruckId = $value->getFoodtruckId()->getId();
-                    $avisId = $value->getAvisId()->getId();
-                    $panier = (new PanierController())->getAllPanierBy(["commande_numero" => $value->getNumero()]); 
-                    $plat = array();
-                    $quantite = array();
-                    
-                    foreach ($panier as $key => $val){
-                        $numeroCommande = $val->getNumeroCommande()->getNumero();
-                        if ($value->getNumero() === $numeroCommande){
-                            array_push($plat, $val->getPlatId()->getNom());
-                            array_push($quantite, $val->getQuantite());
-                        }
-                    } 
-                }
+                $getCommande = (new CommandeController)->getFullCommande($value->getNumero());
+                array_push($listeCommandes, $getCommande);
             }
             
-            $dateCommandeEnCours = null;
-            $foodtruckEnCours = null;
-            $totalEnCours = null;
-            
-            $platEnCours = null;
-            $quantiteEnCours = null;
-            
-            foreach ($commandeEnCours as $key => $value){
-                if($value->getDateCommande() >= date("Y-m-d H:i:s")){
-                    $dateCommandeEnCours = $value->getDateCommande(); 
-                    $foodtruckEnCours = $value->getFoodtruckId()->getNom();
-                    $totalEnCours = $value->getTotal();
-                    
-                    $panierEnCours = (new PanierController())->getAllPanierBy(["commande_numero" => $value->getNumero()]); 
-                    $platEnCours = array();
-                    $quantiteEnCours = array();
-                    
-                    foreach ($panierEnCours as $key => $val){
-                        if ($value->getNumero() === $val->getNumeroCommande()->getNumero()){
-                            array_push($platEnCours, $val->getPlatId()->getNom());
-                            array_push($quantiteEnCours, $val->getQuantite());
-                        }
-                    } 
-                }
-            }
-
             $datas = array(
                 'infoClient' => $utilisateur,
-                
-                'foodtruckId' => $foodtruckId,
-                'avisId' => $avisId,
-                'listeFavoris' => $favoris,
-                
-                'numeroCommande' => $numeroCommande,
-                'listeCommande' => $commande,
-
-                'listePlat' => $plat,
-                'listeQuantite' => $quantite,
-                
-                'listeCommandeEnCours' => $commandeEnCours,
-                'dateCommandeEnCours' => $dateCommandeEnCours,
-                'foodtruckEnCours' => $foodtruckEnCours,
-                'listePlatEnCours' => $platEnCours,
-                'listeQuantiteEnCours' => $quantiteEnCours,
-                'totalEnCours' => $totalEnCours
+                'listeFavoris' => $favoris,              
+                'listeCommande' => $commande,              
+                'fullCommande' => $listeCommandes
             );
             
             $this->render("profileClient", $datas);
