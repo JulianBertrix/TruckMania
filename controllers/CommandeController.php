@@ -42,14 +42,29 @@ class CommandeController extends Controller {
 
     public function create(){
         header("Content-Type: text/plain");
-        $dataPost = $this->inputPost();
         
+        $dataPost = $this->inputPost();
+        $newDate = null;
+        
+        //recuperation de la date
+        if(isset($dataPost['dateRequest']) && isset($dataPost['heureRequest'])){
+            $dateCommande = $dataPost['dateRequest']." ".$dataPost['heureRequest'];
+            $newDate = date_format(date_create_from_format('d/m/Y H:i', $dateCommande), 'Y-m-d H:i');
+        }else{
+            $newDate = date('Y-m-d H:i');
+        }
+        
+        //creation de la commande
         $newCommande = new CommandeModel();
+        $newCommande->setDateCommande($newDate);
         $newCommande->setUtilisateurId($dataPost['utilisateur_id']);
         $newCommande->setFoodtruckId($dataPost['foodtruck_id']);
         $newCommande->setTotal($dataPost['total']);
         $newCommandeId = $this->commande->create($newCommande);
         
+        $nbPanierCrees = 0;
+
+        //creation du panier
         for($i = 0; $i < count($dataPost['plat']); $i++){
             if($dataPost['quantite'][$i] != 0){
                 //recuperation id du plat
@@ -58,10 +73,10 @@ class CommandeController extends Controller {
                 $platId = (new DAOPlat)->getAllBy($filter)[0]->getId();
                 $panier = new PanierModel((new DAOCommande())->retrieve($newCommandeId), 
                         (new DAOPlat())->retrieve($platId), $dataPost['quantite'][$i]);
-                (new DAOPanier)->create($panier);
+                $nbPanierCrees++;
             }
         }
-        echo $dataPost['plat'][0];
+        echo $nbPanierCrees;
     }
 
     public function delete($id){

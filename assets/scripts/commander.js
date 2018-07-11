@@ -6,27 +6,49 @@ function Commander(userId, foodtruckId, nombre){
         listePlat[i] = $("#plat"+i).text();
         listeQuantite[i] = $("#quantite"+i).val();
     }
-    console.log(listeQuantite);
-    $.ajax({
-        url:"http://trucks-mania.bwb/api/Commande",
-        type:"POST",
-        
-        data:{
-            utilisateur_id:userId,
-            foodtruck_id:foodtruckId,
-            plat:listePlat,
-            quantite:listeQuantite,
-            total:$("#total").text()
-        },
-        
-        success: function(data){
-            alert("votre commande a été validée");
-        },
 
-        error:function(){
-            alert("erreur");
-        }
-    });
+    var total = parseFloat($("#total").text());
+
+    console.log($("#datePicker").val());
+
+    //Si total <> 0 et check date et heure, la commande est passée
+
+    if(total > 0 && $("#datePicker").val() != ""){
+
+        $.ajax({
+            url:"http://trucks-mania.bwb/api/Commande",
+            type:"POST",
+            
+            data:{
+                dateRequest:$("#datePicker").val(),
+                heureRequest:$("#heure").val(),
+                utilisateur_id:userId,
+                foodtruck_id:foodtruckId,
+                plat:listePlat,
+                quantite:listeQuantite,
+                total:$("#total").text()
+            },
+            
+            success: function(data){
+                if(data > 0){
+                    alert("votre commande du "+$("#datePicker").val()+" a été validée");
+                }
+                else{
+                    alert("Zut erreur lors de la commande, veuillez essayer de nouveau SVP");
+                }
+                $('#order').modal('hide');
+            },
+    
+            error:function(){
+                alert("erreur");
+            }
+        });
+
+    }else{
+        alert("Aïe une erreur s'est produite, vérifiez votre commande SVP")
+    }
+
+    
 }
 
 function getTotal(nombre){
