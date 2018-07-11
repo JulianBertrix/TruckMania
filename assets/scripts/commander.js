@@ -7,33 +7,48 @@ function Commander(userId, foodtruckId, nombre){
         listeQuantite[i] = $("#quantite"+i).val();
     }
 
-    $.ajax({
-        url:"http://trucks-mania.bwb/api/Commande",
-        type:"POST",
-        
-        data:{
-            dateRequest:$("#datePicker").val(),
-            heureRequest:$("#heure").val(),
-            utilisateur_id:userId,
-            foodtruck_id:foodtruckId,
-            plat:listePlat,
-            quantite:listeQuantite,
-            total:$("#total").text()
-        },
-        
-        success: function(data){
-            if(data.dateRequest != null && data.heureRequest != null && data.quantite != null){
-                alert("votre commande a été validée");
-            }
-            else{
-                alert("CONNARD!");
-            }
-        },
+    var total = parseFloat($("#total").text());
 
-        error:function(){
-            alert("erreur");
-        }
-    });
+    console.log($("#datePicker").val());
+
+    //Si total <> 0 et check date et heure, la commande est passée
+
+    if(total > 0 && $("#datePicker").val() != ""){
+
+        $.ajax({
+            url:"http://trucks-mania.bwb/api/Commande",
+            type:"POST",
+            
+            data:{
+                dateRequest:$("#datePicker").val(),
+                heureRequest:$("#heure").val(),
+                utilisateur_id:userId,
+                foodtruck_id:foodtruckId,
+                plat:listePlat,
+                quantite:listeQuantite,
+                total:$("#total").text()
+            },
+            
+            success: function(data){
+                if(data > 0){
+                    alert("votre commande du "+$("#datePicker").val()+" a été validée");
+                }
+                else{
+                    alert("Zut erreur lors de la commande, veuillez essayer de nouveau SVP");
+                }
+                $('#order').modal('hide');
+            },
+    
+            error:function(){
+                alert("erreur");
+            }
+        });
+
+    }else{
+        alert("Aïe une erreur s'est produite, vérifiez votre commande SVP")
+    }
+
+    
 }
 
 function getTotal(nombre){

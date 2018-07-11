@@ -44,7 +44,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Annuler</button>
-        <button type="button" id="valider" class="btn btn-success" data-dismiss="modal" onclick="Commander(<?php echo $user->username[0].",".$id.",".count($carte); ?>)">Confirmer</button>
+        <button type="button" id="valider" class="btn btn-success" onclick="Commander(<?php echo $user->username[0].",".$id.",".count($carte); ?>)">Confirmer</button>
       </div>
     </div>
   </div>
