@@ -16,8 +16,6 @@ class DAOCommande extends DAO{
     }
 
     public function create($commande) {
-
-        $dateDuJour = date("Y-m-d H:i:s");
         
         //creation d'un nouvel avis VIDE mais avec un ID
         $avis = new AvisModel();
@@ -27,7 +25,7 @@ class DAOCommande extends DAO{
         $idAvis = $this->getPdo()->lastInsertId();
         
         $sql = "INSERT INTO commande (date_commande, utilisateur_id, foodtruck_id, avis_id, total) VALUES ('"
-        .$dateDuJour."','"
+        .$commande->getDateCommande()."','"
         .$commande->getUtilisateurId()."','"
         .$commande->getFoodtruckId()."','"
         .$idAvis."','"

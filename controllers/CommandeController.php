@@ -42,14 +42,25 @@ class CommandeController extends Controller {
 
     public function create(){
         header("Content-Type: text/plain");
-        $dataPost = $this->inputPost();
         
+        $dataPost = $this->inputPost();
+        $newDate = null;
+        
+        //recuperation de la date
+        if(isset($dataPost['dateRequest']) && isset($dataPost['heureRequest'])){
+            $dateCommande = $dataPost['dateRequest']." ".$dataPost['heureRequest'];
+            $newDate = date_format(date_create_from_format('d/m/Y H:i', $dateCommande), 'Y-m-d H:i');
+        }
+        
+        //creation de la commande
         $newCommande = new CommandeModel();
+        $newCommande->setDateCommande($newDate);
         $newCommande->setUtilisateurId($dataPost['utilisateur_id']);
         $newCommande->setFoodtruckId($dataPost['foodtruck_id']);
         $newCommande->setTotal($dataPost['total']);
         $newCommandeId = $this->commande->create($newCommande);
         
+        //creation du panier
         for($i = 0; $i < count($dataPost['plat']); $i++){
             if($dataPost['quantite'][$i] != 0){
                 //recuperation id du plat

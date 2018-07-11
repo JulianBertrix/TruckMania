@@ -6,12 +6,14 @@ function Commander(userId, foodtruckId, nombre){
         listePlat[i] = $("#plat"+i).text();
         listeQuantite[i] = $("#quantite"+i).val();
     }
-    console.log(listeQuantite);
+
     $.ajax({
         url:"http://trucks-mania.bwb/api/Commande",
         type:"POST",
         
         data:{
+            dateRequest:$("#datePicker").val(),
+            heureRequest:$("#heure").val(),
             utilisateur_id:userId,
             foodtruck_id:foodtruckId,
             plat:listePlat,
@@ -20,7 +22,12 @@ function Commander(userId, foodtruckId, nombre){
         },
         
         success: function(data){
-            alert("votre commande a été validée");
+            if(data.dateRequest != null && data.heureRequest != null && data.quantite != null){
+                alert("votre commande a été validée");
+            }
+            else{
+                alert("CONNARD!");
+            }
         },
 
         error:function(){
