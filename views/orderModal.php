@@ -10,14 +10,14 @@
       </div>
       <div class="modal-body">
             <form class="contact100-form validate-form" role="form" method="post">
-                <span class="label-input100"><h3>Jour</h3></span>
-                <select class="form-control" id="plat" name="plat">
-                    <option>Choisissez un jour</option>                   
-                    <option><?php echo date('l')." (Ajourdhui)";?></option>
-                    <?php for($i = 0; $i <= 5; $i++){ ?>                    
-                    <option><?php echo date('l', mktime(0,0,0,1,$i,2018));?></option>
-                    <?php } ?>
-                </select>
+                <div class="col-sm-6">
+                    <span class="label-input100"><h3>Jour</h3></span>
+                    <input type="text" id="datePicker" name="dateRequest" class="form-control" placeholder="Quel jour ?" required="required">
+                </div>
+                <div class="col-sm-6">
+                    <span class="label-input100"><h3>Heure</h3></span>
+                    <input type="text" id="heure" name="heureRequest" class="form-control timepicker" placeholder="Quelle heure ?" required="required">
+                </div>
                 <span class="label-input100"><h3>Plat</h3></span>
                 <div class="row">
                      
