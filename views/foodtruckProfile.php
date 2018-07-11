@@ -19,36 +19,7 @@ include 'header.php';
             <br>
             <div class="row">
                 <?php
-                    if($moyenne == 1.0){
-                        ?><span class="fa fa-star"></span><?php
-                    }
-                    if($moyenne == 2.0){
-                        ?><span class="fa fa-star"></span><span class="fa fa-star"></span><?php
-                    }
-                    if($moyenne == 3.0){
-                        ?><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><?php
-                    }
-                    if($moyenne == 4.0){
-                        ?><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><?php
-                    }
-                    if($moyenne == 5.0){
-                        ?><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><?php
-                    }
-                    if($moyenne == 0.5){
-                        ?><span class="fa fa-star-half"></span><?php
-                    }
-                    if($moyenne == 1.5){
-                        ?><span class="fa fa-star"></span><span class="fas fa-star-half-alt"></span><?php
-                    }
-                    if($moyenne == 2.5){
-                        ?><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fas fa-star-half-alt"></span><?php
-                    }
-                    if($moyenne == 3.5){
-                        ?><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fas fa-star-half-alt"></span><?php
-                    }
-                    if($moyenne == 4.5){
-                        ?><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fas fa-star-half-alt"></span><?php
-                    }
+                    giveMeTheStars($moyenne);
                 ?>
             </div>
             <br>
@@ -156,4 +127,31 @@ include 'header.php';
                  
 <?php
 include 'footer.php';
+
+function giveMeTheStars($note){
+    $vides = floor(5 - $note);
+    
+    if((fmod($note,1) !== 0.0)){
+        $middle = true;
+        $pleines = 4 - $vides; 
+    }else{
+        $middle = false;
+        $pleines = 5 - $vides; 
+    }
+
+    while($pleines > 0){
+        echo '<i class="fas fa-star"  style="color:#DEDE4C"></i>';
+        $pleines--;
+    }
+
+    if($middle){
+        echo '<i class="fas fa-star-half-alt"  style="color:#DEDE4C"></i>';
+    }
+
+    while($vides > 0){
+        echo '<i class="far fa-star"  style="color:#DEDE4C"></i>';
+        $vides--;
+    }
+
+}
 ?>
