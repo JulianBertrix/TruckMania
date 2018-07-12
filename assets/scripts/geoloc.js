@@ -59,25 +59,26 @@ function giveMeTheAdresse(lat,lon){
         return adresse;       
 }
 
-// //AUTOCOMPLETE
+//LocalizeMe
 
-// var autocomplete;
+function localizeMe(idUser) {
 
-// function initializeAutocomplete(id) {
-//     var element = document.getElementById(id);
-//     if (element) {
-//       autocomplete = new google.maps.places.Autocomplete(element, { types: ['geocode'] });
-//       autocomplete.addListener('place_changed', fillInAddress);
-//     }
-//   }
+    var idUser = $('#idUser').val();
+    
+    //recuperation de l'adresse
+    $.ajax({
+        url: "http://trucks-mania.bwb/api/utilisateur/json/"+idUser,
+        type: "GET",
+        dataType: "json",
+        async: false,
 
-//   function fillInAddress() {
-//     // Get the place details from the autocomplete object.
-//     var place = autocomplete.getPlace();
-
-//     for (var component in componentForm) {
-//       document.getElementById(component).value = '';
-//       document.getElementById(component).disabled = false;
-//     }
+        success: function (data) {
+           $('#user_input_autocomplete_address').val(data['adresseId'].adresse);
+        },
+        error: function (param1, param2) {
+            console.log("error");
+        }
+    });
+  }
 
 

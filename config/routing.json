@@ -30,6 +30,8 @@
     "/api/utilisateur":{
         "GET":"UtilisateurController:getALL"
     },
+    "/api/utilisateur/json/(:)": "UtilisateurController:retrieveToJson",
+
     "/api/commande":{
         "GET":"CommandeController:getALL"
     },
