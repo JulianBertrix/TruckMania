@@ -37,7 +37,7 @@ class SearchController extends Controller {
 
         $requestReponse = $this->searchMe($datasPost);
         
-        $datas = ['request' => $requestReponse,'listeCat' => (new CategorieController())->getAllCategorie()];
+        $datas = ['message' => $requestReponse['messageErreur'],'request' => $requestReponse['liste'],'listeCat' => (new CategorieController())->getAllCategorie()];
 
         $this->render("search",$datas);
 
@@ -90,18 +90,18 @@ class SearchController extends Controller {
 
                 $listePlanningFinal = [];
 
-                var_dump($listePlanningZone);
+                
 
                 //Vérifie si liste des FT correspondent à la catégorie si elle est spécifiée
                 if($datas['catrequest'] !== "Toutes les catégories"){
                     foreach($listePlanningZone as $PlanningZone){
-                        if(($PlanningZone->getFoodtruck_id()->getCategorieId()->getIntitule()) === $catrequest){
+                        if(($PlanningZone->getFoodtruckId()->getCategorieId()->getIntitule()) === $catrequest){
                             array_push($listePlanningFinal,$PlanningZone);
                         }
                     }
 
                     //Control du nb de reponses
-                    if(count($listeTrucksFinal) === 0){
+                    if(count($listePlanningFinal) === 0){
 
                         $listePlanningFinal = $listePlanningZone; //Pas de FT pour cette categorie, on retourne ttes les cat + message
 
@@ -125,10 +125,10 @@ class SearchController extends Controller {
 
         }
 
-        // var_dump($listeTrucksFinal);
-        var_dump($yaBon);
+        // var_dump($listePlanningFinal);
+        // var_dump($yaBon);
         
-        return $listePlanningFinal;
+        return ['messageErreur' => $yaBon, 'liste' => $listePlanningFinal];
         
     }
 

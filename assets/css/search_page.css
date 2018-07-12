@@ -90,4 +90,10 @@
       border-radius: 50px;
     }
   }
+
+  #afficheMessage{
+    text-align: center;
+    color: red;
+  }
+
   
