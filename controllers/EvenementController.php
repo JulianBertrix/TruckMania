@@ -21,6 +21,10 @@ class EvenementController extends Controller {
         echo json_encode($this->evenement->getAll());
     }
 
+    public function retrieve($id){
+        return $this->evenement->retrieve($id);
+    }
+
     public function getAll(){
         return $this->evenement->getAll();
     }
@@ -29,8 +33,8 @@ class EvenementController extends Controller {
         return $this->evenement->getAllBy($filter);
     }
 
-    public function retrieve($id){
-        return $this->evenement->retrieve($id);
+    public function getLastFive(){
+        return $this->evenement->getLastFive();
     }
 
     public function create($newEvenement){

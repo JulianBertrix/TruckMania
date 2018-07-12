@@ -22,64 +22,107 @@ include 'header.php';
 
 <?php
 include 'home_Presentation.php';
-include 'carroussel_LastFive.php';
+//include 'carroussel_LastFive.php';
 ?>
- <hr class="container">
-    <!-- Testimonials -->
-    <section class="testimonials text-center bg-light">
-      <div class="container-fluid">
-        <h2 class="mb-5">What people are saying...</h2>
-        <div class="row">
-          <div class="col-lg-4">
-            <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-              <img class="img-fluid rounded-circle mb-3" src="img/testimonials-1.jpg" alt="">
-              <h5>Margaret E.</h5>
-              <p class="font-weight-light mb-0">"This is fantastic! Thanks so much guys!"</p>
+<br>
+
+ <div class="container">
+    <div class="row">
+      <!-- CAROUSEL lastFiveFoodTrucks-->
+        <div class="col-2 partGauche">
+          <h3><i>Les derniers food-trucks arrivés !</i></h3>
+        </div>
+        <div class="col-3">
+
+          <div id="lastFiveCarousel" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+              <li data-target="#lastFiveCarousel" data-slide-to="0" class="active"></li>
+              <li data-target="#lastFiveCarousel" data-slide-to="1"></li>
+              <li data-target="#lastFiveCarousel" data-slide-to="2"></li>
+              <li data-target="#lastFiveCarousel" data-slide-to="3"></li>
+              <li data-target="#lastFiveCarousel" data-slide-to="4"></li>
+            </ol>
+            <div class="carousel-inner">
+                <?php
+
+              foreach ($lastFiveTrucks as $key => $truck) {
+
+                  if($key === 0){
+
+                  echo '<div class="carousel-item active" >
+                          <a href=http://'.$_SERVER['SERVER_NAME'] .'/foodtruck/'.$truck->getId().'>
+                            <img class="d-block img-fluid imageMedium" src="./assets/img/trucks/'.$truck->getLogo().'" alt="First slide">
+                          </a>
+                          <h5>'.$truck->getNom().'</h5>
+                      </div>';
+                  }else{
+
+                  echo '<div class="carousel-item style="text-align: center;">
+                      <img class="d-block img-fluid imageMedium" src="./assets/img/trucks/'.$truck->getLogo().'" alt="First slide">
+                      <h5>'.$truck->getNom().'</h5>
+                  </div>';
+                  }
+              }
+              ?>
             </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-              <img class="img-fluid rounded-circle mb-3" src="img/testimonials-2.jpg" alt="">
-              <h5>Fred S.</h5>
-              <p class="font-weight-light mb-0">"Bootstrap is amazing. I've been using it to create lots of super nice landing pages."</p>
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-              <img class="img-fluid rounded-circle mb-3" src="img/testimonials-3.jpg" alt="">
-              <h5>Sarah	W.</h5>
-              <p class="font-weight-light mb-0">"Thanks so much for making these free resources available to us!"</p>
-            </div>
-          </div>
+            <a class="carousel-control-prev" href="#lastFiveCarousel" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#lastFiveCarousel" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
         </div>
       </div>
-    </section>
-    
+      <!-- CAROUSEL lastFiveEvts-->
+      <div class="col-2 partGauche">
+          <h3><i>Les futurs évenements !</i></h3>
+        </div>
+        <div class="col-3">
 
-    <!-- Call to Action -->
-    <section class="call-to-action text-white text-center">
-      <div class="overlay"></div>
-      <div class="container">
-        <div class="row">
-          <div class="col-xl-9 mx-auto">
-            <h2 class="mb-4">Ready to get started? Sign up now!</h2>
-          </div>
-          <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
-            <form>
-              <div class="form-row">
-                <div class="col-12 col-md-9 mb-2 mb-md-0">
-                  <input type="email" class="form-control form-control-lg" placeholder="Enter your email...">
-                </div>
-                <div class="col-12 col-md-3">
-                  <button type="submit" class="btn btn-block btn-lg btn-primary">Envoyer</button>
-                </div>
-              </div>
-            </form>
-          </div>
+          <div id="lastFiveEvts" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+              <li data-target="#lastFiveEvts" data-slide-to="0" class="active"></li>
+              <li data-target="#lastFiveEvts" data-slide-to="1"></li>
+              <li data-target="#lastFiveEvts" data-slide-to="2"></li>
+              <li data-target="#lastFiveEvts" data-slide-to="3"></li>
+              <li data-target="#lastFiveEvts" data-slide-to="4"></li>
+            </ol>
+            <div class="carousel-inner">
+                <?php
+
+              foreach ($lastFiveEvts as $key => $event) {
+
+                  if($key === 0){
+
+                  echo '<div class="carousel-item active" >
+                          <img class="d-block img-fluid imageMedium" src="./assets/img/trucks/'.$event->getImage().'" alt="First slide">
+                          <h5>'.$event->getIntitule().'</h5>
+                      </div>';
+                  }else{
+
+                  echo '<div class="carousel-item style="text-align: center;">
+                      <img class="d-block img-fluid imageMedium" src="./assets/img/trucks/'.$event->getImage().'" alt="First slide">
+                      <h5>'.$event->getIntitule().'</h5>
+                  </div>';
+                  }
+              }
+              ?>
+            </div>
+            <a class="carousel-control-prev" href="#lastFiveEvts" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#lastFiveEvts" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
         </div>
       </div>
-    </section>
-
+    </div>
+  </div>
+<br>
 <?php
 include 'footer.php';
 ?>

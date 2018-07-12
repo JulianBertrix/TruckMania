@@ -6,6 +6,7 @@ use BWB\Framework\mvc\Controller;
 use BWB\Framework\mvc\models\UtilisateurModel;
 use BWB\Framework\mvc\dao\DAOUtilisateur;
 
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -25,16 +26,14 @@ class HomeController extends Controller {
     }
 
     public function homePage() {
-        
-        // if(checkMe($this->security->acceptConnexion(),$_SERVER['REQUEST_URI'])){
-        //     $datas = ['listeCat' => (new CategorieController())->getAllCategorie()];
 
-        //     $this->render("home",$datas);
-        // }else{
-        //     header("Location: http://" . $_SERVER['SERVER_NAME'] . "/");
-        // }
+        //recup des 5 derniers FT inscrits
+        $newTrucks = (new TrucksController())->getTrucksFive();
 
-        $datas = ['listeCat' => (new CategorieController())->getAllCategorie()];
+        //recup des 5 prochians evenements
+        $newEvts = (new EvenementController())->getLastFive();
+
+        $datas = ['lastFiveEvts' => $newEvts, 'lastFiveTrucks' => $newTrucks, 'listeCat' => (new CategorieController())->getAllCategorie()];
 
         $this->render("home",$datas);
 

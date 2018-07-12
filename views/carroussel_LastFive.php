@@ -30,19 +30,18 @@ use BWB\Framework\mvc\controllers\TrucksController;
             <div class="carousel-inner" role="listbox">
 
                 <?php
-                    $newTrucks = (new TrucksController())->getTrucksFive();
 
-                    foreach ($newTrucks as $key => $truck) {
+                    foreach ($lastFiveTrucks as $key => $truck) {
 
                         if($key === 0){
 
                         echo '<div class="carousel-item active">
-                                <img class="d-block img-fluid" src="./assets/img/trucks/'.$truck->getLogo().'" alt="First slide">
+                                <img class="d-block img-fluid imageMedium" src="http://'.$_SERVER['SERVER_NAME'].'/assets/img/trucks/'.$truck->getLogo().'" alt="First slide">
                             </div>';
                         }else{
 
                         echo '<div class="carousel-item">
-                            <img class="d-block img-fluid" src="./assets/img/trucks/'.$truck->getLogo().'" alt="First slide">
+                            <img class="d-block img-fluid imageMedium" src="./assets/img/trucks/'.$truck->getLogo().'" alt="First slide">
                         </div>';
                         }
                     }
