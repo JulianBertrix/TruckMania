@@ -159,4 +159,27 @@ class DAOPlanning extends DAO{
         return $listeToReturn;
     }
 
+    //Recup au moins 1 adresse pour tous les FT
+    public function getTrucksFromPlanning() {
+        
+        $request = "SELECT DISTINCT foodtruck_id FROM planning";
+
+        $resultats = $this->getPdo()->query($request)->fetchAll();
+
+        $listeAReturn = [];
+
+        foreach($resultats as $Truck){
+
+            $sql = "SELECT * FROM planning WHERE foodtruck_id=".$Truck["foodtruck_id"]." LIMIT 1";
+            $item = $this->getPdo()->query($sql)->fetch();
+
+            $liste = ['foodtruck_id'=>$item['foodtruck_id'],'date_debut'=>$item['date_debut'],'date_fin'=>$item['date_fin']];          
+            $newObjet = $this->retrieve($liste);
+            
+            array_push($listeAReturn,$newObjet);
+        }
+
+        return $listeAReturn;
+    }
+
 }
