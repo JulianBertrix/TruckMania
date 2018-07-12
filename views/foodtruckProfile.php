@@ -24,8 +24,28 @@ include 'header.php';
             </div>
             <br>
             <div class="row">
-                <button class="update btn btn-warning btn-sm" onclick="addFavoris(
-                            <?php echo $user->username[0].",".$id; ?>)"><span class="fa fa-star"></span>ajouter aux favoris</button>
+                <?php 
+                if (isset($user->username[0])){
+                    $addBtn = true;
+                    foreach ($favoris as $utilisateur){
+                        if ($user->username[0] === $utilisateur->getUtilisateurId()->getId()){
+                            $addBtn = false;
+                            break;
+                        }
+                    }
+                    if($addBtn){
+                        ?><button class="update btn btn-warning btn-sm" onclick="addFavoris(
+                                <?php echo $user->username[0].",".$id; ?>)"><span class="fa fa-star"></span>ajouter aux favoris</button><?php
+                    }
+                    else{
+                        ?><button class="update btn btn-warning btn-sm" onclick="deleteFavoris(
+                                <?php echo $user->username[0].",".$id; ?>)"><span class="fa fa-star"></span>retirer des favoris</button><?php
+                    }
+                }
+                else{
+                    ?><button class="update btn btn-warning btn-sm" onclick="getSub()"><span class="fa fa-star"></span>ajouter aux favoris</button><?php
+                }
+                ?>
             </div>
         </div>
     </div>
