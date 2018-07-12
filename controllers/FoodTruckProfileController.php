@@ -16,6 +16,8 @@ use BWB\Framework\mvc\models\CommandeModel;
 use BWB\Framework\mvc\dao\DAOCommande;
 use BWB\Framework\mvc\models\AvisModel;
 use BWB\Framework\mvc\dao\DAOAvis;
+use BWB\Framework\mvc\dao\DAOFavoris;
+use BWB\Framework\mvc\models\FavorisModel;
 /**
  * Description of FoodTruckProfileController
  *
@@ -46,6 +48,8 @@ class FoodTruckProfileController extends Controller{
 
         $commande = (new DAOCommande())->getAllBy(['foodtruck_id' => $id]);
         
+        $favoris = (new DAOFavoris())->getAllBy(['foodtruck_id' => $id]);
+        
         foreach ($commande as $value){
             array_push($listeAvis, [
                 'message' => $value->getAvisId()->getMessage(),
@@ -60,7 +64,8 @@ class FoodTruckProfileController extends Controller{
             'categorie' => $categorie,
             'carte' => $carte,
             'listeAvis' => $listeAvis,
-            'moyenne' => $moyenne
+            'moyenne' => $moyenne,
+            'favoris' => $favoris
         );
     
         $this->render('foodtruckProfile', $datas);        

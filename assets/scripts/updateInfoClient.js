@@ -50,8 +50,8 @@ function addFavoris(idUser,idFT){
         },
         
         success : function(data){
-            console.log(data);
             alert("foodtruck ajouter vos favoris");
+            document.location.href = document.location.href;
         },
         
         error : function(){
