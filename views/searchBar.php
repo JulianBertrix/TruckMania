@@ -1,7 +1,14 @@
 <form action=<?="http://".$_SERVER['SERVER_NAME'] . "/search"?> role="form" method="post">
     <div class="form-row">
+         <!-- Bouton Localiser actif si connecté -->
         <div class="col-1">
+            <?php
+            if(isset($user)){ ?>
+            <!-- Div SR-ONLY id du user -->
+            <input class="sr-only" id="idUser" value=<?= $user->username[0];?>>
             <button type="button" class="btn btn-info" onclick="localizeMe();"><i class="fas fa-map-marker-alt"></i></button>
+            <?php }
+            ?>
         </div>
         <div class="col-4">
             <input class="form-control" type="text" name="user_input_autocomplete_address" placeholder="Où ?" id="user_input_autocomplete_address" size="235">

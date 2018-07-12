@@ -48,6 +48,12 @@ class UtilisateurController extends Controller {
         return $this->user->retrieve($id);
     }
 
+    public function retrieveToJson($id){
+        header("Content-Type: application/json");
+        $retour = $this->user->retrieve($id)->jsonSerialize();
+        echo json_encode($retour);
+    }
+
     public function create($newUser){
         return $this->user->create($newUser);
     }
