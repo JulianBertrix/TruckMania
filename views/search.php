@@ -8,7 +8,32 @@ include "header.php";
 <div class="container">
 <?php
 include "searchBar.php";
+
+//Affichage message d'erreur si besoin
+if($message !== "OK"){
 ?>
+
+  <div id="afficheMessage">
+
+<?php
+$reponse = "Pas de résultats ";
+  switch($message){
+    case "Pas la cat":
+    echo "<h4>".$reponse."pour cette catégorie. Résultats pour les autres catégories</h4>";
+    break;
+    case "Pas dans zone":
+    echo "<h4>".$reponse." autour de cette adresse</h4>";
+    break;
+    case "Pas dans date":
+    echo "<h4>".$reponse." pour cette date et/ou cette heure</h4>";
+    break;
+  }
+?>
+  </div>
+<?php
+}
+?>
+
 </div>
 <h3 style="padding-left: 30px;"><strong>Resultats</strong></h3>
 

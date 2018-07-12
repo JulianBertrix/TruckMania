@@ -37,7 +37,7 @@ class SearchController extends Controller {
 
         $requestReponse = $this->searchMe($datasPost);
         
-        $datas = ['request' => $requestReponse,'listeCat' => (new CategorieController())->getAllCategorie()];
+        $datas = ['message' => $requestReponse['messageErreur'],'request' => $requestReponse['liste'],'listeCat' => (new CategorieController())->getAllCategorie()];
 
         $this->render("search",$datas);
 
@@ -46,7 +46,8 @@ class SearchController extends Controller {
     //Fonction qui récupère le résultat du formulaire et requete la liste des FT
     public function searchMe($datas){
 
-        $listeTrucksOK = [];
+        //Var activée si pas de resultats avec date et/ou avec localisation
+        $yaBon = "OK";
         
         $adresseObj = new AdresseModel();
         $adresseObj->setLatitude($datas['gps']['lat']);
@@ -66,35 +67,69 @@ class SearchController extends Controller {
         }
 
         //recherche des planning correspondant avec la date
-        $listeFTPlanning = (new DAOPlanning())->getAllByDate($newDateString);
+        $listePlanningByDate = (new DAOPlanning())->getAllByDate($newDateString);
 
-        //check si adresse est dans la zone
-        foreach($listeFTPlanning as $truckPlanning){
+        //Control du nb de reponses
+        if(count($listePlanningByDate) > 0){
 
-            $newAdresse = $truckPlanning->getAdresseId();
+            $listePlanningZone = [];
 
-            if(($this->calculDistance($adresseObj,$newAdresse,20)) === true){
-                array_push($listeTrucksOK, $truckPlanning);
-            }
+            //check si adresse est dans la zone
+            foreach($listePlanningByDate as $PlanningByDate){
 
-        }
+                $newAdresse = $PlanningByDate->getAdresseId();
 
-        
-
-        $listeTrucksFinal = [];
-
-        //Vérifie si liste des FT correspondent à la catégorie si elle est spécifiée
-        if($datas['catrequest'] !== "Toutes les catégories"){
-            foreach($listeTrucksOK as $truck){
-                if(($truck->getCategorieId()->getIntitule()) === $catrequest){
-                    array_push($listeTrucksFinal,$truck);
+                if(($this->calculDistance($adresseObj,$newAdresse,20)) === true){
+                    array_push($listePlanningZone, $PlanningByDate);
                 }
+
             }
-        }else{
-            $listeTrucksFinal = $listeTrucksOK;
+
+            //Control du nb de reponses
+            if(count($listePlanningZone) > 0){
+
+                $listePlanningFinal = [];
+
+                
+
+                //Vérifie si liste des FT correspondent à la catégorie si elle est spécifiée
+                if($datas['catrequest'] !== "Toutes les catégories"){
+                    foreach($listePlanningZone as $PlanningZone){
+                        if(($PlanningZone->getFoodtruckId()->getCategorieId()->getIntitule()) === $catrequest){
+                            array_push($listePlanningFinal,$PlanningZone);
+                        }
+                    }
+
+                    //Control du nb de reponses
+                    if(count($listePlanningFinal) === 0){
+
+                        $listePlanningFinal = $listePlanningZone; //Pas de FT pour cette categorie, on retourne ttes les cat + message
+
+                        $yaBon = "Pas la cat";
+                    }
+
+                }else{  //Toutes les cat
+
+                    $listePlanningFinal = $listePlanningZone;
+                }
+            
+            }else{  //Pas d'adresse dans la zone, carte la France entière + message
+                $listePlanningFinal = (new DAOPlanning())->getTrucksFromPlanning();
+                $yaBon = "Pas dans zone";
+            }
+  
+        }else{ //Pas de FT dispos à la date
+
+            $listePlanningFinal = (new DAOPlanning())->getTrucksFromPlanning();
+            $yaBon = "Pas dans date";
+
         }
+
+        // var_dump($listePlanningFinal);
+        // var_dump($yaBon);
         
-        return $listeTrucksFinal;
+        return ['messageErreur' => $yaBon, 'liste' => $listePlanningFinal];
+        
     }
 
     //Fonction qui prend en argument 2 objets adresse et calcule la distance entre les 2 et retourne true si inferieure à maxDistance en Km
