@@ -73,6 +73,7 @@ class CommandeController extends Controller {
                 $platId = (new DAOPlat)->getAllBy($filter)[0]->getId();
                 $panier = new PanierModel((new DAOCommande())->retrieve($newCommandeId), 
                         (new DAOPlat())->retrieve($platId), $dataPost['quantite'][$i]);
+                (new DAOPanier)->create($panier);
                 $nbPanierCrees++;
             }
         }

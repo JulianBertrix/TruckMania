@@ -25,7 +25,7 @@ class DAOPanier extends DAO{
     public function create($array) {
         $sql = "INSERT INTO panier (commande_numero, plat_id, quantite)"
                 . " VALUES ('".$array->getNumeroCommande()->getNumero()."','".$array->getPlatId()->getId()."','".$array->getQuantite()."')";
-        echo $sql;
+        //echo $sql;
         return $this->getPdo()->query($sql)->fetch();
     }
 

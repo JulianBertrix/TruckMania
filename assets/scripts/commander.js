@@ -6,7 +6,7 @@ function Commander(userId, foodtruckId, nombre){
         listePlat[i] = $("#plat"+i).text();
         listeQuantite[i] = $("#quantite"+i).val();
     }
-
+    
     var total = parseFloat($("#total").text());
 
     console.log($("#datePicker").val());
@@ -30,6 +30,7 @@ function Commander(userId, foodtruckId, nombre){
             },
             
             success: function(data){
+                console.log(data);
                 if(data > 0){
                     alert("votre commande du "+$("#datePicker").val()+" a été validée");
                 }

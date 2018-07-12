@@ -1,25 +1,30 @@
 var id = 0;
 
 function addAvis(idAvis){
-    $.ajax({
-        url : "http://trucks-mania.bwb/api/Avis/"+idAvis,
-        type : "PUT",
-        
-        data : {
-           message : $("#message").val(),
-           note : $("#note").val()      
-        },
-        
-        success : function(data){           
-            alert("vous avez ajouté un avis");
-            document.location.href = document.location.href;
-        },
-        
-        error : function(data){
-            console.log(data);
-            alert("essaie encore");
-        }
-    });
+    if ($("#message").val() !== ""){
+        $.ajax({
+            url : "http://trucks-mania.bwb/api/Avis/"+idAvis,
+            type : "PUT",
+
+            data : {
+               message : $("#message").val(),
+               note : $("#note").val()      
+            },
+
+            success : function(data){           
+                alert("vous avez ajouté un avis");
+                document.location.href = document.location.href;
+            },
+
+            error : function(data){
+                console.log(data);
+                alert("essaie encore");
+            }
+        });
+    }
+    else{
+        alert("veillez entrer un message et selectionner une note");
+    }
 } 
 
 function showModal(){
