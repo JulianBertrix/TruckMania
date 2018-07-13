@@ -26,7 +26,9 @@ class DAOEvenement extends DAO{
         .$adresseId."')";
 
         $this->getPdo()->query($sql);
-        echo $sql;
+
+        return $this->getPdo()->lastInsertId();
+
     }
 
     public function delete($id) {
