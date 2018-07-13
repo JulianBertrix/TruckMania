@@ -36,16 +36,17 @@ function checkMe($connexion,$uri){
                 }
                 break;
 
+            case '/evenement/add':
+
+                if($connexion->roles[0] === "pro"){
+                    $result = true;
+                }
+                break;
+
             default:
                 break;
         }
     }
-
-
-    //Accès aux uri /foodtrucks/
-
-
-    
 
     return $result;
 }

@@ -33,4 +33,8 @@ google.maps.event.addDomListener(window, 'load', function() {
   initializeAutocomplete('calendarAdresse');
 });
 
+google.maps.event.addDomListener(window, 'load', function() {
+  initializeAutocomplete('adresseEvent');
+});
+
 

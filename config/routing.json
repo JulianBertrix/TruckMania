@@ -8,6 +8,7 @@
     "/search": "SearchController:searchPage",
     "/testcalendar": "DefaultController:getCalendar",
     "/inscription/(:)": "InscriptionsController:inscritMoi",
+    "/evenement/add": "EvenementController:addEvent",
     "/login": "DefaultController:login",
     "/administration/(:)": "AdminController:adminPage",
     "/testtc": "UtilisateurController:testMe",

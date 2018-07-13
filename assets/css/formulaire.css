@@ -26,12 +26,37 @@
     background-position: center;
     background-repeat: no-repeat;
   }
+
+  .container-evenement{
+    background: url("../img/event.jpeg") no-repeat;
+    width:  100px; /*or 70%, or what you want*/
+    height: 200px; /*or 70%, or what you want*/
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+
   
   
   * {
       margin: 0px; 
       padding: 0px; 
       box-sizing: border-box;
+  }
+
+  .rowForm{
+    margin: 5px 0px;
+  }
+
+  .fondForm{
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+  }
+
+  .titreForm{
+    text-align: center;
   }
 
   .list-group-item,mail{
@@ -130,6 +155,20 @@
   [ Contact ]*/
   
   .container-contact100 {
+    width: 100%;  
+    min-height: 100vh;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+  }
+
+  .container-evenement {
     width: 100%;  
     min-height: 100vh;
     display: -webkit-box;

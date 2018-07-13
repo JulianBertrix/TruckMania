@@ -110,6 +110,8 @@
             echo '<a class="" href="http://'.$_SERVER['SERVER_NAME'].'/foodtruck/'.$user->username[2].'">Profil publique</a>';
           }else if($user->roles[0] === "admin"){ //Page Admin
             echo '<a class="" href="http://'.$_SERVER['SERVER_NAME'].'/administration/trucks">Admin</a>';
+          }else if($user->roles[0] === "pro"){ //Page Ajout Evt Pro
+            echo '<a class="" href="http://'.$_SERVER['SERVER_NAME'].'/evenement/add">Ajout Evénement</a>';
           }
         }else{
           echo '<a class="" href="http://'.$_SERVER['SERVER_NAME'].'/inscription/client">Inscription Client</a>';
