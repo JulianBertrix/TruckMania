@@ -78,7 +78,7 @@
                 </div>
                 <!-- Image -->
                 <span><h5>Image</h5></span>
-                <input type="file" class="form-control-file form-control-sm" id="imageEvent">
+                <input type="file" class="form-control-file form-control-sm" id="imageEvent" name="imageEvent">
                 <br>
                 <div class="titreForm">
                     <button type="submit" class="btn btn-outline-success">Valider</button>

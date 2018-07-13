@@ -9,6 +9,7 @@
     "/testcalendar": "DefaultController:getCalendar",
     "/inscription/(:)": "InscriptionsController:inscritMoi",
     "/evenement/add": "EvenementController:addEvent",
+    "/evenement/(:)": "EvenementController:showEvent",
     "/login": "DefaultController:login",
     "/administration/(:)": "AdminController:adminPage",
     "/testtc": "UtilisateurController:testMe",

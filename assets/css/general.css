@@ -66,6 +66,12 @@
     margin-bottom: 10px;
 }
 
+.imageBig{
+    width: 400px;
+    max-height: 350px;
+    margin-bottom: 10px;
+}
+
 .carousel-item{
     text-align: center;
 }
