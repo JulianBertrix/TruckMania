@@ -57,3 +57,20 @@
 .rating2 a {
     float:none
 }
+
+/*------------------ IMAGES -----------------*/
+
+.imageMedium{
+    min-width: 300px;
+    height: 300px;
+    margin-bottom: 10px;
+}
+
+.carousel-item{
+    text-align: center;
+}
+
+.partGauche{
+    text-align: center;
+    vertical-align: middle;
+}

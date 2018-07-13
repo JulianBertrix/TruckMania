@@ -148,4 +148,21 @@ class DAOEvenement extends DAO{
 
             return $evenements;
     }
+
+
+    public function getLastFive() {
+        
+        $sql = "SELECT * FROM evenement ORDER BY date_fin DESC LIMIT 5";
+
+        $resultats = $this->getPdo()->query($sql)->fetchAll();
+
+        $evenements = array();
+
+        foreach ($resultats as $result) {
+            $evt = $this->retrieve($result['id']); 
+            array_push($evenements, $evt);
+        }
+
+        return $evenements;
+    }
 }
