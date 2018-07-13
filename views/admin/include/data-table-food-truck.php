@@ -15,7 +15,6 @@
                       <th>Logo</th>
                       <th>Catégorie</th>
                       <th>Moyenne</th>
-                      <th>Supprimer</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -31,7 +30,6 @@
                       <td><?php echo $trucks->getLogo(); ?></td>
                       <td><?php echo $trucks->getCategorieId()->getIntitule(); ?></td>
                       <td><?php echo $trucks->getMoyenne(); ?></td>
-                      <td><button type="button" class="btn btn-danger">Supprimer</button></td>
                     </tr>
                   <?php }
                 ?>
@@ -45,7 +43,6 @@
                       <th>Logo</th>
                       <th>Catégorie</th>
                       <th>Moyenne</th>
-                      <th>Supprimer</th>
                     </tr>
                 </tfoot>
             </table>

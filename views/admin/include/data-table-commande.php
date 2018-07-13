@@ -14,7 +14,6 @@
                   <th>Truck</th>
                   <th>Avis</th>
                   <th>Total</th>
-                  <th>Supprimer</th>
                 </tr>
               </thead>
                 <tbody>
@@ -29,7 +28,6 @@
                       <td><?php echo $commandes->getfoodTruckId()->getNom(); ?></td>
                       <td><?php echo $commandes->getAvisId()->getMessage(); ?></td>
                       <td><?php echo $commandes->getTotal(); ?>€</td>
-                      <td><button type="button" class="btn btn-danger">Supprimer</button></td>
                     </tr>
                   <?php }
                 ?>
@@ -42,7 +40,6 @@
                   <th>Truck</th>
                   <th>Avis</th>
                   <th>Total</th>
-                  <th>Supprimer</th>
                 </tr>
               </tfoot>
             </table>

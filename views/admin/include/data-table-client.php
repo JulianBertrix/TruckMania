@@ -16,7 +16,6 @@
                   <th>Rôle</th>
                   <th>Adresse</th>
                   <th>Truck</th>
-                  <th>Supprimer</th>
                 </tr>
                 </thead>
                   <tbody>
@@ -40,7 +39,6 @@
                         };
                         ?> 
                         </td>
-                      <td><button type="button" class="btn btn-danger">Supprimer</button></td>
                     </tr>
                   <?php 
                   }
@@ -56,7 +54,6 @@
                   <th>Rôle</th>
                   <th>Adresse</th>
                   <th>Truck</th>
-                  <th>Supprimer</th>
                 </tr>
               </tfoot>
             </table>
