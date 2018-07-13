@@ -53,13 +53,13 @@ include 'home_Presentation.php';
                           <a href=http://'.$_SERVER['SERVER_NAME'] .'/foodtruck/'.$truck->getId().'>
                             <img class="d-block img-fluid imageMedium" src="./assets/img/trucks/'.$truck->getLogo().'" alt="First slide">
                           </a>
-                          <h5>'.$truck->getNom().'</h5>
+                          <h6>'.$truck->getNom().'</h6>
                       </div>';
                   }else{
 
                   echo '<div class="carousel-item style="text-align: center;">
                       <img class="d-block img-fluid imageMedium" src="./assets/img/trucks/'.$truck->getLogo().'" alt="First slide">
-                      <h5>'.$truck->getNom().'</h5>
+                      <h6>'.$truck->getNom().'</h6>
                   </div>';
                   }
               }
@@ -76,7 +76,7 @@ include 'home_Presentation.php';
         </div>
       </div>
       <!-- CAROUSEL lastFiveEvts-->
-      <div class="col-2 partGauche">
+      <div class="col-2 partGauche offset-2">
           <h3><i>Les futurs évenements !</i></h3>
         </div>
         <div class="col-3">
@@ -97,14 +97,14 @@ include 'home_Presentation.php';
                   if($key === 0){
 
                   echo '<div class="carousel-item active" >
-                          <img class="d-block img-fluid imageMedium" src="./assets/img/trucks/'.$event->getImage().'" alt="First slide">
-                          <h5>'.$event->getIntitule().'</h5>
+                          <img class="d-block img-fluid imageMedium" src="./assets/img/evenements/'.$event->getImage().'" alt="First slide">
+                          <h6>'.$event->getIntitule().'</h6>
                       </div>';
                   }else{
 
                   echo '<div class="carousel-item style="text-align: center;">
-                      <img class="d-block img-fluid imageMedium" src="./assets/img/trucks/'.$event->getImage().'" alt="First slide">
-                      <h5>'.$event->getIntitule().'</h5>
+                      <img class="d-block img-fluid imageMedium" src="./assets/img/evenements/'.$event->getImage().'" alt="First slide">
+                      <h6>'.$event->getIntitule().'</h6>
                   </div>';
                   }
               }
@@ -122,7 +122,7 @@ include 'home_Presentation.php';
       </div>
     </div>
   </div>
-<br>
+<br><br>
 <?php
 include 'footer.php';
 ?>
