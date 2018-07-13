@@ -149,6 +149,9 @@ function giveMeThePlats(){
                         .addClass("accordion-toggle")
                         //IMAGE
                         .append($("<td>")
+                            .append($("<input>")
+                                .attr("type", "file")
+                                .attr("name", "picture[]"))
                             .append($("<img>")
                                 .attr("id", "image"+element.id)
                                 .attr("src", element.image)
@@ -195,7 +198,8 @@ function giveMeThePlats(){
                     .append($("<td>")
                         .append($("<input>")
                             .attr("id", "ajoutImage")
-                            .attr("type", "text")
+                            .attr("type", "file")
+                            .attr("name", "picture[]")
                             .addClass("form-control form-control-sm")
                             .attr("value", "")))
                     //NOM
@@ -240,14 +244,16 @@ function saveThePlat(idPlat){
     $.ajax({
         url : "http://trucks-mania.bwb/api/plat/"+idPlat,
         type : "POST",
+        
         data : {
             intitule : $("#plat"+idPlat).val(),
             description : $("#description"+idPlat).val(),
             prix : $("#prix"+idPlat).val(),
-            image : $("#image"+idPlat).val(),
+            image : $("#image"+idPlat).val()
         },
         
         success : function(retour){
+            console.log(retour);
             giveMeThePlats();
         },
 
@@ -259,15 +265,17 @@ function saveThePlat(idPlat){
 
 //Ajout Plat
 function addThePlat(idTruck){
-
+   
+   var prix = parseFloat($("#ajoutPrix").val());
+   
     $.ajax({
         url : "http://trucks-mania.bwb/api/plat/add/"+idTruck,
         type : "POST",
         data : {
             intitule : $("#ajoutPlat").val(),
             description : $("#ajoutDescription").val(),
-            prix : $("#ajoutPrix").val(),
-            image : $("#ajoutImage").val(),
+            prix : prix,
+            image : $("#ajoutImage").val()
         },
         
         success : function(){

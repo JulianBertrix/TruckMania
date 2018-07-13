@@ -18,7 +18,6 @@
                       <th>Utilisateur</th>
                       <th>Adresse</th>
                       <th>Participant</th>
-                      <th>Supprimer</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -37,7 +36,6 @@
                       <td><?php echo $evenements->getUtilisateur_Id()->getNom(); ?></td>
                       <td><?php echo $evenements->getAdresse_Id()->getAdresse(); ?></td>
                       <td><?php echo $evenements->getNombreDeParticipant(); ?></td>
-                      <td><button type="button" class="btn btn-danger">Supprimer</button></td>
                     </tr>
                   <?php }
                 ?>
@@ -54,7 +52,6 @@
                       <th>Utilisateur</th>
                       <th>Adresse</th>
                       <th>Participant</th>
-                      <th>Supprimer</th>
                     </tr>
                 </tfoot>
             </table>
