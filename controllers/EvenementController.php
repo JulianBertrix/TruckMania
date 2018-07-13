@@ -68,8 +68,14 @@ class EvenementController extends Controller {
                 }else{
                     $dateFinFull = date("Y-m-d H:i");
                 }
-                
-                
+
+                //Gestion image
+                if(isset($dataPost['imageEvent'])){
+                    $image = 'default.png';
+                }else{
+                    $image = $dataPost['imageEvent'];
+                }
+
                 //Creation d'un objet Evenement
                 $newEvent = new EvenementModel();
                 $newEvent->setDate_creation(date('Y-m-d H:i'));
@@ -77,7 +83,7 @@ class EvenementController extends Controller {
                 $newEvent->setDate_debut($dateDebutFull);
                 $newEvent->setDate_fin($dateFinFull);
                 $newEvent->setDescription($dataPost['description']);
-                $newEvent->setImage($dataPost['imageEvent']);
+                $newEvent->setImage($image);
                 $newEvent->setNombreDeParticipant($dataPost['nbPersonnes']);
         
                 $newItem = (new DAOUtilisateur())->retrieve($dataPost['idUser']);
@@ -90,8 +96,8 @@ class EvenementController extends Controller {
                 //REC BDD
                 $result = $this->evenement->create($newEvent);
 
-                //Redirection Home
-                header("Location: http://" . $_SERVER['SERVER_NAME']. "/");
+                //Redirection vers page Event
+                header("Location: http://".$_SERVER['SERVER_NAME']."/evenement/".$result);
 
             }else{
                 $this->render('formulaire_event');  
@@ -99,6 +105,17 @@ class EvenementController extends Controller {
         }else{
             header("Location: http://" . $_SERVER['SERVER_NAME'] . "/");
         }
+    }
+
+    public function showEvent($id){
+
+        //recup des infos
+        $thisEvent = $this->evenement->retrieve($id)->jsonSerialize();
+
+        //Var $datas
+        $datas = ['event' => $thisEvent];
+
+        $this->render('event',$datas);
     }
 
     public function getAllJSON(){

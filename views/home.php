@@ -51,16 +51,18 @@ include 'home_Presentation.php';
 
                   echo '<div class="carousel-item active" >
                           <a href=http://'.$_SERVER['SERVER_NAME'] .'/foodtruck/'.$truck->getId().'>
-                            <img class="d-block img-fluid imageMedium" src="./assets/img/trucks/'.$truck->getLogo().'" alt="First slide">
+                            <img class="d-block img-fluid imageMedium" src="http://'.$_SERVER['SERVER_NAME'] .'/assets/img/trucks/'.$truck->getLogo().'" alt="First slide">
                           </a>
                           <h6>'.$truck->getNom().'</h6>
-                      </div>';
+                        </div>';
                   }else{
 
                   echo '<div class="carousel-item style="text-align: center;">
-                      <img class="d-block img-fluid imageMedium" src="./assets/img/trucks/'.$truck->getLogo().'" alt="First slide">
-                      <h6>'.$truck->getNom().'</h6>
-                  </div>';
+                          <a href=http://'.$_SERVER['SERVER_NAME'] .'/foodtruck/'.$truck->getId().'>
+                            <img class="d-block img-fluid imageMedium" src="http://'.$_SERVER['SERVER_NAME'] .'/assets/img/trucks/'.$truck->getLogo().'" alt="First slide">
+                          </a>
+                          <h6>'.$truck->getNom().'</h6>
+                        </div>';
                   }
               }
               ?>
@@ -97,13 +99,17 @@ include 'home_Presentation.php';
                   if($key === 0){
 
                   echo '<div class="carousel-item active" >
-                          <img class="d-block img-fluid imageMedium" src="./assets/img/evenements/'.$event->getImage().'" alt="First slide">
-                          <h6>'.$event->getIntitule().'</h6>
+                          <a href=http://'.$_SERVER['SERVER_NAME'] .'/evenement/'.$event->getId().'>
+                            <img class="d-block img-fluid imageMedium" src="http://'.$_SERVER['SERVER_NAME'] .'/assets/img/evenements/'.$event->getImage().'" alt="First slide">
+                          </a>
+                            <h6>'.$event->getIntitule().'</h6>
                       </div>';
                   }else{
 
-                  echo '<div class="carousel-item style="text-align: center;">
-                      <img class="d-block img-fluid imageMedium" src="./assets/img/evenements/'.$event->getImage().'" alt="First slide">
+                  echo '<div class="carousel-item">
+                      <a href=http://'.$_SERVER['SERVER_NAME'] .'/evenement/'.$event->getId().'>
+                          <img class="d-block img-fluid imageMedium" src="http://'.$_SERVER['SERVER_NAME'] .'/assets/img/evenements/'.$event->getImage().'" alt="First slide">
+                      </a>
                       <h6>'.$event->getIntitule().'</h6>
                   </div>';
                   }
