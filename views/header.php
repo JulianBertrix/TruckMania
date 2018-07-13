@@ -103,10 +103,24 @@
         //Profil
         //var_dump($user);
         if(isset($user)){
-          echo '<a class="" href="http://'.$_SERVER['SERVER_NAME'].'/profile/'.$user->username[0].'">Mon profil</a>';
+          echo '<a class="" href="http://'.$_SERVER['SERVER_NAME'].'/profile/'.$user->username[0].'">';
+            if($_SERVER['REQUEST_URI'] === '/profile/'.$user->username[0]){
+              echo '<button type="button" class="btn btn-primary btn-sm">Mon profil</button></a>';
+            }else{
+              echo '<button type="button" class="btn btn-outline-primary btn-sm">Mon profil</button></a>';
+            };
           //Ajout page FT si besoin
           if($user->roles[0] === "foodtruck"){
-            echo '<a class="" href="http://'.$_SERVER['SERVER_NAME'].'/user/'.$user->username[0].'/truck/'.$user->username[2].'">Mon FoodTruck</a>';
+
+
+            echo '<a class="" href="http://'.$_SERVER['SERVER_NAME'].'/user/'.$user->username[0].'/truck/'.$user->username[2].'">';
+            if($_SERVER['REQUEST_URI'] === '/user/'.$user->username[0].'/truck/'.$user->username[2]){
+              echo '<button type="button" class="btn btn-primary btn-sm"></button></a>';
+            }else{
+              echo '<button type="button" class="btn btn-outline-primary btn-sm">Mon FoodTruck</button></a>';
+            };
+
+
             echo '<a class="" href="http://'.$_SERVER['SERVER_NAME'].'/foodtruck/'.$user->username[2].'">Profil publique</a>';
           }else if($user->roles[0] === "admin"){ //Page Admin
             echo '<a class="" href="http://'.$_SERVER['SERVER_NAME'].'/administration/trucks">Admin</a>';
