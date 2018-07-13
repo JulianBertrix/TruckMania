@@ -23,7 +23,7 @@ class EvenementController extends Controller {
 
     public function addEvent(){
         
-        //CHECH SECURITY
+        //CHECK SECURITY
 
         if(checkMe($this->security->acceptConnexion(),$_SERVER['REQUEST_URI'])){
             //Requp des infos du formulaire
