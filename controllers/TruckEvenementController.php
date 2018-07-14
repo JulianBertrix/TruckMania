@@ -41,6 +41,45 @@ class TruckEvenementController extends Controller {
         $this->truckEvenement->delete($newEvent);
     }
 
+    public function participeOrNot($idEvent,$idTruck){
+
+        $result = false;
+
+        //Recup des trucks pour cet event
+        $listTrucks = $this->truckEvenement->trucksForEvent($idEvent);
+
+        //Check si FT dans la liste
+        foreach($listTrucks as $truck){
+            if($truck->getId() === $idTruck){
+                $result = true;
+                break;
+            }
+        }
+
+        return $result;
+    }
+
+    public function switch($idEvent,$idTruck){
+
+        //Check etat participation et switch
+        if($this->participeOrNot($idEvent,$idTruck)){ //Participe -> Participe plus
+
+            $this->deleteMe($idTruck,$idEvent);
+
+            $tutu = "plus";
+
+        }else{  //Participe pas -> Participe
+
+            $listeIds = ['foodtruck_id' => $idTruck, 'evenement_id' => $idEvent];
+            $this->truckEvenement->create($listeIds);
+
+            $tutu = "ok";
+        }
+
+        header('Content-Type: text/plain');
+        echo $tutu;
+    }
+
     public function delete($id){
     }
 

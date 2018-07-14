@@ -40,6 +40,12 @@
     "/api/evenement":{
         "GET":"EvenementController:getALL"
     },
+    "/api/evenement/(:)/truck/(:)":{
+        "GET":"TruckEvenementController:switch"
+    },
+    "/api/trucks/(:)/events/(:)":{
+        "DELETE":"TruckEvenementController:deleteMe"
+    },
     "/api/utilisateur/(:)":{
         "GET":"UtilisateurController:retrieve",
         "POST":"UtilisateurController:update",
@@ -47,9 +53,6 @@
     },
     "/api/trucks/(:)/events":{
         "GET":"TruckEvenementController:getAllEventsForCalendar"
-    },
-    "/api/trucks/(:)/events/(:)":{
-        "DELETE":"TruckEvenementController:deleteMe"
     },
     "/api/trucks/(:)/planning":{
         "GET":"PlanningController:getAllPlanningForCalendar",

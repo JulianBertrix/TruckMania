@@ -65,7 +65,7 @@ class DAOTruckEvenement extends DAO{
 
         $request = "SELECT * FROM foodtruck_evenement WHERE evenement_id = ".$idEvent;
 
-        $resultats = $this->getPdo()->query($sql)->fetchAll();
+        $resultats = $this->getPdo()->query($request)->fetchAll();
 
         $ListeRetour = array();
 
