@@ -6,7 +6,7 @@
             <th>Plat</th>
             <th>Quantité</th>
             <th>Prix</th>
-            <th>Rediger un avis</th>
+            <th>Rédiger un avis</th>
         </tr>
     </thead>
     <tbody id="items">
@@ -14,17 +14,20 @@
                 if($commande->getDateCommande() <= date("Y-m-d H:i:s")){
             ?>
         <tr>
-            <td><?php echo $commande->getDateCommande(); ?></td>
+            <td><?php echo date_format(date_create_from_format('Y-m-d H:i:s', $commande->getDateCommande()), 'd/m/Y H:i'); ?></td>
             <td><?php echo $commande->getFoodtruckId()->getNom(); ?></td>
             <td>
+                <ul class="listeSansPuce">
             <?php 
             foreach ($fullCommande as $key => $value){
                 if($value["numero"] === $commande->getNumero()){
                     foreach ($value["liste_paniers"] as $panier){                   
                         ?><li><?php echo $panier["plat"]["nom"]; ?></li><?php                   
                     }?>
+                </ul>
             </td>
-            <td>          
+            <td>   
+                <ul class="listeSansPuce">       
                 <?php 
                 foreach ($value["liste_paniers"] as $panier){?>
                     <li><?php echo $panier["quantite"]; ?></li>
@@ -33,6 +36,7 @@
                 }
             }
                 ?>
+                </ul>
             </td>
             <td><?php echo $commande->getTotal();?> €</td>
             <?php if($commande->getAvisId()->getMessage() !== ""){?>

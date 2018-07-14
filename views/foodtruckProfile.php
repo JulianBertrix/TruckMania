@@ -1,13 +1,13 @@
 <?php
 include 'header.php';
 ?>
-
+<br>
 <div class="container">
     <!-- Div SR-ONLY id du FT -->
     <input class="sr-only" id="idTruck" value=<?= $id;?>>
     <div class="row">
         <div class="col-3">            
-            <img src="<?php echo "http://".$_SERVER['SERVER_NAME'] . "/assets/img/trucks/".$logo; ?>">            
+            <img class="imageMedium200" src="<?php echo "http://".$_SERVER['SERVER_NAME'] . "/assets/img/trucks/".$logo; ?>">            
         </div>
         <div class="col-9">
             <div class="row">
@@ -35,24 +35,21 @@ include 'header.php';
                     }
                     if($addBtn){
                         ?><button class="update btn btn-warning btn-sm" onclick="addFavoris(
-                                <?php echo $user->username[0].",".$id; ?>)"><span class="fa fa-star"></span>ajouter aux favoris</button><?php
+                                <?php echo $user->username[0].",".$id; ?>)"><span class="fa fa-star"></span>Ajouter aux favoris</button><?php
                     }
                     else{
                         ?><button class="update btn btn-warning btn-sm" onclick="deleteFavoris(
-                                <?php echo $user->username[0].",".$id; ?>)"><span class="fa fa-star"></span>retirer des favoris</button><?php
+                                <?php echo $user->username[0].",".$id; ?>)"><span class="fa fa-star"></span>Retirer des favoris</button><?php
                     }
                 }
                 else{
-                    ?><button class="update btn btn-warning btn-sm" onclick="getSub()"><span class="fa fa-star"></span>ajouter aux favoris</button><?php
+                    ?><button class="update btn btn-warning btn-sm" onclick="getSub()"><span class="fa fa-star"></span>Ajouter aux favoris</button><?php
                 }
                 ?>
             </div>
         </div>
     </div>
-    <hr>
-    <div class="row">
-        <h3>A savoir</h3>             
-    </div>
+    <br>
     <hr>
     <div class="row">
         <h3>La carte</h3>
@@ -68,7 +65,7 @@ include 'header.php';
     <div class="row">
         <?php foreach ($carte as $value){?>
             <div class="card cardPlats" style="width: 10rem;">
-                <img class="card-img-top" src=<?= "http://".$_SERVER['SERVER_NAME'] . "/assets/img/plats/".$value->getImage(); ?> alt="Card image cap">
+                <img class="card-img-top imageCardSm" src=<?= "http://".$_SERVER['SERVER_NAME'] . "/assets/img/plats/".$value->getImage(); ?> alt="Card image cap">
                 <div class="card-body">
                     <input type="text" class="input100" value="<?=$value->getNom();?>">
                     <input type="text" class="input100" value="<?=$value->getPrix();?> €">

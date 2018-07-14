@@ -65,6 +65,9 @@
     "/api/plat/add/(:)":{
         "POST":"PlatController:addPlat"
     },
+    "/api/plat/delete/(:)":{
+        "GET":"PlatController:deletePlat"
+    },
     "/api/planning/update":{
         "POST":"PlanningController:updateThePlanning"
     },
