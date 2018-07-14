@@ -32,7 +32,7 @@ include 'home_Presentation.php';
         <div class="col-2 partGauche">
           <h3><i>Les derniers food-trucks arrivés !</i></h3>
         </div>
-        <div class="col-3">
+        <div class="col-4">
 
           <div id="lastFiveCarousel" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
@@ -51,7 +51,7 @@ include 'home_Presentation.php';
 
                   echo '<div class="carousel-item active" >
                           <a href=http://'.$_SERVER['SERVER_NAME'] .'/foodtruck/'.$truck->getId().'>
-                            <img class="d-block img-fluid imageMedium" src="http://'.$_SERVER['SERVER_NAME'] .'/assets/img/trucks/'.$truck->getLogo().'" alt="First slide">
+                            <img class="d-block img-fluid imageCardXl" src="http://'.$_SERVER['SERVER_NAME'] .'/assets/img/trucks/'.$truck->getLogo().'" alt="First slide">
                           </a>
                           <h6>'.$truck->getNom().'</h6>
                         </div>';
@@ -59,7 +59,7 @@ include 'home_Presentation.php';
 
                   echo '<div class="carousel-item style="text-align: center;">
                           <a href=http://'.$_SERVER['SERVER_NAME'] .'/foodtruck/'.$truck->getId().'>
-                            <img class="d-block img-fluid imageMedium" src="http://'.$_SERVER['SERVER_NAME'] .'/assets/img/trucks/'.$truck->getLogo().'" alt="First slide">
+                            <img class="d-block img-fluid imageCardXl" src="http://'.$_SERVER['SERVER_NAME'] .'/assets/img/trucks/'.$truck->getLogo().'" alt="First slide">
                           </a>
                           <h6>'.$truck->getNom().'</h6>
                         </div>';
@@ -78,10 +78,10 @@ include 'home_Presentation.php';
         </div>
       </div>
       <!-- CAROUSEL lastFiveEvts-->
-      <div class="col-2 partGauche offset-2">
+      <div class="col-2 partGauche">
           <h3><i>Les futurs évenements !</i></h3>
         </div>
-        <div class="col-3">
+        <div class="col-4">
 
           <div id="lastFiveEvts" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
@@ -93,14 +93,13 @@ include 'home_Presentation.php';
             </ol>
             <div class="carousel-inner">
                 <?php
-
               foreach ($lastFiveEvts as $key => $event) {
 
                   if($key === 0){
 
                   echo '<div class="carousel-item active" >
                           <a href=http://'.$_SERVER['SERVER_NAME'] .'/evenement/'.$event->getId().'>
-                            <img class="d-block img-fluid imageMedium" src="http://'.$_SERVER['SERVER_NAME'] .'/assets/img/evenements/'.$event->getImage().'" alt="First slide">
+                            <img class="d-block img-fluid imageCardXl" src="http://'.$_SERVER['SERVER_NAME'] .'/assets/img/evenements/'.$event->getImage().'" alt="First slide">
                           </a>
                             <h6>'.$event->getIntitule().'</h6>
                       </div>';
@@ -108,7 +107,7 @@ include 'home_Presentation.php';
 
                   echo '<div class="carousel-item">
                       <a href=http://'.$_SERVER['SERVER_NAME'] .'/evenement/'.$event->getId().'>
-                          <img class="d-block img-fluid imageMedium" src="http://'.$_SERVER['SERVER_NAME'] .'/assets/img/evenements/'.$event->getImage().'" alt="First slide">
+                          <img class="d-block img-fluid imageCardXl" src="http://'.$_SERVER['SERVER_NAME'] .'/assets/img/evenements/'.$event->getImage().'" alt="First slide">
                       </a>
                       <h6>'.$event->getIntitule().'</h6>
                   </div>';
