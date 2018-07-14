@@ -41,6 +41,8 @@ class TruckEvenementController extends Controller {
         $this->truckEvenement->delete($newEvent);
     }
 
+
+
     public function delete($id){
     }
 

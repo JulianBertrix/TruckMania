@@ -5,6 +5,7 @@ use BWB\Framework\mvc\Controller;
 use BWB\Framework\mvc\models\EvenementModel;
 use BWB\Framework\mvc\models\AdresseModel;
 use BWB\Framework\mvc\dao\DAOEvenement;
+use BWB\Framework\mvc\dao\DAOTruckEvenement;
 use BWB\Framework\mvc\dao\DAOMap;
 use BWB\Framework\mvc\dao\DAOAdresse;
 use BWB\Framework\mvc\dao\DAOUtilisateur;
@@ -112,8 +113,15 @@ class EvenementController extends Controller {
         //recup des infos
         $thisEvent = $this->evenement->retrieve($id)->jsonSerialize();
 
+        //Recup de la liste des FT participants
+        $listeFTObj = (new DAOTruckEvenement())->trucksForEvent($id);
+        $listeFT = [];
+        foreach($listeFTObj as $truck){
+            array_push($listeFT,$truck->jsonSerialize());
+        }
+
         //Var $datas
-        $datas = ['event' => $thisEvent];
+        $datas = ['event' => $thisEvent, 'listeFT' => $listeFT];
 
         $this->render('event',$datas);
     }
