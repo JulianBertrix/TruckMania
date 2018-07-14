@@ -87,17 +87,18 @@ include 'header.php';
     <div class="row">     
         <h2>Les avis</h2>
     </div>
-    <div class="row">
         <?php 
         foreach ($listeAvis as $avis){
             if($avis['message'] !== ""){?>
-                <div class="col-sm-10"><?php echo $avis['message']; ?></div>
-                <div class="col-sm-2"><?php giveMeTheStars($avis['note']);?></div>
+                <div class="row">
+                    <div class="col-sm-10"><?php echo $avis['message']; ?></div>
+                    <div class="col-sm-2"><?php giveMeTheStars($avis['note']);?></div>
+                </div>
+                <br>
         <?php
             }
         }
         ?>
-    </div>
 </div>
                  
 <?php
