@@ -109,23 +109,42 @@
             }else{
               echo '<button type="button" class="btn btn-outline-primary btn-sm">Mon profil</button></a>';
             };
+
           //Ajout page FT si besoin
           if($user->roles[0] === "foodtruck"){
-
-
+            //Bouton Mon Foodtruck
             echo '<a class="" href="http://'.$_SERVER['SERVER_NAME'].'/user/'.$user->username[0].'/truck/'.$user->username[2].'">';
             if($_SERVER['REQUEST_URI'] === '/user/'.$user->username[0].'/truck/'.$user->username[2]){
-              echo '<button type="button" class="btn btn-primary btn-sm"></button></a>';
+              echo '<button type="button" class="btn btn-primary btn-sm">Mon FoodTruck</button></a>';
             }else{
               echo '<button type="button" class="btn btn-outline-primary btn-sm">Mon FoodTruck</button></a>';
             };
+            //Bouton Mon Profil publique
+            echo '<a class="" href="http://'.$_SERVER['SERVER_NAME'].'/foodtruck/'.$user->username[2].'"></a>';
+            if($_SERVER['REQUEST_URI'] === '/foodtruck/'.$user->username[2]){
+              echo '<button type="button" class="btn btn-primary btn-sm">Profil publique</button></a>';
+            }else{
+              echo '<button type="button" class="btn btn-outline-primary btn-sm">Profil publique</button></a>';
+            };
 
-
-            echo '<a class="" href="http://'.$_SERVER['SERVER_NAME'].'/foodtruck/'.$user->username[2].'">Profil publique</a>';
           }else if($user->roles[0] === "admin"){ //Page Admin
-            echo '<a class="" href="http://'.$_SERVER['SERVER_NAME'].'/administration/trucks">Admin</a>';
+            echo '<a class="" href="http://'.$_SERVER['SERVER_NAME'].'/administration/trucks">';
+            if($_SERVER['REQUEST_URI'] === '/administration/trucks'
+                || $_SERVER['REQUEST_URI'] === '/administration/users'
+                || $_SERVER['REQUEST_URI'] === '/administration/evenement'
+                || $_SERVER['REQUEST_URI'] === '/administration/commande'){
+              echo '<button type="button" class="btn btn-primary btn-sm">Administration</button></a>';
+            }else{
+              echo '<button type="button" class="btn btn-outline-primary btn-sm">Administration</button></a>';
+            };
+
           }else if($user->roles[0] === "pro"){ //Page Ajout Evt Pro
-            echo '<a class="" href="http://'.$_SERVER['SERVER_NAME'].'/evenement/add">Ajout Evénement</a>';
+            echo '<a class="" href="http://'.$_SERVER['SERVER_NAME'].'/evenement/add">';
+            if($_SERVER['REQUEST_URI'] === '/evenement/add'){
+              echo '<button type="button" class="btn btn-primary btn-sm">Ajout événement</button></a>';
+            }else{
+              echo '<button type="button" class="btn btn-outline-primary btn-sm">Ajout événement</button></a>';
+            };
           }
         }else{
           echo '<a class="" href="http://'.$_SERVER['SERVER_NAME'].'/inscription/client">Inscription Client</a>';
