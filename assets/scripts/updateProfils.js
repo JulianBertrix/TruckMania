@@ -329,3 +329,20 @@ function deleteThePlat(idTruck){
          }
      });
  }
+
+ //Inverse la participation d'un FT à un Event
+function switchParticipation(idTruck,idEvent){
+    
+    $.ajax({
+        url : "http://trucks-mania.bwb/api/evenement/"+idEvent+"/truck/"+idTruck,
+        type : "GET",
+        
+        success : function(){
+            document.location.reload();
+        },
+
+        error : function(data){
+            console.log(data);
+        }
+    });
+}

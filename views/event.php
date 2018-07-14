@@ -1,6 +1,4 @@
 <?php include 'header.php';
-//var_dump($event);
-
 ?>
 <br>
 <div class="container">
@@ -13,13 +11,31 @@
         </div>
     </div>
 </div>
-<div class="container">
-    <br>
-    <div class="col">
-        <button type="button" id= "buttParticiper" class="btn btn-success btn-lg float-right">Participer</button>
-    </div>
+<!-- Participation or Not -->
+<?php
+    //Test si FT connecté
+    if(isset($user) && $user->roles[0] === "foodtruck"){
+?>
+    <div class="container">
+        <br>
+        <div class="col">
+<?php
+        //Test si FT participe ou non
+        foreach($listeFT as $truck){
+            if($truck['id'] === $user->username[2]){
+                echo '<button type="button" id= "buttParticiper" class="btn btn-warning float-right" onclick="switchParticipation('.$user->username[2].','.$event['id'].');">Ne plus particper</button>';
+                break;
+            }else{
+                echo '<button type="button" id= "buttParticiper" class="btn btn-success float-right" onclick="switchParticipation('.$user->username[2].','.$event['id'].');">Participer</button>';
+            }
+        }
+?>
+        </div>
     <br>
 </div>
+<?php
+    }
+?>
 <div class="container">
     <br>
     <br>
