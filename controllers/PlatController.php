@@ -27,7 +27,7 @@ class PlatController extends Controller {
     }
     
     public function deletePlat($id){
-        return $this->plat->delete($id);
+        $this->plat->delete($id);
     }
     
     public function updatePlat($idPlat){
@@ -35,7 +35,14 @@ class PlatController extends Controller {
         //POST
         $dataPost = $this->inputPost();
 
-        $newPlat = new PlatModel($idPlat,$dataPost['intitule'],$dataPost['description'],$dataPost['prix'],$dataPost['image'],null);
+        //Gestion image
+        if(isset($dataPost['image'])){
+            $image = 'defaultPlat.jpg';
+        }else{
+            $image = $dataPost['image'];
+        }
+
+        $newPlat = new PlatModel($idPlat,$dataPost['intitule'],$dataPost['description'],$dataPost['prix'],$image,null);
         echo $this->plat->update($newPlat);
     }
     
@@ -44,7 +51,14 @@ class PlatController extends Controller {
         //POST
         $dataPost = $this->inputPost();
 
-        $newPlat = new PlatModel(null,$dataPost['intitule'],$dataPost['description'],$dataPost['prix'],$dataPost['image'],$idTruck);
+        //Gestion image
+        if(isset($dataPost['image'])){
+            $image = 'defaultPlat.jpg';
+        }else{
+            $image = $dataPost['image'];
+        }
+
+        $newPlat = new PlatModel(null,$dataPost['intitule'],$dataPost['description'],$dataPost['prix'],$image,$idTruck);
         echo $this->plat->create($newPlat);
 
     }

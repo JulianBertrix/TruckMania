@@ -30,7 +30,6 @@ function deleteFavoris(idUser,idFT){
         },
         
         success : function(data){
-            alert("foodtruck supprimer de vos favoris");
             document.location.href = document.location.href;
         },
         
@@ -50,7 +49,6 @@ function addFavoris(idUser,idFT){
         },
         
         success : function(data){
-            alert("foodtruck ajouter vos favoris");
             document.location.href = document.location.href;
         },
         
@@ -139,6 +137,60 @@ function giveMeThePlats(){
         success: function (data) {
             //Vide la table
             $("#Plats").empty()
+
+
+            //Ajout de la ligne ajout en premier
+            $("#Plats").append(
+                $("<tr>")
+                    .attr("data-toggle","collapse")
+                    .attr("id","ligneAjout")
+                    .addClass("table-info h-50")
+                    //IMAGE
+                    .append($("<td>")
+                        .addClass("align-middle")
+                        .append($("<img>")
+                            .addClass("imageXs")
+                            .attr("id", "ajoutImage")
+                            .attr("src", "http://trucks-mania.bwb/assets/img/emptyImage.png")
+                            .attr("alt", "Image plat"))
+                        .append($("<input>")
+                            .attr("type", "file")
+                            .addClass("form-control-sm")
+                            .attr("name", "picture[]")))
+                    //NOM
+                    .append($("<td>")
+                        .addClass("align-middle")
+                        .append($("<input>")
+                            .attr("id", "ajoutPlat")
+                            .attr("type", "text")
+                            .addClass("form-control form-control-sm")
+                            .attr("value", "")))
+                    //PRIX
+                    .append($("<td>")
+                        .addClass("align-middle")
+                        .append($("<input>")
+                            .attr("id", "ajoutPrix")
+                            .attr("type", "text")
+                            .addClass("form-control form-control-sm")
+                            .attr("value", "")))
+                    //DESCRIPTION
+                    .append($("<td>")
+                        .addClass("align-middle")
+                        .append($("<input>")
+                            .attr("id", "ajoutDescription")
+                            .attr("type", "text")
+                            .addClass("form-control form-control-sm")
+                            .attr("value", "")))
+                    //BUTTON VALIDATE
+                    .append($("<td>")
+                        .addClass("align-middle")
+                        .append($("<button>")
+                            .attr("type", "button")
+                            .addClass("btn btn-success btn-sm")
+                            .attr("onclick", "addThePlat("+idTruck+")")
+                            .html("<i class='fas fa-plus'></i>")))
+                    .append($("<td>"))
+            );
             //Creation des tr/td
             data.forEach(element => {
                 
@@ -149,15 +201,19 @@ function giveMeThePlats(){
                         .addClass("accordion-toggle")
                         //IMAGE
                         .append($("<td>")
-                            .append($("<input>")
-                                .attr("type", "file")
-                                .attr("name", "picture[]"))
+                            .addClass("align-middle")
                             .append($("<img>")
+                                .addClass("imageSmall")
                                 .attr("id", "image"+element.id)
                                 .attr("src", element.image)
-                                .attr("alt", "Image plat "+element.id)))
+                                .attr("alt", "Image plat "+element.id))
+                            .append($("<input>")
+                                .attr("type", "file")
+                                .addClass("form-control-sm")
+                                .attr("name", "picture[]")))
                         //NOM
                         .append($("<td>")
+                            .addClass("align-middle")
                             .append($("<input>")
                                 .attr("id", "plat"+element.id)
                                 .attr("type", "text")
@@ -165,13 +221,15 @@ function giveMeThePlats(){
                                 .attr("value", element.nom)))
                         //PRIX
                         .append($("<td>")
+                            .addClass("align-middle")
                             .append($("<input>")
                                 .attr("id", "prix"+element.id)
                                 .attr("type", "text")
                                 .addClass("form-control form-control-sm")
-                                .attr("value", element.prix)))
+                                .attr("value", element.prix+" €")))
                         //DESCRIPTION
                         .append($("<td>")
+                            .addClass("align-middle")
                             .append($("<input>")
                                 .attr("id", "description"+element.id)
                                 .attr("type", "text")
@@ -179,58 +237,25 @@ function giveMeThePlats(){
                                 .attr("value", element.description)))
                         //BUTTON VALIDATE
                         .append($("<td>")
+                            .addClass("align-middle")
                             .append($("<button>")
                                 .attr("id", "butt"+element.id)
                                 .attr("type", "button")
                                 .addClass("btn btn-warning btn-sm")
                                 .attr("onclick", "saveThePlat("+element.id+")")
                                 .html("<i class='fas fa-check'></i>")))
+                        //BUTTON DELETE
+                        .append($("<td>")
+                            .addClass("align-middle")
+                            .append($("<button>")
+                                .attr("id", "suppr"+element.id)
+                                .attr("type", "button")
+                                .addClass("btn btn-danger btn-sm")
+                                .attr("onclick", "deleteThePlat("+element.id+")")
+                                .html("<i class='fas fa-trash-alt'></i>")))
                 );
             });
-
-            //Ajout de la ligne ajout en dernier
-            $("#Plats").append(
-                $("<tr>")
-                    .attr("data-toggle","collapse")
-                    .attr("id","ligneAjout")
-                    .addClass("accordion-toggle")
-                    //IMAGE
-                    .append($("<td>")
-                        .append($("<input>")
-                            .attr("id", "ajoutImage")
-                            .attr("type", "file")
-                            .attr("name", "picture[]")
-                            .addClass("form-control form-control-sm")
-                            .attr("value", "")))
-                    //NOM
-                    .append($("<td>")
-                        .append($("<input>")
-                            .attr("id", "ajoutPlat")
-                            .attr("type", "text")
-                            .addClass("form-control form-control-sm")
-                            .attr("value", "")))
-                    //PRIX
-                    .append($("<td>")
-                        .append($("<input>")
-                            .attr("id", "ajoutPrix")
-                            .attr("type", "text")
-                            .addClass("form-control form-control-sm")
-                            .attr("value", "")))
-                    //DESCRIPTION
-                    .append($("<td>")
-                        .append($("<input>")
-                            .attr("id", "ajoutDescription")
-                            .attr("type", "text")
-                            .addClass("form-control form-control-sm")
-                            .attr("value", "")))
-                    //BUTTON VALIDATE
-                    .append($("<td>")
-                        .append($("<button>")
-                            .attr("type", "button")
-                            .addClass("btn btn-success btn-sm")
-                            .attr("onclick", "addThePlat("+idTruck+")")
-                            .html("<i class='fas fa-plus'></i>")))
-            );
+            
         },
         error: function (param1, param2) {
             console.log("error");
@@ -287,3 +312,20 @@ function addThePlat(idTruck){
         }
     });
 }
+
+//Supprime Plat
+function deleteThePlat(idTruck){
+    
+     $.ajax({
+         url : "http://trucks-mania.bwb/api/plat/delete/"+idTruck,
+         type : "GET",
+         
+         success : function(){
+             giveMeThePlats();
+         },
+ 
+         error : function(data){
+             console.log(data);
+         }
+     });
+ }

@@ -64,7 +64,7 @@ class DAOPlat extends DAO{
         }
 
         //Ordre de creation descendant
-        $sql .= " ORDER BY date_creation";
+        $sql .= " ORDER BY date_creation DESC";
         
         $results = $this->getPdo()->query($sql)->fetchAll();
         $plats = array();

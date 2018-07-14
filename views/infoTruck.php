@@ -5,7 +5,7 @@
   <li class="list-group-item text-right mail"><span class="pull-left"><strong>Logo<br></strong></span><img src=<?php echo  $infosTruck['logoChemin']; ?> alt="image logo" class="img-thumbnail"></li>
   <li class="list-group-item text-right"><span class="pull-left"><strong>Categorie</strong></span><?php echo $infosTruck['catIntitule']; ?></li>
   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modifInfosTruck">
-    Edit
+  <i class="fas fa-user-edit"></i> Editer
   </button>
 </ul>
 <br>

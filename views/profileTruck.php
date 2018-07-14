@@ -1,4 +1,14 @@
-<?php include 'header.php';?>
+<?php include 'header.php';
+
+//Recup des commandes avec date > date du jour
+$dateJour = date("Y-m-d H:i:s");
+$listeCommandeEnCours = [];
+foreach ($listeCommandes as $commande){
+    if($commande['date_commande'] >= $dateJour){
+        array_push($listeCommandeEnCours,$commande);
+    }
+}
+?>
 
 <div class="container-fluid">
     <!-- Div SR-ONLY id du FT -->
@@ -12,7 +22,7 @@
             <br><br>
             <ul class="nav nav-tabs" id="myTab">
               <li class="nav-item">
-                <a class="nav-link active" href="#commandesEnCours" data-toggle="tab">Commandes en cours</a>
+                <a class="nav-link active" href="#commandesEnCours" data-toggle="tab">Commandes en cours <span class="badge badge-pill badge-danger"><?= count($listeCommandeEnCours)?></span></a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#commandesTerminees" data-toggle="tab">Commandes terminées</a>
@@ -31,10 +41,10 @@
 <!-- COMMANDES EN COURS -->
                 <div class="tab-pane active" id="commandesEnCours">
                     <div class="table-responsive">
-                        <table class="table table-hover text-center">
+                        <table class="table table-hover table-sm text-center">
                             <thead>
                                 <tr>
-                                    <th>Numero</th>
+                                    <th>Numéro</th>
                                     <th>Date</th>
                                     <th>Total</th>
                                     <th>Plats</th>
@@ -44,23 +54,12 @@
                             <tbody id="items">
 
                                 <?php
-                                //Recup des commandes avec date > date du jour
-                                $dateJour = date("Y-m-d H:i:s");
-                                $listeCommandeEnCours = [];
-
-                                foreach ($listeCommandes as $commande){
-                                    if($commande['date_commande'] >= $dateJour){
-                                        array_push($listeCommandeEnCours,$commande);
-                                    }
-                                }
-
-                                //Affichage
                                 foreach ($listeCommandeEnCours as $commande){
                                     $nbPanier = count($commande['liste_paniers']);
                                 ?>
                                     <tr data-toggle="collapse" data-target="#demo1" class="accordion-toggle ">
                                         <td rowspan=<?php echo $nbPanier; ?>><?php echo $commande['numero']; ?></td>                   
-                                        <td rowspan=<?php echo $nbPanier; ?>><?php echo $commande['date_commande']; ?></td>                   
+                                        <td rowspan=<?php echo $nbPanier; ?>><?php echo date_format(date_create_from_format('Y-m-d H:i:s', $commande['date_commande']), 'd/m/Y H:i');?></td>                   
                                         <td rowspan=<?php echo $nbPanier; ?>><?php echo $commande['total']." €"; ?></td>                   
                                         <td><?php echo $commande['liste_paniers'][0]['plat']['nom']; ?></td>                   
                                         <td><?php echo $commande['liste_paniers'][0]['quantite']; ?></td>                   
@@ -113,7 +112,7 @@
                                 ?>
                                     <tr data-toggle="collapse" data-target="#demo1" class="accordion-toggle ">
                                         <td><?php echo $commande['numero']; ?></td>                   
-                                        <td><?php echo $commande['date_commande']; ?></td>  
+                                        <td><?php echo date_format(date_create_from_format('Y-m-d H:i:s', $commande['date_commande']), 'd/m/Y H:i');?></td>  
                                         <td><?php echo $commande['total']." €"; ?></td>                   
                                         <td><?php echo giveMeTheStars($commande['avis']['note']); ?></td>                                  
                                         <td><?php echo $commande['avis']['message']; ?></td>                                  
@@ -132,16 +131,16 @@
                             <thead>
                                 <tr>
                                     <th>Image</th>
-                                    <th>Intitule</th>
-                                    <th>prix</th>
-                                    <th>description</th>
+                                    <th>Intitulé</th>
+                                    <th>Prix</th>
+                                    <th>Description</th>
+                                    <th colspan=2>Actions</th>
                                 </tr>
                             </thead>
                             <tbody id="Plats">
                             <script>
                                 $(document).ready(function() {
                                     giveMeThePlats();
-
                                 });
                             </script>               
                             </tbody>
@@ -159,13 +158,15 @@
                 </div>
 <!-- ADRESSES --> 
                 <div class="tab-pane" id="adresses">
-                    <!-- Cards -->
-                    <div class="d-flex justify-content-center">
-                        <?php
+
+                    <div class="container">
+
+                        <div class="row rowCard">
+<!-- Cards -->
+                                <?php
                         foreach($listeAdresse as $adresse){
                         ?>
-                        <div class="p2 cardAdresse">
-                            <div class="card" style="width: 25rem;">
+                            <div class="card adresseCard" style="width: 20rem;">
                                 <img class="card-img-top" id="carte<?php echo $adresse['id']; ?>" src="https://maps.googleapis.com/maps/api/staticmap?zoom=15&size=300x300&maptype=roadmap
 &markers=color:red%7Clabel:C%7C<?=$adresse['latitude']?>,<?=$adresse['longitude']?>&key=AIzaSyDd0z6MCPdZ0v5TPvkbB6yWW9dli2vkN3c" alt="Card image cap">
                                 <div class="card-body">
@@ -173,10 +174,10 @@
                                     <button type="button" class="btn btn-primary btn-sm" onclick="updateAdresse(<?php echo $adresse['id']; ?>);">Modifier</button>
                                 </div>
                             </div>
-                        </div>
                         <?php
                         }
                         ?>
+                        </div>
                     </div>
                 </div>
             </div> 

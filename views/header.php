@@ -12,6 +12,9 @@
     <!-- JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
+    <!-- Dropdown BootStrap !! BEFORE bootstrap js !!-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    
     <!--===============================================================================================-->
     <!-- DATA TABLE -->
     <link href="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js">
@@ -26,6 +29,7 @@
     <!-- Bootstrap core CSS -->
     <link href=<?="http://".$_SERVER['SERVER_NAME'] . "/vendor/bootstrap/css/bootstrap.min.css"?> rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+
 
     <!-- JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -61,6 +65,7 @@
     <!-- CSS General -->
     <link rel="stylesheet" href=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/css/general.css"?>>
 
+    <!-- Divers -->
     <script src=<?="http://".$_SERVER['SERVER_NAME'] . "/assets/scripts/redirectionProfileFoodtruck.js"?>></script>
 
     
