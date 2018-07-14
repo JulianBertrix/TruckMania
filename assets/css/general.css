@@ -50,6 +50,13 @@
     height: 120px;
 }
 
+.imageCardXl{
+    width: 100%;
+    height: 250px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
 /*------------------Modal Julian------------------*/
   .rating {
     width: 226px;
@@ -96,21 +103,19 @@
 .imageMedium200{
     width: 200px;
     height: 200px;
-    margin-bottom: 10px;
     border-radius: 5px;
 }
 
 .imageMedium{
-    width: 300px;
+    width: 400px;
     height: 300px;
-    margin-bottom: 10px;
     border-radius: 5px;
 }
 
 .imageBig{
-    width: 400%;
+    width: 400px;
     max-height: 350px;
-    margin-bottom: 10px;
+
 }
 
 .carousel-item{
