@@ -13,7 +13,7 @@
                 <a class="nav-link active" href="#favoris" data-toggle="tab">Mes favoris</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#commandes" data-toggle="tab">Commandes en cours</a>
+                <a class="nav-link" href="#commandes" data-toggle="tab">Commandes en cours <span class="badge badge-pill badge-danger"><?= count($listeCommande)?></span></a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#historique" data-toggle="tab">Mon historique</a>

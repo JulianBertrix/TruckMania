@@ -2,7 +2,7 @@
 <html lang="fr">
   <head>
     <meta charset="utf-8">
-    <link rel="icon" type="image/png" href="./favicon.png" />
+    <link rel="icon" type="image/png" href=<?="http://".$_SERVER['SERVER_NAME'] . "/favicon.png"?>/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -69,7 +69,6 @@
   <body>
 
     <?php 
-    //var_dump($this->security->acceptConnexion()->username[0]);
 ?>
         <!-- BARRE DEV -->
           <div class="container-fluid">
@@ -103,33 +102,62 @@
         //Profil
         //var_dump($user);
         if(isset($user)){
-          echo '<a class="" href="http://'.$_SERVER['SERVER_NAME'].'/profile/'.$user->username[0].'">Mon profil</a>';
+          echo '<a class="" href="http://'.$_SERVER['SERVER_NAME'].'/profile/'.$user->username[0].'">';
+            if($_SERVER['REQUEST_URI'] === '/profile/'.$user->username[0]){
+              echo '<button type="button" class="btn btn-primary btn-sm"><i class="fas fa-user"></i> Mon profil</button></a>';
+            }else{
+              echo '<button type="button" class="btn btn-outline-primary btn-sm"><i class="fas fa-user"></i> Mon profil</button></a>';
+            };
+
           //Ajout page FT si besoin
           if($user->roles[0] === "foodtruck"){
-            echo '<a class="" href="http://'.$_SERVER['SERVER_NAME'].'/user/'.$user->username[0].'/truck/'.$user->username[2].'">Mon FoodTruck</a>';
-            echo '<a class="" href="http://'.$_SERVER['SERVER_NAME'].'/foodtruck/'.$user->username[2].'">Profil publique</a>';
+            //Bouton Mon Foodtruck
+            echo '<a class="" href="http://'.$_SERVER['SERVER_NAME'].'/user/'.$user->username[0].'/truck/'.$user->username[2].'">';
+            if($_SERVER['REQUEST_URI'] === '/user/'.$user->username[0].'/truck/'.$user->username[2]){
+              echo '<button type="button" class="btn btn-primary btn-sm"><i class="fas fa-truck"></i> Mon FoodTruck</button></a>';
+            }else{
+              echo '<button type="button" class="btn btn-outline-primary btn-sm"><i class="fas fa-truck"></i> Mon FoodTruck</button></a>';
+            };
+            //Bouton Mon Profil publique
+            echo '<a class="" href="http://'.$_SERVER['SERVER_NAME'].'/foodtruck/'.$user->username[2].'">';
+            if($_SERVER['REQUEST_URI'] === '/foodtruck/'.$user->username[2]){
+              echo '<button type="button" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i> Profil publique</button></a>';
+            }else{
+              echo '<button type="button" class="btn btn-outline-primary btn-sm"><i class="fas fa-eye"></i> Profil publique</button></a>';
+            };
+
           }else if($user->roles[0] === "admin"){ //Page Admin
-            echo '<a class="" href="http://'.$_SERVER['SERVER_NAME'].'/administration/trucks">Admin</a>';
+            echo '<a class="" href="http://'.$_SERVER['SERVER_NAME'].'/administration/trucks">';
+            if($_SERVER['REQUEST_URI'] === '/administration/trucks'
+                || $_SERVER['REQUEST_URI'] === '/administration/users'
+                || $_SERVER['REQUEST_URI'] === '/administration/evenement'
+                || $_SERVER['REQUEST_URI'] === '/administration/commande'){
+              echo '<button type="button" class="btn btn-primary btn-sm">Administration</button></a>';
+            }else{
+              echo '<button type="button" class="btn btn-outline-primary btn-sm">Administration</button></a>';
+            };
+
           }else if($user->roles[0] === "pro"){ //Page Ajout Evt Pro
-            echo '<a class="" href="http://'.$_SERVER['SERVER_NAME'].'/evenement/add">Ajout Evénement</a>';
+            echo '<a class="" href="http://'.$_SERVER['SERVER_NAME'].'/evenement/add">';
+            if($_SERVER['REQUEST_URI'] === '/evenement/add'){
+              echo '<button type="button" class="btn btn-primary btn-sm">Ajout événement</button></a>';
+            }else{
+              echo '<button type="button" class="btn btn-outline-primary btn-sm">Ajout événement</button></a>';
+            };
           }
+          // Name + Bouton logout
+          echo '<h5>Bonjour '.$user->username[1].' !</h5>';
+          echo '<a class="btn btn-outline-info btn-sm" href="http://'.$_SERVER['SERVER_NAME'].'/logout">Logout</a>';
         }else{
-          echo '<a class="" href="http://'.$_SERVER['SERVER_NAME'].'/inscription/client">Inscription Client</a>';
-          echo '<a class="" href="http://'.$_SERVER['SERVER_NAME'].'/inscription/truck">Inscription Trucks</a>';
+          // Inscription + Bouton Login
+          echo '<a class="" href="http://'.$_SERVER['SERVER_NAME'].'/inscription/client">';
+          echo '<button type="button" class="btn btn-outline-info btn-sm">Inscription Client</button></a>';
+          echo '<a class="" href="http://'.$_SERVER['SERVER_NAME'].'/inscription/truck">';
+          echo '<button type="button" class="btn btn-outline-info btn-sm">Inscription Trucks</button></a>';
+          echo '<button type="button" class="btn btn-primary btn-sm " data-toggle="modal" data-target="#loginModal">Sign In</button>';
         }
-        ?>
-        <!-- Bouton Login/logout -->
-        <?php
-          if(isset($user)){
-            echo '<h5>Bonjour '.$user->username[1].' !</h5>';
-            echo '<a class="btn btn-outline-info" href="http://'.$_SERVER['SERVER_NAME'].'/logout">Logout</a>';
-           
-          }else{
-            echo '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">Sign In</button>';
-          }
-        ?>
         
-        
+        ?>
       </div>
     </nav>
 
