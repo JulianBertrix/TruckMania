@@ -1,4 +1,13 @@
-<?php include 'header.php';?>
+<?php include 'header.php';
+//Recup des commandes avec date > date du jour
+$dateJour = date("Y-m-d H:i:s");
+$listeCommandeEnCours = [];
+foreach ($listeCommande as $commande){
+    if($commande->getDateCommande() >= $dateJour){
+        array_push($listeCommandeEnCours,$commande);
+    }
+}
+?>
  
 <div class="container-fluid">
     <div class="row">
@@ -13,7 +22,7 @@
                 <a class="nav-link active" href="#favoris" data-toggle="tab">Mes favoris</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#commandes" data-toggle="tab">Commandes en cours <span class="badge badge-pill badge-danger"><?= count($listeCommande)?></span></a>
+                <a class="nav-link" href="#commandes" data-toggle="tab">Commandes en cours <span class="badge badge-pill badge-danger"><?= count($listeCommandeEnCours)?></span></a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#historique" data-toggle="tab">Mon historique</a>

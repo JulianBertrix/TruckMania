@@ -113,9 +113,20 @@ foreach ($listeCommandes as $commande){
                                     <tr data-toggle="collapse" data-target="#demo1" class="accordion-toggle ">
                                         <td><?php echo $commande['numero']; ?></td>                   
                                         <td><?php echo date_format(date_create_from_format('Y-m-d H:i:s', $commande['date_commande']), 'd/m/Y H:i');?></td>  
-                                        <td><?php echo $commande['total']." €"; ?></td>                   
-                                        <td><?php echo giveMeTheStars($commande['avis']['note']); ?></td>                                  
-                                        <td><?php echo $commande['avis']['message']; ?></td>                                  
+                                        <td><?php echo $commande['total']." €"; ?></td>
+                                        <?php
+                                        if($commande['avis']['message'] !== ""){
+                                        ?>
+                                            <td><?php echo giveMeTheStars($commande['avis']['note']); ?></td>                                  
+                                            <td><?php echo $commande['avis']['message']; ?></td> 
+                                        <?php
+                                        }else{
+                                        ?> 
+                                            <td>Pas notée</td>                                  
+                                            <td></td> 
+                                        <?php  
+                                        }                  
+                                        ?>                                
                                     </tr>                             
                                 <?php
                                 }

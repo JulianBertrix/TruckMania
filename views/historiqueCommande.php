@@ -6,7 +6,7 @@
             <th>Plat</th>
             <th>Quantité</th>
             <th>Prix</th>
-            <th>Rédiger un avis</th>
+            <th>Avis</th>
         </tr>
     </thead>
     <tbody id="items">
@@ -40,7 +40,12 @@
             </td>
             <td><?php echo $commande->getTotal();?> €</td>
             <?php if($commande->getAvisId()->getMessage() !== ""){?>
-            <td>avis posté</td>
+            <td>
+                <ul class="listeSansPuce">
+                    <li><?php echo $commande->getAvisId()->getMessage(); ?></li>
+                    <li><?php echo giveMeTheStars($commande->getAvisId()->getNote()); ?></li>
+                </ul>
+            </td>
             <?php }
             else{
             ?><td><button type="button" data-toggle="modal" data-target="#avis" data-uid="1" data-productid="<?php echo $commande->getAvisId()->getId(); ?>" class="update btn btn-warning btn-sm" onclick="showModal();"><span class="fas fa-pencil-alt"></span></button></td>
@@ -53,5 +58,32 @@
     </tbody>
 </table>
 <div>
-    <?php include 'avisModal.php'; ?>
+    <?php include 'avisModal.php'; 
+    function giveMeTheStars($note){
+        $vides = floor(5 - $note);
+        
+        if((fmod($note,1) !== 0.0)){
+            $middle = true;
+            $pleines = 4 - $vides; 
+        }else{
+            $middle = false;
+            $pleines = 5 - $vides; 
+        }
+    
+        while($pleines > 0){
+            echo '<i class="fas fa-star"  style="color:#DEDE4C"></i>';
+            $pleines--;
+        }
+    
+        if($middle){
+            echo '<i class="fas fa-star-half-alt"  style="color:#DEDE4C"></i>';
+        }
+    
+        while($vides > 0){
+            echo '<i class="far fa-star"  style="color:#DEDE4C"></i>';
+            $vides--;
+        }
+    
+    }
+    ?>
 </div>
