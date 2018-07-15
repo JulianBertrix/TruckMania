@@ -108,6 +108,28 @@ class EvenementController extends Controller {
         }
     }
 
+    public function showListEvents(){
+
+        //recup liste Events en objets
+        $listeEventsObj = $this->evenement->getAll();
+
+        //Creation des tableaux Event + nb de FT participants
+        $listeEvents = [];
+        foreach($listeEventsObj as $event){
+
+            $newCouple = [
+                'event' => $event->jsonSerialize(),
+                'nbFT' => count((new DAOTruckEvenement())->trucksForEvent($event->getId()))
+            ];
+            array_push($listeEvents,$newCouple);
+        }
+
+        //Var $datas
+        $datas = ['listEvents' => $listeEvents];
+
+        $this->render('listeEvents',$datas);
+    }
+
     public function showEvent($id){
 
         //recup des infos

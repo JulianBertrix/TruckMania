@@ -10,6 +10,7 @@
     "/inscription/(:)": "InscriptionsController:inscritMoi",
     "/evenement/add": "EvenementController:addEvent",
     "/evenement/(:)": "EvenementController:showEvent",
+    "/events": "EvenementController:showListEvents",
     "/login": "DefaultController:login",
     "/administration/(:)": "AdminController:adminPage",
     "/testtc": "UtilisateurController:testMe",

@@ -21,14 +21,19 @@
         <div class="col">
 <?php
         //Test si FT participe ou non
-        foreach($listeFT as $truck){
-            if($truck['id'] === $user->username[2]){
-                echo '<button type="button" id= "buttParticiper" class="btn btn-warning float-right" onclick="switchParticipation('.$user->username[2].','.$event['id'].');">Ne plus particper</button>';
-                break;
-            }else{
-                echo '<button type="button" id= "buttParticiper" class="btn btn-success float-right" onclick="switchParticipation('.$user->username[2].','.$event['id'].');">Participer</button>';
+        if(count($listeFT) > 0){
+            foreach($listeFT as $truck){
+                if($truck['id'] === $user->username[2]){
+                    echo '<button type="button" id= "buttParticiper" class="btn btn-warning float-right" onclick="switchParticipation('.$user->username[2].','.$event['id'].');">Ne plus particper</button>';
+                    break;
+                }else{
+                    echo '<button type="button" id= "buttParticiper" class="btn btn-success float-right" onclick="switchParticipation('.$user->username[2].','.$event['id'].');">Participer</button>';
+                }
             }
+        }else{
+            echo '<button type="button" id= "buttParticiper" class="btn btn-success float-right" onclick="switchParticipation('.$user->username[2].','.$event['id'].');">Participer</button>';
         }
+        
 ?>
         </div>
     <br>
