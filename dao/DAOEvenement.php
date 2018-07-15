@@ -37,7 +37,7 @@ class DAOEvenement extends DAO{
     }
 
     public function getAll() {
-        $sql = "SELECT * FROM evenement";
+        $sql = "SELECT * FROM evenement ORDER BY date_debut";
 
         $events = $this->getPdo()->query($sql)->fetchAll();
         //var_dump($events);

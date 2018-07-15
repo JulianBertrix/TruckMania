@@ -35,8 +35,8 @@
               <div class="features-icons-icon d-flex">
               <i class="fas fa-heartbeat m-auto text-primary"></i>
               </div>
-              <h3>Vie plus longtemps !</h3>
-              <p class="lead mb-0">Va chercher ton ton repas au Food Truck à pied, c'est bon pour la santé et le moral !</p>
+              <h3>Vis plus longtemps !</h3>
+              <p class="lead mb-0">Va chercher ton repas au Food Truck à pied, c'est bon pour la santé et le moral !</p>
             </div>
           </div>
         </div>

@@ -2,7 +2,7 @@
 <html lang="fr">
   <head>
     <meta charset="utf-8">
-    <link rel="icon" type="image/png" href=<?="http://".$_SERVER['SERVER_NAME'] . "/favicon.png"?>/>
+    <link rel="icon" type="image/png" href=<?="http://".$_SERVER['SERVER_NAME'] . "/favicon.png"?>>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -98,9 +98,11 @@
    
     <nav class="navbar navbar-light bg-light static-top">
       <div class="container">
-        <div>
-        <img src=<?php echo "http://".$_SERVER['SERVER_NAME'] . "/assets/img/food-truck.png"?> id="logoNav">
-        <a class="navbar-brand" href=<?="http://".$_SERVER['SERVER_NAME'] . "/"?>>Trucks Mania</a>
+        <div class="parent">
+          <a href=<?="http://".$_SERVER['SERVER_NAME'] . "/"?>>
+            <img src=<?php echo "http://".$_SERVER['SERVER_NAME'] . "/assets/img/food-truck.png"?> id="logoNav">
+          </a>
+        <a class="navbar-brand enfant" href=<?="http://".$_SERVER['SERVER_NAME'] . "/"?>>Trucks Mania</a>
         </div>
        
         <?php
@@ -137,29 +139,36 @@
                 || $_SERVER['REQUEST_URI'] === '/administration/users'
                 || $_SERVER['REQUEST_URI'] === '/administration/evenement'
                 || $_SERVER['REQUEST_URI'] === '/administration/commande'){
-              echo '<button type="button" class="btn btn-primary btn-sm">Administration</button></a>';
+              echo '<button type="button" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> Administration</button></a>';
             }else{
-              echo '<button type="button" class="btn btn-outline-primary btn-sm">Administration</button></a>';
+              echo '<button type="button" class="btn btn-outline-primary btn-sm"><i class="fas fa-edit"></i> Administration</button></a>';
             };
 
           }else if($user->roles[0] === "pro"){ //Page Ajout Evt Pro
             echo '<a class="" href="http://'.$_SERVER['SERVER_NAME'].'/evenement/add">';
             if($_SERVER['REQUEST_URI'] === '/evenement/add'){
-              echo '<button type="button" class="btn btn-primary btn-sm">Ajout événement</button></a>';
+              echo '<button type="button" class="btn btn-primary btn-sm"><i class="far fa-calendar-alt"></i> Ajout événement</button></a>';
             }else{
-              echo '<button type="button" class="btn btn-outline-primary btn-sm">Ajout événement</button></a>';
+              echo '<button type="button" class="btn btn-outline-primary btn-sm"><i class="far fa-calendar-alt"></i> Ajout événement</button></a>';
             };
           }
+          //EVENTS
+          echo '<a class="" href="http://'.$_SERVER['SERVER_NAME'].'/events">';
+          if($_SERVER['REQUEST_URI'] === '/events'){
+            echo '<button type="button" class="btn btn-primary btn-sm"><i class="fas fa-laugh-beam"></i> Evénements</button></a>';
+          }else{
+            echo '<button type="button" class="btn btn-outline-primary btn-sm"><i class="fas fa-laugh-beam"></i> Evénements</button></a>';
+          };
           // Name + Bouton logout
-          echo '<h5>Bonjour '.$user->username[1].' !</h5>';
-          echo '<a class="btn btn-outline-info btn-sm" href="http://'.$_SERVER['SERVER_NAME'].'/logout">Logout</a>';
+          echo '<div class="parent"><h6 class="enfant">Bonjour '.$user->username[1].' !</h6></div>';
+          echo '<a class="btn btn-outline-info btn-sm" href="http://'.$_SERVER['SERVER_NAME'].'/logout"><i class="fas fa-sign-out-alt"></i> Déconnecter</a>';
         }else{
           // Inscription + Bouton Login
           echo '<a class="" href="http://'.$_SERVER['SERVER_NAME'].'/inscription/client">';
           echo '<button type="button" class="btn btn-outline-info btn-sm">Inscription Client</button></a>';
           echo '<a class="" href="http://'.$_SERVER['SERVER_NAME'].'/inscription/truck">';
           echo '<button type="button" class="btn btn-outline-info btn-sm">Inscription Trucks</button></a>';
-          echo '<button type="button" class="btn btn-primary btn-sm " data-toggle="modal" data-target="#loginModal">Sign In</button>';
+          echo '<button type="button" class="btn btn-primary btn-sm " data-toggle="modal" data-target="#loginModal"><i class="fas fa-sign-in-alt"></i> Connecter</button>';
         }
         
         ?>
