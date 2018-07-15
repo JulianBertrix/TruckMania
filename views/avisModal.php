@@ -30,7 +30,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Annuler</button>
-        <button type="button" id="valider" class="btn btn-success" data-dismiss="modal" onclick="addAvis(<?php echo $commande->getAvisId()->getId();?>)">Valider</button>
+        <button type="button" id="valider" class="btn btn-success" data-dismiss="modal" onclick="">Valider</button>
       </div>
     </div>
   </div>

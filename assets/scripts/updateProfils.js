@@ -10,7 +10,6 @@ function updateInfo(id){
         },
         
         success : function(data){
-            alert("vos infos ont bien été mis a jour");
             document.location.href = document.location.href;
         },
         
@@ -23,14 +22,11 @@ function updateInfo(id){
 function deleteFavoris(idUser,idFT){
     $.ajax({
         url : "http://trucks-mania.bwb/api/Favoris/delete/utilisateur/"+idUser+"/foodtruck/"+idFT,
-        type : "POST",
+        type : "GET",
+        async: false,
         
-        data : {
-            
-        },
-        
-        success : function(data){
-            document.location.href = document.location.href;
+        success : function(){
+            document.location.reload();
         },
         
         error : function(){

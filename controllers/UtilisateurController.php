@@ -70,21 +70,37 @@ class UtilisateurController extends Controller {
         header("Content-Type: text/plain");
         $dataPost = $this->inputPost();
         
-        //$adresse = (new UtilisateurModel())->getAdresseId()->getId();
-        $newData = array(
-            'email' => $dataPost['email'],
-            'mot_de_passe' => $dataPost['mot_de_passe'],
-        );
+        //Modif email et password
+        $newData;
+        if($dataPost['email'] !== "" && $dataPost['mot_de_passe'] !== ""){
+            $newData = array(
+                'email' => $dataPost['email'],
+                'mot_de_passe' => hash("sha1",$dataPost['mot_de_passe'])
+            );
+        }else if($dataPost['email'] !== ""){
+            $newData = array(
+                'email' => $dataPost['email']
+            );
+        }else if($dataPost['mot_de_passe'] !== ""){
+            $newData = array(
+                'mot_de_passe' => hash("sha1",$dataPost['mot_de_passe'])
+            );
+        }
         
-        $tutu = $this->user->updateMe($id, $newData);
-        $adresse = $this->user->retrieve($id)->getAdresseId()->getId();
+        if(count($newData) > 0){
+            $tutu = $this->user->updateMe($id, $newData);
+        }
         
-        $newAdresse = array(
-            'adresse' => $dataPost['adresse']
-        );
+        //Modif Adresse
+        if($dataPost['adresse'] !== ""){
+            $adresse = $this->user->retrieve($id)->getAdresseId()->getId();
         
-        (new DAOAdresse())->updateMe($adresse, $newAdresse);
-        echo $tutu;
+            $newAdresse = array(
+                'adresse' => $dataPost['adresse']
+            );
+            
+            (new DAOAdresse())->updateMe($adresse, $newAdresse);
+        }
     }
 
     public function testMe(){

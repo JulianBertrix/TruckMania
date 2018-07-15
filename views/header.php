@@ -160,7 +160,7 @@
             echo '<button type="button" class="btn btn-outline-primary btn-sm"><i class="fas fa-laugh-beam"></i> Evénements</button></a>';
           };
           // Name + Bouton logout
-          echo '<div class="parent"><h6 class="enfant">Bonjour '.$user->username[1].' !</h6></div>';
+          echo '<div class="parent"><h5 class="enfant">Bonjour '.$user->username[1].' !</h5></div>';
           echo '<a class="btn btn-outline-info btn-sm" href="http://'.$_SERVER['SERVER_NAME'].'/logout"><i class="fas fa-sign-out-alt"></i> Déconnecter</a>';
         }else{
           // Inscription + Bouton Login
