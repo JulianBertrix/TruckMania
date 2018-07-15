@@ -12,7 +12,6 @@ function addAvis(idAvis){
             },
 
             success : function(data){           
-                alert("vous avez ajouté un avis");
                 document.location.href = document.location.href;
             },
 

@@ -1,76 +1,69 @@
 {
     "/": "HomeController:homePage",
+
     "/checklogin":{
         "POST":"LoginController:checkUser"
     },
+    "/logout": "LoginController:logout",
+
+    "/search": "SearchController:searchPage",
+
+    "/inscription/(:)": "InscriptionsController:inscritMoi",
+    
+
     "/profile/(:)": "ProfileClientController:profileClient",
     "/foodtruck/(:)": "FoodTruckProfileController:vueProfile",
-    "/search": "SearchController:searchPage",
-    "/testcalendar": "DefaultController:getCalendar",
-    "/inscription/(:)": "InscriptionsController:inscritMoi",
-    "/evenement/add": "EvenementController:addEvent",
-    "/evenement/(:)": "EvenementController:showEvent",
-    "/events": "EvenementController:showListEvents",
-    "/login": "DefaultController:login",
+
     "/administration/(:)": "AdminController:adminPage",
-    "/testtc": "UtilisateurController:testMe",
-    "/logout": "LoginController:logout",
-    "/token": "DefaultController:token",
-    "/demoClient": "DevController:switchClient",
-    "/demoTruck": "DevController:switchTruck",
-    "/demoAdmin": "DevController:switchAdmin",
-    "/demoPro": "DevController:switchPro",
+
     "/user/(:)/truck/(:)": "AdminTruckController:adminTruck",
-    "/api/default":{
-        "GET":"DefaultController:getDatasFromGET",
-        "POST":"DefaultController:getDatasFromPOST",
-        "PUT":"DefaultController:getDatasFromPUT",
-        "DELETE":"DefaultController:delete"
-    },
+
     "/api/trucks":{
         "GET":"TrucksController:getALL"
     },
+    "/api/trucks/(:)/infos":{
+        "PUT":"TrucksController:updateTruck"
+    },
+
     "/api/utilisateur":{
         "GET":"UtilisateurController:getALL"
-    },
-    "/api/utilisateur/json/(:)": "UtilisateurController:retrieveToJson",
-
-    "/api/commande":{
-        "GET":"CommandeController:getALL"
-    },
-    "/api/evenement":{
-        "GET":"EvenementController:getALL"
-    },
-    "/api/evenement/(:)/truck/(:)":{
-        "GET":"TruckEvenementController:switch"
-    },
-    "/api/trucks/(:)/events/(:)":{
-        "DELETE":"TruckEvenementController:deleteMe"
     },
     "/api/utilisateur/(:)":{
         "GET":"UtilisateurController:retrieve",
         "POST":"UtilisateurController:update",
         "DELETE":"UtilisateurController:delete"
     },
+    "/api/utilisateur/json/(:)": "UtilisateurController:retrieveToJson",
+    
+    "/api/commande":{
+        "GET":"CommandeController:getALL",
+        "POST":"CommandeController:create"
+    },
+
+    "/events": "EvenementController:showListEvents",
+    "/evenement/add": "EvenementController:addEvent",
+    "/evenement/(:)": "EvenementController:showEvent",
+    "/api/evenement":{
+        "GET":"EvenementController:getALL"
+    },
+
+    "/api/evenement/(:)/truck/(:)":{
+        "GET":"TruckEvenementController:switch"
+    },
+    "/api/trucks/(:)/events/(:)":{
+        "DELETE":"TruckEvenementController:deleteMe"
+    },
+
     "/api/trucks/(:)/events":{
         "GET":"TruckEvenementController:getAllEventsForCalendar"
     },
+
     "/api/trucks/(:)/planning":{
         "GET":"PlanningController:getAllPlanningForCalendar",
         "POST":"PlanningController:updateThePlanning"
     },
     "/api/trucks/(:)/planning/duplicate":{
         "POST":"PlanningController:duplicateMonth"
-    },
-    "/api/plat/(:)":{
-        "GET":"PlatController:getAllPlatsBy",
-        "POST":"PlatController:updatePlat"
-    },
-    "/api/plat/add/(:)":{
-        "POST":"PlatController:addPlat"
-    },
-    "/api/plat/delete/(:)":{
-        "GET":"PlatController:deletePlat"
     },
     "/api/planning/update":{
         "POST":"PlanningController:updateThePlanning"
@@ -81,22 +74,35 @@
     "/api/planning/delete":{
         "POST":"PlanningController:delete"
     },
+
+    "/api/plat/(:)":{
+        "GET":"PlatController:getAllPlatsBy",
+        "POST":"PlatController:updatePlat"
+    },
+    "/api/plat/add/(:)":{
+        "POST":"PlatController:addPlat"
+    },
+    "/api/plat/delete/(:)":{
+        "GET":"PlatController:deletePlat"
+    },
+
     "/api/Favoris/delete/utilisateur/(:)/foodtruck/(:)":{
-        "POST":"FavorisController:delete"
+        "GET":"FavorisController:delete"
     },
     "/api/Favoris/add/utilisateur/(:)/foodtruck/(:)":{
         "POST":"FavorisController:create"
     },
+
     "/api/Avis/(:)":{
         "PUT":"AvisController:updateMe"
     },
-    "/api/trucks/(:)/infos":{
-        "PUT":"TrucksController:updateTruck"
-    },
+
     "/api/adresse/(:)/update":{
         "POST":"AdresseController:update"
     },
-    "/api/Commande":{
-        "POST":"CommandeController:create"
-    }
+
+    "/demoClient": "DevController:switchClient",
+    "/demoTruck": "DevController:switchTruck",
+    "/demoAdmin": "DevController:switchAdmin",
+    "/demoPro": "DevController:switchPro"
 }

@@ -22,14 +22,20 @@
 <?php
         //Test si FT participe ou non
         if(count($listeFT) > 0){
+            $compteur = 0;
             foreach($listeFT as $truck){
                 if($truck['id'] === $user->username[2]){
-                    echo '<button type="button" id= "buttParticiper" class="btn btn-warning float-right" onclick="switchParticipation('.$user->username[2].','.$event['id'].');">Ne plus particper</button>';
+                    $compteur++;
                     break;
-                }else{
-                    echo '<button type="button" id= "buttParticiper" class="btn btn-success float-right" onclick="switchParticipation('.$user->username[2].','.$event['id'].');">Participer</button>';
                 }
             }
+
+            if($compteur > 0){
+                echo '<button type="button" id= "buttParticiper" class="btn btn-warning float-right" onclick="switchParticipation('.$user->username[2].','.$event['id'].');">Ne plus particper</button>';
+            }else{
+                echo '<button type="button" id= "buttParticiper" class="btn btn-success float-right" onclick="switchParticipation('.$user->username[2].','.$event['id'].');">Participer</button>';
+            }
+
         }else{
             echo '<button type="button" id= "buttParticiper" class="btn btn-success float-right" onclick="switchParticipation('.$user->username[2].','.$event['id'].');">Participer</button>';
         }
@@ -99,7 +105,9 @@
                     <?php
                     foreach ($listeFT as $truck){?>
                         <div class="card cardPlats" style="width: 15rem;">
+                            <a href="http://<?=$_SERVER['SERVER_NAME'] .'/foodtruck/'.$truck['id'];?>">
                             <img class="card-img-top imageCardXl" src=<?= "http://".$_SERVER['SERVER_NAME'] . "/assets/img/trucks/".$truck['logo']; ?> alt="Card image cap">
+                          </a>
                             <div class="card-body">
                                 <input type="text" class="input100" value="<?=$truck['nom'];?>">
                             </div>

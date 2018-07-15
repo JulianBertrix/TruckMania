@@ -11,8 +11,8 @@
         <form class="contact100-form validate-form" action=<?="http://".$_SERVER['SERVER_NAME'] . "/profile"?> role="form" method="post">
             <span class="label-input100">Email</span>
             <input id="email" class="input100" type="text" name="email" value="<?php echo $infoClient->getEmail(); ?>">
-            <span class="label-input100">Mot de passe</span>
-            <input id="motDePasse" class="input100" type="password" name="mot_de_passe" value="Mot de passe">
+            <span class="label-input100">Nouveau mot de passe</span>
+            <input id="motDePasse" class="input100" type="password" name="mot_de_passe" value="">
             <span class="label-input100">Adresse</span>
             <input class="input100" type="text" name="user_input_autocomplete_address" value="<?php echo $infoClient->getAdresseId()->getAdresse(); ?>" id="user_input_autocomplete_address">
         </form>

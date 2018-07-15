@@ -9,8 +9,10 @@
             <th>Avis</th>
         </tr>
     </thead>
-    <tbody id="items">
-        <?php foreach ($listeCommande as $key => $commande){
+    
+    <tbody>
+        <?php 
+        foreach ($listeCommande as $key => $commande){
                 if($commande->getDateCommande() <= date("Y-m-d H:i:s")){
             ?>
         <tr>

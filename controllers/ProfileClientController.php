@@ -42,10 +42,12 @@ class ProfileClientController extends Controller{
             $getCommande = null;
             $listeCommandes = array();
             
-            foreach ($commande as $key => $value){
-                $getCommande = (new CommandeController)->getFullCommande($value->getNumero());
-                array_push($listeCommandes, $getCommande);
-            }
+            if(isset($commande)){
+                foreach ($commande as $key => $value){
+                    $getCommande = (new CommandeController)->getFullCommande($value->getNumero());
+                    array_push($listeCommandes, $getCommande);
+                }
+            }            
             
             $datas = array(
                 'infoClient' => $utilisateur,
