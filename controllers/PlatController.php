@@ -36,18 +36,23 @@ class PlatController extends Controller {
         $dataPost = $this->inputPost();
 
         //Gestion image
-        if(isset($dataPost['image'])){
-            $image = 'defaultPlat.jpg';
-        }else{
-            $image = $dataPost['image'];
-        }
+            //recup de l'image dans BDD
+            $oldImage = $this->plat->retrieve($idPlat)->getImage();
+
+            if(isset($_FILES['file']['name'])){
+                $newPlat = new PlatModel($idPlat,$dataPost['intitule'],$dataPost['description'],$prix,$_FILES['file']['name'],null);
+                move_uploaded_file($_FILES["file"]["tmp_name"], dirname(__DIR__). "/assets/img/plats/".$_FILES["file"]["name"]);
+            }else{
+                $newPlat = new PlatModel($idPlat,$dataPost['intitule'],$dataPost['description'],$prix,$oldImage,null);
+            }
 
         //gestion du prix, enleve €
         $prix = str_replace(" €","",$dataPost['prix']);
 
-        $newPlat = new PlatModel($idPlat,$dataPost['intitule'],$dataPost['description'],$prix,$_FILES['file']['name'],null);
-        move_uploaded_file($_FILES["file"]["tmp_name"], dirname(__DIR__). "/assets/img/plats/".$_FILES["file"]["name"]);
+        
+        
         echo $this->plat->update($newPlat);
+        
     }
     
     public function addPlat($idTruck){
@@ -56,13 +61,13 @@ class PlatController extends Controller {
         $dataPost = $this->inputPost();
 
         //Gestion image
-        if(isset($dataPost['image'])){
-            $image = 'defaultPlat.jpg';
+        if(isset($_FILES['file']['name'])){
+            $image = $_FILES['file']['name'];
         }else{
-            $image = $dataPost['image'];
+            $image = 'defaultPlat.jpg';
         }
 
-        $newPlat = new PlatModel(null,$dataPost['intitule'],$dataPost['description'],$dataPost['prix'],$_FILES['file']['name'],$idTruck);
+        $newPlat = new PlatModel(null,$dataPost['intitule'],$dataPost['description'],$dataPost['prix'],$image,$idTruck);
         move_uploaded_file($_FILES["file"]["tmp_name"], dirname(__DIR__). "/assets/img/plats/".$_FILES["file"]["name"]);
         echo $this->plat->create($newPlat);
 
