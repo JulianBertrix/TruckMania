@@ -9,14 +9,15 @@ function Commander(userId, foodtruckId, nombre){
     
     var total = parseFloat($("#total").text());
 
-    console.log($("#datePicker").val());
-
     //Si total <> 0 et check date et heure, la commande est passée
+
+    console.log($("#heure").val());
+
 
     if(total > 0 && $("#datePicker").val() != ""){
 
         $.ajax({
-            url:"http://trucks-mania.bwb/api/Commande",
+            url:"http://trucks-mania.bwb/api/commande",
             type:"POST",
             
             data:{
@@ -26,13 +27,14 @@ function Commander(userId, foodtruckId, nombre){
                 foodtruck_id:foodtruckId,
                 plat:listePlat,
                 quantite:listeQuantite,
-                total:$("#total").text()
+                total:total
             },
             
             success: function(data){
                 console.log(data);
                 if(data > 0){
                     alert("votre commande du "+$("#datePicker").val()+" a été validée");
+                    document.location.href = "http://trucks-mania.bwb/profile/"+userId;
                 }
                 else{
                     alert("Zut erreur lors de la commande, veuillez essayer de nouveau SVP");
