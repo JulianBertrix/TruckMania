@@ -67,8 +67,8 @@ include 'header.php';
             <div class="card cardPlats" style="width: 10rem;">
                 <img class="card-img-top imageCardSm" src=<?= "http://".$_SERVER['SERVER_NAME'] . "/assets/img/plats/".$value->getImage(); ?> alt="Card image cap">
                 <div class="card-body">
-                    <input type="text" class="input100" value="<?=$value->getNom();?>">
-                    <input type="text" class="input100" value="<?=$value->getPrix();?> €">
+                    <input type="text" class="" value="<?=$value->getNom();?>">
+                    <input type="text" class="" value="<?=$value->getPrix();?> €">
                 </div>
             </div>
             <?php
