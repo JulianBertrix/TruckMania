@@ -591,8 +591,9 @@
 }
   
 .footer{
-    background: #191d20;
-    padding: 4em 0;
+    /* background: #191d20; */
+    background: whitesmoke;
+    padding: 2em 0;
   }  
 
 .agileinfo_footer_grid:nth-child(2){
@@ -610,7 +611,7 @@
   font-size: 1.5em;
   letter-spacing: 6px;
   text-transform: uppercase;
-  color: #FFFFFF;
+  color: rgb(84, 81, 213);
   font-weight:600;
   text-decoration: none;
 }

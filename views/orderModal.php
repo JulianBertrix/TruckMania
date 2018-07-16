@@ -28,8 +28,8 @@
               <?php foreach($carte as $key => $value){?>
               <tr>
                 <td style="vertical-align:middle"><img class="imageXs" src=<?= "http://".$_SERVER['SERVER_NAME'] . "/assets/img/plats/".$value->getImage(); ?> alt="image"></td>
-                <td style="vertical-align:middle"><h6><?=$value->getNom();?></h6></td>
-                <td style="vertical-align:middle" id="prix<?php echo $key; ?>"><h6><?=$value->getPrix();?> €</h6></td>
+                <td style="vertical-align:middle"><h6 id="plat<?php echo $key; ?>"><?=$value->getNom();?></h6></td>
+                <td style="vertical-align:middle"><h6 id="prix<?php echo $key; ?>"><?=$value->getPrix();?> €</h6></td>
                 <td style="vertical-align:middle"><select class="form-control" id="quantite<?php echo $key; ?>" name="quantite" onchange="getTotal(<?php echo count($carte); ?>)">
                     <option value="0">Quantité</option>
                     <?php 

@@ -3,28 +3,21 @@
 		<div class="footer">
 			<div class="container-fluid">
 				<div class="agileinfo_footer_grids">
-					<div class="col-lg-6 agileinfo_footer_grid">
+					<div class="col-lg-6 offset-lg-3 agileinfo_footer_grid text-center">
 						<div class="agile-logo">
 							<h4><a href="#">Trucks <span>Mania</span></a></h4>
 						</div>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc non risus et ex bibendum posuere.
-							Morbi semper leo 
-							sed tincidunt rhoncus. Curabitur nec erat rhoncus, efficitur nibh ac, porta leo. 
-							Nullam luctus lacinia urna sagittis tempus
-						</p>
-					</div>
-					<div class="col-lg-6 agileinfo_footer_grid text-center">
-						<h3>Contact Info</h3>
-						<ul class="agileinfo_footer_grid_list text-center">
-							<li><i class="fas fa-map-marker-alt"></i>BeWeb, 34400 Lunel.</li>
-							<li><i class="far fa-envelope"></i><a href="#">Loic@fondespierre.com</a></li>
-							<li><i class="fas fa-phone"></i>+ 075 567 567</li>
-						</ul>
+						<p>Une application qu'elle est top !</p>
+						<div class="d-flex justify-content-around">
+							<div class="p-2"><i class="fas fa-map-marker-alt"></i> BeWeb, 34400 Lunel.</div>
+							<div class="p-2"><i class="far fa-envelope"></i><a href="#"> Loic@fondespierre.com</a></div>
+							<div class="p-2"><i class="fas fa-phone"></i> + 075 567 567</div>
+						</div>
+						<div class="d-flex justify-content-center">
+							<p> &copy; 2018 Truck Mania. All rights reserved | Design by Trucks Mania Team</p>
+						</div>
 					</div>
 					<div class="clearfix"> </div>
-				</div>
-				<div class="w3agile_footer_copy">
-					<p> &copy; 2018 Truck Mania. All rights reserved | Design by Trucks Mania Team</p>
 				</div>
 			</div>
 		</div>

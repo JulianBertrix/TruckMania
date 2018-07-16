@@ -311,10 +311,10 @@ function resetTheForm(date){
 
     <div class="row">
          <!-- Calendrier -->
-        <div class="col-7" id='calendar'></div>
+        <div class="col-8" id='calendar'></div>
 
         <!-- Infos -->
-        <div class="col-5" id='infosCalendar'>
+        <div class="col-4" id='infosCalendar'>
 
             <!-- Formulaire Modifs Infos -->
             <h5>Evénement </h5>
@@ -322,7 +322,7 @@ function resetTheForm(date){
             <form class="form">
                 <!-- Titre -->
                 <div class="form-row">
-                    <div class="form-group col-6">
+                    <div class="form-group col-12">
                         <div class="form-group">
                             <div class="input-group input-group-sm">
                                 <div class="input-group-prepend">
@@ -335,7 +335,7 @@ function resetTheForm(date){
                 </div>
                 <!-- Lieu -->
                 <div class="form-row">
-                    <div class="form-group col-6">
+                    <div class="form-group col-7">
                         <div class="form-group">
                             <div class="input-group input-group-sm">
                                 <div class="input-group-prepend">
@@ -345,7 +345,7 @@ function resetTheForm(date){
                             </div>
                         </div>
                     </div>
-                    <div class="form-group col-6">
+                    <div class="form-group col-5">
                         <div class="dropdown" id="dropDownAdresse">
                             <button class="btn btn-outline-info btn-sm dropdown-toggle" type="button" id="dropAdresse" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Mes adresses
@@ -364,7 +364,7 @@ function resetTheForm(date){
                 <!-- Date + Heure Debut-->
                 <h6>Du</h6>
                 <div class="form-row">
-                    <div class="form-group col-4">
+                    <div class="form-group col-6">
                         <div class="input-group input-group-sm mb-2">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">Date</div>
@@ -372,7 +372,7 @@ function resetTheForm(date){
                             <input type="text" class="form-control text-center" id="datePicker" placeholder="">
                         </div>
                     </div>
-                    <div class="form-group col-4">
+                    <div class="form-group col-6">
                         <div class="input-group input-group-sm mb-2">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">Heure</div>
@@ -385,7 +385,7 @@ function resetTheForm(date){
                 <!-- Date + Heure Fin-->
                 <h6>Au</h6>
                 <div class="form-row">
-                    <div class="form-group col-4">
+                    <div class="form-group col-6">
                         <div class="input-group input-group-sm mb-2">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">Date</div>
@@ -393,7 +393,7 @@ function resetTheForm(date){
                             <input type="text" class="form-control datePicker2 text-center" id="datePicker2" placeholder="">
                         </div>
                     </div>
-                    <div class="form-group col-4">
+                    <div class="form-group col-6">
                         <div class="input-group input-group-sm mb-2">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">Heure</div>
@@ -404,7 +404,7 @@ function resetTheForm(date){
                 </div>
                 <!-- Participants -->
                 <div class="form-row" id="rowParticipants" style="display: none;">
-                    <div class="form-group col-4">
+                    <div class="form-group col-12">
                         <div class="input-group input-group-sm">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">Participants</div>
