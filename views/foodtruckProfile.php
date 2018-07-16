@@ -64,7 +64,7 @@ include 'header.php';
                      
     <div class="row">
         <?php foreach ($carte as $value){?>
-            <div class="card" style="width: 10rem;">
+            <div class="card cardPlats" style="width: 10rem;">
                 <img class="card-img-top imageCardSm" src=<?= "http://".$_SERVER['SERVER_NAME'] . "/assets/img/plats/".$value->getImage(); ?> alt="Card image cap">
                 <div class="card-body">
                     <input type="text" class="" value="<?=$value->getNom();?>">
