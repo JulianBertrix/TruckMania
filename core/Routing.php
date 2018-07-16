@@ -85,7 +85,7 @@ class Routing {
      */
     private function getValue($value) {
         if (is_array($value)) {
-            return (isset($value[$this->method])) ? $value[$this->method] : null;
+            return  (isset($value[$this->method])) ? $value[$this->method] : null;
         } else {
             return  $value;
         }

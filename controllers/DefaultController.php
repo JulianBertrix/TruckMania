@@ -31,9 +31,17 @@ class DefaultController extends Controller {
      * @link / methode invoquée lors d'une requête à la racine de l'application
      */
     public function getDefault() {
-        $this->render("default");
+        $this->render("home");
     }
 
+    //TESTS
+    public function getCalendar() {
+        $this->render("calendar");
+    }
+    
+    public function getProfil(){
+        $this->render("profileClient");
+    }
     /**
      * Simule un utilisateur qui se loggue.
      * On utilise l'objet {@see DefaultModel} qui retourne des valeurs par defaut
@@ -42,6 +50,7 @@ class DefaultController extends Controller {
      * @link /login URI definie dans le fichier config/routing.json     * 
      * 
      */
+    
     public function login() {
         $this->security->generateToken(new DefaultModel());
         header("Location: http://" . $_SERVER['SERVER_NAME'] . "/token");
