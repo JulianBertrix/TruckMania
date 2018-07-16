@@ -42,7 +42,10 @@ class PlatController extends Controller {
             $image = $dataPost['image'];
         }
 
-        $newPlat = new PlatModel($idPlat,$dataPost['intitule'],$dataPost['description'],$dataPost['prix'],$image,null);
+        //gestion du prix, enleve €
+        $prix = str_replace(" €","",$dataPost['prix']);
+
+        $newPlat = new PlatModel($idPlat,$dataPost['intitule'],$dataPost['description'],$prix,$image,null);
         echo $this->plat->update($newPlat);
     }
     

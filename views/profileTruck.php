@@ -14,11 +14,11 @@ foreach ($listeCommandes as $commande){
     <!-- Div SR-ONLY id du FT -->
     <input class="sr-only" id="idTruck" value=<?= $infosTruck['id'];?>>
     <div class="row">
-        <div class="col-sm-2">
+        <div class="col-sm-3">
             <?php include 'infoTruck.php';?>  
         </div>  
 
-        <div class="col-sm-10">
+        <div class="col-sm-9">
             <br><br>
             <ul class="nav nav-tabs" id="myTab">
               <li class="nav-item">
@@ -173,7 +173,7 @@ foreach ($listeCommandes as $commande){
                     <div class="container">
 
                         <div class="row rowCard">
-<!-- Cards -->
+                        <!-- Cards -->
                                 <?php
                         foreach($listeAdresse as $adresse){
                         ?>
