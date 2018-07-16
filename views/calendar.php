@@ -297,6 +297,8 @@ function resetTheForm(date){
         $('#datePicker2').val(date.format('DD/MM/YYYY'));
         $('#endHeure').val(date.format('12:00'));
 
+        $('#rowParticipants').css("display","none");
+
         //Dropdown
         $('#dropDownAdresse').css("display","");
 
