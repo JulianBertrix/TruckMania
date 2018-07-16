@@ -152,7 +152,7 @@ function giveMeThePlats(){
                         .append($("<input>")
                             .attr("type", "file")
                             .addClass("form-control-sm")
-                            .attr("name", "picture[]")))
+                            .attr("name", "image")))
                     //NOM
                     .append($("<td>")
                         .addClass("align-middle")
@@ -206,7 +206,7 @@ function giveMeThePlats(){
                             .append($("<input>")
                                 .attr("type", "file")
                                 .addClass("form-control-sm")
-                                .attr("name", "picture[]")))
+                                .attr("name", "image[]")))
                         //NOM
                         .append($("<td>")
                             .addClass("align-middle")
@@ -261,18 +261,31 @@ function giveMeThePlats(){
 
 //Validate Modifs Plat
 function saveThePlat(idPlat){
+    var form = new FormData();
+    var file;
+    
+    var image = $("#image"+idPlat).val();
+    var intitule = $("#plat"+idPlat).val();
+    var prix = $("#prix"+idPlat).val();
+    var description = $("#description"+idPlat).val();
+    
+    for (var i = 0; i < $('input[type=file]').length; i++){
+        file = $('input[type=file]')[i].files[0];
+        form.append('file',file);
+    }
+    
+    form.append('image', image);
+    form.append('intitule', intitule);
+    form.append('prix', prix);
+    form.append('description', description);
 
     $.ajax({
         url : "http://trucks-mania.bwb/api/plat/"+idPlat,
         type : "POST",
         
-        data : {
-            intitule : $("#plat"+idPlat).val(),
-            description : $("#description"+idPlat).val(),
-            prix : $("#prix"+idPlat).val(),
-            image : $("#image"+idPlat).val()
-        },
-        
+        data : form,
+        processData: false,
+        contentType: false,
         success : function(retour){
             console.log(retour);
             giveMeThePlats();
@@ -281,24 +294,36 @@ function saveThePlat(idPlat){
         error : function(data){
             console.log(data);
         }
+        
     });
 }
 
 //Ajout Plat
 function addThePlat(idTruck){
-   
-   var prix = parseFloat($("#ajoutPrix").val());
+   var form = new FormData();
+
+    var file;
+    var image = $("#ajoutImage").val();
+    var intitule = $("#ajoutPlat").val();
+    var prix = parseFloat($("#ajoutPrix").val());
+    var description = $("#ajoutDescription").val();
+    
+    for (var i = 0; i < $('input[type=file]').length; i++){
+        file = $('input[type=file]')[i].files[0];
+        form.append('file',file);
+    }
+    
+    form.append('image', image);
+    form.append('intitule', intitule);
+    form.append('prix', prix);
+    form.append('description', description);
    
     $.ajax({
         url : "http://trucks-mania.bwb/api/plat/add/"+idTruck,
         type : "POST",
-        data : {
-            intitule : $("#ajoutPlat").val(),
-            description : $("#ajoutDescription").val(),
-            prix : prix,
-            image : $("#ajoutImage").val()
-        },
-        
+        data :form,
+        processData: false,
+        contentType: false,
         success : function(){
             giveMeThePlats();
         },

@@ -45,7 +45,8 @@ class PlatController extends Controller {
         //gestion du prix, enleve €
         $prix = str_replace(" €","",$dataPost['prix']);
 
-        $newPlat = new PlatModel($idPlat,$dataPost['intitule'],$dataPost['description'],$prix,$image,null);
+        $newPlat = new PlatModel($idPlat,$dataPost['intitule'],$dataPost['description'],$prix,$_FILES['file']['name'],null);
+        move_uploaded_file($_FILES["file"]["tmp_name"], dirname(__DIR__). "/assets/img/plats/".$_FILES["file"]["name"]);
         echo $this->plat->update($newPlat);
     }
     
@@ -61,7 +62,8 @@ class PlatController extends Controller {
             $image = $dataPost['image'];
         }
 
-        $newPlat = new PlatModel(null,$dataPost['intitule'],$dataPost['description'],$dataPost['prix'],$image,$idTruck);
+        $newPlat = new PlatModel(null,$dataPost['intitule'],$dataPost['description'],$dataPost['prix'],$_FILES['file']['name'],$idTruck);
+        move_uploaded_file($_FILES["file"]["tmp_name"], dirname(__DIR__). "/assets/img/plats/".$_FILES["file"]["name"]);
         echo $this->plat->create($newPlat);
 
     }
