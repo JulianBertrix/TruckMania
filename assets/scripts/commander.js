@@ -57,5 +57,5 @@ function getTotal(nombre){
     for (var i =0; i < nombre; i++){
         total += parseFloat($("#quantite"+i).val())*parseFloat($("#prix"+i).text());
     }
-    $("#total").html(total);
+    $("#total").html(total.toFixed(2)+" €");
 }
